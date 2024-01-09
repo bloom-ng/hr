@@ -1,0 +1,5 @@
+vendor
+info.txt
+application/config/config.php
+application/config/database.php
+db
