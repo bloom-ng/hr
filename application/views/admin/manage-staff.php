@@ -84,6 +84,7 @@
                         <td>
                           <a href="<?php echo base_url(); ?>edit-staff/<?php echo $cnt['id']; ?>" class="btn btn-success">Edit</a>
                           <a href="<?php echo base_url(); ?>delete-staff/<?php echo $cnt['id']; ?>" class="btn btn-danger">Delete</a>
+                          <button class="btn btn-info" data-toggle="modal" data-target="#attendanceModal<?php echo $cnt['id']; ?>">Attendance</button>
                         </td>
                       </tr>
                     <?php 
@@ -107,5 +108,40 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-
-    
+<!-- Attendance Modal -->
+<?php foreach($content as $cnt): ?>
+<div class="modal fade" id="attendanceModal<?php echo $cnt['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="attendanceModalLabel<?php echo $cnt['id']; ?>">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="attendanceModalLabel<?php echo $cnt['id']; ?>">Attendance</h4>
+            </div>
+            <div class="modal-body">
+                <?php echo form_open('Staff/attendance'); ?>
+                    <div class="form-group">
+                        <label for="date">Date:</label>
+                        <input type="date" class="form-control" id="date" name="date" max="<?php echo date('Y-m-d'); ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="time_in">Time In:</label>
+                        <input type="time" class="form-control" id="time_in" name="time_in">
+                    </div>
+                    <div class="form-group">
+                        <label for="time_out">Time Out:</label>
+                        <input type="time" class="form-control" id="time_out" name="time_out">
+                    </div>
+                    <div class="form-group">
+                        <label for="notes">Notes:</label>
+                        <textarea class="form-control" id="notes" name="notes"></textarea>
+                    </div>
+                    <input type="hidden" name="staff_id" value="<?php echo $cnt['id']; ?>">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<?php endforeach; ?>

@@ -202,6 +202,46 @@ class Staff extends CI_Controller {
     }
 
     
+    public function attendance()
+    {
+        $time_in = $this->input->post('time_in');
+        $time_out = $this->input->post('time_out');
+        $staff_id = $this->input->post('staff_id');
+        $notes = $this->input->post('notes');
+        $date = $this->input->post('date');
+
+        // Check if attendance record already exists for the given staff and date
+        $existing_record = $this->Attendance_model->get_attendance_by_staff_and_date($staff_id, $date);
+
+        if ($existing_record) {
+            // If attendance record exists, update it
+            $update_data = array(
+                'time_in' => $time_in,
+                'time_out' => $time_out,
+                'notes' => $notes,
+            );
+
+            $this->Attendance_model->update_attendance($existing_record['id'], $update_data);
+
+            // $this->session->set_flashdata('success', "Attendance Updated Successfully");
+        } else {
+            // If attendance record doesn't exist, insert a new one
+            $insert_data = array(
+                'staff_id' => $staff_id,
+                'date' => $date,
+                'time_in' => $time_in,
+                'time_out' => $time_out,
+                'notes' => $notes,
+            );
+
+            $this->Attendance_model->insert_attendance($insert_data);
+
+            // $this->session->set_flashdata('success', "Attendance Inserted Successfully");
+            redirect($_SERVER['HTTP_REFERER']);
+            redirect(base_url()."/manage-staff");
+        }
+
+    }
 
 
 
