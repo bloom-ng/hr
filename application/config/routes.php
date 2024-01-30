@@ -87,3 +87,7 @@ $route['leave-approved/(:num)'] = 'leave/insert_approve/$1';
 $route['leave-rejected/(:num)'] = 'leave/insert_reject/$1';
 $route['view-leave'] = 'leave/view';
 $route['salaryinvoice/(:num)'] = 'salary/invoicestaff/$1';
+
+//deduction routes
+$route['staff/manage-deductions/(:num)'] = 'deduction/manage/$1';
+$route['staff/insert-deductions/(:num)'] = 'deduction/insert/$1';
