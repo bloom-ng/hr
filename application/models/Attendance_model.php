@@ -27,6 +27,38 @@ class Attendance_model extends CI_Model {
         }
     }
 
+    public function export_attendance_by_date_range($from_date, $to_date)
+    {
+        $this->db->where('date >=', $from_date);
+        $this->db->where('date <=', $to_date);
+        $query = $this->db->get('attendance_tbl');
+
+        if ($query->num_rows() > 0) {
+            return $query->result_array();
+        } else {
+            return array();
+        }
+    }
+
+    public function get_attendance_by_date_range($from_date, $to_date)
+    {
+        $this->db->select('attendance_tbl.*, staff_tbl.staff_name'); // Include staff_name
+        $this->db->from('attendance_tbl');
+        $this->db->join('staff_tbl', 'attendance_tbl.staff_id = staff_tbl.id', 'left'); // Assuming staff_id is the foreign key
+
+        // Add your date range condition
+        $this->db->where('attendance_tbl.date >=', $from_date);
+        $this->db->where('attendance_tbl.date <=', $to_date);
+        // $query = $this->db->get('attendance_tbl');
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) {
+            return $query->result_array();
+        } else {
+            return array();
+        }
+    }
+
     public function update_attendance($attendance_id, $data)
     {
         $this->db->where('id', $attendance_id);

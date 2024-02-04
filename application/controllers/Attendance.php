@@ -11,6 +11,41 @@ class Attendance extends CI_Controller {
             redirect(base_url().'login');
         }
     }
+
+    public function export()
+    {
+        $this->load->model('Attendance_model');
+        $this->load->view('admin/header');
+        $this->load->view('admin/export_attendance');
+        $this->load->view('admin/footer');
+    }
+
+    // Add a method to handle the export request
+    // public function do_export()
+    // {
+    //     // Get the submitted from_date and to_date
+    //     $fromDate = $this->input->post('from_date');
+    //     $toDate = $this->input->post('to_date');
+
+    //     // Use the provided date range to export attendance data
+    //     // Modify this according to your export logic
+    //     $data['attendanceData'] = $this->Attendance_model->export_attendance_by_date_range($fromDate, $toDate);
+
+    //     // Load a view to display the exported data (you can customize this view)
+    //     // $this->load->view('exported_attendance', $data);
+    //     echo json_encode($attendanceData);
+    // }
+
+    public function fetch_attendance()
+    {
+        $fromDate = $this->input->post('from_date');
+        $toDate = $this->input->post('to_date');
+
+        $attendanceData = $this->Attendance_model->get_attendance_by_date_range($fromDate, $toDate);
+
+        echo json_encode($attendanceData);
+    }
+
     public function check_existing_attendance() {
         $staffId = $this->input->post('staff_id');
         $selectedDate = $this->input->post('date');
