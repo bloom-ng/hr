@@ -85,7 +85,6 @@
                           <a href="<?php echo base_url(); ?>staff/manage-deductions/<?php echo $cnt['id']; ?>" class="btn btn-success">Deductions</a>
                           <a href="<?php echo base_url(); ?>edit-staff/<?php echo $cnt['id']; ?>" class="btn btn-success">Edit</a>
                           <a href="<?php echo base_url(); ?>delete-staff/<?php echo $cnt['id']; ?>" class="btn btn-danger">Delete</a>
-                          <button class="btn btn-info" data-toggle="modal" data-target="#attendanceModal<?php echo $cnt['id']; ?>">Attendance</button>
                         </td>
                       </tr>
                     <?php 

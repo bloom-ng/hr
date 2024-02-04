@@ -10,7 +10,21 @@ class Attendance_model extends CI_Model {
         $this->db->where('date', $date);
         $query = $this->db->get('attendance_tbl');
 
-        return $query->row_array(); // Returns a single row as an associative array
+        return ($query->num_rows() > 0) ? $query->row_array() : null;
+    }
+
+
+    public function check_attendance($staff_id, $from_date, $to_date) {
+        $this->db->where('staff_id', $staff_id);
+        $this->db->where('date >=', $from_date);
+        $this->db->where('date <=', $to_date);
+        $query = $this->db->get('attendance_tbl');
+
+        if ($query->num_rows() > 0) {
+            return $query->result_array();
+        } else {
+            return array();
+        }
     }
 
     public function update_attendance($attendance_id, $data)
@@ -25,7 +39,7 @@ class Attendance_model extends CI_Model {
     {
         $this->db->insert('attendance_tbl', $data);
 
-        return $this->db->insert_id(); // Returns the ID of the inserted row
+        return $this->db->insert_id();
     }
 
     function select_attendance()

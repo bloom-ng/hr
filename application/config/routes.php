@@ -92,3 +92,7 @@ $route['salaryinvoice/(:num)'] = 'salary/invoicestaff/$1';
 //deduction routes
 $route['staff/manage-deductions/(:num)'] = 'deduction/manage/$1';
 $route['staff/insert-deductions/(:num)'] = 'deduction/insert/$1';
+
+//Attendance routes
+$route['export-attendance'] = 'attendance/export';
+$route['attendance-manage'] = 'attendance/manage_attendance';

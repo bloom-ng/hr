@@ -148,6 +148,19 @@
 
         <li class="treeview">
           <a href="#">
+            <i class="fa fa-calendar"></i> <span>Attendancee</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="<?php echo base_url(); ?>attendance-manage"><i class="fa fa-circle-o"></i>Manage Attendance</a></li>
+            <li><a href="<?php echo base_url(); ?>view-attendance"><i class="fa fa-circle-o"></i> Export Attendance</a></li>
+          </ul>
+        </li>
+
+        <li class="treeview">
+          <a href="#">
             <i class="fa fa-share"></i> <span>Leave</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
