@@ -45,6 +45,8 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
+                  <th>Actions</th>
+
                     <th>#</th>
                     <th>Name</th>
                     <th>Photo</th>
@@ -58,7 +60,6 @@
                     <th>City</th>
                     <th>State</th>
                     <th>Country</th>
-                    <th>Actions</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -68,6 +69,11 @@
                     foreach($content as $cnt): 
                   ?>
                       <tr>
+                      <td>
+                          <a href="<?php echo base_url(); ?>staff/manage-deductions/<?php echo $cnt['id']; ?>" class="btn bg-transparent text-blue-500">Deductions</a>
+                          <a href="<?php echo base_url(); ?>edit-staff/<?php echo $cnt['id']; ?>" class="btn bg-transparent text-green-500">Edit</a>
+                          <a href="<?php echo base_url(); ?>delete-staff/<?php echo $cnt['id']; ?>" class="btn bg-transparent text-red-500">Delete</a>
+                        </td>
                         <td><?php echo $i; ?></td>
                         <td><?php echo $cnt['staff_name']; ?></td>
                         <td><img src="<?php echo base_url(); ?>uploads/profile-pic/<?php echo $cnt['pic'] ?>" class="img-circle" width="50px" alt="User Image"></td>
@@ -81,11 +87,7 @@
                         <td><?php echo $cnt['city']; ?></td>
                         <td><?php echo $cnt['state']; ?></td>
                         <td><?php echo $cnt['country']; ?></td>
-                        <td>
-                          <a href="<?php echo base_url(); ?>staff/manage-deductions/<?php echo $cnt['id']; ?>" class="btn btn-success">Deductions</a>
-                          <a href="<?php echo base_url(); ?>edit-staff/<?php echo $cnt['id']; ?>" class="btn btn-success">Edit</a>
-                          <a href="<?php echo base_url(); ?>delete-staff/<?php echo $cnt['id']; ?>" class="btn btn-danger">Delete</a>
-                        </td>
+                        
                       </tr>
                     <?php 
                       $i++;

@@ -3,3 +3,4 @@ info.txt
 application/config/config.php
 application/config/database.php
 db
+node_modules

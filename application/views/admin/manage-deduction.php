@@ -39,7 +39,7 @@
             <div class="box-header">
               <h3 class="box-title">Deductions for <?php echo $staff['staff_name'] ?></h3>
               <div class="d-flex mt-3">
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+              <button type="button" class="btn btn-primary bg-blue-600 hover:bg-blue-500" data-toggle="modal" data-target="#staticBackdrop">
                 Add
               </button>
               </div>
