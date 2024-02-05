@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Department extends CI_Controller {
+class Attendance extends CI_Controller {
 
     function __construct()
     {
@@ -12,20 +12,74 @@ class Department extends CI_Controller {
         }
     }
 
-    // public function index()
+    public function export()
+    {
+        $this->load->model('Attendance_model');
+        $this->load->view('admin/header');
+        $this->load->view('admin/export_attendance');
+        $this->load->view('admin/footer');
+    }
+
+    // Add a method to handle the export request
+    // public function do_export()
     // {
-    //     $this->load->view('admin/header');
-    //     $this->load->view('admin/add-department');
-    //     $this->load->view('admin/footer');
+    //     // Get the submitted from_date and to_date
+    //     $fromDate = $this->input->post('from_date');
+    //     $toDate = $this->input->post('to_date');
+
+    //     // Use the provided date range to export attendance data
+    //     // Modify this according to your export logic
+    //     $data['attendanceData'] = $this->Attendance_model->export_attendance_by_date_range($fromDate, $toDate);
+
+    //     // Load a view to display the exported data (you can customize this view)
+    //     // $this->load->view('exported_attendance', $data);
+    //     echo json_encode($attendanceData);
     // }
 
-    // public function manage_department()
-    // {
-    //     $data['content']=$this->Department_model->select_departments();
-    //     $this->load->view('admin/header');
-    //     $this->load->view('admin/manage-department',$data);
-    //     $this->load->view('admin/footer');
-    // }
+    public function fetch_attendance()
+    {
+        $fromDate = $this->input->post('from_date');
+        $toDate = $this->input->post('to_date');
+
+        $attendanceData = $this->Attendance_model->get_attendance_by_date_range($fromDate, $toDate);
+
+        echo json_encode($attendanceData);
+    }
+
+    public function check_existing_attendance() {
+        $staffId = $this->input->post('staff_id');
+        $selectedDate = $this->input->post('date');
+
+        $existingAttendance = $this->Attendance_model->get_attendance_by_staff_and_date($staffId, $selectedDate);
+
+        echo json_encode($existingAttendance);
+    }
+
+    public function manage_attendance()
+    {
+        $data['staff_members']=$this->Staff_model->get_all_staffs();
+        $this->load->view('admin/header');
+        $this->load->view('admin/manage-attendance', $data);
+        $this->load->view('admin/footer');
+        return;
+
+    }
+
+    public function check_attendance()
+    {
+        $from_date = $this->input->post('from_date');
+        $to_date = $this->input->post('to_date');
+        $staff_id = $this->input->post('staff_id');
+
+        $attendance_result = $this->Attendance_model->check_attendance($staff_id, $from_date, $to_date);
+
+        $data['attendance_result'] = $attendance_result;
+        $attendance_result_html = $this->load->view('admin/attendance_result', $data, TRUE);
+
+        echo $attendance_result_html;
+    }
+
+
 
     public function insert()
     {
@@ -61,9 +115,9 @@ class Department extends CI_Controller {
 
             $this->Attendance_model->insert_attendance($insert_data);
 
-            // $this->session->set_flashdata('success', "Attendance Inserted Successfully");
-            redirect($_SERVER['HTTP_REFERER']);
-            redirect(base_url()."/manage-staff");
+            // // $this->session->set_flashdata('success', "Attendance Inserted Successfully");
+            // redirect($_SERVER['HTTP_REFERER']);
+            // redirect(base_url()."/manage-staff");
         }
 
     }
@@ -81,16 +135,6 @@ class Department extends CI_Controller {
         }
         redirect(base_url()."department/manage_department");
     }
-
-
-    function edit($id)
-    {
-        $data['content']=$this->Department_model->select_department_byID($id);
-        $this->load->view('admin/header');
-        $this->load->view('admin/edit-department',$data);
-        $this->load->view('admin/footer');
-    }
-
 
     function delete($id)
     {

@@ -80,12 +80,20 @@ class Staff_model extends CI_Model {
         $this->db->affected_rows();
     }
 
-    
-
-    
-    
-
-
-
-
+    function get_all_staffs()
+    {
+        $this->db->order_by('staff_tbl.id','DESC');
+        $this->db->select("staff_tbl.*,department_tbl.department_name");
+        $this->db->from("staff_tbl");
+        $this->db->join("department_tbl",'department_tbl.id=staff_tbl.department_id');
+        $qry = $this->db->get();
+        
+        if($qry->num_rows() > 0)
+        {
+            $result = $qry->result_array();
+            return $result;
+        }
+        
+        return array();
+    }
 }

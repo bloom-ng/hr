@@ -95,3 +95,9 @@ $route['staff/insert-deductions'] = 'deduction/insert';
 $route['staff/edit-deductions/(:num)'] = 'deduction/edit/$1';
 $route['staff/update-deductions/(:num)'] = 'deduction/update/$1';
 $route['staff/delete-deductions/(:num)'] = 'deduction/delete/$1';
+
+//Attendance routes
+$route['export-attendance'] = 'attendance/export';
+$route['attendance-manage'] = 'attendance/manage_attendance';
+$route['attendance-export'] = 'attendance/export';
+$route['attendance-do_export'] = 'attendance/do_export';
