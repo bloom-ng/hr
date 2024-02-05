@@ -7,7 +7,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Deduction Management</a></li>
+        <li><a href="/manage-staff">Manage Staff</a></li>
         <li class="active">Manage Deduction</li>
       </ol>
     </section>
@@ -51,7 +51,7 @@
                   <thead>
                   <tr>
                     <th>#</th>
-                    <th>Amount</th>
+                    <th>Amount (&#8358;)</th>
                     <th>Date</th>
                     <th>Reason</th>
                     <th>Actions</th>
@@ -59,9 +59,9 @@
                   </thead>
                   <tbody>
                   <?php 
-                    if(isset($content)):
+                    if(isset($deductions)):
                     $i=1; 
-                    foreach($content as $cnt): 
+                    foreach($deductions as $cnt): 
                   ?>
                       <tr>
                         <td><?php echo $i; ?></td>
@@ -70,8 +70,8 @@
                         <td><?php echo date('d-m-Y', strtotime($cnt['date'])); ?></td>
                         <td><?php echo $cnt['reason']; ?></td>
                         <td>
-                          <a href="<?php echo base_url(); ?>deduction/edit/<?php echo $cnt['id']; ?>" class="btn btn-success">Edit</a>
-                          <a href="<?php echo base_url(); ?>deduction/<?php echo $cnt['id']; ?>" class="btn btn-danger">Delete</a>
+                          <a href="<?php echo base_url(); ?>staff/edit-deductions/<?php echo $cnt['id']; ?>" class="btn btn-success">Edit</a>
+                          <a href="<?php echo base_url(); ?>staff/delete-deductions/<?php echo $cnt['id']; ?>" class="btn btn-danger">Delete</a>
                         </td>
                       </tr>
                     <?php 
@@ -110,14 +110,14 @@
         </button>
       </div>
       <div class="modal-body">
-      <form role="form" action="<?php echo base_url(); ?>staff/insert-deduction" method="POST">
+      <form role="form" action="<?php echo base_url(); ?>staff/insert-deductions" method="POST">
               <div class="box-body">
         
                 <input name="staff_id" value="<?php echo $staff['id']; ?>" type="hidden" >
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label for="amount">Amount</label>
-                    <input min="0 required type="number" name="amount" class="form-control" placeholder="Amount">
+                    <label for="amount">Amount (&#8358;)</label>
+                    <input min="0" required type="number" name="amount" class="form-control" placeholder="Amount">
                   </div>
                 </div>
                 <div class="col-md-12">
@@ -147,7 +147,6 @@
     </div>
   </div>
 </div>
-
 
 
     

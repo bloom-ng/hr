@@ -34,17 +34,17 @@ class Deduction_model extends CI_Model {
         foreach ($where as $key => $value) {
             if (is_int($key)) {
                 $this->db->where($value);
+                continue;
             }
             $this->db->where($key, $value);
         }
+        $this->db->order_by("id", "DESC");
         $qry = $this->db->get($this->table);
         if($qry->num_rows()>0)
         {
             return $qry->result_array();
         }
     }
-
-
 
     public function delete($id)
     {

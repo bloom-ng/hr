@@ -18,6 +18,7 @@ class Deduction extends CI_Controller {
         $data['staff']= $this->Staff_model->select_staff_byID($id)[0];
         $data['deductions']= $this->Deduction_model
                                     ->getWhere(['staff_id' => $id]);
+        
 
         $this->load->view('admin/header');
         $this->load->view('admin/manage-deduction', $data);
@@ -27,31 +28,25 @@ class Deduction extends CI_Controller {
     public function insert()
     {
 
-        return json_encode([
-            'error' => false, 
-            'message' => 'done'
-        ]);
-
-        $this->form_validation->set_rules('txtname', 'Full Name', 'required');
-        $this->form_validation->set_rules('slcgender', 'Gender', 'required');
-        $this->form_validation->set_rules('slcdepartment', 'Department', 'required');
-        $this->form_validation->set_rules('txtemail', 'Email', 'trim|required|valid_email');
-        $this->form_validation->set_rules('txtmobile', 'Mobile Number ', 'required|regex_match[/^[0-9]{10}$/]');
+        $this->form_validation->set_rules('amount', 'Amount', 'required');
+        $this->form_validation->set_rules('date', 'Date', 'required');
+        $this->form_validation->set_rules('reason', 'Reason', 'required');
        
         
-        $name=$this->input->post('txtname');
-        $gender=$this->input->post('slcgender');
+        $amount=$this->input->post('amount');
+        $staff_id=$this->input->post('staff_id');
+        $date=$this->input->post('date');
+        $reason=$this->input->post('reason');
         
         if($this->form_validation->run() !== false)
         {
-            $this->load->library('image_lib');
             
-            if($login>0)
-            {
-                $data = $this->Deduction_model->insert(array('id'=>$login,'staff_name'=>$name,'gender'=>$gender,'email'=>$email,'mobile'=>$mobile,'dob'=>$dob,'doj'=>$doj,'address'=>$address,'city'=>$city,'state'=>$state,'country'=>$country,'department_id'=>$department,'pic'=>$image,'added_by'=>$added));
-            }
+            $data = $this->Deduction_model->insert(array( 'staff_id' => $staff_id,
+                                                          'amount'=>$amount,
+                                                          'date'=>$date,
+                                                          'reason'=>$reason));
             
-            if($data == true)
+            if($data)
             {
                 $this->session->set_flashdata('success', "Staff Deduction Added Succesfully"); 
             }else{
@@ -60,103 +55,69 @@ class Deduction extends CI_Controller {
             redirect($_SERVER['HTTP_REFERER']);
         }
         else{
-            $this->index();
+            $this->manage($staff_id);
             return false;
-        } 
+        }
     }
 
-    public function update()
+    public function update($id)
     {
         $this->load->helper('form');
-        $this->form_validation->set_rules('txtname', 'Full Name', 'required');
-        $this->form_validation->set_rules('slcgender', 'Gender', 'required');
-        $this->form_validation->set_rules('slcdepartment', 'Department', 'required');
-        $this->form_validation->set_rules('txtemail', 'Email', 'trim|required|valid_email');
-        $this->form_validation->set_rules('txtmobile', 'Mobile Number ', 'required|regex_match[/^[0-9]{10}$/]');
-        $this->form_validation->set_rules('txtdob', 'Date of Birth', 'required');
-        $this->form_validation->set_rules('txtdoj', 'Date of Joining', 'required');
-        $this->form_validation->set_rules('txtcity', 'City', 'required');
-        $this->form_validation->set_rules('txtstate', 'State', 'required');
-        $this->form_validation->set_rules('slccountry', 'Country', 'required');
+       
+        $this->form_validation->set_rules('amount', 'Amount', 'required');
+        $this->form_validation->set_rules('date', 'Date', 'required');
+        $this->form_validation->set_rules('reason', 'Reason', 'required');
+       
         
-        $id=$this->input->post('txtid');
-        $name=$this->input->post('txtname');
-        $gender=$this->input->post('slcgender');
-        $department=$this->input->post('slcdepartment');
-        $email=$this->input->post('txtemail');
-        $mobile=$this->input->post('txtmobile');
-        $dob=$this->input->post('txtdob');
-        $doj=$this->input->post('txtdoj');
-        $city=$this->input->post('txtcity');
-        $state=$this->input->post('txtstate');
-        $country=$this->input->post('slccountry');
-        $address=$this->input->post('txtaddress');
-
+        $amount=$this->input->post('amount');
+        $staff_id=$this->input->post('staff_id');
+        $date=$this->input->post('date');
+        $reason=$this->input->post('reason');
         if($this->form_validation->run() !== false)
         {
-            $this->load->library('image_lib');
-            $config['upload_path']= 'uploads/profile-pic/';
-            $config['allowed_types'] ='gif|jpg|png|jpeg';
-            $this->load->library('upload', $config);
-            if ( ! $this->upload->do_upload('filephoto'))
-            {
-                $data=$this->Staff_model->update_staff(array('staff_name'=>$name,'gender'=>$gender,'email'=>$email,'mobile'=>$mobile,'dob'=>$dob,'doj'=>$doj,'address'=>$address,'city'=>$city,'state'=>$state,'country'=>$country,'department_id'=>$department),$id);
-            }
-            else
-            {
-                $image_data =   $this->upload->data();
-
-                $configer =  array(
-                  'image_library'   => 'gd2',
-                  'source_image'    =>  $image_data['full_path'],
-                  'maintain_ratio'  =>  TRUE,
-                  'width'           =>  150,
-                  'height'          =>  150,
-                  'quality'         =>  50
-                );
-                $this->image_lib->clear();
-                $this->image_lib->initialize($configer);
-                $this->image_lib->resize();
-
-                $data=$this->Staff_model->update_staff(array('staff_name'=>$name,'gender'=>$gender,'email'=>$email,'mobile'=>$mobile,'dob'=>$dob,'doj'=>$doj,'address'=>$address,'city'=>$city,'state'=>$state,'country'=>$country,'department_id'=>$department,'pic'=>$image_data['file_name'],'added_by'=>$added),$id);
-            }
+         
+           
+         $data=$this->Deduction_model->update(array(
+                    'amount'=>$amount,
+                    'date'=>$date,
+                    'reason'=>$reason),
+                    $id);
+            
             
             if($this->db->affected_rows() > 0)
             {
-                $this->session->set_flashdata('success', "Staff Updated Succesfully"); 
+                $this->session->set_flashdata('success', "Deduction Updated Succesfully"); 
             }else{
-                $this->session->set_flashdata('error', "Sorry, Staff Updated Failed.");
+                $this->session->set_flashdata('error', "Sorry, Deduction Updated Failed.");
             }
-            redirect(base_url()."manage-staff");
+            redirect(base_url(). "staff/manage-deductions/" . $staff_id);
         }
         else{
-            $this->index();
+            $this->manage($staff_id);
             return false;
-
         } 
     }
 
 
-    function edit($id)
+    public function edit($id)
     {
-        $data['department']=$this->Department_model->select_departments();
-        $data['country']=$this->Home_model->select_countries();
-        $data['content']=$this->Staff_model->select_staff_byID($id);
+        $data['deduction']= $this->Deduction_model
+                                ->get($id)[0];
+
         $this->load->view('admin/header');
-        $this->load->view('admin/edit-staff',$data);
+        $this->load->view('admin/edit-deduction',$data);
         $this->load->view('admin/footer');
     }
 
 
-    function delete($id)
+    public function delete($id)
     {
-        $this->Home_model->delete_login_byID($id);
-        $data=$this->Staff_model->delete_staff($id);
+        $this->Deduction_model->delete($id);
         if($this->db->affected_rows() > 0)
         {
-            $this->session->set_flashdata('success', "Staff Deleted Succesfully"); 
+            $this->session->set_flashdata('success', "Deduction Deleted Succesfully"); 
         }else{
-            $this->session->set_flashdata('error', "Sorry, Staff Delete Failed.");
+            $this->session->set_flashdata('error', "Sorry, Deduction Delete Failed.");
         }
         redirect($_SERVER['HTTP_REFERER']);
     }
