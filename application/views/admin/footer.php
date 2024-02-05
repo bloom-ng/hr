@@ -1,6 +1,6 @@
  <footer class="main-footer">
      <div class="pull-right hidden-xs">
-         <b>Version</b> 3.4.13
+         <b>Version</b> 1 (Beta)
      </div>
      <strong>&copy; <?php echo date("Y"); ?></strong> Bloom Digital Media Ltd.
  </footer>
