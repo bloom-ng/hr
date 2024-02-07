@@ -101,3 +101,7 @@ $route['export-attendance'] = 'attendance/export';
 $route['attendance-manage'] = 'attendance/manage_attendance';
 $route['attendance-export'] = 'attendance/export';
 $route['attendance-do_export'] = 'attendance/do_export';
+
+//Appraisal route
+$route['manage-appraisal'] = 'appraisal/manage';
+$route['add-appraisal/(:num)'] = 'appraisal/add/$1';
