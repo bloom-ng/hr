@@ -108,3 +108,7 @@ $route['commission/insert'] = 'commission/insert';
 $route['commission/delete/(:num)'] = 'commission/delete/$1';
 $route['commission/update/(:num)'] = 'commission/update/$1';
 $route['commission/manage/(:num)'] = 'commission/manage/$1';
+
+//Appraisal route
+$route['manage-appraisal'] = 'appraisal/manage';
+$route['add-appraisal/(:num)'] = 'appraisal/add/$1';

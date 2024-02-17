@@ -160,6 +160,19 @@
           </ul>
         </li>
 
+		  <li class="treeview">
+			  <a href="#">
+				  <i class="fa fa-thumbs-up"></i> <span>Appraisals</span>
+				  <span class="pull-right-container">
+			  <i class="fa fa-angle-left pull-right"></i>
+			</span>
+			  </a>
+			  <ul class="treeview-menu">
+				  <li><a href="<?php echo base_url(); ?>manage-appraisal"><i class="fa fa-circle-o"></i>Manage Appraisal</a></li>
+<!--				  <li><a href="--><?php //echo base_url(); ?><!--attendance-export"><i class="fa fa-circle-o"></i> Show Attendance</a></li>-->
+			  </ul>
+		  </li>
+
         <li class="treeview">
           <a href="#">
             <i class="fa fa-calendar"></i> <span>Commission</span>
