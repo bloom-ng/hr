@@ -5,7 +5,7 @@ class Home_model extends CI_Model {
 
     function logindata($un,$pw)
     {
-        $this->db->where('username',$un);               
+        $this->db->where('username',$un);
         $this->db->where('password',$pw);
         $qry=$this->db->get("login_tbl");
         if($qry->num_rows()>0)

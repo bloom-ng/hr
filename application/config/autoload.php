@@ -142,4 +142,5 @@ $autoload['model'] = array(
     'Leave_model', 
     'Deduction_model',
     'Attendance_model',
+    'Commission_model',
 );

@@ -1,11 +1,18 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Sample_model extends CI_Model {
+class Commission_model extends CI_Model {
 
-    public $table = "table_name";
+    public $table = "commissions";
     public $fields = [
         "id",
+        "staff_id",
+        "client",
+        "total",
+        "commission",
+        "date",
+        "comments",
+        "status"
     ];
 
     public function insert($data)
@@ -29,9 +36,11 @@ class Sample_model extends CI_Model {
         foreach ($where as $key => $value) {
             if (is_int($key)) {
                 $this->db->where($value);
+                continue;
             }
             $this->db->where($key, $value);
         }
+        $this->db->order_by("id", "DESC");
         $qry = $this->db->get($this->table);
         if($qry->num_rows()>0)
         {
@@ -55,8 +64,5 @@ class Sample_model extends CI_Model {
         $this->db->update($this->table, $data);
         $this->db->affected_rows();
     }
-
-
-
 
 }

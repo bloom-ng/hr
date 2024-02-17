@@ -101,3 +101,10 @@ $route['export-attendance'] = 'attendance/export';
 $route['attendance-manage'] = 'attendance/manage_attendance';
 $route['attendance-export'] = 'attendance/export';
 $route['attendance-do_export'] = 'attendance/do_export';
+
+//Commisions routes
+$route['commission-staff'] = 'commission/index';
+$route['commission/insert'] = 'commission/insert';
+$route['commission/delete/(:num)'] = 'commission/delete/$1';
+$route['commission/update/(:num)'] = 'commission/update/$1';
+$route['commission/manage/(:num)'] = 'commission/manage/$1';
