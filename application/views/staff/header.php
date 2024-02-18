@@ -142,8 +142,8 @@
   </aside>
 
   <?php
-    if ($this->session->userdata('usertype')!=2)
-    { 
-      redirect('login');
-    }
+    // if ($this->session->userdata('usertype')!=2)
+    // { 
+    //   redirect('login');
+    // }
   ?>

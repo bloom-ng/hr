@@ -54,6 +54,21 @@
                         <input type="hidden" name="txtid" value="<?php echo $cnt['id']; ?>" class="form-control">
                         <input type="text" name="txtdepartment" value="<?php echo $cnt['department_name']; ?>" class="form-control" placeholder="Department Name">
                       </div>
+
+                      <div class="form-group">
+                        <label>HOD</label>
+                        <select name="hod" class="form-control">
+                          <option> </option>
+                          <?php foreach($staffs as $staff): ?>
+                            <option value="<?php echo $staff['id'] ?>"
+                                    <?php echo $cnt['staff_id'] ==  $staff['id'] ? "selected" : ""  ?> >
+                              <?php echo $staff['staff_name'] ?>
+                            </option>
+                            
+                          <?php endforeach; ?>
+
+                        </select>
+                      </div>
                     </div>
                     
                   </div>

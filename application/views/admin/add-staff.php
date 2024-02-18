@@ -83,7 +83,6 @@
                       <option value="">Select</option>
                       <option value="Male">Male</option>
                       <option value="Female">Female</option>
-                      <option value="Others">Others</option>
                     </select>
                   </div>
                 </div>
@@ -118,43 +117,12 @@
 
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label>Date of Joining</label>
+                    <label>Date of Employment</label>
                     <input type="date" name="txtdoj" class="form-control" placeholder="DOJ">
                   </div>
                 </div>
                 
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label>City</label>
-                    <input type="text" name="txtcity" class="form-control" placeholder="City">
-                  </div>
-                </div>
-
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label>State</label>
-                    <input type="text" name="txtstate" class="form-control" placeholder="State">
-                  </div>
-                </div>
-
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label>Country</label>
-                    <select class="form-control" name="slccountry">
-                      <option value="">Select</option>
-                      <?php
-                        if(isset($country))
-                        {
-                          foreach ($country as $cnt1)
-                          {
-                            print "<option value='".$cnt1['country_name']."'>".$cnt1['country_name']."</option>";
-                          }
-                        }
-                      ?>
-                    </select>
-                  </div>
-                </div>
-
+               
                 <div class="col-md-6">
                   <div class="form-group">
                     <label>Address</label>

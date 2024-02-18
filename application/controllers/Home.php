@@ -11,12 +11,12 @@ class Home extends CI_Controller {
 	public function index()
 	{
         if ( ! $this->session->userdata('logged_in'))
-        { 
+        {
             redirect(base_url('login'));
         }
 		else
         {
-            if($this->session->userdata('usertype')==1)
+            if($this->session->userdata('role') !== "staff")
             {
                 $data['department']=$this->Department_model->select_departments();
                 $data['staff']=$this->Staff_model->select_staff();
@@ -28,11 +28,11 @@ class Home extends CI_Controller {
                 $this->load->view('admin/footer');
             }
             else{
-                $staff=$this->session->userdata('userid');
+                $staff=$this->session->userdata('staff_id');
                 $data['leave']=$this->Leave_model->select_leave_byStaffID($staff);
-                $this->load->view('staff/header');
+                $this->load->view('admin/header');
                 $this->load->view('staff/dashboard',$data);
-                $this->load->view('staff/footer');
+                $this->load->view('admin/footer');
             }
             
         }
@@ -50,51 +50,43 @@ class Home extends CI_Controller {
         $this->load->view('admin/footer');
     }
 
-	function login()
+	public function login()
     {
         $un=$this->input->post('txtusername');
         $pw=$this->input->post('txtpassword');
-        $this->load->model('Home_model');
-        $check_login=$this->Home_model->logindata($un,$pw);
-        if($check_login<>'')
-        {
-            if($check_login[0]['status']==1){
-                if($check_login[0]['usertype']==1){
-                    $data = array(
-                        'logged_in'  =>  TRUE,
-                        'username' => $check_login[0]['username'],
-                        'usertype' => $check_login[0]['usertype'],
-                        'userid' => $check_login[0]['id']
-                    );
-                    $this->session->set_userdata($data);
-                    redirect('/');
-                }
-                elseif($check_login[0]['usertype']==2){
-                    $data = array(
-                        'logged_in'  =>  TRUE,
-                        'username' => $check_login[0]['username'],
-                        'usertype' => $check_login[0]['usertype'],
-                        'userid' => $check_login[0]['id']
-                    );
-                    $this->session->set_userdata($data);
-                    redirect('/');
-                }
-                else{
-                    $this->session->set_flashdata('login_error', 'Sorry, you cant login right now.', 300);
-                    redirect(base_url().'login');
-                }
-                
-            }
-            else{
-                $this->session->set_flashdata('login_error', 'Sorry, your account is blocked.', 300);
-                redirect(base_url().'login');
-            }
-            
-        }
-        else{
+        $this->load->model('User_model');
+        $check_login=$this->User_model->logindata($un);
+       
+        if (empty($check_login)) {
             $this->session->set_flashdata('login_error', 'Please check your username or password and try again.', 300);
             redirect(base_url().'login');
         }
+
+        if ($check_login[0]['status'] != 1) {
+            $this->session->set_flashdata('login_error', 'Sorry, your account is blocked.', 300);
+            redirect(base_url().'login');
+        }
+
+        $verified = password_verify($pw, $check_login[0]['password']);
+       
+        if ($verified) {
+            
+
+            $data = array(
+                'logged_in'  =>  true,
+                'username' => $check_login[0]['username'],
+                'usertype' => $check_login[0]['usertype'],
+                'role' => $check_login[0]['role'],
+                'userid' => $check_login[0]['id']
+            );
+            if ($check_login[0]['role'] == "staff") {
+                $staff = $this->Staff_model->getWhere(['user_id' => $check_login[0]['id']])[0];
+                $data['staff_id'] = $staff['id'];
+            }
+            $this->session->set_userdata($data);
+            redirect('/');
+        }
+
     }
 
     public function logout()

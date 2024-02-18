@@ -135,11 +135,12 @@ $autoload['language'] = array();
 
 
 $autoload['model'] = array(
-    'Home_model',
+    'User_model',
     'Department_model',
     'Staff_model',
     'Salary_model',
     'Leave_model', 
     'Deduction_model',
     'Attendance_model',
+    'Commission_model',
 );

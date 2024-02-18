@@ -27,7 +27,7 @@ class Staff_model extends CI_Model {
     function select_staff_byID($id)
     {
         $this->db->where('staff_tbl.id',$id);
-        $this->db->select("staff_tbl.*,department_tbl.department_name");
+        $this->db->select("staff_tbl.*,department_tbl.department_name, department_tbl.staff_id as hod");
         $this->db->from("staff_tbl");
         $this->db->join("department_tbl",'department_tbl.id=staff_tbl.department_id');
         $qry=$this->db->get();
@@ -95,5 +95,21 @@ class Staff_model extends CI_Model {
         }
         
         return array();
+    }
+
+    public function getWhere($where)
+    {
+        foreach ($where as $key => $value) {
+            if (is_int($key)) {
+                $this->db->where($value);
+                continue;
+            }
+            $this->db->where($key, $value);
+        }
+        $qry = $this->db->get("staff_tbl");
+        if($qry->num_rows()>0)
+        {
+            return $qry->result_array();
+        }
     }
 }
