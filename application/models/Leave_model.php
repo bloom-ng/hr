@@ -41,7 +41,7 @@ class Leave_model extends CI_Model {
     {
         $this->db->order_by('leave_tbl.id','DESC');
         $this->db->where('leave_tbl.staff_id',$staffid);
-        $this->db->select("leave_tbl.*,staff_tbl.staff_name,staff_tbl.city,staff_tbl.state,staff_tbl.country,staff_tbl.mobile,staff_tbl.email,department_tbl.department_name");
+        $this->db->select("leave_tbl.*,staff_tbl.staff_name,staff_tbl.mobile,staff_tbl.email,department_tbl.department_name");
         $this->db->from("leave_tbl");
         $this->db->join("staff_tbl",'staff_tbl.id=leave_tbl.staff_id');
         $this->db->join("department_tbl",'department_tbl.id=staff_tbl.department_id');
@@ -56,7 +56,7 @@ class Leave_model extends CI_Model {
     function select_leave_forApprove()
     {
         $this->db->where('leave_tbl.status',0);
-        $this->db->select("leave_tbl.*,staff_tbl.pic,staff_tbl.staff_name,staff_tbl.city,staff_tbl.state,staff_tbl.country,staff_tbl.mobile,staff_tbl.email,department_tbl.department_name");
+        $this->db->select("leave_tbl.*,staff_tbl.pic,staff_tbl.staff_name,staff_tbl.mobile,staff_tbl.email,department_tbl.department_name");
         $this->db->from("leave_tbl");
         $this->db->join("staff_tbl",'staff_tbl.id=leave_tbl.staff_id');
         $this->db->join("department_tbl",'department_tbl.id=staff_tbl.department_id');

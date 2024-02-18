@@ -57,9 +57,7 @@
                     <th>DOB</th>
                     <th>Joined On</th>
                     <th>Address</th>
-                    <th>City</th>
-                    <th>State</th>
-                    <th>Country</th>
+                  
                   </tr>
                   </thead>
                   <tbody>
@@ -84,9 +82,7 @@
                         <td><?php echo date('d-m-Y', strtotime($cnt['dob'])); ?></td>
                         <td><?php echo date('d-m-Y', strtotime($cnt['doj'])); ?></td>
                         <td><?php echo $cnt['address']; ?></td>
-                        <td><?php echo $cnt['city']; ?></td>
-                        <td><?php echo $cnt['state']; ?></td>
-                        <td><?php echo $cnt['country']; ?></td>
+                       
                         
                       </tr>
                     <?php 

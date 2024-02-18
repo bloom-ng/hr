@@ -112,3 +112,10 @@ $route['commission/manage/(:num)'] = 'commission/manage/$1';
 //Appraisal route
 $route['manage-appraisal'] = 'appraisal/manage';
 $route['add-appraisal/(:num)'] = 'appraisal/add/$1';
+
+
+// Admins routes
+$route['admins'] = 'admin/index';
+$route['admins/insert'] = 'admin/insert';
+$route['admins/update/(:num)'] = 'admin/update/$1';
+$route['admins/delete/(:num)'] = 'admin/delete/$1';

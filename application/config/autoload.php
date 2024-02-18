@@ -135,7 +135,7 @@ $autoload['language'] = array();
 
 
 $autoload['model'] = array(
-    'Home_model',
+    'User_model',
     'Department_model',
     'Staff_model',
     'Salary_model',

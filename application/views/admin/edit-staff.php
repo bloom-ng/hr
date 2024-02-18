@@ -99,31 +99,11 @@
                           <label>Gender</label>
                           <select class="form-control" name="slcgender">
                             <option value="">Select</option>
-                            <?php
-                            if($cnt['gender']=='Male')
-                            {
-                              print '<option value="Male" selected>Male</option>
-                                    <option value="Female">Female</option>
-                                    <option value="Others">Others</option>';
-                            }
-                            elseif($cnt['gender']=='Femle')
-                            {
-                              print '<option value="Male">Male</option>
-                                    <option value="Female" selected>Female</option>
-                                    <option value="Others">Others</option>';
-                            }
-                            elseif($cnt['gender']=='Others')
-                            {
-                              print '<option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                    <option value="Others" selected>Others</option>';
-                            }
-                            else{
-                              print '<option value="Male">Male</option>
-                              <option value="Female">Female</option>
-                              <option value="Others">Others</option>';
-                            }
-                            ?>
+                            <option value="Male"  <?php echo $cnt['gender'] == 'Male' ? 'selected' : '' ?> >
+                              Male
+                            </option>
+                            <option value="Female"
+                            <?php echo $cnt['gender'] == 'Female' ? 'selected' : '' ?>>Female</option>
                           </select>
                         </div>
                       </div>
@@ -158,50 +138,11 @@
 
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label>Date of Joining</label>
+                          <label>Date of Employment</label>
                           <input type="date" name="txtdoj" value="<?php echo $cnt['doj'] ?>" class="form-control" placeholder="DOJ">
                         </div>
                       </div>
                       
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label>City</label>
-                          <input type="text" name="txtcity" value="<?php echo $cnt['city'] ?>" class="form-control" placeholder="City">
-                        </div>
-                      </div>
-
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label>State</label>
-                          <input type="text" name="txtstate" value="<?php echo $cnt['state'] ?>" class="form-control" placeholder="State">
-                        </div>
-                      </div>
-
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label>Country</label>
-                          <select class="form-control" name="slccountry">
-                            <option value="">Select</option>
-                            <?php
-                              if(isset($country))
-                              {
-                                foreach ($country as $cnt1)
-                                {
-                                  if($cnt1['country_name']==$cnt['country'])
-                                  {
-                                    print "<option value='".$cnt1['country_name']."' selected>".$cnt1['country_name']."</option>";
-                                  }
-                                  else{
-                                    print "<option value='".$cnt1['country_name']."'>".$cnt1['country_name']."</option>";
-                                  }
-                                  
-                                }
-                              }
-                            ?>
-                          </select>
-                        </div>
-                      </div>
-
                       <div class="col-md-6">
                         <div class="form-group">
                           <label>Address</label>

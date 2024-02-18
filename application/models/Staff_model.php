@@ -27,7 +27,7 @@ class Staff_model extends CI_Model {
     function select_staff_byID($id)
     {
         $this->db->where('staff_tbl.id',$id);
-        $this->db->select("staff_tbl.*,department_tbl.department_name");
+        $this->db->select("staff_tbl.*,department_tbl.department_name, department_tbl.staff_id as hod");
         $this->db->from("staff_tbl");
         $this->db->join("department_tbl",'department_tbl.id=staff_tbl.department_id');
         $qry=$this->db->get();

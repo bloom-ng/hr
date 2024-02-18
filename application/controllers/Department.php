@@ -44,7 +44,11 @@ class Department extends CI_Controller {
     {
         $id=$this->input->post('txtid');
         $department=$this->input->post('txtdepartment');
-        $data=$this->Department_model->update_department(array('department_name'=>$department),$id);
+        $hod=$this->input->post('hod');
+
+        $this->Department_model->update_department(
+                    array('department_name'=>$department,
+                    'staff_id'=> $hod),$id);
         if($this->db->affected_rows() > 0)
         {
             $this->session->set_flashdata('success', "Department Updated Succesfully"); 
@@ -58,6 +62,8 @@ class Department extends CI_Controller {
     function edit($id)
     {
         $data['content']=$this->Department_model->select_department_byID($id);
+        $data['staffs']=$this->Staff_model->select_staff();
+
         $this->load->view('admin/header');
         $this->load->view('admin/edit-department',$data);
         $this->load->view('admin/footer');

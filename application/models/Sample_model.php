@@ -29,6 +29,7 @@ class Sample_model extends CI_Model {
         foreach ($where as $key => $value) {
             if (is_int($key)) {
                 $this->db->where($value);
+                continue;
             }
             $this->db->where($key, $value);
         }
