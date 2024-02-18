@@ -28,11 +28,11 @@ class Home extends CI_Controller {
                 $this->load->view('admin/footer');
             }
             else{
-                $staff=$this->session->userdata('userid');
+                $staff=$this->session->userdata('staff_id');
                 $data['leave']=$this->Leave_model->select_leave_byStaffID($staff);
-                $this->load->view('staff/header');
+                $this->load->view('admin/header');
                 $this->load->view('staff/dashboard',$data);
-                $this->load->view('staff/footer');
+                $this->load->view('admin/footer');
             }
             
         }
@@ -55,8 +55,8 @@ class Home extends CI_Controller {
         $un=$this->input->post('txtusername');
         $pw=$this->input->post('txtpassword');
         $this->load->model('User_model');
-        $check_login=$this->User_model->logindata($un, $pw);
-
+        $check_login=$this->User_model->logindata($un);
+       
         if (empty($check_login)) {
             $this->session->set_flashdata('login_error', 'Please check your username or password and try again.', 300);
             redirect(base_url().'login');
@@ -68,8 +68,10 @@ class Home extends CI_Controller {
         }
 
         $verified = password_verify($pw, $check_login[0]['password']);
-
+       
         if ($verified) {
+            
+
             $data = array(
                 'logged_in'  =>  true,
                 'username' => $check_login[0]['username'],
@@ -77,6 +79,10 @@ class Home extends CI_Controller {
                 'role' => $check_login[0]['role'],
                 'userid' => $check_login[0]['id']
             );
+            if ($check_login[0]['role'] == "staff") {
+                $staff = $this->Staff_model->getWhere(['user_id' => $check_login[0]['id']])[0];
+                $data['staff_id'] = $staff['id'];
+            }
             $this->session->set_userdata($data);
             redirect('/');
         }

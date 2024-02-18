@@ -89,8 +89,10 @@ class Staff extends CI_Controller {
             {
                 $data = $this->Staff_model
                                 ->insert_staff(
-                                    array('id'=>$login,'staff_name'=>$name,'
-                                            gender'=>$gender,
+                                    array('id'=>$login,
+                                            'staff_name'=>$name,
+                                            'user_id' => $login,
+                                            'gender'=>$gender,
                                             'email'=>$email,
                                             'mobile'=>$mobile,
                                             'dob'=>$dob,
@@ -171,6 +173,7 @@ class Staff extends CI_Controller {
 
                 $data=$this->Staff_model->update_staff(
                     array('staff_name'=>$name,
+
                     'gender'=>$gender,
                     'email'=>$email,
                     'mobile'=>$mobile,

@@ -96,4 +96,20 @@ class Staff_model extends CI_Model {
         
         return array();
     }
+
+    public function getWhere($where)
+    {
+        foreach ($where as $key => $value) {
+            if (is_int($key)) {
+                $this->db->where($value);
+                continue;
+            }
+            $this->db->where($key, $value);
+        }
+        $qry = $this->db->get("staff_tbl");
+        if($qry->num_rows()>0)
+        {
+            return $qry->result_array();
+        }
+    }
 }
