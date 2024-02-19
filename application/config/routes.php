@@ -119,3 +119,11 @@ $route['admins'] = 'admin/index';
 $route['admins/insert'] = 'admin/insert';
 $route['admins/update/(:num)'] = 'admin/update/$1';
 $route['admins/delete/(:num)'] = 'admin/delete/$1';
+
+
+// Memo routes
+$route['memos'] = 'memo/index';
+$route['memos/insert'] = 'memo/insert';
+$route['memos/edit/(:num)'] = 'memo/edit/$1';
+$route['memos/update/(:num)'] = 'memo/update/$1';
+$route['memos/delete/(:num)'] = 'memo/delete/$1';
