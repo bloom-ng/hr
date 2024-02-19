@@ -38,10 +38,12 @@
             <div class="box-header">
               <h3 class="box-title">Manage Memo</h3>
               <div class="d-flex mt-3">
+              <?php if(in_array($this->session->userdata('role'), ["hrm", "super"])) : ?>
                 <a type="button" href="<?php echo base_url(); ?>memo/add"
                     class="btn btn-primary bg-blue-600 hover:bg-blue-500" >
                     Add
                 </a>
+                <?php endif; ?>
               </div>
             </div>
             <!-- /.box-header -->
