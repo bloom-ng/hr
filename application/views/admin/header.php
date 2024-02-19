@@ -84,7 +84,7 @@
       <div class="user-panel">
         <div class="pull-left image">
           <img
-            src="https://ui-avatars.com/api/?name=<?php echo $this->session->userdata('username') ?>" 
+            src="https://ui-avatars.com/api/?name=<?php echo $this->session->userdata('username') ?>"
             class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
@@ -112,7 +112,21 @@
         
     
 
-      
+        <li class="treeview">
+			  <a href="#">
+				  <i class="fa fa-wrench"></i> <span>Tools</span>
+				  <span class="pull-right-container">
+			  <i class="fa fa-angle-left pull-right"></i>
+			</span>
+			  </a>
+			  <ul class="treeview-menu">
+				  <li><a target="_blank" href="https://webmail.bloomdigitmedia.com"><i class="fa fa-circle-o"></i>Webmail</a></li>
+				  <li><a target="_blank" href="https://pm.bloomdigitmedia.com"><i class="fa fa-circle-o"></i>Project management</a></li>
+				  <li><a target="_blank" href="https://invoice.bloomdigitmedia.com"><i class="fa fa-circle-o"></i>Invoice</a></li>
+				  <li><a target="_blank" href="https://inventory.bloomdigitmedia.com"><i class="fa fa-circle-o"></i>Asset Management</a></li>
+				  <li><a target="_blank" href="https://ticket.bloomdigitmedia.com"><i class="fa fa-circle-o"></i>Support/Ticket</a></li>
+			  </ul>
+		  </li>
 
 		  <li class="treeview">
 			  <a href="#">
