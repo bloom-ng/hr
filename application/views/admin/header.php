@@ -32,7 +32,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 
-<body class="hold-transition bg-[#000000] text-white sidebar-mini">
+<body class="hold-transition bg-[#2C2C2C] text-white sidebar-mini">
   <div class="wrapper">
 
     <header class="main-header bg-[#2C2C2C]">

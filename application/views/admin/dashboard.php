@@ -1,5 +1,5 @@
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper bg-neutral-800">
+  <div class="content-wrapper bg-[#3E3E3E]">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
