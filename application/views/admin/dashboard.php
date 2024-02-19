@@ -1,14 +1,14 @@
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper bg-neutral-800">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
         Dashboard
-        <small>Control panel</small>
+        <small class="text-white">Control panel</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
+        <li class="active text-white">Dashboard</li>
       </ol>
     </section>
 
@@ -20,15 +20,13 @@
           <!-- small box -->
           <div class="small-box bg-primary">
             <div class="inner">
-              <h3><?php 
-              if(isset($department))
-              {
-                echo sizeof($department);
-              }
-              else{
-                echo 0;
-              }
-              ?></h3>
+              <h3><?php
+                  if (isset($department)) {
+                    echo sizeof($department);
+                  } else {
+                    echo 0;
+                  }
+                  ?></h3>
 
               <p>Departments</p>
             </div>
@@ -43,15 +41,13 @@
           <!-- small box -->
           <div class="small-box bg-maroon">
             <div class="inner">
-              <h3><?php 
-              if(isset($staff))
-              {
-                echo sizeof($staff);
-              }
-              else{
-                echo 0;
-              }
-              ?></h3>
+              <h3><?php
+                  if (isset($staff)) {
+                    echo sizeof($staff);
+                  } else {
+                    echo 0;
+                  }
+                  ?></h3>
 
               <p>Staff</p>
             </div>
@@ -66,15 +62,13 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3><?php 
-              if(isset($leave))
-              {
-                echo sizeof($leave);
-              }
-              else{
-                echo 0;
-              }
-              ?></h3>
+              <h3><?php
+                  if (isset($leave)) {
+                    echo sizeof($leave);
+                  } else {
+                    echo 0;
+                  }
+                  ?></h3>
 
               <p>Leave Requests</p>
             </div>
@@ -89,18 +83,15 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>&#8358;<?php 
-              if(isset($salary))
-              {
-                foreach ($salary as $s) {
-                  echo $s['total'];
-                }
-                
-              }
-              else{
-                echo 0;
-              }
-              ?></h3>
+              <h3>&#8358;<?php
+                          if (isset($salary)) {
+                            foreach ($salary as $s) {
+                              echo $s['total'];
+                            }
+                          } else {
+                            echo 0;
+                          }
+                          ?></h3>
 
               <p>Salary Paid</p>
             </div>
