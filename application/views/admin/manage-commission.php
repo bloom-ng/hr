@@ -54,6 +54,7 @@
                     <th>client</th>
                     <th>Total (&#8358;)</th>
                     <th>Date</th>
+                    <th>Status</th>
                     <th>Commission (%)</th>
                     <th>Actions</th>
                   </tr>
@@ -70,6 +71,7 @@
                         <td><?php echo $cnt['client']; ?></td>
                         <td><?php echo $cnt['total']; ?></td>
                         <td><?php echo date('d-m-Y', strtotime($cnt['date'])); ?></td>
+                        <td><?php echo  $this->Commission_model->getStatusMapping()[$cnt['status']]; ?></td>
                         <td><?php echo $cnt['commission']; ?></td>
                         <td>
                           <button type="button" data-toggle="modal" data-target="#commissionModal<?php echo $cnt['id'] ?>" 
@@ -118,8 +120,20 @@
                                         <div class="form-group">
                                             <label for="comments">Comments:</label>
                                             <textarea class="form-control" id="comments" 
-                                                value="<?php echo $cnt['comments'] ?>"name="comments"></textarea>
+                                                 name="comments"><?php echo $cnt['comments'] ?></textarea>
                                         </div>
+
+                                          <div class="form-group">
+                                            <label for="reason">Status</label>
+                                            <select name="status" class="form-control" >
+                                              <option 
+                                                <?php echo $cnt['status'] == $this->Commission_model::COMMISSION_PENDING ? "selected": "" ?>
+                                                value="<?php echo $this->Commission_model::COMMISSION_PENDING ?>">Pending</option>
+                                              <option 
+                                                <?php echo $cnt['status'] == $this->Commission_model::COMMISSION_PAID ? "selected": "" ?>
+                                                value="<?php echo $this->Commission_model::COMMISSION_PAID ?>">Paid</option>
+                                            </select>
+                                          </div>
                                         <input type="hidden" id="staff_id" name="staff_id"
                                             value="<?php echo $staff['id']; ?>">
                                         <button type="submit" class="btn btn-primary">Submit</button>
@@ -184,6 +198,15 @@
                       <div class="form-group">
                           <label for="comments">Comments:</label>
                           <textarea class="form-control" id="comments" name="comments"></textarea>
+                      </div>
+                      <div class="form-group">
+                        <label for="status">Status</label>
+                        <select name="status" class="form-control" >
+                          <option selected value="<?php echo $this->Commission_model::COMMISSION_PENDING ?>">
+                            Pending
+                          </option>
+                          <option value="<?php echo $this->Commission_model::COMMISSION_PAID ?>">Paid</option>
+                        </select>
                       </div>
                       <input type="hidden" id="staff_id" name="staff_id" value="<?php echo $staff['id']; ?>">
                       <button type="submit" class="btn btn-primary">Submit</button>

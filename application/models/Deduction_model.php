@@ -13,6 +13,9 @@ class Deduction_model extends CI_Model {
         "status"
     ];
 
+    const DEDUCTION_PENDING = 1;
+    const DEDUCTION_PAID = 2;
+
     public function insert($data)
     {
         $this->db->insert($this->table, $data);
@@ -59,6 +62,15 @@ class Deduction_model extends CI_Model {
         $this->db->where('id', $id);
         $this->db->update($this->table, $data);
         $this->db->affected_rows();
+    }
+
+    public function getStatusMapping()
+    {
+        return [
+            static::DEDUCTION_PENDING => "Pending",
+            static::DEDUCTION_PAID => "Paid",
+            null => ""
+        ];
     }
 
 

@@ -73,7 +73,16 @@
                                                                 <label for="comments">Comments:</label>
                                                                 <textarea class="form-control" id="comments" name="comments"></textarea>
                                                             </div>
-                                                            <input type="hidden" id="staff_id" name="staff_id" value="<?php echo $staff['id']; ?>">
+                                                            <div class="form-group">
+                                                                <label for="status">Status</label>
+                                                                <select name="status" class="form-control" >
+                                                                <option selected value="<?php echo $this->Commission_model::COMMISSION_PENDING ?>">
+                                                                    Pending
+                                                                </option>
+                                                                <option value="<?php echo $this->Commission_model::COMMISSION_PAID ?>">Paid</option>
+                                                                </select>
+                                                            </div>
+                                                                                                    <input type="hidden" id="staff_id" name="staff_id" value="<?php echo $staff['id']; ?>">
                                                             <button type="submit" class="btn btn-primary">Submit</button>
                                                         </form>
                                                     </div>

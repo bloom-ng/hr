@@ -54,6 +54,7 @@
                     <th>Amount (&#8358;)</th>
                     <th>Date</th>
                     <th>Reason</th>
+                    <th>Status</th>
                     <th>Actions</th>
                   </tr>
                   </thead>
@@ -69,6 +70,7 @@
                         <td><?php echo $cnt['amount']; ?></td>
                         <td><?php echo date('d-m-Y', strtotime($cnt['date'])); ?></td>
                         <td><?php echo $cnt['reason']; ?></td>
+                        <td><?php echo  $this->Deduction_model->getStatusMapping()[$cnt['status']]; ?></td>
                         <td>
                           <a href="<?php echo base_url(); ?>staff/edit-deductions/<?php echo $cnt['id']; ?>" class="btn btn-success">Edit</a>
                           <a href="<?php echo base_url(); ?>staff/delete-deductions/<?php echo $cnt['id']; ?>" class="btn btn-danger">Delete</a>
@@ -130,6 +132,16 @@
                   <div class="form-group">
                     <label for="reason">Reason</label>
                     <textarea required name="reason" class="form-control" placeholder="Reason"></textarea>
+                  </div>
+                </div>
+
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="reason">Status</label>
+                    <select name="status" class="form-control" >
+                      <option value="<?php echo $this->Deduction_model::DEDUCTION_PENDING ?>">Pending</option>
+                      <option value="<?php echo $this->Deduction_model::DEDUCTION_PAID ?>">Paid</option>
+                    </select>
                   </div>
                 </div>
                 
