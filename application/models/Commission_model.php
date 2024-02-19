@@ -15,6 +15,10 @@ class Commission_model extends CI_Model {
         "status"
     ];
 
+    
+    const COMMISSION_PENDING = 1;
+    const COMMISSION_PAID = 2;
+
     public function insert($data)
     {
         $this->db->insert($this->table, $data);
@@ -63,6 +67,15 @@ class Commission_model extends CI_Model {
         $this->db->where('id', $id);
         $this->db->update($this->table, $data);
         $this->db->affected_rows();
+    }
+
+    public function getStatusMapping()
+    {
+        return [
+            static::COMMISSION_PENDING => "Pending",
+            static::COMMISSION_PAID => "Paid",
+            null => ""
+        ];
     }
 
 }

@@ -76,6 +76,20 @@
                     ><?php echo $deduction['reason']; ?></textarea>
                   </div>
                 </div>
+
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="reason">Status</label>
+                    <select name="status" class="form-control" >
+                      <option 
+                        <?php echo $deduction['status'] == $this->Deduction_model::DEDUCTION_PENDING ? "selected": "" ?>
+                         value="<?php echo $this->Deduction_model::DEDUCTION_PENDING ?>">Pending</option>
+                      <option 
+                        <?php echo $deduction['status'] == $this->Deduction_model::DEDUCTION_PAID ? "selected": "" ?>
+                        value="<?php echo $this->Deduction_model::DEDUCTION_PAID ?>">Paid</option>
+                    </select>
+                  </div>
+                </div>
                 
               </div>
               <!-- /.box-body -->

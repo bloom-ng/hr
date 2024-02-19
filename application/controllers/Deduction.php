@@ -37,6 +37,7 @@ class Deduction extends CI_Controller {
         $staff_id=$this->input->post('staff_id');
         $date=$this->input->post('date');
         $reason=$this->input->post('reason');
+        $status=$this->input->post('status') ;
         
         if($this->form_validation->run() !== false)
         {
@@ -44,6 +45,7 @@ class Deduction extends CI_Controller {
             $data = $this->Deduction_model->insert(array( 'staff_id' => $staff_id,
                                                           'amount'=>$amount,
                                                           'date'=>$date,
+                                                          'status'=>$status,
                                                           'reason'=>$reason));
             
             if($data)
@@ -73,6 +75,8 @@ class Deduction extends CI_Controller {
         $staff_id=$this->input->post('staff_id');
         $date=$this->input->post('date');
         $reason=$this->input->post('reason');
+        $status=$this->input->post('status');
+
         if($this->form_validation->run() !== false)
         {
          
@@ -80,6 +84,7 @@ class Deduction extends CI_Controller {
          $data=$this->Deduction_model->update(array(
                     'amount'=>$amount,
                     'date'=>$date,
+                    'status'=>$status,
                     'reason'=>$reason),
                     $id);
             
