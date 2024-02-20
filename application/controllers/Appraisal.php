@@ -72,6 +72,24 @@ class Appraisal extends CI_Controller {
 	{
 		$this->load->model('Appraisal_model');
 		$data['appraisals'] = $this->Appraisal_model->list_appraisals($id);
+		$data['hod'] = false;
+		$data['staff'] = $this->Staff_model->select_staff_byID($id)[0];
+
+		if ($this->session->userdata('role') == 'staff') {
+			// Fetch the logged-in user's department ID
+			$loggedInUserId = $this->session->userdata('userid');
+			$loggedInUser = $this->Staff_model->select_staff_byID($loggedInUserId)[0];
+			$loggedInUserDepartmentId = $loggedInUser['department_id'];
+
+			// Fetch the department ID of the user whose appraisal is being viewed
+			$user = $this->Staff_model->select_staff_byID($id)[0];
+			$userDepartmentId = $user['department_id'];
+
+			// Check if the logged-in user's department ID matches the user being viewed
+			if ($loggedInUserDepartmentId == $userDepartmentId) {
+				$data['hod'] = true;
+			}
+		}
 
 		$this->load->view('admin/header');
 		$this->load->view('admin/appraisal', $data);

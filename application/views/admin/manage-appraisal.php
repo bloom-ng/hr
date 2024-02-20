@@ -69,20 +69,20 @@
 										<td><?php echo $staff['staff_name']; ?></td>
 										<td>
 											<a href="<?php echo base_url(); ?>list-appraisal/<?php echo $staff['id']; ?>" class="btn btn-info" >Appraisals</a>
-											<?php
-											// Assuming $departments is the array of departments
-											$loggedInUserId = $this->session->userdata('userid');
-											if (isset($departments)) {
-												foreach ($departments as $department) {
-													if ($loggedInUserId == $department['staff_id'] || in_array($this->session->userdata('role'), array("hrm", "super"))) {
-														?>
-														<a href="<?php echo base_url(); ?>add-appraisal/<?php echo $staff['id']; ?>" class="btn btn-success">Add</a>
-														<?php
-														break; // Exit the loop after finding a matching department
-													}
-												}
-											}
-											?>
+<!--											--><?php
+//											// Assuming $departments is the array of departments
+//											$loggedInUserId = $this->session->userdata('userid');
+//											if (isset($departments)) {
+//												foreach ($departments as $department) {
+//													if ($loggedInUserId == $department['staff_id'] || in_array($this->session->userdata('role'), array("hrm", "super"))) {
+//														?>
+<!--														<a href="--><?php //echo base_url(); ?><!--add-appraisal/--><?php //echo $staff['id']; ?><!--" class="btn btn-success">Add</a>-->
+<!--														--><?php
+//														break; // Exit the loop after finding a matching department
+//													}
+//												}
+//											}
+//											?>
 
 
 										</td>

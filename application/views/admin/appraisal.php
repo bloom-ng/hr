@@ -18,21 +18,18 @@
 					<div class="box-header">
 						<h3 class="box-title">List Appraisals</h3>
 					</div>
+					<?php if(isset($hod)): ?>
+					<?php if ($hod || in_array($this->session->userdata('role'), ["hrm", "super"])) : ?>
+					<div class="box-header">
+						<h3 class="box-title"></h3>
+						<div class="d-flex mt-3">
+							<a href="<?php echo base_url(); ?>add-appraisal/<?php echo $staff['id']; ?>" class="btn btn-info">Add Appraisal</a>
+						</div>
+					</div>
+					<?php endif; ?>
+					<?php endif; ?>
 					<!-- /.box-header -->
 					<div class="box-body">
-						<!-- Department Filter Dropdown -->
-<!--						<div class="form-group">-->
-<!--							<label for="department_filter">Filter by Department:</label>-->
-<!--							<select class="form-control" id="department_filter">-->
-<!--								<option value="">Select Department</option>-->
-<!--								--><?php //if (isset($departments)) {
-//									foreach ($departments as $department): ?>
-<!--										<option value="--><?php //echo $department['id']; ?><!--">--><?php //echo $department['department_name']; ?><!--</option>-->
-<!--									--><?php //endforeach;
-//								} ?>
-<!--							</select>-->
-<!--						</div>-->
-
 						<table id="example1" class="table table-bordered">
 							<thead>
 							<tr>
