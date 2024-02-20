@@ -139,7 +139,7 @@
             </ul>
           </li>
 
-
+			<!-- APPRAISAL-->
           <li class="treeview">
             <a href="#">
               <i class="fa fa-thumbs-up"></i> <span>Appraisals</span>
@@ -149,10 +149,12 @@
             </a>
             <ul class="treeview-menu">
               <li><a href="<?php echo base_url(); ?>manage-appraisal"><i class="fa fa-circle-o"></i>Manage Appraisal</a></li>
-              <!--				  <li><a href="--><?php //echo base_url(); 
-                                            ?><!--attendance-export"><i class="fa fa-circle-o"></i> Show Attendance</a></li>-->
-            </ul>
+				<?php if (in_array($this->session->userdata('role'), (array)"staff")) : ?>
+				<li><a href="<?php echo base_url();?>my-appraisal"><i class="fa fa-circle-o"></i> My Appraisal</a></li>
+				<?php endif; ?>
+			</ul>
           </li>
+			<!-- APPRAISAL-->
 
           <?php if (in_array($this->session->userdata('role'), ["finance", "super"])) : ?>
             <!-- FINANCE -->

@@ -20,7 +20,7 @@
 					</div>
 					<!-- /.box-header -->
 					<div class="box-body">
-						<?php echo form_open('appraisal/update/' . $appraisal['id']); ?>
+						<?php echo form_open('appraisal/self_appraisal/' . $appraisal['id']); ?>
 						<div class="form-group">
 							<label for="name">Name:</label>
 							<input type="text" class="form-control" id="name" name="name" value="<?php echo $appraisal["name"]; ?>" readonly>
@@ -29,7 +29,7 @@
 						</div>
 						<div class="form-group">
 							<label for="job_title">Job Title:</label>
-							<input type="text" class="form-control" id="job_title" name="job_title" value="<?php echo $appraisal["job_title"]; ?>">
+							<input type="text" class="form-control" id="job_title" name="job_title" value="<?php echo $appraisal["job_title"]; ?>" readonly>
 						</div>
 						<div class="form-group">
 							<label for="department_id">Department:</label>
@@ -38,7 +38,7 @@
 						</div>
 						<div class="form-group">
 							<label for="date">Date (Month/Year):</label>
-							<input type="month" class="form-control" id="date" name="date" value="<?php echo date('Y-m', strtotime($appraisal['date'])); ?>" required>
+							<input type="month" class="form-control" id="date" name="date" value="<?php echo date('Y-m', strtotime($appraisal['date'])); ?>" readonly>
 						</div>
 
 						<!-- Overall Performance Rating -->
@@ -241,7 +241,7 @@
 						<!-- Employee's Self-Assessment -->
 						<div class="form-group">
 							<label for="employee_self_assessment">VIII. Employee's Self-Assessment:</label>
-							<textarea id="employee_self_assessment" name="employee_self_assessment" class="form-control" placeholder="Provide space for the employee to share their self-assessment." readonly><?php echo $appraisal['employee_self_assessment']; ?></textarea>
+							<textarea id="employee_self_assessment" name="employee_self_assessment" class="form-control" placeholder="Provide space for the employee to share their self-assessment."><?php echo $appraisal['employee_self_assessment']; ?></textarea>
 						</div>
 
 						<!-- Manager's Comments -->
@@ -261,12 +261,8 @@
 							<label for="follow_up_meeting_schedule">XI. Follow-Up Meeting Schedule:</label>
 							<input type="date" class="form-control" id="follow_up_meeting_schedule" name="follow_up_meeting_schedule" placeholder="Specify dates for follow-up meetings to track progress." value="<?php echo $appraisal['follow_up_meeting_schedule']; ?>">
 						</div>
-						<?php if ($appraisal['status'] == 'pending' && $appraisal['created_by'] == $this->session->userdata('userid')) :?>
-						<button type="submit" class="btn btn-primary text-blue-500">Submit</button>
-						<?php endif; ?>
-
-						<?php if (in_array($this->session->userdata('role'), ["hrm", "super"])) : ?>
-							<button type="button" class="btn btn-success text-blue-500" id="approveButton">Approve</button>
+						<?php if ($appraisal['status'] == 'approved' && $appraisal['staff_id'] == $this->session->userdata('userid')) :?>
+							<button type="submit" class="btn btn-primary text-blue-500">Submit</button>
 						<?php endif; ?>
 
 						<?php echo form_close(); ?>
@@ -281,22 +277,4 @@
 	</section>
 	<!-- /.content -->
 </div>
-<!-- /.content-wrapper -->
-
-<script>
-	document.getElementById("approveButton").addEventListener("click", function() {
-		var appraisalId = <?php echo $appraisal['id']; ?>;
-		$.ajax({
-			type: 'POST',
-			url: '<?php echo base_url('Appraisal/approve_appraisal/' . $appraisal['id']); ?>',
-			data: { id: appraisalId },
-			success: function (data) {
-				console.log(data)
-				window.location.href = "/manage-appraisal"
-			},
-			error: function () {
-				alert('An error occurred while checking existing attendance.');
-			}
-		});
-	});
-</script>
+<!-- /.content-wrapper --

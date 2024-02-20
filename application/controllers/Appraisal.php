@@ -21,6 +21,26 @@ class Appraisal extends CI_Controller {
 
 	public function manage()
 	{
+		$departments = $this->Department_model->select_departments();
+
+		$loggedInUserId = $this->session->userdata('userid');
+		$isHod = false;
+
+		if (isset($departments)) {
+			foreach ($departments as $department) {
+				if ($loggedInUserId == $department['staff_id'] || in_array($this->session->userdata('role'), array("hrm", "super"))) {
+					// User is an HoD or has HRM/Super role
+					$isHod = true;
+					break;
+				}
+			}
+		}
+
+		if (!$isHod) {
+			redirect('/'); // Assuming 'dashboard' is the route to your dashboard page
+		}
+
+
 		$data['staff_members']=$this->Staff_model->get_all_staffs();
 		$data['departments']=$this->Department_model->select_departments();
 		$this->load->view("admin/header");
@@ -103,6 +123,38 @@ class Appraisal extends CI_Controller {
 
 		}
 
+	}
+
+	public function my_appraisal()
+	{
+		$this->load->model('Appraisal_model');
+		$user = $this->session->userdata('userid');
+
+		$data['appraisal'] = $this->Appraisal_model->getWhere(array("staff_id" => $user, "status" => Appraisal_model::APPRAISAL_APPROVED));
+		$this->load->view('admin/header');
+		$this->load->view('staff/manage-appraisal', $data);
+		$this->load->view('admin/footer');
+	}
+
+	public function self_appraisal($id)
+	{
+		$this->load->model('Appraisal_model');
+		$user = $this->session->userdata('userid');
+
+		$data = array(
+			'employee_self_assessment' => $this->input->post('employee_self_assessment'),
+		);
+
+		$result = $this->Appraisal_model->update($data, $id);
+
+		if ($result) {
+
+			$this->session->set_flashdata('success', "Self Appraisal Succesfully");
+
+			redirect(base_url()."manage-appraisal");
+		} else {
+			$this->session->set_flashdata('error', "Sorry, Unable To Complete Self Appraisal");
+		}
 	}
 
 	public function save() {
