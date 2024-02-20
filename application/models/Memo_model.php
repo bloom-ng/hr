@@ -1,17 +1,30 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Sample_model extends CI_Model {
+class Memo_model extends CI_Model {
 
-    public $table = "table_name";
+    public $table = "memo";
     public $fields = [
         "id",
+        "title",
+        "body",
+        "status",
+        "date",
     ];
 
     public function insert($data)
     {
         $this->db->insert($this->table, $data);
         return $this->db->insert_id();
+    }
+
+    public function getAll()
+    {
+        $qry = $this->db->get($this->table);
+        if($qry->num_rows()>0)
+        {
+            return $qry->result_array();
+        }
     }
 
     public function get($id)
@@ -33,15 +46,6 @@ class Sample_model extends CI_Model {
             }
             $this->db->where($key, $value);
         }
-        $qry = $this->db->get($this->table);
-        if($qry->num_rows()>0)
-        {
-            return $qry->result_array();
-        }
-    }
-
-    public function getAll()
-    {
         $qry = $this->db->get($this->table);
         if($qry->num_rows()>0)
         {

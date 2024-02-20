@@ -32,7 +32,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 
-<body class="hold-transition bg-[#000000] text-white sidebar-mini">
+<body class="hold-transition bg-[#2C2C2C] text-white sidebar-mini">
   <div class="wrapper">
 
     <header class="main-header bg-[#2C2C2C]">
@@ -127,6 +127,17 @@
           </li>
 
 
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-sticky-note"></i> <span>Memo</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="<?php echo base_url(); ?>memos"><i class="fa fa-circle-o"></i> Memos</a></li>
+            </ul>
+          </li>
 
 
           <li class="treeview">
@@ -239,33 +250,8 @@
           <?php endif; ?>
 
 
-          <?php if (in_array($this->session->userdata('role'), ["staff"])) : ?>
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-usd"></i> <span>Salary</span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="<?php echo base_url(); ?>view-salary"><i class="fa fa-circle-o"></i> View Salary</a></li>
-              </ul>
-            </li>
 
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-share"></i> <span>Leave</span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="<?php echo base_url(); ?>apply-leave"><i class="fa fa-circle-o"></i> Apply Leave</a></li>
-                <li><a href="<?php echo base_url(); ?>view-leave"><i class="fa fa-circle-o"></i> My Leave History</a></li>
-              </ul>
-            </li>
-
-          <?php endif; ?>
+          
 
 
 

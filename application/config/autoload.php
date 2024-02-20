@@ -143,4 +143,5 @@ $autoload['model'] = array(
     'Deduction_model',
     'Attendance_model',
     'Commission_model',
+    'Memo_model',
 );
