@@ -112,10 +112,19 @@ $route['commission/manage/(:num)'] = 'commission/manage/$1';
 //Appraisal route
 $route['manage-appraisal'] = 'appraisal/manage';
 $route['add-appraisal/(:num)'] = 'appraisal/add/$1';
-
+$route['edit-appraisal/(:num)'] = 'appraisal/edit/$1';
+$route['list-appraisal/(:num)'] = 'appraisal/list_appraisal/$1';
+$route['review-appraisal/(:num)'] = 'appraisal/review_appraisal/$1';
 
 // Admins routes
 $route['admins'] = 'admin/index';
 $route['admins/insert'] = 'admin/insert';
 $route['admins/update/(:num)'] = 'admin/update/$1';
 $route['admins/delete/(:num)'] = 'admin/delete/$1';
+
+// Memo routes
+$route['memos'] = 'memo/index';
+$route['memos/insert'] = 'memo/insert';
+$route['memos/edit/(:num)'] = 'memo/edit/$1';
+$route['memos/update/(:num)'] = 'memo/update/$1';
+$route['memos/delete/(:num)'] = 'memo/delete/$1';
