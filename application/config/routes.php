@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------------
@@ -112,9 +112,6 @@ $route['commission/manage/(:num)'] = 'commission/manage/$1';
 //Appraisal route
 $route['manage-appraisal'] = 'appraisal/manage';
 $route['add-appraisal/(:num)'] = 'appraisal/add/$1';
-$route['edit-appraisal/(:num)'] = 'appraisal/edit/$1';
-$route['list-appraisal/(:num)'] = 'appraisal/list_appraisal/$1';
-$route['review-appraisal/(:num)'] = 'appraisal/review_appraisal/$1';
 
 
 // Admins routes
