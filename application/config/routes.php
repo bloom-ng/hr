@@ -116,6 +116,8 @@ $route['edit-appraisal/(:num)'] = 'appraisal/edit/$1';
 $route['list-appraisal/(:num)'] = 'appraisal/list_appraisal/$1';
 $route['review-appraisal/(:num)'] = 'appraisal/review_appraisal/$1';
 $route['my-appraisal'] = 'appraisal/my_appraisal';
+$route['check-appraisal/(:num)'] = 'appraisal/check_appraisal/$1';
+
 
 
 // Admins routes

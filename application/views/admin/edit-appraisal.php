@@ -43,7 +43,16 @@
 
 						<!-- Overall Performance Rating -->
 						<h3>I. Overall Performance Rating</h3>
-						<!-- Include radio buttons for overall performance rating here -->
+						<div class="form-group">
+							<label for="overall_performance">Tick a box and leave a remark:</label><br>
+							<input type="radio" id="overall_performance1" name="overall_performance" value="1"  <?php echo ($appraisal['overall_performance'] == '1') ? 'checked' : ''; ?>>
+							<label for="overall_performance1">Exceeds Expectations</label><br>
+							<input type="radio" id="overall_performance2" name="overall_performance" value="2"  <?php echo ($appraisal['overall_performance'] == '2') ? 'checked' : ''; ?>>
+							<label for="overall_performance2">Meets Expectations</label><br>
+							<input type="radio" id="overall_performance3" name="overall_performance" value="3"  <?php echo ($appraisal['overall_performance'] == '3') ? 'checked' : ''; ?>>
+							<label for="overall_performance3">Needs Improvement</label><br>
+							<textarea id="overall_performance_comment" name="overall_performance_comment" class="form-control" placeholder="Remark"><?php echo $appraisal['overall_performance_comment']; ?></textarea>
+						</div>
 
 						<!-- Key Performance Areas -->
 						<h3>II. Key Performance Areas</h3>
@@ -147,27 +156,27 @@
 							<label>Strengths:</label><br>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" name="outstanding_job_knowledge" value="true" <?php echo ($appraisal['outstanding_job_knowledge'] == 'true') ? 'checked' : ''; ?>> Outstanding Job Knowledge
+									<input type="checkbox" name="outstanding_job_knowledge" value="true" <?php echo ($appraisal['outstanding_job_knowledge'] == '1') ? 'checked' : ''; ?>> Outstanding Job Knowledge
 								</label>
 							</div>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" name="effective_communication" value="true" <?php echo ($appraisal['effective_communication'] == 'true') ? 'checked' : ''; ?>> Effective Communication
+									<input type="checkbox" name="effective_communication" value="true" <?php echo ($appraisal['effective_communication'] == '1') ? 'checked' : ''; ?>> Effective Communication
 								</label>
 							</div>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" name="strong_team_player" value="true" <?php echo ($appraisal['strong_team_player'] == 'true') ? 'checked' : ''; ?>> Strong Team Player
+									<input type="checkbox" name="strong_team_player" value="true" <?php echo ($appraisal['strong_team_player'] == '1') ? 'checked' : ''; ?>> Strong Team Player
 								</label>
 							</div>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" name="innovative_thinking" value="true" <?php echo ($appraisal['innovative_thinking'] == 'true') ? 'checked' : ''; ?>> Innovative Thinking
+									<input type="checkbox" name="innovative_thinking" value="true" <?php echo ($appraisal['innovative_thinking'] == '1') ? 'checked' : ''; ?>> Innovative Thinking
 								</label>
 							</div>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" name="adaptable_to_change" value="true" <?php echo ($appraisal['adaptable_to_change'] == 'true') ? 'checked' : ''; ?>> Adaptable to Change
+									<input type="checkbox" name="adaptable_to_change" value="true" <?php echo ($appraisal['adaptable_to_change'] == '1') ? 'checked' : ''; ?>> Adaptable to Change
 								</label>
 							</div>
 						</div>
@@ -179,27 +188,27 @@
 							<label>Areas for Improvement:</label><br>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" name="time_management" value="true" <?php echo ($appraisal['time_management'] == 'true') ? 'checked' : ''; ?>> Time Management
+									<input type="checkbox" name="time_management" value="true" <?php echo ($appraisal['time_management'] == '1') ? 'checked' : ''; ?>> Time Management
 								</label>
 							</div>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" name="conflict_resolution" value="true" <?php echo ($appraisal['conflict_resolution'] == 'true') ? 'checked' : ''; ?>> Conflict Resolution
+									<input type="checkbox" name="conflict_resolution" value="true" <?php echo ($appraisal['conflict_resolution'] == '1') ? 'checked' : ''; ?>> Conflict Resolution
 								</label>
 							</div>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" name="technical_skills_enhancement" value="true" <?php echo ($appraisal['technical_skills_enhancement'] == 'true') ? 'checked' : ''; ?>> Technical Skills Enhancement
+									<input type="checkbox" name="technical_skills_enhancement" value="true" <?php echo ($appraisal['technical_skills_enhancement'] == '1') ? 'checked' : ''; ?>> Technical Skills Enhancement
 								</label>
 							</div>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" name="goal_setting_and_achievement" value="true" <?php echo ($appraisal['goal_setting_and_achievement'] == 'true') ? 'checked' : ''; ?>> Goal Setting and Achievement
+									<input type="checkbox" name="goal_setting_and_achievement" value="true" <?php echo ($appraisal['goal_setting_and_achievement'] == '1') ? 'checked' : ''; ?>> Goal Setting and Achievement
 								</label>
 							</div>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" name="communication_with_team_members" value="true" <?php echo ($appraisal['communication_with_team_members'] == 'true') ? 'checked' : ''; ?>> Communication with Team Members
+									<input type="checkbox" name="communication_with_team_members" value="true" <?php echo ($appraisal['communication_with_team_members'] == '1') ? 'checked' : ''; ?>> Communication with Team Members
 								</label>
 							</div>
 						</div>
@@ -211,22 +220,22 @@
 							<label>Training and Development Needs:</label><br>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" name="leadership_training" value="true" <?php echo ($appraisal['leadership_training'] == 'true') ? 'checked' : ''; ?>> Leadership Training
+									<input type="checkbox" name="leadership_training" value="true" <?php echo ($appraisal['leadership_training'] == '1') ? 'checked' : ''; ?>> Leadership Training
 								</label>
 							</div>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" name="technical_skills_training" value="true" <?php echo ($appraisal['technical_skills_training'] == 'true') ? 'checked' : ''; ?>> Technical Skills Training
+									<input type="checkbox" name="technical_skills_training" value="true" <?php echo ($appraisal['technical_skills_training'] == '1') ? 'checked' : ''; ?>> Technical Skills Training
 								</label>
 							</div>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" name="communication_skills_workshop" value="true" <?php echo ($appraisal['communication_skills_workshop'] == 'true') ? 'checked' : ''; ?>> Communication Skills Workshop
+									<input type="checkbox" name="communication_skills_workshop" value="true" <?php echo ($appraisal['communication_skills_workshop'] == '1') ? 'checked' : ''; ?>> Communication Skills Workshop
 								</label>
 							</div>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" name="project_management_training" value="true" <?php echo ($appraisal['project_management_training'] == 'true') ? 'checked' : ''; ?>> Project Management Training
+									<input type="checkbox" name="project_management_training" value="true" <?php echo ($appraisal['project_management_training'] == '1') ? 'checked' : ''; ?>> Project Management Training
 								</label>
 							</div>
 						</div>

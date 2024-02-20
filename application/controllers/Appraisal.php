@@ -130,7 +130,7 @@ class Appraisal extends CI_Controller {
 		$this->load->model('Appraisal_model');
 		$user = $this->session->userdata('userid');
 
-		$data['appraisal'] = $this->Appraisal_model->getWhere(array("staff_id" => $user, "status" => Appraisal_model::APPRAISAL_APPROVED));
+		$data['appraisal'] = $this->Appraisal_model->getWhere(array("staff_id" => $user, "status" => Appraisal_model::APPRAISAL_APPROVED, "status" => Appraisal_model::APPRAISAL_DONE));
 		$this->load->view('admin/header');
 		$this->load->view('staff/manage-appraisal', $data);
 		$this->load->view('admin/footer');
@@ -143,6 +143,7 @@ class Appraisal extends CI_Controller {
 
 		$data = array(
 			'employee_self_assessment' => $this->input->post('employee_self_assessment'),
+			'status' => Appraisal_model::APPRAISAL_DONE,
 		);
 
 		$result = $this->Appraisal_model->update($data, $id);
@@ -151,17 +152,28 @@ class Appraisal extends CI_Controller {
 
 			$this->session->set_flashdata('success', "Self Appraisal Succesfully");
 
-			redirect(base_url()."manage-appraisal");
+			redirect(base_url()."my-appraisal");
 		} else {
 			$this->session->set_flashdata('error', "Sorry, Unable To Complete Self Appraisal");
 		}
+	}
+	public function check_appraisal($id)
+	{
+		$this->load->model('Appraisal_model');
+		$user = $this->session->userdata('userid');
+
+		$data['appraisal'] = $this->Appraisal_model->get($id)[0];
+
+		$this->load->view('admin/header');
+		$this->load->view('staff/my-appraisal', $data);
+		$this->load->view('admin/footer');
 	}
 
 	public function save() {
 		// Load the model to interact with the database
 		$this->load->model('Appraisal_model');
         // Assuming you have form validation rules set up
-        
+
         // Get form data
         $data = array(
 			'name' => $this->input->post('name'),

@@ -57,7 +57,7 @@
 										<td><?php echo $appraisal['name']; ?></td>
 										<td><?php echo $appraisal['date']; ?></td>
 										<td>
-											<a href="<?php echo base_url(); ?>list-appraisal/<?php echo $appraisal['id']; ?>" class="btn btn-info" >Check</a>
+											<a href="<?php echo base_url(); ?>check-appraisal/<?php echo $appraisal['id']; ?>" class="btn btn-info" >Check</a>
 										</td>
 									</tr>
 									<?php $i++; endforeach; ?>
