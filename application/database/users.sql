@@ -9,7 +9,7 @@ CREATE TABLE `users` (
 
 
 --
--- Indexes for table `login_tbl`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
@@ -19,7 +19,7 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `login_tbl`
+-- AUTO_INCREMENT for table `users`
 --
-ALTER TABLE `login_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;

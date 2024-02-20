@@ -33,4 +33,4 @@ ALTER TABLE `department_tbl`
 --
 -- AUTO_INCREMENT for table `department_tbl`
 --
-ALTER TABLE `department_tbl`
+ALTER TABLE `department_tbl` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;

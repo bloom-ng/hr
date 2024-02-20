@@ -1,5 +1,5 @@
 <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
+<div class="content-wrapper bg-neutral-800">
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>Manage Appraisals</h1>
@@ -11,10 +11,29 @@
 	</section>
 
 	<!-- Main content -->
-	<section class="content">
+	<section class="content bg-neutral-800">
 		<div class="row">
+
+			<?php if($this->session->flashdata('success')): ?>
+				<div class="col-md-12">
+					<div class="alert alert-success alert-dismissible">
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+						<h4><i class="icon fa fa-check"></i> Success!</h4>
+						<?php echo $this->session->flashdata('success'); ?>
+					</div>
+				</div>
+			<?php elseif($this->session->flashdata('error')):?>
+				<div class="col-md-12">
+					<div class="alert alert-danger alert-dismissible">
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+						<h4><i class="icon fa fa-check"></i> Failed!</h4>
+						<?php echo $this->session->flashdata('error'); ?>
+					</div>
+				</div>
+			<?php endif;?>
+
 			<div class="col-xs-12">
-				<div class="box box-info">
+				<div class="box box-info bg-neutral-800	">
 					<div class="box-header">
 						<h3 class="box-title">Manage Appraisals</h3>
 					</div>
@@ -33,7 +52,7 @@
 							</select>
 						</div>
 
-						<table id="example1" class="table table-bordered table-striped">
+						<table id="example1" class="table table-bordered ">
 							<thead>
 							<tr>
 								<th>#</th>
@@ -49,8 +68,23 @@
 										<td><?php echo $i; ?></td>
 										<td><?php echo $staff['staff_name']; ?></td>
 										<td>
-											<button class="btn btn-info" data-toggle="modal" data-target="#manageModal<?php echo $staff['id']; ?>">Appraisals</button>
-											<a href="<?php echo base_url(); ?>add-appraisal/<?php echo $staff['id']; ?>" class="btn btn-success">Add</a>
+											<a href="<?php echo base_url(); ?>list-appraisal/<?php echo $staff['id']; ?>" class="btn btn-info" >Appraisals</a>
+											<?php
+											// Assuming $departments is the array of departments
+											$loggedInUserId = $this->session->userdata('userid');
+											if (isset($departments)) {
+												foreach ($departments as $department) {
+													if ($loggedInUserId == $department['staff_id'] || in_array($this->session->userdata('role'), array("hrm", "super"))) {
+														?>
+														<a href="<?php echo base_url(); ?>add-appraisal/<?php echo $staff['id']; ?>" class="btn btn-success">Add</a>
+														<?php
+														break; // Exit the loop after finding a matching department
+													}
+												}
+											}
+											?>
+
+
 										</td>
 										<td style="display: none;"><?php echo $staff['department_id']; ?></td> <!-- Hidden column for department ID -->
 									</tr>
