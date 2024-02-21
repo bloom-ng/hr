@@ -190,7 +190,7 @@
 				<!-- BONUS -->
 				<li class="treeview">
 					<a href="#">
-						<i class="fa fa-calendar"></i> <span>Bonus</span>
+						<i class="fa fa-money"></i> <span>Bonus</span>
 						<span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>

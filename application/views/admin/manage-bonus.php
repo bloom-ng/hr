@@ -51,35 +51,33 @@
 								<thead>
 								<tr>
 									<th>#</th>
-									<th>Amount</th>
 									<th>Date</th>
-									<th>Reason (&#8358;)</th>
+									<th>Amount (&#8358;)</th>
+									<th>Reason</th>
 									<th>Status</th>
 									<th>Actions</th>
 								</tr>
 								</thead>
 								<tbody>
 								<?php
-								if (isset($commissions)) :
+								if (isset($bonuses)) :
 									$i = 1;
-									foreach ($commissions as $cnt) :
+									foreach ($bonuses as $cnt) :
 										?>
 										<tr>
 											<td><?php echo $i; ?></td>
 
-											<td><?php echo $cnt['client']; ?></td>
-											<td><?php echo $cnt['total']; ?></td>
 											<td><?php echo date('d-m-Y', strtotime($cnt['date'])); ?></td>
-											<td><?php echo  $this->Commission_model->getStatusMapping()[$cnt['status']]; ?></td>
-											<td><?php echo $cnt['commission']; ?></td>
+											<td><?php echo $cnt['amount']; ?></td>
+											<td><?php echo $cnt['reason']; ?></td>
+											<td><?php echo  $this->Bonus_model->getStatusMapping()[$cnt['status']]; ?></td>
 											<td>
-												<button type="button" data-toggle="modal" data-target="#commissionModal<?php echo $cnt['id'] ?>" class="btn btn-success">Edit</button>
-												<a href="<?php echo base_url(); ?>commission/delete/<?php echo $cnt['id']; ?>" class="btn btn-danger">
+												<button type="button" data-toggle="modal" data-target="#commissionModal<?php echo $cnt['id']; ?>" class="btn btn-success">Edit</button>
+												<a href="<?php echo base_url(); ?>bonus/delete/<?php echo $cnt['id']; ?>" class="btn btn-danger">
 													Delete
 												</a>
 											</td>
 										</tr>
-
 										<div class="modal fade" id="commissionModal<?php echo $cnt['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="commissionModalLabel<?php echo $cnt['id']; ?>">
 											<div class="modal-dialog" role="document">
 												<div class="modal-content">
@@ -88,38 +86,29 @@
 															<span aria-hidden="true">&times;</span>
 														</button>
 														<h4 class="modal-title" id="commissionModalLabel<?php echo $cnt['id']; ?>">
-															Commission
+															Bonus
 														</h4>
 													</div>
 													<div class="modal-body">
 
-														<?php echo form_open("commission/update/{$cnt['id']}"); ?>
+														<?php echo form_open("bonus/update/{$cnt['id']}"); ?>
 														<div class="form-group">
 															<label for="date">Date:</label>
 															<input type="date" class="form-control" id="date" value="<?php echo $cnt['date'] ?>" name="date" required>
 														</div>
 														<div class="form-group">
-															<label for="client">Client:</label>
-															<input type="text" class="form-control" id="client" value="<?php echo $cnt['client'] ?>" name="client" required>
+															<label for="amount">Amount (&#8358;) :</label>
+															<input type="number" class="form-control" id="amount" value="<?php echo $cnt['amount'] ?>" name="amount" required>
 														</div>
 														<div class="form-group">
-															<label for="total">Total (&#8358;) :</label>
-															<input type="number" class="form-control" id="total" value="<?php echo $cnt['total'] ?>" name="total" required>
+															<label for="reason">Reason:</label>
+															<input type="text" class="form-control" id="reason" value="<?php echo $cnt['reason'] ?>" name="reason" required>
 														</div>
 														<div class="form-group">
-															<label for="commission">Commission (%):</label>
-															<input type="number" class="form-control" id="commission" value="<?php echo $cnt['commission'] ?>" name="commission" required>
-														</div>
-														<div class="form-group">
-															<label for="comments">Comments:</label>
-															<textarea class="form-control" id="comments" name="comments"><?php echo $cnt['comments'] ?></textarea>
-														</div>
-
-														<div class="form-group">
-															<label for="reason">Status</label>
-															<select name="status" class="form-control">
-																<option <?php echo $cnt['status'] == $this->Commission_model::COMMISSION_PENDING ? "selected" : "" ?> value="<?php echo $this->Commission_model::COMMISSION_PENDING ?>">Pending</option>
-																<option <?php echo $cnt['status'] == $this->Commission_model::COMMISSION_PAID ? "selected" : "" ?> value="<?php echo $this->Commission_model::COMMISSION_PAID ?>">Paid</option>
+															<label for="status">Status</label>
+															<select id="status" name="status" class="form-control">
+																<option <?php echo $cnt['status'] == $this->Bonus_model::BONUS_PENDING ? "selected" : ""; ?> value="<?php echo $this->Bonus_model::BONUS_PENDING; ?>">Pending</option>
+																<option <?php echo $cnt['status'] == $this->Bonus_model::BONUS_PAID ? "selected" : ""; ?> value="<?php echo $this->Bonus_model::BONUS_PAID; ?>">Paid</option>
 															</select>
 														</div>
 														<input type="hidden" id="staff_id" name="staff_id" value="<?php echo $staff['id']; ?>">
@@ -161,42 +150,34 @@
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<h4 class="modal-title" id="commissionModalLabel<?php echo $staff['id']; ?>">Commission</h4>
+				<h4 class="modal-title" id="commissionModalLabel<?php echo $staff['id']; ?>">Bonus</h4>
 			</div>
 			<div class="modal-body">
 
-				<?php echo form_open('commission/insert'); ?>
-				<div class="form-group">
-					<label for="date">Date:</label>
-					<input type="date" class="form-control" id="date" name="date" required>
-				</div>
-				<div class="form-group">
-					<label for="client">Client:</label>
-					<input type="text" class="form-control" id="client" name="client" required>
-				</div>
-				<div class="form-group">
-					<label for="total">Total (&#8358;) :</label>
-					<input type="number" class="form-control" id="total" name="total" required>
-				</div>
-				<div class="form-group">
-					<label for="commission">Commission (%):</label>
-					<input type="number" class="form-control" id="commission" name="commission" required>
-				</div>
-				<div class="form-group">
-					<label for="comments">Comments:</label>
-					<textarea class="form-control" id="comments" name="comments"></textarea>
-				</div>
-				<div class="form-group">
-					<label for="status">Status</label>
-					<select name="status" class="form-control">
-						<option selected value="<?php echo $this->Commission_model::COMMISSION_PENDING ?>">
-							Pending
-						</option>
-						<option value="<?php echo $this->Commission_model::COMMISSION_PAID ?>">Paid</option>
-					</select>
-				</div>
-				<input type="hidden" id="staff_id" name="staff_id" value="<?php echo $staff['id']; ?>">
-				<button type="submit" class="btn btn-primary">Submit</button>
+				<?php echo form_open('bonus/insert'); ?>
+					<div class="form-group">
+						<label for="date">Date:</label>
+						<input type="date" class="form-control" id="date" name="date" required>
+					</div>
+					<div class="form-group">
+						<label for="amount">Amount (&#8358;) :</label>
+						<input type="number" class="bg-gray-200 form-control" id="amount" name="amount" required>
+					</div>
+					<div class="form-group">
+						<label for="reason">Reason</label>
+						<input type="text" class="bg-gray-200 form-control" id="reason" name="reason" required>
+					</div>
+					<div class="form-group">
+						<label for="status">Status</label>
+						<select name="status" class="bg-gray-200 form-control">
+							<option selected value="<?php echo $this->Bonus_model::BONUS_PENDING ?>">
+								Pending
+							</option>
+							<option value="<?php echo $this->Bonus_model::BONUS_PAID ?>">Paid</option>
+						</select>
+					</div>
+					<input type="hidden" id="staff_id" name="staff_id" value="<?php echo $staff['id']; ?>">
+					<button type="submit" class="btn btn-primary">Submit</button>
 				</form>
 			</div>
 		</div>

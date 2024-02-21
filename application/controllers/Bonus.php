@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Bonus extends CI_Controller {
 
+
 	function __construct()
 	{
 		parent::__construct();
@@ -18,6 +19,17 @@ class Bonus extends CI_Controller {
 
 		$this->load->view('admin/header');
 		$this->load->view('admin/list-bonus-staff', $data);
+		$this->load->view('admin/footer');
+	}
+
+	public function manage($id)
+	{
+		$data['staff']= $this->Staff_model->select_staff_byID($id)[0];
+		$data['bonuses']= $this->Bonus_model->getWhere(array('staff_id' => $id));
+
+
+		$this->load->view('admin/header');
+		$this->load->view('admin/manage-bonus', $data);
 		$this->load->view('admin/footer');
 	}
 
@@ -91,6 +103,7 @@ class Bonus extends CI_Controller {
 				'amount'=>$amount,
 				'date'=>$date,
 				'status'=>$status,
+				'reason'=>$reason
 			), $id
 			);
 
@@ -123,7 +136,7 @@ class Bonus extends CI_Controller {
 
 	public function delete($id)
 	{
-		$this->Bonus->delete($id);
+		$this->Bonus_model->delete($id);
 		if($this->db->affected_rows() > 0)
 		{
 			$this->session->set_flashdata('success', "Bonus Deleted Succesfully");

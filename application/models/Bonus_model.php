@@ -74,7 +74,12 @@ class Bonus_model extends CI_Model {
 		$this->db->affected_rows();
 	}
 
-
-
-
+	public function getStatusMapping()
+	{
+		return [
+			static::BONUS_PENDING => "Pending",
+			static::BONUS_PAID => "Paid",
+			null => ""
+		];
+	}
 }

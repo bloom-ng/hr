@@ -36,7 +36,7 @@
                                             <td><?php echo $i; ?></td>
                                             <td><?php echo $staff['staff_name']; ?></td>
                                             <td>
-                                                <a class="btn btn-info bg-[#DA7F00] border-0" href="/commission/manage/<?php echo $staff['id'] ?>">Commissions</a>
+                                                <a class="btn btn-info bg-[#DA7F00] border-0" href="/bonus/manage/<?php echo $staff['id'] ?>">Bonus</a>
                                                 <button class="btn btn-success bg-[#595959] border-0" data-toggle="modal" data-target="#commissionModal<?php echo $staff['id']; ?>">Add</button>
                                             </td>
                                         </tr>
@@ -49,7 +49,7 @@
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
-                                                        <h4 class="modal-title" id="attendanceModalLabel<?php echo $staff['id']; ?>">Bonus</h4>
+                                                        <h4 class="modal-title" id="attendanceModalLabel<?php echo $staff['id']; ?>">Bonuses</h4>
                                                     </div>
                                                     <div class="modal-body">
 
@@ -65,7 +65,7 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="reason">Reason</label>
-                                                            <input type="number" class="bg-gray-200 form-control" id="reason" name="reason" required>
+                                                            <input type="text" class="bg-gray-200 form-control" id="reason" name="reason" required>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="status">Status</label>
