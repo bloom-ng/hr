@@ -37,26 +37,26 @@
         <!-- column -->
         <div class="col-md-12">
           <!-- general form elements -->
-          <div class="box box-info">
-            <div class="box-header with-border">
-              <h3 class="box-title">Add Department</h3>
+          <div class="bg-[#2C2C2C] box border-t-10 border-[#DA7F00]">
+            <div class=" box-header">
+              <h3 class="box-title text-white">Add Department</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="<?php echo base_url(); ?>insert-department" method="POST">
-              <div class="box-body">
+            <form class="bg-[#2C2C2C]" role="form" action="<?php echo base_url(); ?>insert-department" method="POST">
+              <div class="box-body border-10 border-[#DA7F00]">
 
                 <div class="col-md-12">
-                  <div class="form-group">
+                  <div class="form-group text-white">
                     <label for="exampleInputPassword1">Department Name</label>
-                    <input type="text" name="txtdepartment" class="form-control" placeholder="Department Name">
+                    <input type="text" name="txtdepartment" class="bg-transparent border border-white form-control" placeholder="Department Name">
                   </div>
                 </div>
 
               </div>
               <!-- /.box-body -->
-              <div class="box-footer">
-                <button type="submit" class="btn btn-success pull-right">Submit</button>
+              <div class="bg-[#2C2C2C] box-footer border-0">
+                <button type="submit" class="bg-[#DA7F00] btn btn-success pull-right">Submit</button>
               </div>
             </form>
           </div>

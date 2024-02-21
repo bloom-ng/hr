@@ -23,6 +23,7 @@
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/skins/_all-skins.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/output.css">
+  <link rel="shortcut icon" href="<?php echo base_url(); ?>uploads/profile-pic/favicon.png" type="image/x-icon">
 
 
   <!-- jQuery 3 -->

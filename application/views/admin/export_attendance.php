@@ -1,5 +1,5 @@
 <!-- application/views/export_attendance.php -->
-<div class="content-wrapper">
+<div class="content-wrapper bg-[#3E3E3E]">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>Export Attendance</h1>
@@ -14,17 +14,17 @@
     <section class="content">
         <div class="row">
             <div class="col-xs-12">
-                <div class="box box-info">
+                <div class="box border-t-10 border-[#DA7F00] bg-[#2C2C2C]">
                     <div class="box-header">
-                        <h3 class="box-title">Show Attendance</h3>
+                        <h3 class="box-title text-white">Show Attendance</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
                         <!-- Show Attendance Button -->
-                        <button class="btn btn-primary" id="showAttendanceBtn" data-toggle="modal" data-target="#exportModal">Show Attendance</button>
+                        <button class="btn text-white bg-[#DA7F00] border-0" id="showAttendanceBtn" data-toggle="modal" data-target="#exportModal">Show Attendance</button>
 
                         <!-- Attendance Table -->
-                        <table id="attendanceTable" class="table table-bordered table-striped" style="display:none;">
+                        <table id="attendanceTable" class="table" style="display:none;">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -42,10 +42,10 @@
                         </table>
 
                         <!-- Export Modal -->
-                        <div class="modal fade" id="exportModal" tabindex="-1" role="dialog" aria-labelledby="exportModalLabel">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
+                        <div class="modal fade bg-[#3E3E3E]" id="exportModal" tabindex="-1" role="dialog" aria-labelledby="exportModalLabel">
+                            <div class="modal-dialog bg-[#3E3E3E]" role="document">
+                                <div class="modal-content bg-[#3E3E3E]">
+                                    <div class="modal-header bg-[#3E3E3E]">
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -53,15 +53,15 @@
                                     </div>
                                     <div class="modal-body">
                                         <?php echo form_open('attendance/fetch_attendance'); ?>
-                                            <div class="form-group">
-                                                <label for="from_date">From Date:</label>
-                                                <input type="date" class="form-control" id="from_date" name="from_date" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="to_date">To Date:</label>
-                                                <input type="date" class="form-control" id="to_date" name="to_date" required>
-                                            </div>
-                                            <button type="button" class="btn btn-primary" id="exportBtn">View</button>
+                                        <div class="form-group">
+                                            <label for="from_date">From Date:</label>
+                                            <input type="date" class="form-control bg-gray-200" id="from_date" name="from_date" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="to_date">To Date:</label>
+                                            <input type="date" class="form-control  bg-gray-200" id="to_date" name="to_date" required>
+                                        </div>
+                                        <button type="button" class="btn text-white bg-[#DA7F00] border-0" id="exportBtn">View</button>
                                         <?php echo form_close(); ?>
                                     </div>
                                 </div>
@@ -80,9 +80,9 @@
 </div>
 
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         // Show Attendance Button Click Event
-        $('#exportBtn').click(function () {
+        $('#exportBtn').click(function() {
             // Fetch attendance data using AJAX and populate the table
             var from_date = $('#from_date').val();
             var to_date = $('#to_date').val();
@@ -90,19 +90,22 @@
             $.ajax({
                 type: 'POST',
                 url: '<?php echo base_url('attendance/fetch_attendance'); ?>',
-                data: { from_date: from_date, to_date: to_date },
-                success: function (data) {
+                data: {
+                    from_date: from_date,
+                    to_date: to_date
+                },
+                success: function(data) {
                     var attendanceData = JSON.parse(data);
                     populateAttendanceTable(attendanceData);
                 },
-                error: function () {
+                error: function() {
                     alert('An error occurred while fetching attendance data.');
                 }
             });
         });
 
         // Export Button Click Event
-        $('#exportBtn').click(function () {
+        $('#exportBtn').click(function() {
             // Submit the export form
             $('#exportForm').submit();
         });
@@ -112,7 +115,7 @@
             var tableBody = $('#attendanceTable tbody');
             tableBody.empty();
 
-            $.each(attendanceData, function (index, attendance) {
+            $.each(attendanceData, function(index, attendance) {
                 var row = '<tr>' +
                     '<td>' + (index + 1) + '</td>' +
                     '<td>' + attendance.staff_name + '</td>' +

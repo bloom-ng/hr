@@ -16,35 +16,35 @@
     <section class="content">
       <div class="row">
 
-        <?php if($this->session->flashdata('success')): ?>
+        <?php if ($this->session->flashdata('success')) : ?>
           <div class="col-md-12">
             <div class="alert alert-success alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                  <h4><i class="icon fa fa-check"></i> Success!</h4>
-                  <?php echo $this->session->flashdata('success'); ?>
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+              <h4><i class="icon fa fa-check"></i> Success!</h4>
+              <?php echo $this->session->flashdata('success'); ?>
             </div>
           </div>
-        <?php elseif($this->session->flashdata('error')):?>
-        <div class="col-md-12">
+        <?php elseif ($this->session->flashdata('error')) : ?>
+          <div class="col-md-12">
             <div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                  <h4><i class="icon fa fa-check"></i> Failed!</h4>
-                  <?php echo $this->session->flashdata('error'); ?>
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+              <h4><i class="icon fa fa-check"></i> Failed!</h4>
+              <?php echo $this->session->flashdata('error'); ?>
             </div>
           </div>
-        <?php endif;?>
+        <?php endif; ?>
 
         <!-- column -->
         <div class="col-md-12">
           <!-- general form elements -->
           <div class="box box-info">
-            <div class="box-header with-border">
+            <div class="box-header">
               <h3 class="box-title">Edit Department</h3>
             </div>
             <!-- /.box-header -->
 
-            <?php if(isset($content)): ?>
-              <?php foreach($content as $cnt): ?>
+            <?php if (isset($content)) : ?>
+              <?php foreach ($content as $cnt) : ?>
                 <!-- form start -->
                 <form role="form" action="<?php echo base_url(); ?>update-department" method="POST">
                   <div class="box-body">
@@ -59,18 +59,17 @@
                         <label>HOD</label>
                         <select name="hod" class="form-control">
                           <option> </option>
-                          <?php foreach($staffs as $staff): ?>
-                            <option value="<?php echo $staff['id'] ?>"
-                                    <?php echo $cnt['staff_id'] ==  $staff['id'] ? "selected" : ""  ?> >
+                          <?php foreach ($staffs as $staff) : ?>
+                            <option value="<?php echo $staff['id'] ?>" <?php echo $cnt['staff_id'] ==  $staff['id'] ? "selected" : ""  ?>>
                               <?php echo $staff['staff_name'] ?>
                             </option>
-                            
+
                           <?php endforeach; ?>
 
                         </select>
                       </div>
                     </div>
-                    
+
                   </div>
                   <!-- /.box-body -->
                   <div class="box-footer">
