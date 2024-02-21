@@ -128,8 +128,19 @@
           </li>
 
 
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-sticky-note"></i> <span>Memo</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="<?php echo base_url(); ?>memos"><i class="fa fa-circle-o"></i> Memos</a></li>
+            </ul>
+          </li>
 
-
+			<!-- APPRAISAL-->
           <li class="treeview">
             <a href="#">
               <i class="fa fa-thumbs-up"></i> <span>Appraisals</span>
@@ -139,10 +150,12 @@
             </a>
             <ul class="treeview-menu">
               <li><a href="<?php echo base_url(); ?>manage-appraisal"><i class="fa fa-circle-o"></i>Manage Appraisal</a></li>
-              <!--				  <li><a href="--><?php //echo base_url(); 
-                                            ?><!--attendance-export"><i class="fa fa-circle-o"></i> Show Attendance</a></li>-->
-            </ul>
+				<?php if (in_array($this->session->userdata('role'), (array)"staff")) : ?>
+				<li><a href="<?php echo base_url();?>my-appraisal"><i class="fa fa-circle-o"></i> My Appraisal</a></li>
+				<?php endif; ?>
+			</ul>
           </li>
+			<!-- APPRAISAL-->
 
           <?php if (in_array($this->session->userdata('role'), ["finance", "super"])) : ?>
             <!-- FINANCE -->
@@ -240,33 +253,8 @@
           <?php endif; ?>
 
 
-          <?php if (in_array($this->session->userdata('role'), ["staff"])) : ?>
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-usd"></i> <span>Salary</span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="<?php echo base_url(); ?>view-salary"><i class="fa fa-circle-o"></i> View Salary</a></li>
-              </ul>
-            </li>
 
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-share"></i> <span>Leave</span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="<?php echo base_url(); ?>apply-leave"><i class="fa fa-circle-o"></i> Apply Leave</a></li>
-                <li><a href="<?php echo base_url(); ?>view-leave"><i class="fa fa-circle-o"></i> My Leave History</a></li>
-              </ul>
-            </li>
-
-          <?php endif; ?>
+          
 
 
 

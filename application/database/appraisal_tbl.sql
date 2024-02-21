@@ -34,7 +34,7 @@ CREATE TABLE `appraisal_tbl` (
   `job_title` varchar(255) DEFAULT NULL,
   `department_id` int(11) DEFAULT NULL,
   `department_name` varchar(255) DEFAULT NULL, 
-  `date` date DEFAULT NULL,
+  `date` varchar(255) DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
   `performance` int(11) DEFAULT NULL,
   `performance_comment` text DEFAULT NULL,

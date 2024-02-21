@@ -1,7 +1,7 @@
 <!-- File: application/views/add_appraisal.php -->
-<div class="content-wrapper">
+<div class="content-wrapper bg-neutral-800">
 	<!-- Content Header (Page header) -->
-	<section class="content-header">
+	<section class="content-header bg-neutral-800">
 		<h1>Add Appraisal</h1>
 		<ol class="breadcrumb">
 			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -11,12 +11,12 @@
 	</section>
 
 	<!-- Main content -->
-	<section class="content">
+	<section class="content bg-neutral-800">
 		<div class="row">
 			<div class="col-xs-12">
-				<div class="box box-info">
+				<div class="box box-info bg-neutral-800">
 					<div class="box-header">
-						<h3 class="box-title">Add Appraisal</h3>
+						<h3 class="box-title text-white">Add Appraisal</h3>
 					</div>
 					<!-- /.box-header -->
 					<div class="box-body">
@@ -261,6 +261,8 @@
 						</div>
 
 						<button type="submit" class="btn btn-primary text-blue-500">Submit</button>
+
+
 						<?php echo form_close(); ?>
 					</div>
 					<!-- /.box-body -->
