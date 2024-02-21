@@ -118,7 +118,12 @@ $route['review-appraisal/(:num)'] = 'appraisal/review_appraisal/$1';
 $route['my-appraisal'] = 'appraisal/my_appraisal';
 $route['check-appraisal/(:num)'] = 'appraisal/check_appraisal/$1';
 
-
+//Bonus route
+$route['bonus-staff'] = 'bonus/index';
+$route['bonus/insert'] = 'bonus/insert';
+$route['bonus/delete/(:num)'] = 'bonus/delete/$1';
+$route['bonus/update/(:num)'] = 'bonus/update/$1';
+$route['bonus/manage/(:num)'] = 'bonus/manage/$1';
 
 // Admins routes
 $route['admins'] = 'admin/index';

@@ -186,6 +186,22 @@
 
           <?php endif; ?>
 
+			<?php if (in_array($this->session->userdata('role'), ["finance", "super"])) : ?>
+				<!-- BONUS -->
+				<li class="treeview">
+					<a href="#">
+						<i class="fa fa-calendar"></i> <span>Bonus</span>
+						<span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+					</a>
+					<ul class="treeview-menu">
+						<li><a href="<?php echo base_url(); ?>bonus-staff"><i class="fa fa-circle-o"></i>Manage Bonus</a></li>
+					</ul>
+				</li>
+
+			<?php endif; ?>
+
           <?php if (in_array($this->session->userdata('role'), ["hrm", "super"])) : ?>
             <!-- HR ADMIN -->
             <li class="treeview">
