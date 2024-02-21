@@ -60,7 +60,7 @@
                       <td><?php echo $cnt['department_name']; ?></td>
                       <td>
                         <a href="<?php echo base_url(); ?>edit-department/<?php echo $cnt['id']; ?>" class="btn btn-success">Edit</a>
-                        <a href="<?php echo base_url(); ?>delete-department/<?php echo $cnt['id']; ?>" class="btn btn-danger">Delete</a>
+                        <a href="<?php echo base_url(); ?>delete-department/<?php echo $cnt['id']; ?>" class="btn bg-[#595959] border-0 btn-danger">Delete</a>
                       </td>
                     </tr>
                 <?php

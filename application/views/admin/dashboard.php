@@ -33,7 +33,7 @@
             <div class="icon">
               <i class="ionicons ion-social-buffer"></i>
             </div>
-            <a href="<?php echo base_url(); ?>manage-department" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?php echo base_url(); ?>manage-department" class="small-box-footer pull-right bg-[#D9D9D9] text-black px-16 py-2">More Info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -54,7 +54,7 @@
             <div class="icon">
               <i class="ionicons ion-android-contacts"></i>
             </div>
-            <a href="<?php echo base_url(); ?>manage-staff" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?php echo base_url(); ?>manage-staff" class="small-box-footer pull-right bg-[#D9D9D9] text-black px-16 py-2">More Info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -75,7 +75,7 @@
             <div class="icon">
               <i class="ionicons ion-log-out"></i>
             </div>
-            <a href="<?php echo base_url(); ?>approve-leave" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?php echo base_url(); ?>approve-leave" class="small-box-footer pull-right bg-[#D9D9D9] text-black px-16 py-2">More Info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -98,7 +98,7 @@
             <div class="icon">
               <i class="ionicons ion-social-usd"></i>
             </div>
-            <a href="<?php echo base_url(); ?>manage-salary" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?php echo base_url(); ?>manage-salary" class="small-box-footer pull-right bg-[#D9D9D9] text-black px-16 py-2">More Info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->

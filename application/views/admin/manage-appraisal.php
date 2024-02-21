@@ -1,5 +1,5 @@
 <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper bg-neutral-800">
+<div class="content-wrapper bg-[#3E3E3E]">
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>Manage Appraisals</h1>
@@ -11,10 +11,10 @@
 	</section>
 
 	<!-- Main content -->
-	<section class="content bg-neutral-800">
+	<section class="content">
 		<div class="row">
 
-			<?php if($this->session->flashdata('success')): ?>
+			<?php if ($this->session->flashdata('success')) : ?>
 				<div class="col-md-12">
 					<div class="alert alert-success alert-dismissible">
 						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -22,7 +22,7 @@
 						<?php echo $this->session->flashdata('success'); ?>
 					</div>
 				</div>
-			<?php elseif($this->session->flashdata('error')):?>
+			<?php elseif ($this->session->flashdata('error')) : ?>
 				<div class="col-md-12">
 					<div class="alert alert-danger alert-dismissible">
 						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -30,12 +30,12 @@
 						<?php echo $this->session->flashdata('error'); ?>
 					</div>
 				</div>
-			<?php endif;?>
+			<?php endif; ?>
 
 			<div class="col-xs-12">
-				<div class="box box-info bg-neutral-800	">
+				<div class="box border-t-10 border-[#DA7F00] bg-[#2C2C2C]">
 					<div class="box-header">
-						<h3 class="box-title">Manage Appraisals</h3>
+						<h3 class="box-title text-white">Manage Appraisals</h3>
 					</div>
 					<!-- /.box-header -->
 					<div class="box-body">
@@ -45,51 +45,57 @@
 							<select class="form-control" id="department_filter">
 								<option value="">Select Department</option>
 								<?php if (isset($departments)) {
-									foreach ($departments as $department): ?>
+									foreach ($departments as $department) : ?>
 										<option value="<?php echo $department['id']; ?>"><?php echo $department['department_name']; ?></option>
-									<?php endforeach;
+								<?php endforeach;
 								} ?>
 							</select>
 						</div>
 
-						<table id="example1" class="table table-bordered ">
+						<table id="example1" class="table">
 							<thead>
-							<tr>
-								<th>#</th>
-								<th>Name</th>
-								<th>Actions</th>
-								<th style="display: none;">Department</th> <!-- Hidden column for department ID -->
-							</tr>
+								<tr>
+									<th>#</th>
+									<th>Name</th>
+									<th>Actions</th>
+									<th style="display: none;">Department</th> <!-- Hidden column for department ID -->
+								</tr>
 							</thead>
 							<tbody>
-							<?php if(isset($staff_members)): ?>
-								<?php $i=1; foreach($staff_members as $staff): ?>
-									<tr>
-										<td><?php echo $i; ?></td>
-										<td><?php echo $staff['staff_name']; ?></td>
-										<td>
-											<a href="<?php echo base_url(); ?>list-appraisal/<?php echo $staff['id']; ?>" class="btn btn-info" >Appraisals</a>
-<!--											--><?php
-//											// Assuming $departments is the array of departments
-//											$loggedInUserId = $this->session->userdata('userid');
-//											if (isset($departments)) {
-//												foreach ($departments as $department) {
-//													if ($loggedInUserId == $department['staff_id'] || in_array($this->session->userdata('role'), array("hrm", "super"))) {
-//														?>
-<!--														<a href="--><?php //echo base_url(); ?><!--add-appraisal/--><?php //echo $staff['id']; ?><!--" class="btn btn-success">Add</a>-->
-<!--														--><?php
-//														break; // Exit the loop after finding a matching department
-//													}
-//												}
-//											}
-//											?>
+								<?php if (isset($staff_members)) : ?>
+									<?php $i = 1;
+									foreach ($staff_members as $staff) : ?>
+										<tr>
+											<td><?php echo $i; ?></td>
+											<td><?php echo $staff['staff_name']; ?></td>
+											<td>
+												<a href="<?php echo base_url(); ?>list-appraisal/<?php echo $staff['id']; ?>" class="btn btn-infohover:border-[#DA7F00] border-[#DA7F00] bg-[#DA7F00] hover:bg-[#DA7F00]">Appraisals</a>
+												<!--											--><?php
+																									//											// Assuming $departments is the array of departments
+																									//											$loggedInUserId = $this->session->userdata('userid');
+																									//											if (isset($departments)) {
+																									//												foreach ($departments as $department) {
+																									//													if ($loggedInUserId == $department['staff_id'] || in_array($this->session->userdata('role'), array("hrm", "super"))) {
+																									//														
+																									?>
+												<!--														<a href="--><?php //echo base_url(); 
+																														?><!--add-appraisal/--><?php //echo $staff['id']; 
+																																				?><!--" class="btn btn-success">Add</a>-->
+												<!--														--><?php
+																												//														break; // Exit the loop after finding a matching department
+																												//													}
+																												//												}
+																												//											}
+																												//											
+																												?>
 
 
-										</td>
-										<td style="display: none;"><?php echo $staff['department_id']; ?></td> <!-- Hidden column for department ID -->
-									</tr>
-									<?php $i++; endforeach; ?>
-							<?php endif; ?>
+											</td>
+											<td style="display: none;"><?php echo $staff['department_id']; ?></td> <!-- Hidden column for department ID -->
+										</tr>
+									<?php $i++;
+									endforeach; ?>
+								<?php endif; ?>
 							</tbody>
 						</table>
 					</div>
@@ -106,12 +112,12 @@
 <!-- /.content-wrapper -->
 
 <script>
-	$(document).ready(function () {
-		$('#department_filter').change(function () {
+	$(document).ready(function() {
+		$('#department_filter').change(function() {
 			var selectedDepartment = $(this).val();
 
 			if (selectedDepartment !== '') {
-				$('tbody tr').each(function () {
+				$('tbody tr').each(function() {
 					var departmentId = $(this).find('td:eq(3)').text(); // Get department ID from the hidden td
 
 					if (departmentId !== selectedDepartment) {

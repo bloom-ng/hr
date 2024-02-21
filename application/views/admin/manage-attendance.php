@@ -36,17 +36,17 @@
                                             <td><?php echo $i; ?></td>
                                             <td><?php echo $staff['staff_name']; ?></td>
                                             <td>
-                                                <button class="btn btn-info bg-[#DA7F00] border-0  data-toggle=" modal" data-target="#manageModal<?php echo $staff['id']; ?>">Check</button>
+                                                <button class="btn btn-info bg-[#DA7F00] border-0 " data-toggle="modal" data-target="#manageModal<?php echo $staff['id']; ?>">Check</button>
                                                 <button class="btn btn-success bg-[#595959] border-0" data-toggle="modal" data-target="#attendanceModal<?php echo $staff['id']; ?>">Add</button>
                                             </td>
                                         </tr>
 
                                         <!--Add Attendance Modal -->
                                         <?php foreach ($staff_members as $cnt) : ?>
-                                            <div class="modal fade" id="attendanceModal<?php echo $cnt['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="attendanceModalLabel<?php echo $cnt['id']; ?>">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
+                                            <div class="modal fade bg-[#3E3E3E]" id="attendanceModal<?php echo $cnt['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="attendanceModalLabel<?php echo $cnt['id']; ?>">
+                                                <div class="modal-dialog bg-[#3E3E3E]" role="document">
+                                                    <div class="modal-content bg-[#3E3E3E]">
+                                                        <div class="modal-header bg-[#3E3E3E]">
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
@@ -57,22 +57,22 @@
                                                             <?php echo form_open('Attendance/insert'); ?>
                                                             <div class="form-group">
                                                                 <label for="date">Date:</label>
-                                                                <input type="date" class="form-control" id="date" name="date" max="<?php echo date('Y-m-d'); ?>" required>
+                                                                <input type="date" class="form-control bg-gray-200" id="date" name="date" max="<?php echo date('Y-m-d'); ?>" required>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="time_in">Time In:</label>
-                                                                <input type="time" class="form-control" id="time_in" name="time_in">
+                                                                <input type="time" class="form-control bg-gray-200" id="time_in" name="time_in">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="time_out">Time Out:</label>
-                                                                <input type="time" class="form-control" id="time_out" name="time_out">
+                                                                <input type="time" class="form-control bg-gray-200" id="time_out" name="time_out">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="notes">Notes:</label>
-                                                                <textarea class="form-control" id="notes" name="notes"></textarea>
+                                                                <textarea class="form-control bg-gray-200" id="notes" name="notes"></textarea>
                                                             </div>
                                                             <input type="hidden" id="staff_id" name="staff_id" value="<?php echo $staff['id']; ?>">
-                                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                                            <button type="submit" class="btn hover:bg-[#DA7F00] bg-[#DA7F00] border-0 btn-primary">Submit</button>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -81,10 +81,10 @@
                                         <?php endforeach; ?>
 
                                         <!-- Manage Modal -->
-                                        <div class="modal fade" id="manageModal<?php echo $staff['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="manageModalLabel<?php echo $staff['id']; ?>">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
+                                        <div class="modal fade bg-[#3E3E3E]" id="manageModal<?php echo $staff['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="manageModalLabel<?php echo $staff['id']; ?>">
+                                            <div class="modal-dialog bg-[#3E3E3E]" role="document">
+                                                <div class="modal-content bg-[#3E3E3E]">
+                                                    <div class="modal-header bg-[#3E3E3E]">
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
@@ -94,14 +94,14 @@
                                                         <?php echo form_open('attendance/check_attendance'); ?>
                                                         <div class="form-group">
                                                             <label for="from_date">From Date:</label>
-                                                            <input type="date" class="form-control" id="from_date" name="from_date" required>
+                                                            <input type="date" class="form-control bg-gray-200" id="from_date" name="from_date" required>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="to_date">To Date:</label>
-                                                            <input type="date" class="form-control" id="to_date" name="to_date" max="<?php echo date('Y-m-d'); ?>" required>
+                                                            <input type="date" class="form-control bg-gray-200" id="to_date" name="to_date" max="<?php echo date('Y-m-d'); ?>" required>
                                                         </div>
                                                         <input type="hidden" name="staff_id" value="<?php echo $staff['id']; ?>">
-                                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                                        <button type="submit" class="btn btn-primary hover:bg-[#DA7F00] bg-[#DA7F00] border-0">Submit</button>
                                                         <?php echo form_close(); ?>
                                                     </div>
                                                 </div>

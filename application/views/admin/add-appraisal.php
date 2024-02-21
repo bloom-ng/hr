@@ -1,7 +1,7 @@
 <!-- File: application/views/add_appraisal.php -->
-<div class="content-wrapper bg-neutral-800">
+<div class="content-wrapper bg-[#3E3E3E]">
 	<!-- Content Header (Page header) -->
-	<section class="content-header bg-neutral-800">
+	<section class="content-header">
 		<h1>Add Appraisal</h1>
 		<ol class="breadcrumb">
 			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -11,10 +11,10 @@
 	</section>
 
 	<!-- Main content -->
-	<section class="content bg-neutral-800">
+	<section class="content">
 		<div class="row">
 			<div class="col-xs-12">
-				<div class="box box-info bg-neutral-800">
+				<div class="box border-t-10 border-[#DA7F00] bg-[#2C2C2C]">
 					<div class="box-header">
 						<h3 class="box-title text-white">Add Appraisal</h3>
 					</div>
@@ -260,7 +260,7 @@
 							<input type="date" class="form-control" id="follow_up_meeting_schedule" name="follow_up_meeting_schedule" placeholder="Specify dates for follow-up meetings to track progress.">
 						</div>
 
-						<button type="submit" class="btn btn-primary text-blue-500">Submit</button>
+						<button type="submit" class="btn btn-primary hover:border-[#DA7F00] text-white border-[#DA7F00] bg-[#DA7F00] hover:bg-[#DA7F00]">Submit</button>
 
 
 						<?php echo form_close(); ?>

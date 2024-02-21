@@ -6,7 +6,7 @@
   </style>
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper bg-[#3E3E3E]">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
@@ -50,9 +50,9 @@
         <!-- column -->
         <div class="col-md-12">
           <!-- general form elements -->
-          <div class="box box-info">
+          <div class="box border-t-10 border-[#DA7F00] bg-[#2C2C2C]">
             <div class="box-header">
-              <h3 class="box-title">Edit Staff</h3>
+              <h3 class="box-title text-white">Edit Staff</h3>
             </div>
             <!-- /.box-header -->
 
@@ -65,15 +65,15 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Full Name</label>
-                      <input type="hidden" name="txtid" value="<?php echo $cnt['id'] ?>" class="form-control" placeholder="Full Name">
-                      <input type="text" name="txtname" value="<?php echo $cnt['staff_name'] ?>" class="form-control" placeholder="Full Name">
+                      <input type="hidden" name="txtid" value="<?php echo $cnt['id'] ?>" class="form-control bg-gray-200" placeholder="Full Name">
+                      <input type="text" name="txtname" value="<?php echo $cnt['staff_name'] ?>" class="form-control bg-gray-200" placeholder="Full Name">
                     </div>
                   </div>
 
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Department</label>
-                      <select class="form-control" name="slcdepartment">
+                      <select class="form-control bg-gray-200" name="slcdepartment">
                         <option value="">Select</option>
                         <?php
                         if (isset($department)) {
@@ -93,7 +93,7 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Gender</label>
-                      <select class="form-control" name="slcgender">
+                      <select class="form-control bg-gray-200" name="slcgender">
                         <option value="">Select</option>
                         <option value="Male" <?php echo $cnt['gender'] == 'Male' ? 'selected' : '' ?>>
                           Male
@@ -106,49 +106,49 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Email</label>
-                      <input type="text" name="txtemail" value="<?php echo $cnt['email'] ?>" class="form-control" placeholder="Email" readonly>
+                      <input type="text" name="txtemail" value="<?php echo $cnt['email'] ?>" class="form-control bg-gray-200" placeholder="Email" readonly>
                     </div>
                   </div>
 
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Mobile</label>
-                      <input type="text" name="txtmobile" value="<?php echo $cnt['mobile'] ?>" class="form-control" placeholder="Mobile" readonly>
+                      <input type="text" name="txtmobile" value="<?php echo $cnt['mobile'] ?>" class="form-control bg-gray-200" placeholder="Mobile" readonly>
                     </div>
                   </div>
 
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Photo</label>
-                      <input type="file" name="filephoto" value="<?php echo base_url(); ?>uploads/profile-pic/<?php echo $cnt['pic'] ?>" class="form-control">
+                      <input type="file" name="filephoto" value="<?php echo base_url(); ?>uploads/profile-pic/<?php echo $cnt['pic'] ?>" class="form-control bg-gray-200">
                     </div>
                   </div>
 
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Date of Birth</label>
-                      <input type="date" name="txtdob" value="<?php echo $cnt['dob'] ?>" class="form-control" placeholder="DOB">
+                      <input type="date" name="txtdob" value="<?php echo $cnt['dob'] ?>" class="form-control bg-gray-200" placeholder="DOB">
                     </div>
                   </div>
 
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Date of Employment</label>
-                      <input type="date" name="txtdoj" value="<?php echo $cnt['doj'] ?>" class="form-control" placeholder="DOJ">
+                      <input type="date" name="txtdoj" value="<?php echo $cnt['doj'] ?>" class="form-control bg-gray-200" placeholder="DOJ">
                     </div>
                   </div>
 
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Address</label>
-                      <textarea class="form-control" name="txtaddress"><?php echo $cnt['address'] ?></textarea>
+                      <textarea class="form-control bg-gray-200" name="txtaddress"><?php echo $cnt['address'] ?></textarea>
                     </div>
                   </div>
 
                 </div>
                 <!-- /.box-body -->
-                <div class="box-footer">
-                  <button type="submit" class="btn btn-success pull-right">Submit</button>
+                <div class="box-footer bg-[#2C2C2C] border-0">
+                  <button type="submit" class="btn btn-success hover:bg-[#DA7F00] bg-[#DA7F00] border-0 pull-right">Submit</button>
                 </div>
                 </form>
               <?php endforeach; ?>

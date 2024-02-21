@@ -49,7 +49,7 @@
                 <div class="col-md-12">
                   <div class="form-group text-white">
                     <label for="exampleInputPassword1">Department Name</label>
-                    <input type="text" name="txtdepartment" class="bg-transparent border border-white form-control" placeholder="Department Name">
+                    <input type="text" name="txtdepartment" class="text-white bg-transparent border border-white form-control" placeholder="Department Name">
                   </div>
                 </div>
 
