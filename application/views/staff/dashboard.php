@@ -1,5 +1,5 @@
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper bg-[#3E3E3E]">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
@@ -20,22 +20,20 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3><?php 
-              if(isset($leave))
-              {
-                echo sizeof($leave);
-              }
-              else{
-                echo 0;
-              }
-              ?></h3>
+              <h3><?php
+                  if (isset($leave)) {
+                    echo sizeof($leave);
+                  } else {
+                    echo 0;
+                  }
+                  ?></h3>
 
               <p>Leaves</p>
             </div>
             <div class="icon">
               <i class="ionicons ion-log-out"></i>
             </div>
-            
+
           </div>
         </div>
 

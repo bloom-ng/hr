@@ -1,7 +1,7 @@
 <!-- File: application/views/add_appraisal.php -->
-<div class="content-wrapper bg-neutral-800">
+<div class="content-wrapperbg-[#3E3E3E]">
 	<!-- Content Header (Page header) -->
-	<section class="content-header bg-neutral-800">
+	<section class="content-header">
 		<h1>Edit Appraisal</h1>
 		<ol class="breadcrumb text-white">
 			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -14,7 +14,7 @@
 	<section class="content">
 		<div class="row">
 			<div class="col-xs-12">
-				<div class="box box-info bg-neutral-800">
+				<div class="box border-t-10 border-[#DA7F00] bg-[#2C2C2C]">
 					<div class="box-header">
 						<h3 class="box-title text-white">Edit Appraisal</h3>
 					</div>
@@ -247,7 +247,7 @@
 						<!-- Employee's Self-Assessment -->
 						<div class="form-group">
 							<label for="employee_self_assessment">VIII. Employee's Self-Assessment:</label>
-							<textarea id="employee_self_assessment" name="employee_self_assessment" class="form-control" placeholder="Provide space for the employee to share their self-assessment." <?php echo ($appraisal['status'] == 'done') ? 'readonly' : ''; ?> ><?php echo $appraisal['employee_self_assessment']; ?></textarea>
+							<textarea id="employee_self_assessment" name="employee_self_assessment" class="form-control" placeholder="Provide space for the employee to share their self-assessment." <?php echo ($appraisal['status'] == 'done') ? 'readonly' : ''; ?>><?php echo $appraisal['employee_self_assessment']; ?></textarea>
 						</div>
 
 						<!-- Manager's Comments -->
@@ -267,7 +267,7 @@
 							<label for="follow_up_meeting_schedule">XI. Follow-Up Meeting Schedule:</label>
 							<input type="date" class="form-control mb-5" id="follow_up_meeting_schedule" name="follow_up_meeting_schedule" placeholder="Specify dates for follow-up meetings to track progress." value="<?php echo $appraisal['follow_up_meeting_schedule']; ?>" readonly>
 						</div>
-						<?php if ($appraisal['status'] == 'approved' && $appraisal['staff_id'] == $this->session->userdata('userid')) :?>
+						<?php if ($appraisal['status'] == 'approved' && $appraisal['staff_id'] == $this->session->userdata('userid')) : ?>
 							<button type="submit" class="btn btn-primary text-blue-500">Submit</button>
 						<?php endif; ?>
 

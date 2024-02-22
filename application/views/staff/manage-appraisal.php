@@ -1,5 +1,5 @@
 <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper bg-neutral-800">
+<div class="content-wrapper bg-[#3E3E3E]">
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>My Appraisals</h1>
@@ -11,10 +11,10 @@
 	</section>
 
 	<!-- Main content -->
-	<section class="content bg-neutral-800">
+	<section class="content">
 		<div class="row">
 
-			<?php if($this->session->flashdata('success')): ?>
+			<?php if ($this->session->flashdata('success')) : ?>
 				<div class="col-md-12">
 					<div class="alert alert-success alert-dismissible">
 						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -22,7 +22,7 @@
 						<?php echo $this->session->flashdata('success'); ?>
 					</div>
 				</div>
-			<?php elseif($this->session->flashdata('error')):?>
+			<?php elseif ($this->session->flashdata('error')) : ?>
 				<div class="col-md-12">
 					<div class="alert alert-danger alert-dismissible">
 						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -30,38 +30,40 @@
 						<?php echo $this->session->flashdata('error'); ?>
 					</div>
 				</div>
-			<?php endif;?>
+			<?php endif; ?>
 
 			<div class="col-xs-12">
-				<div class="box box-info bg-neutral-800	">
+				<div class="box border-t-10 border-[#DA7F00] bg-[#2C2C2C]">
 					<div class="box-header">
-						<h3 class="box-title">My Appraisals</h3>
+						<h3 class="box-title text-white">My Appraisals</h3>
 					</div>
 					<!-- /.box-header -->
 					<div class="box-body">
 
-						<table id="example1" class="table table-bordered ">
+						<table id="example1" class="table">
 							<thead>
-							<tr>
-								<th>#</th>
-								<th>Name</th>
-								<th>Date</th>
-								<th>Actions</th>
-							</tr>
+								<tr>
+									<th>#</th>
+									<th>Name</th>
+									<th>Date</th>
+									<th>Actions</th>
+								</tr>
 							</thead>
 							<tbody>
-							<?php if(isset($appraisal)): ?>
-								<?php $i=1; foreach($appraisal as $appraisal): ?>
-									<tr>
-										<td><?php echo $i; ?></td>
-										<td><?php echo $appraisal['name']; ?></td>
-										<td><?php echo $appraisal['date']; ?></td>
-										<td>
-											<a href="<?php echo base_url(); ?>check-appraisal/<?php echo $appraisal['id']; ?>" class="btn btn-info" >Check</a>
-										</td>
-									</tr>
-									<?php $i++; endforeach; ?>
-							<?php endif; ?>
+								<?php if (isset($appraisal)) : ?>
+									<?php $i = 1;
+									foreach ($appraisal as $appraisal) : ?>
+										<tr>
+											<td><?php echo $i; ?></td>
+											<td><?php echo $appraisal['name']; ?></td>
+											<td><?php echo $appraisal['date']; ?></td>
+											<td>
+												<a href="<?php echo base_url(); ?>check-appraisal/<?php echo $appraisal['id']; ?>" class="btn btn-info border-0 bg-[#595959] hover:bg-[#595959]">Check</a>
+											</td>
+										</tr>
+									<?php $i++;
+									endforeach; ?>
+								<?php endif; ?>
 							</tbody>
 						</table>
 					</div>
@@ -78,12 +80,12 @@
 <!-- /.content-wrapper -->
 
 <script>
-	$(document).ready(function () {
-		$('#department_filter').change(function () {
+	$(document).ready(function() {
+		$('#department_filter').change(function() {
 			var selectedDepartment = $(this).val();
 
 			if (selectedDepartment !== '') {
-				$('tbody tr').each(function () {
+				$('tbody tr').each(function() {
 					var departmentId = $(this).find('td:eq(3)').text(); // Get department ID from the hidden td
 
 					if (departmentId !== selectedDepartment) {

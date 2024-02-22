@@ -79,11 +79,11 @@
                     </tr>
 
                     <!-- Modal -->
-                    <div class="modal fade" id="viewMemo<?php echo $cnt['id'] ?>" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                      <div class="modal-dialog modal-xl" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="addDeduction"><?php echo $cnt['title'] ?> </h5>
+                    <div class="modal fade bg-[#3E3E3E]" id="viewMemo<?php echo $cnt['id'] ?>" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                      <div class="modal-dialog bg-[#3E3E3E] modal-xl" role="document">
+                        <div class="modal-content bg-[#3E3E3E]">
+                          <div class="modal-header bg-[#3E3E3E] border-0">
+                            <h5 class="modal-title bg-[#3E3E3E]" id="addDeduction"><?php echo $cnt['title'] ?> </h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                             </button>
@@ -98,9 +98,9 @@
 
                             </div>
                             <!-- /.box-body -->
-                            <div class="box-footer">
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <div class="box-footer bg-[#3E3E3E] border-0">
+                              <div class="modal-footer border-0">
+                                <button type="button" class="btn btn-secondary border-0 bg-[#595959] hover:bg-[#595959] " data-dismiss="modal">Close</button>
                               </div>
                             </div>
                           </div>
