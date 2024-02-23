@@ -81,10 +81,10 @@
                         </td>
                       </tr>
 
-                      <div class="modal fade" id="commissionModal<?php echo $cnt['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="commissionModalLabel<?php echo $cnt['id']; ?>">
-                        <div class="modal-dialog" role="document">
-                          <div class="modal-content">
-                            <div class="modal-header">
+                      <div class="modal fade bg-[#3E3E3E]" id="commissionModal<?php echo $cnt['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="commissionModalLabel<?php echo $cnt['id']; ?>">
+                        <div class="modal-dialog bg-[#3E3E3E]" role="document">
+                          <div class="modal-content bg-[#3E3E3E]">
+                            <div class="modal-header bg-[#3E3E3E]">
                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                               </button>
@@ -97,34 +97,34 @@
                               <?php echo form_open("commission/update/{$cnt['id']}"); ?>
                               <div class="form-group">
                                 <label for="date">Date:</label>
-                                <input type="date" class="form-control" id="date" value="<?php echo $cnt['date'] ?>" name="date" required>
+                                <input type="date" class="bg-gray-200 form-control" id="date" value="<?php echo $cnt['date'] ?>" name="date" required>
                               </div>
                               <div class="form-group">
                                 <label for="client">Client:</label>
-                                <input type="text" class="form-control" id="client" value="<?php echo $cnt['client'] ?>" name="client" required>
+                                <input type="text" class="bg-gray-200 form-control" id="client" value="<?php echo $cnt['client'] ?>" name="client" required>
                               </div>
                               <div class="form-group">
                                 <label for="total">Total (&#8358;) :</label>
-                                <input type="number" class="form-control" id="total" value="<?php echo $cnt['total'] ?>" name="total" required>
+                                <input type="number" class="bg-gray-200 form-control" id="total" value="<?php echo $cnt['total'] ?>" name="total" required>
                               </div>
                               <div class="form-group">
                                 <label for="commission">Commission (%):</label>
-                                <input type="number" class="form-control" id="commission" value="<?php echo $cnt['commission'] ?>" name="commission" required>
+                                <input type="number" class="bg-gray-200 form-control" id="commission" value="<?php echo $cnt['commission'] ?>" name="commission" required>
                               </div>
                               <div class="form-group">
                                 <label for="comments">Comments:</label>
-                                <textarea class="form-control" id="comments" name="comments"><?php echo $cnt['comments'] ?></textarea>
+                                <textarea class="bg-gray-200 form-control" id="comments" name="comments"><?php echo $cnt['comments'] ?></textarea>
                               </div>
 
                               <div class="form-group">
                                 <label for="reason">Status</label>
-                                <select name="status" class="form-control">
+                                <select name="status" class="bg-gray-200 form-control">
                                   <option <?php echo $cnt['status'] == $this->Commission_model::COMMISSION_PENDING ? "selected" : "" ?> value="<?php echo $this->Commission_model::COMMISSION_PENDING ?>">Pending</option>
                                   <option <?php echo $cnt['status'] == $this->Commission_model::COMMISSION_PAID ? "selected" : "" ?> value="<?php echo $this->Commission_model::COMMISSION_PAID ?>">Paid</option>
                                 </select>
                               </div>
                               <input type="hidden" id="staff_id" name="staff_id" value="<?php echo $staff['id']; ?>">
-                              <button type="submit" class="btn btn-primary">Submit</button>
+                              <button type="submit" class="btn  bg-[#DA7F00] hover:bg-[#DA7F00] border-0 btn-primary">Submit</button>
                               </form>
                             </div>
                           </div>
@@ -155,10 +155,10 @@
 <!-- Button trigger modal -->
 
 <!--Add Commission Modal -->
-<div class="modal fade" id="commissionModal" tabindex="-1" role="dialog" aria-labelledby="attendanceModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
+<div class="modal fade bg-[#3E3E3E]" id="commissionModal" tabindex="-1" role="dialog" aria-labelledby="attendanceModalLabel">
+  <div class="modal-dialog bg-[#3E3E3E]" role="document">
+    <div class="modal-content bg-[#3E3E3E]">
+      <div class="modal-header bg-[#3E3E3E]">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -169,27 +169,27 @@
         <?php echo form_open('commission/insert'); ?>
         <div class="form-group">
           <label for="date">Date:</label>
-          <input type="date" class="form-control" id="date" name="date" required>
+          <input type="date" class="bg-gray-200 form-control" id="date" name="date" required>
         </div>
         <div class="form-group">
           <label for="client">Client:</label>
-          <input type="text" class="form-control" id="client" name="client" required>
+          <input type="text" class="bg-gray-200 form-control" id="client" name="client" required>
         </div>
         <div class="form-group">
           <label for="total">Total (&#8358;) :</label>
-          <input type="number" class="form-control" id="total" name="total" required>
+          <input type="number" class="bg-gray-200 form-control" id="total" name="total" required>
         </div>
         <div class="form-group">
           <label for="commission">Commission (%):</label>
-          <input type="number" class="form-control" id="commission" name="commission" required>
+          <input type="number" class="bg-gray-200 form-control" id="commission" name="commission" required>
         </div>
         <div class="form-group">
           <label for="comments">Comments:</label>
-          <textarea class="form-control" id="comments" name="comments"></textarea>
+          <textarea class="bg-gray-200 form-control" id="comments" name="comments"></textarea>
         </div>
         <div class="form-group">
           <label for="status">Status</label>
-          <select name="status" class="form-control">
+          <select name="status" class="bg-gray-200 form-control">
             <option selected value="<?php echo $this->Commission_model::COMMISSION_PENDING ?>">
               Pending
             </option>
@@ -197,7 +197,7 @@
           </select>
         </div>
         <input type="hidden" id="staff_id" name="staff_id" value="<?php echo $staff['id']; ?>">
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn bg-[#DA7F00] hover:bg-[#DA7F00] border-0 btn-primary">Submit</button>
         </form>
       </div>
     </div>

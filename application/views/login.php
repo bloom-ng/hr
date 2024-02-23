@@ -35,12 +35,14 @@
 <body class="max-h-screen">
   <section class="max-h-screen h-screen flex lg:flex-row flex-col">
     <div class="lg:basis-1/2 bg-neutral-900">
-      <div class="flex flex-col m-[11%]">
-        <div class="pb-[7%]">
+      <div class="flex flex-col h-screen px-[11%] my-[2%] lg:my-[0.1px] xl:py-[2%]">
+        <div class="pb-[7%] flex-none">
           <img src="<?= base_url('assets/dist/img/logo_white.svg') ?>" alt="Logo SVG">
         </div>
-        <div class="flex flex-col justify-center">
-          <div class="text-[48px] pb-[10%] uppercase leading-[57px]">
+        <div class="flex flex-col justify-center flex-grow">
+          <div class="flex items-center justify-center
+                      sm:items-start sm:justify-start
+                      text-4xl md:text-[48px] pb-[10%] uppercase leading-[57px]">
             <a href="#"><span class="text-[#FF9501]"><b>Bloom</b></span> <span class="text-white">HR</span></a>
           </div>
           <!-- /.login-logo -->
@@ -51,19 +53,19 @@
             <!-- form-group has-feedback -->
             <div class="flex flex-col gap-6">
               <div class="mr-[6%]">
-                <input class="placeholder-gray-400 italic w-full px-4 py-6" type=" text" name="txtusername" class="form-control" placeholder="Username/Staff Email">
+                <input class="placeholder-gray-400 italic w-full px-4 py-4" type=" text" name="txtusername" class="form-control" placeholder="Username/Staff Email">
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
               </div>
               <div class="mr-[6%]">
-                <input class="placeholder-gray-400 italic w-full px-4 py-6" type="password" name="txtpassword" class="form-control" placeholder="Password">
+                <input class="placeholder-gray-400 italic w-full px-4 py-4" type="password" name="txtpassword" class="form-control" placeholder="Password">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
               </div>
             </div>
             <?php echo $this->session->flashdata('login_error'); ?>
             <div class="row">
               <!-- /.col -->
-              <div class="px-4 py-20">
-                <button type="submit" class="text-sm md:leading-[31.2px] md:text-[26px] font-semibold py-2.5 md:py-3.5 px-3 md:px-5 text-black bg-[#FF9501]">
+              <div class="py-20">
+                <button type="submit" class="text-sm md:leading-[31.2px] md:text-[26px] font-bold px-3 py-2.5 md:py-3.5 md:px-5 text-black bg-[#FF9501]">
                   Sign In
                 </button>
               </div>
@@ -73,7 +75,7 @@
           </div>
 
         </div>
-        <div class="flex">
+        <div class="flex flex-none">
           <a href="https://www.instagram.com/bloom_digitalmedia?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank"><img src="assets/dist/img/Instagram.svg" alt="Instagram Link" /></a>
           <a href="https://x.com/bloomdigitmedia?s=20" target="_blank"><img src="assets/dist/img/Twitter.svg" alt="X Link" /></a>
           <a href="https://www.linkedin.com/company/bloom-digital-media-nigeria/" target="_blank"><img src="assets/dist/img/LinkedIn.svg" alt="LinkedIn Link" /></a>
@@ -87,7 +89,7 @@
     <div class="lg:basis-1/2 lg:block hidden">
       <div class="relative">
         <div class="flex items-center justify-center">
-          <img class="z-10 mt-12 pb-8 mx-32 rounded-[90px] w-[700px] h-[650px]" src="uploads/profile-pic/_MG_1393.png" alt="">
+          <img class="z-10 py-[7%] xl:pt-[6px] xl:pb-[1px] mx-32 rounded-[90px] w-[700px] xl:h-[570px] h-[550px]" src="uploads/profile-pic/_MG_1393.png" alt="">
         </div>
 
         <div class="absolute inset-0 bg-orange-300 opacity-50 h-screen">

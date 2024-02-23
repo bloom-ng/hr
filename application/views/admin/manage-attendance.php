@@ -36,8 +36,8 @@
                                             <td><?php echo $i; ?></td>
                                             <td><?php echo $staff['staff_name']; ?></td>
                                             <td>
-                                                <button class="btn btn-info bg-[#DA7F00] border-0 " data-toggle="modal" data-target="#manageModal<?php echo $staff['id']; ?>">Check</button>
-                                                <button class="btn btn-success bg-[#595959] border-0" data-toggle="modal" data-target="#attendanceModal<?php echo $staff['id']; ?>">Add</button>
+                                                <button class="btn btn-info bg-[#DA7F00] hover:bg-[#DA7F00] border-0" data-toggle="modal" data-target="#manageModal<?php echo $staff['id']; ?>">Check</button>
+                                                <button class="btn btn-success  bg-[#595959] hover:bg-[#595959] border-0" data-toggle="modal" data-target="#attendanceModal<?php echo $staff['id']; ?>">Add</button>
                                             </td>
                                         </tr>
 
@@ -126,9 +126,9 @@
 <!-- /.content-wrapper -->
 
 <!-- Add this modal at the end of your view, after the existing modals -->
-<div class="modal fade" id="resultModal" tabindex="-1" role="dialog" aria-labelledby="resultModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
+<div class="modal fade bg-[#3E3E3E]" id="resultModal" tabindex="-1" role="dialog" aria-labelledby="resultModalLabel">
+    <div class="modal-dialog bg-[#3E3E3E]" role="document">
+        <div class="modal-content bg-[#3E3E3E]">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>

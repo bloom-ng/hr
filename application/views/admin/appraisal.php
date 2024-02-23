@@ -52,15 +52,15 @@
 											<td><?php echo $appraisal['status']; ?></td>
 											<td>
 												<?php if ($appraisal['status']  == 'pending' && $this->session->userdata('userid') == $appraisal['created_by']) : ?>
-													<a href="<?php echo base_url(); ?>review-appraisal/<?php echo $appraisal['id']; ?>" class="btn btn-info">Send For Review</a>
+													<a href="<?php echo base_url(); ?>review-appraisal/<?php echo $appraisal['id']; ?>" class="btn btn-info hover:bg-[#DA7F00] bg-[#DA7F00] border-0">Send For Review</a>
 												<?php endif; ?>
 
 												<?php if ($appraisal['status'] == 'review' && in_array($this->session->userdata('role'), array("hrm", "super"))) : ?>
-													<a href="<?php echo base_url(); ?>edit-appraisal/<?php echo $appraisal['id']; ?>" class="btn btn-success">Check</a>
+													<a href="<?php echo base_url(); ?>edit-appraisal/<?php echo $appraisal['id']; ?>" class="btn btn-success hover:bg-[#DA7F00] border-0">Check</a>
 												<?php endif; ?>
 
 												<?php if ($appraisal['status']  == 'pending' && $this->session->userdata('userid') == $appraisal['created_by']) : ?>
-													<a href="<?php echo base_url(); ?>edit-appraisal/<?php echo $appraisal['id']; ?>" class="btn btn-success">Edit</a>
+													<a href="<?php echo base_url(); ?>edit-appraisal/<?php echo $appraisal['id']; ?>" class="btn btn-success hover:bg-[#595959] bg-[#595959] border-0">Edit</a>
 												<?php endif; ?>
 											</td>
 											<td style="display: none;"><?php echo $appraisal['department_id']; ?></td>

@@ -1,5 +1,5 @@
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper bg-[#3E3E3E]">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
@@ -37,8 +37,8 @@
         <!-- column -->
         <div class="col-md-12">
           <!-- general form elements -->
-          <div class="box box-info">
-            <div class="box-header">
+          <div class="box border-t-10 border-[#DA7F00] bg-[#2C2C2C]">
+            <div class="box-header text-white">
               <h3 class="box-title">Edit Staff deduction</h3>
             </div>
             <!-- /.box-header -->
@@ -80,7 +80,7 @@
               </div>
               <!-- /.box-body -->
               <div class="box-footer">
-                <button type="submit" class="btn btn-success">Update</button>
+                <button type="submit" class="btn btn-success bg-[#DA7F00] hover:bg-[#DA7F00] border-0">Update</button>
               </div>
             </form>
           </div>

@@ -73,7 +73,7 @@
                   </div>
                   <!-- /.box-body -->
                   <div class="box-footer bg-[#2C2C2C] border-0">
-                    <button type="submit" class="btn btn-success bg-[#DA7F00] pull-right">Update</button>
+                    <button type="submit" class="btn btn-success bg-[#DA7F00] hover:bg-[#DA7F00] border-0 pull-right">Update</button>
                   </div>
                 </form>
               <?php endforeach; ?>

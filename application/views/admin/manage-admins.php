@@ -67,7 +67,7 @@
                         <td><?php echo $cnt['username']; ?></td>
                         <td><?php echo $cnt['role']; ?></td>
                         <td>
-                          <button type="button" data-toggle="modal" data-target="#adminModal<?php echo $cnt['id'] ?>" class="btn btn-success border-0 hover:bg-[#FF9501] bg-[#FF9501]">Edit</button>
+                          <button type="button" data-toggle="modal" data-target="#adminModal<?php echo $cnt['id'] ?>" class="btn btn-success bg-[#DA7F00] hover:bg-[#DA7F00] border-0">Edit</button>
                           <a href="<?php echo base_url(); ?>admin/delete/<?php echo $cnt['id']; ?>" class="btn btn-danger border-0 bg-[#595959] hover:bg-[#595959] ">
                             Delete
                           </a>
@@ -108,7 +108,7 @@
 
                               </div>
 
-                              <button type="submit" class="btn btn-primary">Submit</button>
+                              <button type="submit" class="btn bg-[#DA7F00] hover:bg-[#DA7F00] border-0 btn-primary">Submit</button>
                               </form>
                             </div>
                           </div>
@@ -169,7 +169,7 @@
           </select>
 
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn bg-[#DA7F00] hover:bg-[#DA7F00] border-0 btn-primary">Submit</button>
         </form>
       </div>
     </div>

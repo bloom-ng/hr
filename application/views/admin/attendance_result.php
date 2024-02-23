@@ -9,7 +9,7 @@
                 <h4 class="modal-title" id="resultModalLabel">Attendance Result</h4>
             </div>
             <div class="modal-body">
-                <?php if(isset($attendance_result) && !empty($attendance_result)): ?>
+                <?php if (isset($attendance_result) && !empty($attendance_result)) : ?>
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -21,7 +21,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $i = 1; foreach($attendance_result as $attendance): ?>
+                            <?php $i = 1;
+                            foreach ($attendance_result as $attendance) : ?>
                                 <tr>
                                     <td><?php echo $i; ?></td>
                                     <td><?php echo date('Y-m-d', strtotime($attendance['date'])); ?></td>
@@ -29,10 +30,11 @@
                                     <td><?php echo date('H:i:s', strtotime($attendance['time_out'])); ?></td>
                                     <td><?php echo $attendance['notes']; ?></td>
                                 </tr>
-                            <?php $i++; endforeach; ?>
+                            <?php $i++;
+                            endforeach; ?>
                         </tbody>
                     </table>
-                <?php else: ?>
+                <?php else : ?>
                     <p class="text-center">No attendance records found for the specified date range.</p>
                 <?php endif; ?>
             </div>
@@ -41,30 +43,32 @@
 </div> -->
 
 <div class="modal-body">
-                <?php if(isset($attendance_result) && !empty($attendance_result)): ?>
-                    <table class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Date</th>
-                                <th>Time In</th>
-                                <th>Time Out</th>
-                                <th>Notes</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php $i = 1; foreach($attendance_result as $attendance): ?>
-                                <tr>
-                                    <td><?php echo $i; ?></td>
-                                    <td><?php echo date('Y-m-d', strtotime($attendance['date'])); ?></td>
-                                    <td><?php echo date('H:i:s', strtotime($attendance['time_in'])); ?></td>
-                                    <td><?php echo date('H:i:s', strtotime($attendance['time_out'])); ?></td>
-                                    <td><?php echo $attendance['notes']; ?></td>
-                                </tr>
-                            <?php $i++; endforeach; ?>
-                        </tbody>
-                    </table>
-                <?php else: ?>
-                    <p class="text-center">No attendance records found for the specified date range.</p>
-                <?php endif; ?>
-            </div>
+    <?php if (isset($attendance_result) && !empty($attendance_result)) : ?>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Date</th>
+                    <th>Time In</th>
+                    <th>Time Out</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php $i = 1;
+                foreach ($attendance_result as $attendance) : ?>
+                    <tr>
+                        <td><?php echo $i; ?></td>
+                        <td><?php echo date('Y-m-d', strtotime($attendance['date'])); ?></td>
+                        <td><?php echo date('H:i:s', strtotime($attendance['time_in'])); ?></td>
+                        <td><?php echo date('H:i:s', strtotime($attendance['time_out'])); ?></td>
+                        <td><?php echo $attendance['notes']; ?></td>
+                    </tr>
+                <?php $i++;
+                endforeach; ?>
+            </tbody>
+        </table>
+    <?php else : ?>
+        <p class="text-center">No attendance records found for the specified date range.</p>
+    <?php endif; ?>
+</div>

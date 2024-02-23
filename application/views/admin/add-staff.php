@@ -131,7 +131,7 @@
             </div>
             <!-- /.box-body -->
             <div class="box-footer bg-[#2C2C2C] border-0">
-              <button type="submit" class="btn bg-[#DA7F00] btn-success pull-right">Submit</button>
+              <button type="submit" class="btn hover:bg-[#DA7F00] bg-[#DA7F00] border-0 btn-success pull-right">Submit</button>
             </div>
             </form>
           </div>

@@ -56,7 +56,7 @@
               </div>
               <!-- /.box-body -->
               <div class="bg-[#2C2C2C] box-footer border-0">
-                <button type="submit" class="bg-[#DA7F00] btn btn-success pull-right">Submit</button>
+                <button type="submit" class="bg-[#DA7F00] hover:bg-[#DA7F00] border-0 btn btn-success pull-right">Submit</button>
               </div>
             </form>
           </div>

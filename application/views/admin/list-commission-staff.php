@@ -36,8 +36,8 @@
                                             <td><?php echo $i; ?></td>
                                             <td><?php echo $staff['staff_name']; ?></td>
                                             <td>
-                                                <a class="btn btn-info bg-[#DA7F00] border-0" href="/commission/manage/<?php echo $staff['id'] ?>">Commissions</a>
-                                                <button class="btn btn-success bg-[#595959] border-0" data-toggle="modal" data-target="#commissionModal<?php echo $staff['id']; ?>">Add</button>
+                                                <a class="btn btn-info bg-[#DA7F00] hover:bg-[#DA7F00] border-0" href="/commission/manage/<?php echo $staff['id'] ?>">Commissions</a>
+                                                <button class="btn btn-success bg-[#595959] hover:bg-[#595959] border-0" data-toggle="modal" data-target="#commissionModal<?php echo $staff['id']; ?>">Add</button>
                                             </td>
                                         </tr>
 

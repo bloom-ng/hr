@@ -74,7 +74,7 @@
                         <td><?php echo date('Y-m-d', strtotime($cnt['added_on'])); ?></td>
                         <td><a href="<?php echo base_url(); ?>salary-invoice/<?php echo $cnt['id']; ?>" class="btn btn-warning">Invoice</a></td>
                         <td>
-                          <a href="<?php echo base_url(); ?>delete-salary/<?php echo $cnt['id']; ?>" class="btn bg-[#595959] border border-[#595959] btn-danger">Delete</a>
+                          <a href="<?php echo base_url(); ?>delete-salary/<?php echo $cnt['id']; ?>" class="btn hover:bg-[#595959] bg-[#595959] border-0 border-[#595959] btn-danger">Delete</a>
                         </td>
                       </tr>
                   <?php

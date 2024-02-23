@@ -36,8 +36,8 @@
                                             <td><?php echo $i; ?></td>
                                             <td><?php echo $staff['staff_name']; ?></td>
                                             <td>
-                                                <a class="btn btn-info bg-[#DA7F00] border-0" href="/bonus/manage/<?php echo $staff['id'] ?>">Bonus</a>
-                                                <button class="btn btn-success bg-[#595959] border-0" data-toggle="modal" data-target="#commissionModal<?php echo $staff['id']; ?>">Add</button>
+                                                <a class="btn btn-info hover:bg-[#DA7F00] bg-[#DA7F00] border-0" href="/bonus/manage/<?php echo $staff['id'] ?>">Bonus</a>
+                                                <button class="btn btn-success hover:bg-[#595959] bg-[#595959] border-0" data-toggle="modal" data-target="#commissionModal<?php echo $staff['id']; ?>">Add</button>
                                             </td>
                                         </tr>
 
@@ -77,7 +77,7 @@
                                                             </select>
                                                         </div>
                                                         <input type="hidden" id="staff_id" name="staff_id" value="<?php echo $staff['id']; ?>">
-                                                        <button type="submit" class="btn bg-[#DA7F00] btn-primary">Submit</button>
+                                                        <button type="submit" class="btn hover:bg-[#DA7F00] bg-[#DA7F00] border-0 btn-primary">Submit</button>
                                                         </form>
                                                     </div>
                                                 </div>

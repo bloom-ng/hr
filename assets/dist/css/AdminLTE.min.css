@@ -1875,7 +1875,7 @@ a:focus {
 	position: relative;
 }
 .box-header.with-border {
-	border-bottom: 1px solid #f4f4f4;
+	border-bottom: transparent;
 }
 .collapsed-box .box-header.with-border {
 	border-bottom: none;
@@ -1962,9 +1962,8 @@ a:focus {
 	border-top-right-radius: 0;
 	border-bottom-right-radius: 3px;
 	border-bottom-left-radius: 3px;
-	border-top: 1px solid #f4f4f4;
 	padding: 10px;
-	background-color: #fff;
+	background-color: transparent;
 }
 .chart-legend {
 	margin: 10px 0;
@@ -3402,7 +3401,7 @@ table.text-center th {
 }
 .invoice {
 	position: relative;
-	background: #fff;
+	background: #ff0101;
 	border: 1px solid #f4f4f4;
 	padding: 20px;
 	margin: 10px 25px;

@@ -45,11 +45,11 @@
 						<h3>I. Overall Performance Rating</h3>
 						<div class="form-group">
 							<label for="overall_performance">Tick a box and leave a remark:</label><br>
-							<input type="radio" id="overall_performance1" name="overall_performance" value="1"  <?php echo ($appraisal['overall_performance'] == '1') ? 'checked' : ''; ?>>
+							<input type="radio" id="overall_performance1" name="overall_performance" value="1" <?php echo ($appraisal['overall_performance'] == '1') ? 'checked' : ''; ?>>
 							<label for="overall_performance1">Exceeds Expectations</label><br>
-							<input type="radio" id="overall_performance2" name="overall_performance" value="2"  <?php echo ($appraisal['overall_performance'] == '2') ? 'checked' : ''; ?>>
+							<input type="radio" id="overall_performance2" name="overall_performance" value="2" <?php echo ($appraisal['overall_performance'] == '2') ? 'checked' : ''; ?>>
 							<label for="overall_performance2">Meets Expectations</label><br>
-							<input type="radio" id="overall_performance3" name="overall_performance" value="3"  <?php echo ($appraisal['overall_performance'] == '3') ? 'checked' : ''; ?>>
+							<input type="radio" id="overall_performance3" name="overall_performance" value="3" <?php echo ($appraisal['overall_performance'] == '3') ? 'checked' : ''; ?>>
 							<label for="overall_performance3">Needs Improvement</label><br>
 							<textarea id="overall_performance_comment" name="overall_performance_comment" class="form-control" placeholder="Remark"><?php echo $appraisal['overall_performance_comment']; ?></textarea>
 						</div>
@@ -111,174 +111,174 @@
 						<!-- Goals and Objectives -->
 						<h3>III. Goals and Objectives</h3>
 						<<!-- Achievement of Goals -->
-						<div class="form-group">
-							<label>A. Achievement of Goals:</label><br>
-							<label class="radio-inline">
-								<input type="radio" name="achievement_of_goals" value="1" <?php echo ($appraisal['achievement_of_goals'] == '1') ? 'checked' : ''; ?>> Exceeded Expectations
-							</label>
-							<label class="radio-inline">
-								<input type="radio" name="achievement_of_goals" value="2" <?php echo ($appraisal['achievement_of_goals'] == '2') ? 'checked' : ''; ?>> Met Expectations
-							</label>
-							<label class="radio-inline">
-								<input type="radio" name="achievement_of_goals" value="3" <?php echo ($appraisal['achievement_of_goals'] == '3') ? 'checked' : ''; ?>> Partially Met Expectations
-							</label>
-							<label class="radio-inline">
-								<input type="radio" name="achievement_of_goals" value="4" <?php echo ($appraisal['achievement_of_goals'] == '4') ? 'checked' : ''; ?>> Did not meet Expectations
-							</label>
-							<label>Why?:</label>
-							<input type="text" class="form-control" name="achievement_of_goals_reason" value="<?php echo $appraisal['achievement_of_goals_reason']; ?>">
-						</div>
+							<div class="form-group">
+								<label>A. Achievement of Goals:</label><br>
+								<label class="radio-inline">
+									<input type="radio" name="achievement_of_goals" value="1" <?php echo ($appraisal['achievement_of_goals'] == '1') ? 'checked' : ''; ?>> Exceeded Expectations
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="achievement_of_goals" value="2" <?php echo ($appraisal['achievement_of_goals'] == '2') ? 'checked' : ''; ?>> Met Expectations
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="achievement_of_goals" value="3" <?php echo ($appraisal['achievement_of_goals'] == '3') ? 'checked' : ''; ?>> Partially Met Expectations
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="achievement_of_goals" value="4" <?php echo ($appraisal['achievement_of_goals'] == '4') ? 'checked' : ''; ?>> Did not meet Expectations
+								</label>
+								<label>Why?:</label>
+								<input type="text" class="form-control" name="achievement_of_goals_reason" value="<?php echo $appraisal['achievement_of_goals_reason']; ?>">
+							</div>
 
-						<!-- Completion of Projects/Tasks -->
-						<div class="form-group">
-							<label>B. Completion of Projects/Tasks:</label><br>
-							<label>How many were assigned:</label>
-							<input type="text" class="form-control" name="assigned_projects_count" value="<?php echo $appraisal['assigned_projects_count']; ?>"><br>
-							<label>How many were completed:</label>
-							<input type="text" class="form-control" name="completed_projects_count" value="<?php echo $appraisal['completed_projects_count']; ?>"><br>
-							<label>Outcome:</label><br>
-							<label class="radio-inline">
-								<input type="radio" name="completion_of_projects_outcome" value="1" <?php echo ($appraisal['completion_of_projects_outcome'] == '1') ? 'checked' : ''; ?>> Successful
-							</label>
-							<label class="radio-inline">
-								<input type="radio" name="completion_of_projects_outcome" value="2" <?php echo ($appraisal['completion_of_projects_outcome'] == '2') ? 'checked' : ''; ?>> Partial Success
-							</label>
-							<label class="radio-inline">
-								<input type="radio" name="completion_of_projects_outcome" value="3" <?php echo ($appraisal['completion_of_projects_outcome'] == '3') ? 'checked' : ''; ?>> Unsuccessful
-							</label>
-							<label>State why?:</label>
-							<input type="text" class="form-control" name="completion_of_projects_reason" value="<?php echo $appraisal['completion_of_projects_reason']; ?>">
-						</div>
+							<!-- Completion of Projects/Tasks -->
+							<div class="form-group">
+								<label>B. Completion of Projects/Tasks:</label><br>
+								<label>How many were assigned:</label>
+								<input type="text" class="form-control" name="assigned_projects_count" value="<?php echo $appraisal['assigned_projects_count']; ?>"><br>
+								<label>How many were completed:</label>
+								<input type="text" class="form-control" name="completed_projects_count" value="<?php echo $appraisal['completed_projects_count']; ?>"><br>
+								<label>Outcome:</label><br>
+								<label class="radio-inline">
+									<input type="radio" name="completion_of_projects_outcome" value="1" <?php echo ($appraisal['completion_of_projects_outcome'] == '1') ? 'checked' : ''; ?>> Successful
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="completion_of_projects_outcome" value="2" <?php echo ($appraisal['completion_of_projects_outcome'] == '2') ? 'checked' : ''; ?>> Partial Success
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="completion_of_projects_outcome" value="3" <?php echo ($appraisal['completion_of_projects_outcome'] == '3') ? 'checked' : ''; ?>> Unsuccessful
+								</label>
+								<label>State why?:</label>
+								<input type="text" class="form-control" name="completion_of_projects_reason" value="<?php echo $appraisal['completion_of_projects_reason']; ?>">
+							</div>
 
-						<!-- Strengths -->
-						<h3>IV. Strengths</h3>
-						<div class="form-group">
-							<label>Strengths:</label><br>
-							<div class="checkbox">
-								<label>
-									<input type="checkbox" name="outstanding_job_knowledge" value="true" <?php echo ($appraisal['outstanding_job_knowledge'] == '1') ? 'checked' : ''; ?>> Outstanding Job Knowledge
-								</label>
+							<!-- Strengths -->
+							<h3>IV. Strengths</h3>
+							<div class="form-group">
+								<label>Strengths:</label><br>
+								<div class="checkbox">
+									<label>
+										<input type="checkbox" name="outstanding_job_knowledge" value="true" <?php echo ($appraisal['outstanding_job_knowledge'] == '1') ? 'checked' : ''; ?>> Outstanding Job Knowledge
+									</label>
+								</div>
+								<div class="checkbox">
+									<label>
+										<input type="checkbox" name="effective_communication" value="true" <?php echo ($appraisal['effective_communication'] == '1') ? 'checked' : ''; ?>> Effective Communication
+									</label>
+								</div>
+								<div class="checkbox">
+									<label>
+										<input type="checkbox" name="strong_team_player" value="true" <?php echo ($appraisal['strong_team_player'] == '1') ? 'checked' : ''; ?>> Strong Team Player
+									</label>
+								</div>
+								<div class="checkbox">
+									<label>
+										<input type="checkbox" name="innovative_thinking" value="true" <?php echo ($appraisal['innovative_thinking'] == '1') ? 'checked' : ''; ?>> Innovative Thinking
+									</label>
+								</div>
+								<div class="checkbox">
+									<label>
+										<input type="checkbox" name="adaptable_to_change" value="true" <?php echo ($appraisal['adaptable_to_change'] == '1') ? 'checked' : ''; ?>> Adaptable to Change
+									</label>
+								</div>
 							</div>
-							<div class="checkbox">
-								<label>
-									<input type="checkbox" name="effective_communication" value="true" <?php echo ($appraisal['effective_communication'] == '1') ? 'checked' : ''; ?>> Effective Communication
-								</label>
-							</div>
-							<div class="checkbox">
-								<label>
-									<input type="checkbox" name="strong_team_player" value="true" <?php echo ($appraisal['strong_team_player'] == '1') ? 'checked' : ''; ?>> Strong Team Player
-								</label>
-							</div>
-							<div class="checkbox">
-								<label>
-									<input type="checkbox" name="innovative_thinking" value="true" <?php echo ($appraisal['innovative_thinking'] == '1') ? 'checked' : ''; ?>> Innovative Thinking
-								</label>
-							</div>
-							<div class="checkbox">
-								<label>
-									<input type="checkbox" name="adaptable_to_change" value="true" <?php echo ($appraisal['adaptable_to_change'] == '1') ? 'checked' : ''; ?>> Adaptable to Change
-								</label>
-							</div>
-						</div>
-
-
-						<!-- Areas for Improvement -->
-						<h3>V. Areas for Improvement</h3>
-						<div class="form-group">
-							<label>Areas for Improvement:</label><br>
-							<div class="checkbox">
-								<label>
-									<input type="checkbox" name="time_management" value="true" <?php echo ($appraisal['time_management'] == '1') ? 'checked' : ''; ?>> Time Management
-								</label>
-							</div>
-							<div class="checkbox">
-								<label>
-									<input type="checkbox" name="conflict_resolution" value="true" <?php echo ($appraisal['conflict_resolution'] == '1') ? 'checked' : ''; ?>> Conflict Resolution
-								</label>
-							</div>
-							<div class="checkbox">
-								<label>
-									<input type="checkbox" name="technical_skills_enhancement" value="true" <?php echo ($appraisal['technical_skills_enhancement'] == '1') ? 'checked' : ''; ?>> Technical Skills Enhancement
-								</label>
-							</div>
-							<div class="checkbox">
-								<label>
-									<input type="checkbox" name="goal_setting_and_achievement" value="true" <?php echo ($appraisal['goal_setting_and_achievement'] == '1') ? 'checked' : ''; ?>> Goal Setting and Achievement
-								</label>
-							</div>
-							<div class="checkbox">
-								<label>
-									<input type="checkbox" name="communication_with_team_members" value="true" <?php echo ($appraisal['communication_with_team_members'] == '1') ? 'checked' : ''; ?>> Communication with Team Members
-								</label>
-							</div>
-						</div>
 
 
-						<!-- Training and Development Needs -->
-						<h3>VI. Training and Development Needs</h3>
-						<div class="form-group">
-							<label>Training and Development Needs:</label><br>
-							<div class="checkbox">
-								<label>
-									<input type="checkbox" name="leadership_training" value="true" <?php echo ($appraisal['leadership_training'] == '1') ? 'checked' : ''; ?>> Leadership Training
-								</label>
+							<!-- Areas for Improvement -->
+							<h3>V. Areas for Improvement</h3>
+							<div class="form-group">
+								<label>Areas for Improvement:</label><br>
+								<div class="checkbox">
+									<label>
+										<input type="checkbox" name="time_management" value="true" <?php echo ($appraisal['time_management'] == '1') ? 'checked' : ''; ?>> Time Management
+									</label>
+								</div>
+								<div class="checkbox">
+									<label>
+										<input type="checkbox" name="conflict_resolution" value="true" <?php echo ($appraisal['conflict_resolution'] == '1') ? 'checked' : ''; ?>> Conflict Resolution
+									</label>
+								</div>
+								<div class="checkbox">
+									<label>
+										<input type="checkbox" name="technical_skills_enhancement" value="true" <?php echo ($appraisal['technical_skills_enhancement'] == '1') ? 'checked' : ''; ?>> Technical Skills Enhancement
+									</label>
+								</div>
+								<div class="checkbox">
+									<label>
+										<input type="checkbox" name="goal_setting_and_achievement" value="true" <?php echo ($appraisal['goal_setting_and_achievement'] == '1') ? 'checked' : ''; ?>> Goal Setting and Achievement
+									</label>
+								</div>
+								<div class="checkbox">
+									<label>
+										<input type="checkbox" name="communication_with_team_members" value="true" <?php echo ($appraisal['communication_with_team_members'] == '1') ? 'checked' : ''; ?>> Communication with Team Members
+									</label>
+								</div>
 							</div>
-							<div class="checkbox">
-								<label>
-									<input type="checkbox" name="technical_skills_training" value="true" <?php echo ($appraisal['technical_skills_training'] == '1') ? 'checked' : ''; ?>> Technical Skills Training
-								</label>
+
+
+							<!-- Training and Development Needs -->
+							<h3>VI. Training and Development Needs</h3>
+							<div class="form-group">
+								<label>Training and Development Needs:</label><br>
+								<div class="checkbox">
+									<label>
+										<input type="checkbox" name="leadership_training" value="true" <?php echo ($appraisal['leadership_training'] == '1') ? 'checked' : ''; ?>> Leadership Training
+									</label>
+								</div>
+								<div class="checkbox">
+									<label>
+										<input type="checkbox" name="technical_skills_training" value="true" <?php echo ($appraisal['technical_skills_training'] == '1') ? 'checked' : ''; ?>> Technical Skills Training
+									</label>
+								</div>
+								<div class="checkbox">
+									<label>
+										<input type="checkbox" name="communication_skills_workshop" value="true" <?php echo ($appraisal['communication_skills_workshop'] == '1') ? 'checked' : ''; ?>> Communication Skills Workshop
+									</label>
+								</div>
+								<div class="checkbox">
+									<label>
+										<input type="checkbox" name="project_management_training" value="true" <?php echo ($appraisal['project_management_training'] == '1') ? 'checked' : ''; ?>> Project Management Training
+									</label>
+								</div>
 							</div>
-							<div class="checkbox">
-								<label>
-									<input type="checkbox" name="communication_skills_workshop" value="true" <?php echo ($appraisal['communication_skills_workshop'] == '1') ? 'checked' : ''; ?>> Communication Skills Workshop
-								</label>
+
+
+							<!-- Additional Comments -->
+							<div class="form-group">
+								<label for="additional_comments">VII. Additional Comments:</label>
+								<textarea id="additional_comments" name="additional_comments" class="form-control" placeholder="Provide specific comments and feedback."><?php echo $appraisal['additional_comments']; ?></textarea>
 							</div>
-							<div class="checkbox">
-								<label>
-									<input type="checkbox" name="project_management_training" value="true" <?php echo ($appraisal['project_management_training'] == '1') ? 'checked' : ''; ?>> Project Management Training
-								</label>
+
+							<!-- Employee's Self-Assessment -->
+							<div class="form-group">
+								<label for="employee_self_assessment">VIII. Employee's Self-Assessment:</label>
+								<textarea id="employee_self_assessment" name="employee_self_assessment" class="form-control" placeholder="Provide space for the employee to share their self-assessment." readonly><?php echo $appraisal['employee_self_assessment']; ?></textarea>
 							</div>
-						</div>
 
+							<!-- Manager's Comments -->
+							<div class="form-group">
+								<label for="manager_comments">IX. Manager's Comments:</label>
+								<textarea id="manager_comments" name="manager_comments" class="form-control" placeholder="Provide space for the manager to provide overall comments and feedback."><?php echo $appraisal['manager_comments']; ?></textarea>
+							</div>
 
-						<!-- Additional Comments -->
-						<div class="form-group">
-							<label for="additional_comments">VII. Additional Comments:</label>
-							<textarea id="additional_comments" name="additional_comments" class="form-control" placeholder="Provide specific comments and feedback."><?php echo $appraisal['additional_comments']; ?></textarea>
-						</div>
+							<!-- Action Plan for Improvement -->
+							<div class="form-group">
+								<label for="action_plan_for_improvement">X. Action Plan for Improvement:</label>
+								<textarea id="action_plan_for_improvement" name="action_plan_for_improvement" class="form-control" placeholder="Outline specific steps and goals for the employee's improvement." value="<?php echo $appraisal['action_plan_for_improvement']; ?>"></textarea>
+							</div>
 
-						<!-- Employee's Self-Assessment -->
-						<div class="form-group">
-							<label for="employee_self_assessment">VIII. Employee's Self-Assessment:</label>
-							<textarea id="employee_self_assessment" name="employee_self_assessment" class="form-control" placeholder="Provide space for the employee to share their self-assessment." readonly><?php echo $appraisal['employee_self_assessment']; ?></textarea>
-						</div>
+							<!-- Follow-Up Meeting Schedule -->
+							<div class="form-group">
+								<label for="follow_up_meeting_schedule">XI. Follow-Up Meeting Schedule:</label>
+								<input type="date" class="form-control" id="follow_up_meeting_schedule" name="follow_up_meeting_schedule" placeholder="Specify dates for follow-up meetings to track progress." value="<?php echo $appraisal['follow_up_meeting_schedule']; ?>">
+							</div>
+							<?php if ($appraisal['status'] == 'pending' && $appraisal['created_by'] == $this->session->userdata('userid')) : ?>
+								<button type="submit" class="btn btn-primary text-white">Submit</button>
+							<?php endif; ?>
 
-						<!-- Manager's Comments -->
-						<div class="form-group">
-							<label for="manager_comments">IX. Manager's Comments:</label>
-							<textarea id="manager_comments" name="manager_comments" class="form-control" placeholder="Provide space for the manager to provide overall comments and feedback."><?php echo $appraisal['manager_comments']; ?></textarea>
-						</div>
+							<?php if (in_array($this->session->userdata('role'), ["hrm", "super"])) : ?>
+								<button type="button" class="btn btn-success text-white hover:bg-[#DA7F00] bg-[#DA7F00] border-0" id="approveButton">Approve</button>
+							<?php endif; ?>
 
-						<!-- Action Plan for Improvement -->
-						<div class="form-group">
-							<label for="action_plan_for_improvement">X. Action Plan for Improvement:</label>
-							<textarea id="action_plan_for_improvement" name="action_plan_for_improvement" class="form-control" placeholder="Outline specific steps and goals for the employee's improvement." value="<?php echo $appraisal['action_plan_for_improvement']; ?>"></textarea>
-						</div>
-
-						<!-- Follow-Up Meeting Schedule -->
-						<div class="form-group">
-							<label for="follow_up_meeting_schedule">XI. Follow-Up Meeting Schedule:</label>
-							<input type="date" class="form-control" id="follow_up_meeting_schedule" name="follow_up_meeting_schedule" placeholder="Specify dates for follow-up meetings to track progress." value="<?php echo $appraisal['follow_up_meeting_schedule']; ?>">
-						</div>
-						<?php if ($appraisal['status'] == 'pending' && $appraisal['created_by'] == $this->session->userdata('userid')) :?>
-						<button type="submit" class="btn btn-primary text-blue-500">Submit</button>
-						<?php endif; ?>
-
-						<?php if (in_array($this->session->userdata('role'), ["hrm", "super"])) : ?>
-							<button type="button" class="btn btn-success text-blue-500" id="approveButton">Approve</button>
-						<?php endif; ?>
-
-						<?php echo form_close(); ?>
+							<?php echo form_close(); ?>
 					</div>
 					<!-- /.box-body -->
 				</div>
@@ -298,12 +298,14 @@
 		$.ajax({
 			type: 'POST',
 			url: '<?php echo base_url('Appraisal/approve_appraisal/' . $appraisal['id']); ?>',
-			data: { id: appraisalId },
-			success: function (data) {
+			data: {
+				id: appraisalId
+			},
+			success: function(data) {
 				console.log(data)
 				window.location.href = "/manage-appraisal"
 			},
-			error: function () {
+			error: function() {
 				alert('An error occurred while checking existing attendance.');
 			}
 		});
