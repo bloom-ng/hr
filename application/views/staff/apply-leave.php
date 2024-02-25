@@ -1,5 +1,5 @@
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper bg-[#3E3E3E]">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
@@ -43,9 +43,9 @@
         <!-- column -->
         <div class="col-md-12">
           <!-- general form elements -->
-          <div class="box box-info">
+          <div class="box border-t-10 border-[#DA7F00] bg-[#2C2C2C]">
             <div class="box-header">
-              <h3 class="box-title">Apply Leave</h3>
+              <h3 class="box-title text-white">Apply Leave</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -55,28 +55,28 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="exampleInputPassword1">Reason</label>
-                  <input type="text" name="txtreason" class="form-control" placeholder="Reason">
+                  <input type="text" name="txtreason" class="bg-gray-200 form-control" placeholder="Reason">
                 </div>
               </div>
 
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="exampleInputPassword1">Leave From</label>
-                  <input type="date" name="txtleavefrom" class="form-control">
+                  <input type="date" name="txtleavefrom" class="bg-gray-200 form-control">
                 </div>
               </div>
 
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="exampleInputPassword1">Leave To</label>
-                  <input type="date" name="txtleaveto" class="form-control">
+                  <input type="date" name="txtleaveto" class="bg-gray-200 form-control">
                 </div>
               </div>
 
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="exampleInputPassword1">Description</label>
-                  <textarea name="txtdescription" class="form-control" placeholder="Description"></textarea>
+                  <textarea name="txtdescription" class="bg-gray-200 form-control" placeholder="Description"></textarea>
                 </div>
               </div>
 
@@ -85,7 +85,7 @@
             </div>
             <!-- /.box-body -->
             <div class="box-footer">
-              <button type="submit" class="btn btn-success pull-right">Submit</button>
+              <button type="submit" class="btn btn-success bg-[#DA7F00] hover:bg-[#DA7F00] border-0 pull-right">Submit</button>
             </div>
             </form>
           </div>
