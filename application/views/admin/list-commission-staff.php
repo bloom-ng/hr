@@ -84,7 +84,7 @@
                                                             </select>
                                                         </div>
                                                         <input type="hidden" id="staff_id" name="staff_id" value="<?php echo $staff['id']; ?>">
-                                                        <button type="submit" class="btn bg-[#DA7F00] btn-primary">Submit</button>
+                                                        <button type="submit" class="btn hover:bg-[#DA7F00] bg-[#DA7F00] border-0 btn-primary">Submit</button>
                                                         </form>
                                                     </div>
                                                 </div>

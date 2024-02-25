@@ -57,21 +57,21 @@
             <!-- Notifications: style can be found in dropdown.less -->
 
             <!-- User Account: style can be found in dropdown.less -->
-            <li class="dropdown user user-menu">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <li class="dropdown user user-menu bg-[#2C2C2C] border-0">
+              <a href="#" class="dropdown-toggle bg-[#2C2C2C]" data-toggle="dropdown">
                 <img src="<?php echo base_url(); ?>assets/dist/img/admin-user.png" class="user-image" alt="User Image">
                 <span class="hidden-xs">Admin</span>
               </a>
-              <ul class="dropdown-menu">
+              <ul class="dropdown-menu bg-[#2C2C2C]">
                 <!-- User image -->
-                <li class="user-header">
+                <li class="user-header bg-[#2C2C2C]">
                   <img src="<?php echo base_url(); ?>assets/dist/img/admin-user.png" class="img-circle" alt="User Image">
                   <p>Admin</p>
                 </li>
                 <!-- Menu Footer-->
-                <li class="user-footer">
+                <li class="user-footer bg-[#2C2C2C]">
                   <div class="pull-right">
-                    <a href="<?php echo base_url(); ?>logout" class="btn btn-default btn-flat">Sign out</a>
+                    <a href="<?php echo base_url(); ?>logout" class="btn btn-default bg-[#595959] hover:bg-[#595959] border-0 text-white btn-flat">Sign out</a>
                   </div>
                 </li>
               </ul>
@@ -140,7 +140,7 @@
             </ul>
           </li>
 
-			<!-- APPRAISAL-->
+          <!-- APPRAISAL-->
           <li class="treeview">
             <a href="#">
               <i class="fa fa-thumbs-up"></i> <span>Appraisals</span>
@@ -150,12 +150,12 @@
             </a>
             <ul class="treeview-menu">
               <li><a href="<?php echo base_url(); ?>manage-appraisal"><i class="fa fa-circle-o"></i>Manage Appraisal</a></li>
-				<?php if (in_array($this->session->userdata('role'), (array)"staff")) : ?>
-				<li><a href="<?php echo base_url();?>my-appraisal"><i class="fa fa-circle-o"></i> My Appraisal</a></li>
-				<?php endif; ?>
-			</ul>
+              <?php if (in_array($this->session->userdata('role'), (array)"staff")) : ?>
+                <li><a href="<?php echo base_url(); ?>my-appraisal"><i class="fa fa-circle-o"></i> My Appraisal</a></li>
+              <?php endif; ?>
+            </ul>
           </li>
-			<!-- APPRAISAL-->
+          <!-- APPRAISAL-->
 
           <?php if (in_array($this->session->userdata('role'), ["finance", "super"])) : ?>
             <!-- FINANCE -->
@@ -186,21 +186,21 @@
 
           <?php endif; ?>
 
-			<?php if (in_array($this->session->userdata('role'), ["finance", "super"])) : ?>
-				<!-- BONUS -->
-				<li class="treeview">
-					<a href="#">
-						<i class="fa fa-money"></i> <span>Bonus</span>
-						<span class="pull-right-container">
+          <?php if (in_array($this->session->userdata('role'), ["finance", "super"])) : ?>
+            <!-- BONUS -->
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-money"></i> <span>Bonus</span>
+                <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
-					</a>
-					<ul class="treeview-menu">
-						<li><a href="<?php echo base_url(); ?>bonus-staff"><i class="fa fa-circle-o"></i>Manage Bonus</a></li>
-					</ul>
-				</li>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?php echo base_url(); ?>bonus-staff"><i class="fa fa-circle-o"></i>Manage Bonus</a></li>
+              </ul>
+            </li>
 
-			<?php endif; ?>
+          <?php endif; ?>
 
           <?php if (in_array($this->session->userdata('role'), ["hrm", "super"])) : ?>
             <!-- HR ADMIN -->
@@ -270,7 +270,7 @@
 
 
 
-          
+
 
 
 

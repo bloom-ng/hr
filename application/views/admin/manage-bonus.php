@@ -143,10 +143,10 @@
 <!-- Button trigger modal -->
 
 <!--Add Commission Modal -->
-<div class="modal fade" id="commissionModal" tabindex="-1" role="dialog" aria-labelledby="attendanceModalLabel">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
+<div class="modal fade bg-[#3E3E3E]" id="commissionModal" tabindex="-1" role="dialog" aria-labelledby="attendanceModalLabel">
+	<div class="modal-dialog bg-[#3E3E3E]" role="document">
+		<div class="modal-content bg-[#3E3E3E]">
+			<div class="modal-header bg-[#3E3E3E]">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -157,7 +157,7 @@
 				<?php echo form_open('bonus/insert'); ?>
 				<div class="form-group">
 					<label for="date">Date:</label>
-					<input type="date" class="form-control" id="date" name="date" required>
+					<input type="date" class="bg-gray-200 form-control" id="date" name="date" required>
 				</div>
 				<div class="form-group">
 					<label for="amount">Amount (&#8358;) :</label>
@@ -177,7 +177,7 @@
 					</select>
 				</div>
 				<input type="hidden" id="staff_id" name="staff_id" value="<?php echo $staff['id']; ?>">
-				<button type="submit" class="btn btn-primary">Submit</button>
+				<button type="submit" class="btn hover:bg-[#DA7F00] bg-[#DA7F00] border-0 btn-primary">Submit</button>
 				</form>
 			</div>
 		</div>

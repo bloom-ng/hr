@@ -1,5 +1,5 @@
 <!-- File: application/views/add_appraisal.php -->
-<div class="content-wrapperbg-[#3E3E3E]">
+<div class="content-wrapper bg-[#3E3E3E]">
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>Edit Appraisal</h1>
