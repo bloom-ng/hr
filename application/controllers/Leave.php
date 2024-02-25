@@ -14,9 +14,9 @@ class Leave extends CI_Controller {
 
     public function index()
     {
-        $this->load->view('staff/header');
+        $this->load->view('admin/header');
         $this->load->view('staff/apply-leave');
-        $this->load->view('staff/footer');
+        $this->load->view('admin/footer');
     }
 
     public function approve()
@@ -40,9 +40,9 @@ class Leave extends CI_Controller {
     {
         $staff=$this->session->userdata('userid');
         $data['content']=$this->Leave_model->select_leave_byStaffID($staff);
-        $this->load->view('staff/header');
+        $this->load->view('admin/header');
         $this->load->view('staff/view-leave',$data);
-        $this->load->view('staff/footer');
+        $this->load->view('admin/footer');
     }
 
     public function insert_approve($id)

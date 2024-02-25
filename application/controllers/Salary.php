@@ -54,9 +54,9 @@ class Salary extends CI_Controller
     {
         $staff = $this->session->userdata('userid');
         $data['content'] = $this->Salary_model->select_salary_byStaffID($staff);
-        $this->load->view('staff/header');
+        $this->load->view('admin/header');
         $this->load->view('staff/view-salary', $data);
-        $this->load->view('staff/footer');
+        $this->load->view('admin/footer');
     }
 
     public function insert()
