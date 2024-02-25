@@ -43,7 +43,7 @@
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>HR</b></span>
         <!-- logo for regular state and mobile devices -->
-        <span class="uppercase font-black text-[#FF9501]"><b>Bloom</b></span><span class="uppercase font-meduim text-white">&nbsp HR</span>
+        <span class="uppercase font-black text-[#FF9501]"><b>Bloom</b></span><span class="uppercase font-meduim text-white">&nbsp; HR</span>
       </a>
       <!-- Header Navbar: style can be found in header.less -->
       <nav class="navbar navbar-static-top">
@@ -59,14 +59,14 @@
             <!-- User Account: style can be found in dropdown.less -->
             <li class="dropdown user user-menu bg-[#2C2C2C] border-0">
               <a href="#" class="dropdown-toggle bg-[#2C2C2C]" data-toggle="dropdown">
-                <img src="<?php echo base_url(); ?>assets/dist/img/admin-user.png" class="user-image" alt="User Image">
-                <span class="hidden-xs">Admin</span>
+                <img src="https://ui-avatars.com/api/?name=<?php echo $this->session->userdata('username') ?>"  class="user-image" alt="User Image">
+                <span class="hidden-xs"><?php echo $this->session->userdata('username') ?></span>
               </a>
               <ul class="dropdown-menu bg-[#2C2C2C]">
                 <!-- User image -->
                 <li class="user-header bg-[#2C2C2C]">
-                  <img src="<?php echo base_url(); ?>assets/dist/img/admin-user.png" class="img-circle" alt="User Image">
-                  <p>Admin</p>
+                  <img src="https://ui-avatars.com/api/?name=<?php echo $this->session->userdata('username') ?>"  class="img-circle" alt="User Image">
+                  <small><?php echo $this->session->userdata('username') ?></small>
                 </li>
                 <!-- Menu Footer-->
                 <li class="user-footer bg-[#2C2C2C]">
@@ -269,7 +269,32 @@
           <?php endif; ?>
 
 
+          <?php if (in_array($this->session->userdata('role'), ["staff"])) : ?>
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-usd"></i> <span>Salary</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="<?php echo base_url(); ?>view-salary"><i class="fa fa-circle-o"></i> View Salary</a></li>
+            </ul>
+          </li>
 
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-share"></i> <span>Leave</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="<?php echo base_url(); ?>apply-leave"><i class="fa fa-circle-o"></i> Apply Leave</a></li>
+              <li><a href="<?php echo base_url(); ?>view-leave"><i class="fa fa-circle-o"></i> My Leave History</a></li>
+            </ul>
+          </li>
+          <?php endif; ?>
 
 
 
