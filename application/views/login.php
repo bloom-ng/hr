@@ -61,7 +61,9 @@
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
               </div>
             </div>
-            <?php echo $this->session->flashdata('login_error'); ?>
+            <div class="text-[#DA7F00]">
+              <?php echo $this->session->flashdata('login_error'); ?>
+            </div>
             <div class="row">
               <!-- /.col -->
               <div class="py-20">
