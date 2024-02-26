@@ -184,22 +184,30 @@
               </ul>
             </li>
 
-          <?php endif; ?>
+			  <!-- BONUS -->
+			  <li class="treeview">
+				  <a href="#">
+					  <i class="fa fa-money"></i> <span>Bonus</span>
+					  <span class="pull-right-container">
+				  <i class="fa fa-angle-left pull-right"></i>
+				</span>
+				  </a>
+				  <ul class="treeview-menu">
+					  <li><a href="<?php echo base_url(); ?>bonus-staff"><i class="fa fa-circle-o"></i>Manage Bonus</a></li>
+				  </ul>
+			  </li>
 
-          <?php if (in_array($this->session->userdata('role'), ["finance", "super"])) : ?>
-            <!-- BONUS -->
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-money"></i> <span>Bonus</span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="<?php echo base_url(); ?>bonus-staff"><i class="fa fa-circle-o"></i>Manage Bonus</a></li>
-              </ul>
-            </li>
-
+			  <li class="treeview">
+				  <a href="#">
+					  <i class="fa fa-users"></i> <span>Staff</span>
+					  <span class="pull-right-container">
+				  <i class="fa fa-angle-left pull-right"></i>
+				</span>
+				  </a>
+				  <ul class="treeview-menu">
+					  <li><a href="<?php echo base_url(); ?>manage-staff"><i class="fa fa-circle-o"></i> Manage Staff</a></li>
+				  </ul>
+			  </li>
           <?php endif; ?>
 
           <?php if (in_array($this->session->userdata('role'), ["hrm", "super"])) : ?>
@@ -294,6 +302,45 @@
               <li><a href="<?php echo base_url(); ?>view-leave"><i class="fa fa-circle-o"></i> My Leave History</a></li>
             </ul>
           </li>
+
+		  <!-- BONUS -->
+		  <li class="treeview">
+			  <a href="#">
+				  <i class="fa fa-money"></i> <span>Bonus</span>
+				  <span class="pull-right-container">
+			  <i class="fa fa-angle-left pull-right"></i>
+			</span>
+			  </a>
+			  <ul class="treeview-menu">
+				  <li><a href="<?php echo base_url(); ?>bonus/manage/<?php echo $this->session->userdata('staff_id') ?>"><i class="fa fa-circle-o"></i>My Bonus</a></li>
+			  </ul>
+		  </li>
+
+		  <li class="treeview">
+			  <a href="#">
+				  <i class="fa fa-calendar"></i> <span>Commission</span>
+				  <span class="pull-right-container">
+			  <i class="fa fa-angle-left pull-right"></i>
+			</span>
+			  </a>
+			  <ul class="treeview-menu">
+				  <li><a href="<?php echo base_url(); ?>commission/manage/<?php echo $this->session->userdata('staff_id') ?>"><i class="fa fa-circle-o"></i>My Commissions</a></li>
+			  </ul>
+		  </li>
+
+		  <li class="treeview">
+			  <a href="#">
+				<i class="fa fa-calendar"></i> <span>Deductions</span>
+				<span class="pull-right-container">
+					<i class="fa fa-angle-left pull-right"></i>
+				</span>
+			  </a>
+			  <ul class="treeview-menu">
+				  <li><a href="<?php echo base_url(); ?>staff/manage-deductions/<?php echo $this->session->userdata('staff_id') ?>"><i class="fa fa-circle-o"></i>My Deductions</a></li>
+			  </ul>
+		  </li>
+
+
           <?php endif; ?>
 
 

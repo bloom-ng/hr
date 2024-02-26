@@ -39,9 +39,11 @@
           <div class="box-header">
             <h3 class="box-title text-white">Commissions for <?php echo $staff['staff_name'] ?></h3>
             <div class="d-flex mt-3">
-              <button type="button" class="btn btn-primary border-0 bg-[#DA7F00] hover:bg-[#DA7F00]" data-toggle="modal" data-target="#commissionModal">
-                Add
-              </button>
+				<?php if (in_array($this->session->userdata('role'), ["finance", "super"])) : ?>
+				  <button type="button" class="btn btn-primary border-0 bg-[#DA7F00] hover:bg-[#DA7F00]" data-toggle="modal" data-target="#commissionModal">
+					Add
+				  </button>
+				<?php endif; ?>
             </div>
           </div>
           <!-- /.box-header -->
@@ -74,10 +76,12 @@
                         <td><?php echo  $this->Commission_model->getStatusMapping()[$cnt['status']]; ?></td>
                         <td><?php echo $cnt['commission']; ?></td>
                         <td>
+							<?php if (in_array($this->session->userdata('role'), ["finance", "super"])) : ?>
                           <button type="button" data-toggle="modal" data-target="#commissionModal<?php echo $cnt['id'] ?>" class="btn btn-success border-0 bg-[#DA7F00] hover:bg-[#DA7F00]">Edit</button>
                           <a href="<?php echo base_url(); ?>commission/delete/<?php echo $cnt['id']; ?>" class="btn btn-danger border-0 bg-[#595959] hover:bg-[#595959]">
                             Delete
                           </a>
+							<?php endif; ?>
                         </td>
                       </tr>
 

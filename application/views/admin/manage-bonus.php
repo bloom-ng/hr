@@ -38,11 +38,13 @@
 				<div class="box border-t-10 border-[#DA7F00] bg-[#2C2C2C]">
 					<div class="box-header">
 						<h3 class="box-title text-white">Bonus for <?php echo $staff['staff_name'] ?></h3>
+						<?php if (in_array($this->session->userdata('role'), ["finance", "super"])) : ?>
 						<div class="d-flex mt-3">
 							<button type="button" class="btn btn-primary border-0 bg-[#DA7F00] hover:bg-[#DA7F00]" data-toggle="modal" data-target="#commissionModal">
 								Add
 							</button>
 						</div>
+						<?php endif; ?>
 					</div>
 					<!-- /.box-header -->
 					<div class="box-body">
@@ -72,10 +74,12 @@
 												<td><?php echo $cnt['reason']; ?></td>
 												<td><?php echo  $this->Bonus_model->getStatusMapping()[$cnt['status']]; ?></td>
 												<td>
+													<?php if (in_array($this->session->userdata('role'), ["finance", "super"])) : ?>
 													<button type="button" data-toggle="modal" data-target="#commissionModal<?php echo $cnt['id']; ?>" class="btn bg-[#DA7F00] hover:bg-[#DA7F00] border-0 btn-success">Edit</button>
 													<a href="<?php echo base_url(); ?>bonus/delete/<?php echo $cnt['id']; ?>" class="btn btn-danger  bg-[#595959] hover:bg-[#595959] border-0">
 														Delete
 													</a>
+													<?php endif; ?>
 												</td>
 											</tr>
 											<div class="modal fade" id="commissionModal<?php echo $cnt['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="commissionModalLabel<?php echo $cnt['id']; ?>">

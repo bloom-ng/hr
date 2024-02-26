@@ -39,9 +39,11 @@
           <div class="box-header text-white">
             <h3 class="box-title">Deductions for <?php echo $staff['staff_name'] ?></h3>
             <div class="d-flex mt-3">
+				<?php if (in_array($this->session->userdata('role'), ["finance", "super"])) : ?>
               <button type="button" class="btn btn-primary bg-[#DA7F00] hover:bg-[#DA7F00] border-0" data-toggle="modal" data-target="#staticBackdrop">
                 Add
               </button>
+				<?php endif; ?>
             </div>
           </div>
           <!-- /.box-header -->
@@ -72,9 +74,11 @@
                         <td><?php echo $cnt['reason']; ?></td>
                         <td><?php echo  $this->Deduction_model->getStatusMapping()[$cnt['status']]; ?></td>
                         <td>
-                          <a href="<?php echo base_url(); ?>staff/edit-deductions/<?php echo $cnt['id']; ?>" class="btn bg-[#DA7F00] hover:bg-[#DA7F00] border-0 btn-success">Edit</a>
-                          <a href="<?php echo base_url(); ?>staff/delete-deductions/<?php echo $cnt['id']; ?>" class="btn  bg-[#595959] hover:bg-[#595959] border-0 btn-danger">Delete</a>
-                        </td>
+							<?php if (in_array($this->session->userdata('role'), ["finance", "super"])) : ?>
+							  <a href="<?php echo base_url(); ?>staff/edit-deductions/<?php echo $cnt['id']; ?>" class="btn bg-[#DA7F00] hover:bg-[#DA7F00] border-0 btn-success">Edit</a>
+							  <a href="<?php echo base_url(); ?>staff/delete-deductions/<?php echo $cnt['id']; ?>" class="btn  bg-[#595959] hover:bg-[#595959] border-0 btn-danger">Delete</a>
+							<?php endif; ?>
+						</td>
                       </tr>
                   <?php
                       $i++;
