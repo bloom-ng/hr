@@ -81,6 +81,9 @@ class Home extends CI_Controller
             $this->session->set_userdata($data);
             redirect('/');
         }
+
+        $this->session->set_flashdata('login_error', 'Please check your username or password and try again.', 300);
+        redirect(base_url() . 'login');
     }
 
     public function logout()
