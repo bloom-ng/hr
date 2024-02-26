@@ -107,6 +107,7 @@
 </div>
 <!-- /.content-wrapper -->
 <!-- Attendance Modal -->
+<?php if (isset($content)) : ?>
 <?php foreach ($content as $cnt) : ?>
   <div class="modal fade" id="attendanceModal<?php echo $cnt['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="attendanceModalLabel<?php echo $cnt['id']; ?>">
     <div class="modal-dialog" role="document">
@@ -143,3 +144,4 @@
     </div>
   </div>
 <?php endforeach; ?>
+<?php endif; ?>
