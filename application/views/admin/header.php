@@ -173,7 +173,7 @@
 
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-usd"></i> <span>Salary</span>
+                <i class="fa fa-money"></i> <span>Salary</span>
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
@@ -280,7 +280,7 @@
           <?php if (in_array($this->session->userdata('role'), ["staff"])) : ?>
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-usd"></i> <span>Salary</span>
+                <i class="fa fa-money"></i> <span>Salary</span>
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
@@ -318,7 +318,7 @@
 
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-calendar"></i> <span>Commission</span>
+                <i class="fa fa-money"></i> <span>Commission</span>
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
@@ -330,7 +330,7 @@
 
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-calendar"></i> <span>Deductions</span>
+                <i class="fa fa-money"></i> <span>Deductions</span>
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
