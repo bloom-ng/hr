@@ -101,6 +101,29 @@
             <a href="<?php echo base_url(); ?>manage-salary" class="small-box-footer pull-right bg-[#D9D9D9] text-black px-16 py-2">More Info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
+
+		  <?php if (in_array($this->session->userdata('role'), ["super", "hrm"])) : ?>
+		  <div class="col-lg-3 col-xs-6">
+			  <!-- small box -->
+			  <div class="small-box bg-green">
+				  <div class="inner">
+					  <h3><?php
+						  if (isset($appraisal)) {
+							  echo sizeof($appraisal);
+						  } else {
+							  echo 0;
+						  }
+						  ?></h3>
+
+					  <p>Unapproved Appraisal</p>
+				  </div>
+				  <div class="icon">
+					  <i class="ionicons ion-thumbsup"></i>
+				  </div>
+				  <a href="<?php echo base_url(); ?>manage-salary" class="small-box-footer pull-right bg-[#D9D9D9] text-black px-16 py-2">More Info <i class="fa fa-arrow-circle-right"></i></a>
+			  </div>
+		  </div>
+		  <?php endif; ?>
         <!-- ./col -->
       </div>
       <!-- /.row -->
