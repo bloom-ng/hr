@@ -3,12 +3,12 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Deduction
+      Fines
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
       <li><a href="/manage-staff">Manage Staff</a></li>
-      <li class="active">Manage Deduction</li>
+      <li class="active">Manage Fines</li>
     </ol>
   </section>
 
@@ -37,7 +37,7 @@
       <div class="col-xs-12">
         <div class="box border-t-10 border-[#DA7F00] bg-[#2C2C2C]">
           <div class="box-header text-white">
-            <h3 class="box-title">Deductions for <?php echo $staff['staff_name'] ?></h3>
+            <h3 class="box-title">Fines for <?php echo $staff['staff_name'] ?></h3>
             <div class="d-flex mt-3">
 				<?php if (in_array($this->session->userdata('role'), ["finance", "super"])) : ?>
               <button type="button" class="btn btn-primary bg-[#DA7F00] hover:bg-[#DA7F00] border-0" data-toggle="modal" data-target="#staticBackdrop">
@@ -110,7 +110,7 @@
   <div class="modal-dialog bg-[#3E3E3E]" role="document">
     <div class="modal-content bg-[#3E3E3E]">
       <div class="modal-header bg-[#3E3E3E]">
-        <h5 class="modal-title" id="addDeduction">Add Staff Deduction</h5>
+        <h5 class="modal-title" id="addDeduction">Add Staff Fine</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
