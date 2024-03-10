@@ -3,12 +3,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Deductions
+        Fines
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Deductions</a></li>
-        <li class="active">Edit Deduction</li>
+        <li><a href="#">Fines</a></li>
+        <li class="active">Edit Fine</li>
       </ol>
     </section>
 
@@ -39,7 +39,7 @@
           <!-- general form elements -->
           <div class="box border-t-10 border-[#DA7F00] bg-[#2C2C2C]">
             <div class="box-header text-white">
-              <h3 class="box-title">Edit Staff deduction</h3>
+              <h3 class="box-title">Edit Staff Fine</h3>
             </div>
             <!-- /.box-header -->
 

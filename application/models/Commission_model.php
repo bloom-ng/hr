@@ -69,6 +69,21 @@ class Commission_model extends CI_Model {
         $this->db->affected_rows();
     }
 
+	public function userCommission($staff_id) {
+		$query = $this->db->query("
+            SELECT ROUND(SUM(total * commission / 100), 2) AS user_commission
+            FROM commissions
+            WHERE staff_id = $staff_id AND status = '1'
+        ");
+
+		if ($query->num_rows() > 0) {
+			$row = $query->row();
+			return $row->user_commission;
+		} else {
+			return 0; // Return 0 if no unpaid commissions found for the user
+		}
+	}
+
     public function getStatusMapping()
     {
         return [

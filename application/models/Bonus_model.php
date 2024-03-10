@@ -74,6 +74,20 @@ class Bonus_model extends CI_Model {
 		$this->db->affected_rows();
 	}
 
+	public function userBonus($staff_id) {
+		$this->db->select_sum('amount');
+		$this->db->where('staff_id', $staff_id);
+		$this->db->where('status', 'pending');
+		$query = $this->db->get('bonus_tbl');
+
+		if ($query->num_rows() > 0) {
+			$row = $query->row();
+			return $row->amount;
+		} else {
+			return 0; // Return 0 if no bonus found for the user
+		}
+	}
+
 	public function getStatusMapping()
 	{
 		return [
