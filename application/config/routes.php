@@ -137,3 +137,11 @@ $route['memos/insert'] = 'memo/insert';
 $route['memos/edit/(:num)'] = 'memo/edit/$1';
 $route['memos/update/(:num)'] = 'memo/update/$1';
 $route['memos/delete/(:num)'] = 'memo/delete/$1';
+
+// Voucher routes
+$route['vouchers'] = 'voucher/index';
+$route['voucher/add'] = 'voucher/add';
+$route['voucher/insert'] = 'voucher/insert';
+$route['voucher/edit/(:num)'] = 'voucher/edit/$1';
+$route['voucher/update/(:num)'] = 'voucher/update/$1';
+$route['voucher/delete/(:num)'] = 'voucher/delete/$1';
