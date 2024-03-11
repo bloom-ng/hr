@@ -25,6 +25,17 @@ class User_model extends CI_Model {
         }
     }
 
+    
+    public function get($id)
+    {
+        $this->db->where('id',$id);
+        $qry = $this->db->get($this->table);
+        if($qry->num_rows()>0)
+        {
+            return $qry->result_array();
+        }
+    }
+
     function insert_user($data)
     {
         $this->db->insert("users",$data);

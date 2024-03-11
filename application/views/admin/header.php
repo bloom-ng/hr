@@ -355,6 +355,11 @@
           <?php endif; ?>
 
 
+          <li class="active"><a href="<?php echo base_url(); ?>profile"><i class="fa fa-user"></i>
+                <span>
+                  Profile
+                </span></a>
+            </li>
 
 
 

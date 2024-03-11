@@ -140,3 +140,6 @@ $route['memos/delete/(:num)'] = 'memo/delete/$1';
 
 // Help routes
 $route['helps'] = 'help/index';
+
+// Profile route
+$route['profile'] = 'profile/index';
