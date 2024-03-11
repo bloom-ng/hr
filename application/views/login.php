@@ -44,7 +44,7 @@
           <div class="flex items-center justify-center
                       sm:items-start sm:justify-start
                       text-4xl md:text-[48px] pb-[10%] uppercase leading-[57px]">
-            <a href="#"><span class="text-[#FF9501]"><b>Bloom</b></span> <span class="text-white">HR</span></a>
+            <a href="#"><span class="text-[#FF9501]"><b>Bloom  </b></span> <span class="text-white "> Employee Management System(EMS)</span></a>
           </div>
           <!-- /.login-logo -->
           <div class="">

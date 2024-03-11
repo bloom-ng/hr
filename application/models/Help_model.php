@@ -1,20 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Deduction_model extends CI_Model {
+class Help_model extends CI_Model {
 
-    public $table = "deductions";
+    public $table = "help";
     public $fields = [
-        "id",
-        "staff_id",
-        "amount",
-        "date",
-        "reason",
-        "status"
+        "id", 'title', 'url'
     ];
-
-    const DEDUCTION_PENDING = 1;
-    const DEDUCTION_PAID = 2;
 
     public function insert($data)
     {
@@ -41,13 +33,23 @@ class Deduction_model extends CI_Model {
             }
             $this->db->where($key, $value);
         }
-        $this->db->order_by("id", "DESC");
         $qry = $this->db->get($this->table);
         if($qry->num_rows()>0)
         {
             return $qry->result_array();
         }
     }
+
+    public function getAll()
+    {
+        $qry = $this->db->get($this->table);
+        if($qry->num_rows()>0)
+        {
+            return $qry->result_array();
+        }
+    }
+
+
 
     public function delete($id)
     {
@@ -64,29 +66,7 @@ class Deduction_model extends CI_Model {
         $this->db->affected_rows();
     }
 
-    public function userUnpaidFines($staff_id) {
-		$query = $this->db->query("
-            SELECT ROUND(SUM(amount), 2) AS unpaid_fine
-            FROM deductions
-            WHERE staff_id = $staff_id AND status = 1
-        ");
 
-		if ($query->num_rows() > 0) {
-			$row = $query->row();
-			return $row->unpaid_fine;
-		} else {
-			return 0; // Return 0 if no unpaid commissions found for the user
-		}
-	}
-
-    public function getStatusMapping()
-    {
-        return [
-            static::DEDUCTION_PENDING => "Pending",
-            static::DEDUCTION_PAID => "Paid",
-            null => ""
-        ];
-    }
 
 
 }

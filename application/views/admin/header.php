@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Bloom HR</title>
+  <title>Bloom EMS</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -41,9 +41,9 @@
 
       <a href="#" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>HR</b></span>
+        <span class="logo-mini"><b>EMS</b></span>
         <!-- logo for regular state and mobile devices -->
-        <span class="uppercase font-black text-[#FF9501]"><b>Bloom</b></span><span class="uppercase font-meduim text-white">&nbsp; HR</span>
+        <span class="uppercase font-black text-[#FF9501]"><b>Bloom</b></span><span class="uppercase font-meduim text-white">&nbsp; EMS</span>
       </a>
       <!-- Header Navbar: style can be found in header.less -->
       <nav class="navbar navbar-static-top">
@@ -140,6 +140,17 @@
             </ul>
           </li>
 
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-question-circle"></i> <span>Help & Support</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="<?php echo base_url(); ?>helps"><i class="fa fa-circle-o"></i> Help Links</a></li>
+            </ul>
+          </li>
           <!-- APPRAISAL-->
           <li class="treeview">
             <a href="#">
@@ -356,6 +367,11 @@
           <?php endif; ?>
 
 
+          <li class="active"><a href="<?php echo base_url(); ?>profile"><i class="fa fa-user"></i>
+                <span>
+                  Profile
+                </span></a>
+            </li>
 
 
 

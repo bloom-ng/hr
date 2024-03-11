@@ -145,3 +145,8 @@ $route['voucher/insert'] = 'voucher/insert';
 $route['voucher/edit/(:num)'] = 'voucher/edit/$1';
 $route['voucher/update/(:num)'] = 'voucher/update/$1';
 $route['voucher/delete/(:num)'] = 'voucher/delete/$1';
+// Help routes
+$route['helps'] = 'help/index';
+
+// Profile route
+$route['profile'] = 'profile/index';

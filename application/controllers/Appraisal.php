@@ -149,7 +149,7 @@ class Appraisal extends CI_Controller {
 		$user = $this->session->userdata('staff_id');
 
 //		$data['appraisal'] = $this->Appraisal_model->getWhere(array("staff_id" => $user, "status" => Appraisal_model::APPRAISAL_APPROVED || Appraisal_model::APPRAISAL_DONE));
-		$data['appraisal'] = $this->Appraisal_model->getWhere(["staff_id" => $user, "status" => $this->Appraisal_model::APPRAISAL_APPROVED, 'status' => Appraisal_model::APPRAISAL_DONE]);
+		$data['appraisal'] = $this->Appraisal_model->getWhere(["staff_id" => $user, "status" => $this->Appraisal_model::APPRAISAL_APPROVED]);
 		$this->load->view('admin/header');
 		$this->load->view('staff/manage-appraisal', $data);
 		$this->load->view('admin/footer');
