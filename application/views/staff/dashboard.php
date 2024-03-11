@@ -99,6 +99,26 @@
 				  <a href="<?php echo base_url(); ?>commission/manage/<?php echo $this->session->userdata('staff_id') ?>" class="small-box-footer pull-right bg-[#D9D9D9] text-black px-16 py-2">More Info <i class="fa fa-arrow-circle-right"></i></a>
 			  </div>
 		  </div>
+		  <div class="col-lg-3 col-xs-6">
+			  <!-- small box -->
+			  <div class="small-box bg-orange">
+				  <div class="inner">
+					  <h3>&#8358;<?php
+						  if (isset($unpaidFine)) {
+							  echo $unpaidFine;
+						  } else {
+							  echo 0;
+						  }
+						  ?></h3>
+
+					  <p>Unpaid Fines</p>
+				  </div>
+				  <div class="icon">
+					  <i class="fa fa-money"></i>
+				  </div>
+				  <a href="<?php echo base_url(); ?>staff/manage-deductions/<?php echo $this->session->userdata('staff_id') ?>" class="small-box-footer pull-right bg-[#D9D9D9] text-black px-16 py-2">More Info <i class="fa fa-arrow-circle-right"></i></a>
+			  </div>
+		  </div>
 
 
         <!-- ./col -->

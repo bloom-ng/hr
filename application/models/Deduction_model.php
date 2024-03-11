@@ -64,6 +64,21 @@ class Deduction_model extends CI_Model {
         $this->db->affected_rows();
     }
 
+    public function userUnpaidFines($staff_id) {
+		$query = $this->db->query("
+            SELECT ROUND(SUM(amount), 2) AS unpaid_fine
+            FROM deductions
+            WHERE staff_id = $staff_id AND status = 1
+        ");
+
+		if ($query->num_rows() > 0) {
+			$row = $query->row();
+			return $row->unpaid_fine;
+		} else {
+			return 0; // Return 0 if no unpaid commissions found for the user
+		}
+	}
+
     public function getStatusMapping()
     {
         return [
