@@ -137,3 +137,6 @@ $route['memos/insert'] = 'memo/insert';
 $route['memos/edit/(:num)'] = 'memo/edit/$1';
 $route['memos/update/(:num)'] = 'memo/update/$1';
 $route['memos/delete/(:num)'] = 'memo/delete/$1';
+
+// Help routes
+$route['helps'] = 'help/index';
