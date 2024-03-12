@@ -59,6 +59,7 @@
           <div class="form-group">
             <label for="username">Username/email:</label>
             <input type="text" class="bg-gray-200 form-control" id="username" value="<?php echo $user['username'] ?>" name="username" required>
+            <input type="text" class="bg-gray-200 form-control" id="role" value="<?php echo $user['role'] ?>" name="role" hidden required>
           </div>
           <div class="form-group">
             <label for="password">Password:</label>

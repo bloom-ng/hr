@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * @property $session
@@ -7,17 +7,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @property $Staff_model
  * @property $Appraisal_model
  */
-class Appraisal extends CI_Controller {
+class Appraisal extends CI_Controller
+{
 
 
 	function __construct()
-    {
-        parent::__construct();
-        if ( ! $this->session->userdata('logged_in'))
-        { 
-            redirect(base_url().'login');
-        }
-    }
+	{
+		parent::__construct();
+		if (!$this->session->userdata('logged_in')) {
+			redirect(base_url() . 'login');
+		}
+	}
 
 	public function manage()
 	{
@@ -41,8 +41,8 @@ class Appraisal extends CI_Controller {
 		}
 
 
-		$data['staff_members']=$this->Staff_model->get_all_staffs();
-		$data['departments']=$this->Department_model->select_departments();
+		$data['staff_members'] = $this->Staff_model->get_all_staffs();
+		$data['departments'] = $this->Department_model->select_departments();
 		$this->load->view("admin/header");
 		$this->load->view("admin/manage-appraisal", $data);
 		$this->load->view("admin/footer");
@@ -50,9 +50,9 @@ class Appraisal extends CI_Controller {
 
 	public function add($id)
 	{
-		$data['staff']= $this->Staff_model->select_staff_byID($id)[0];
+		$data['staff'] = $this->Staff_model->select_staff_byID($id)[0];
 		$data['department'] = $this->Department_model->select_department_byID($data['staff']['department_id'])[0];
-		
+
 		$this->load->view('admin/header');
 		$this->load->view('admin/add-appraisal', $data);
 		$this->load->view('admin/footer');
@@ -94,7 +94,6 @@ class Appraisal extends CI_Controller {
 		$this->load->view('admin/header');
 		$this->load->view('admin/appraisal', $data);
 		$this->load->view('admin/footer');
-
 	}
 
 	public function review_appraisal($id)
@@ -102,22 +101,19 @@ class Appraisal extends CI_Controller {
 		$this->load->model('Appraisal_model');
 		$appraisal = $this->Appraisal_model->get($id);
 
-		if ($appraisal){
+		if ($appraisal) {
 			$data = $this->Appraisal_model->update(array('status' => $this->Appraisal_model::APPRAISAL_REVIEW), $id);
 
-			if($this->db->affected_rows() > 0)
-			{
+			if ($this->db->affected_rows() > 0) {
 				$this->session->set_flashdata('success', "Appraisal Succesfully Sent For Review");
-			}else{
+			} else {
 				$this->session->set_flashdata('error', "Sorry, Unable To Send Appraisal For Review");
 			}
-			redirect(base_url(). "manage-appraisal");
+			redirect(base_url() . "manage-appraisal");
 		} else {
 			$this->session->set_flashdata('error', "Sorry, Unable To Find Appraisal");
-			redirect(base_url(). "manage-appraisal");
-
+			redirect(base_url() . "manage-appraisal");
 		}
-
 	}
 
 	public function approve_appraisal($id)
@@ -125,22 +121,19 @@ class Appraisal extends CI_Controller {
 		$this->load->model('Appraisal_model');
 		$appraisal = $this->Appraisal_model->get($id);
 
-		if ($appraisal){
+		if ($appraisal) {
 			$data = $this->Appraisal_model->update(array('status' => $this->Appraisal_model::APPRAISAL_APPROVED), $id);
 
-			if($this->db->affected_rows() > 0)
-			{
+			if ($this->db->affected_rows() > 0) {
 				$this->session->set_flashdata('success', "Appraisal Succesfully Approved");
-			}else{
+			} else {
 				$this->session->set_flashdata('error', "Sorry, Unable To Approve Appraisal");
 			}
-			redirect(base_url(). "manage-appraisal");
+			redirect(base_url() . "manage-appraisal");
 		} else {
 			$this->session->set_flashdata('error', "Sorry, Unable To Find Appraisal");
-			redirect(base_url(). "manage-appraisal");
-
+			redirect(base_url() . "manage-appraisal");
 		}
-
 	}
 
 	public function my_appraisal()
@@ -148,8 +141,8 @@ class Appraisal extends CI_Controller {
 		$this->load->model('Appraisal_model');
 		$user = $this->session->userdata('staff_id');
 
-//		$data['appraisal'] = $this->Appraisal_model->getWhere(array("staff_id" => $user, "status" => Appraisal_model::APPRAISAL_APPROVED || Appraisal_model::APPRAISAL_DONE));
-		$data['appraisal'] = $this->Appraisal_model->getWhere(["staff_id" => $user, "status" => $this->Appraisal_model::APPRAISAL_APPROVED]);
+		//		$data['appraisal'] = $this->Appraisal_model->getWhere(array("staff_id" => $user, "status" => Appraisal_model::APPRAISAL_APPROVED || Appraisal_model::APPRAISAL_DONE));
+		$data['appraisal'] = $this->Appraisal_model->getWhere(["staff_id" => $user, "status IN ('approved', 'done')"]);
 		$this->load->view('admin/header');
 		$this->load->view('staff/manage-appraisal', $data);
 		$this->load->view('admin/footer');
@@ -171,7 +164,7 @@ class Appraisal extends CI_Controller {
 
 			$this->session->set_flashdata('success', "Self Appraisal Succesfully");
 
-			redirect(base_url()."my-appraisal");
+			redirect(base_url() . "my-appraisal");
 		} else {
 			$this->session->set_flashdata('error', "Sorry, Unable To Complete Self Appraisal");
 		}
@@ -188,13 +181,14 @@ class Appraisal extends CI_Controller {
 		$this->load->view('admin/footer');
 	}
 
-	public function save() {
+	public function save()
+	{
 		// Load the model to interact with the database
 		$this->load->model('Appraisal_model');
-        // Assuming you have form validation rules set up
+		// Assuming you have form validation rules set up
 
-        // Get form data
-        $data = array(
+		// Get form data
+		$data = array(
 			'name' => $this->input->post('name'),
 			'staff_id' => $this->input->post('staff_id'),
 			'job_title' => $this->input->post('job_title'),
@@ -254,20 +248,21 @@ class Appraisal extends CI_Controller {
 			'status' => $this->Appraisal_model::APPRAISAL_PENDING,
 		);
 
-        // Call the model function to save the data
-        $result = $this->Appraisal_model->save_appraisal($data);
+		// Call the model function to save the data
+		$result = $this->Appraisal_model->save_appraisal($data);
 
-        if ($result) {
+		if ($result) {
 
 			$this->session->set_flashdata('success', "Appraisal Succesfully Added");
 
-            redirect(base_url()."manage-appraisal");
-        } else {
+			redirect(base_url() . "manage-appraisal");
+		} else {
 			$this->session->set_flashdata('error', "Sorry, Unable To Create Appraisal");
-        }
-    }
+		}
+	}
 
-	public function update($id) {
+	public function update($id)
+	{
 		// Load the model to interact with the database
 		$this->load->model('Appraisal_model');
 		// Assuming you have form validation rules set up
@@ -340,10 +335,9 @@ class Appraisal extends CI_Controller {
 
 			$this->session->set_flashdata('success', "Appraisal Succesfully Edited");
 
-			redirect(base_url()."manage-appraisal");
+			redirect(base_url() . "manage-appraisal");
 		} else {
 			$this->session->set_flashdata('error', "Sorry, Unable To Edit Appraisal");
 		}
 	}
-
 }
