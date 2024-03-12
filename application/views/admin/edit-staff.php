@@ -113,7 +113,7 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Mobile</label>
-                      <input type="text" name="txtmobile" value="<?php echo $cnt['mobile'] ?>" class="form-control bg-gray-200" placeholder="Mobile" readonly>
+                      <input type="text" name="txtmobile" value="<?php echo $cnt['mobile'] ?>" class="form-control bg-gray-200" placeholder="Mobile">
                     </div>
                   </div>
 
