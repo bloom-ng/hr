@@ -88,24 +88,26 @@
                                   </div>
                               </div>
 
-                              <table id="line_items_table" class="table">
-                                  <thead>
-                                      <tr>
-                                          <th>Date</th>
-                                          <th>Detailed Description</th>
-                                          <th>Amount Naira</th>
-                                          <th>Amount Kobo</th>
-                                      </tr>
-                                  </thead>
-                                  <tbody>
-                                      <tr>
-                                          <td><input type="date" name="line_item_date[]" class=""></td>
-                                          <td><input type="text" name="line_item_description[]" class=""></td>
-                                          <td><input type="number" name="line_item_amount_naira[]" class=""></td>
-                                          <td><input type="number" name="line_item_amount_kobo[]" class=""></td>
-                                      </tr>
-                                  </tbody>
-                              </table>
+                              <div class="col-md-12">
+                                  <table id="line_items_table" class="table">
+                                      <thead>
+                                          <tr>
+                                              <th>Date</th>
+                                              <th>Detailed Description</th>
+                                              <th>Amount Naira</th>
+                                              <th>Amount Kobo</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                          <tr>
+                                              <td><input type="date" name="line_item_date[]" class="text-black px-4 py-2"></td>
+                                              <td><input type="text" name="line_item_description[]" class="text-black px-4 py-2"></td>
+                                              <td><input type="number" name="line_item_amount_naira[]" class="text-black px-4 py-2"></td>
+                                              <td><input type="number" name="line_item_amount_kobo[]" class="text-black px-4 py-2"></td>
+                                          </tr>
+                                      </tbody>
+                                  </table>
+                              </div>
 
                               <button class="border-0 btn btn-info pull-right" type="button" onclick="addLineItem()">Add Line Item</button>
 
@@ -146,10 +148,10 @@
           var table = document.getElementById("line_items_table");
           var row = table.insertRow(-1);
           row.innerHTML = `
-            <td><input type="date" name="line_item_date[]"></td>
-            <td><input type="text" name="line_item_description[]"></td>
-            <td><input type="number" name="line_item_amount_naira[]"></td>
-            <td><input type="number" name="line_item_amount_kobo[]"></td>
+            <td><input type="date" name="line_item_date[]" class="text-black px-4 py-2"></td>
+            <td><input type="text" name="line_item_description[]" class="text-black px-4 py-2"></td>
+            <td><input type="number" name="line_item_amount_naira[]" class="text-black px-4 py-2"></td>
+            <td><input type="number" name="line_item_amount_kobo[]" class="text-black px-4 py-2"></td>
         `;
       }
   </script>

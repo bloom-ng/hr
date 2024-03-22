@@ -288,6 +288,18 @@
               </ul>
             </li>
 
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-file-pdf-o"></i> <span>Reports</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?php echo base_url(); ?>manage-report/<?php echo $this->session->userdata('staff_id') ?>"><i class="fa fa-circle-o"></i>Manage Reports</a></li>
+              </ul>
+            </li>
+
           <?php endif; ?>
 
 
@@ -363,15 +375,27 @@
               </ul>
             </li>
 
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-file-pdf-o"></i> <span>Reports</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?php echo base_url(); ?>list-report/<?php echo $this->session->userdata('staff_id') ?>"><i class="fa fa-circle-o"></i>My Reports</a></li>
+              </ul>
+            </li>
+
 
           <?php endif; ?>
 
 
           <li class="active"><a href="<?php echo base_url(); ?>profile"><i class="fa fa-user"></i>
-                <span>
-                  Profile
-                </span></a>
-            </li>
+              <span>
+                Profile
+              </span></a>
+          </li>
 
 
 

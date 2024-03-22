@@ -150,3 +150,12 @@ $route['helps'] = 'help/index';
 
 // Profile route
 $route['profile'] = 'profile/index';
+
+//Report route
+$route['manage-report'] = 'report/manage';
+$route['add-report/(:num)'] = 'report/add/$1';
+$route['edit-report/(:num)'] = 'report/edit/$1';
+$route['list-report/(:num)'] = 'report/index/$1';
+$route['view-report/(:num)'] = 'report/view/$1';
+$route['review-report/(:num)'] = 'report/send_report/$1';
+$route['approve-report/(:num)'] = 'report/approve_report/$1';
