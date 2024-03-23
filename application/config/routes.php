@@ -159,3 +159,12 @@ $route['list-report/(:num)'] = 'report/index/$1';
 $route['view-report/(:num)'] = 'report/view/$1';
 $route['review-report/(:num)'] = 'report/send_report/$1';
 $route['approve-report/(:num)'] = 'report/approve_report/$1';
+
+//HOD Report route
+$route['manage-hod-report'] = 'report/hod_manage';
+$route['add-hod-report/(:num)'] = 'report/add_hod_report/$1';
+$route['edit-hod-report/(:num)'] = 'report/edit_hod_report/$1';
+$route['list-hod-report/(:num)'] = 'report/list_hod_report/$1';
+$route['view-hod-report/(:num)'] = 'report/view_hod_report/$1';
+$route['review-hod-report/(:num)'] = 'report/send_hod_report/$1';
+$route['approve-hod-report/(:num)'] = 'report/approve_hod_report/$1';

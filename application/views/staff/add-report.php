@@ -45,7 +45,7 @@
                         </div>
                         <div class="form-group">
                             <label for="date">Date</label>
-                            <input type="date" class="form-control" id="date" name="date" placeholder="Date">
+                            <input type="week" class="form-control" id="date" name="date" placeholder="MM/YYYY" required>
                         </div>
 
                         <div class="form-group">

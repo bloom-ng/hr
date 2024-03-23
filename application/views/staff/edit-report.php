@@ -45,7 +45,7 @@
                         </div>
                         <div class="form-group">
                             <label for="date">Date</label>
-                            <input type="date" class="form-control" id="date" name="date" placeholder="Date" value="<?php echo $report["date"]; ?>">
+                            <input type="week" class="form-control" id="date" name="date" placeholder="Date" value="<?php echo $report["date"]; ?>">
                         </div>
 
                         <div class="form-group">
