@@ -121,7 +121,7 @@
             <ul class="treeview-menu">
               <li><a target="_blank" href="https://webmail.bloomdigitmedia.com"><i class="fa fa-circle-o"></i>Webmail</a></li>
               <li><a target="_blank" href="https://pm.bloomdigitmedia.com"><i class="fa fa-circle-o"></i>Project management</a></li>
-              <li><a target="_blank" href="https://invoice.bloomdigitmedia.com"><i class="fa fa-circle-o"></i>Invoice</a></li>
+              <li><a target="_blank" href="https://invoice.bloomdigitmedia.com"><i class="fa fa-circle-o"></i>Invoice / Voucher</a></li>
               <li><a target="_blank" href="https://inventory.bloomdigitmedia.com"><i class="fa fa-circle-o"></i>Asset Management</a></li>
               <li><a target="_blank" href="https://ticket.bloomdigitmedia.com"><i class="fa fa-circle-o"></i>Support/Ticket</a></li>
             </ul>
@@ -220,7 +220,7 @@
               </ul>
             </li>
 
-            <li class="treeview">
+            <!-- <li class="treeview">
               <a href="#">
                 <i class="fa fa-ticket"></i> <span>Voucher</span>
                 <span class="pull-right-container">
@@ -230,7 +230,7 @@
               <ul class="treeview-menu">
                 <li><a href="<?php echo base_url(); ?>vouchers"><i class="fa fa-circle-o"></i> Manage Voucher</a></li>
               </ul>
-            </li>
+            </li> -->
           <?php endif; ?>
 
           <?php if (in_array($this->session->userdata('role'), ["hrm", "super"])) : ?>
