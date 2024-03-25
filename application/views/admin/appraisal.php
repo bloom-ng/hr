@@ -55,7 +55,7 @@
 													<a href="<?php echo base_url(); ?>review-appraisal/<?php echo $appraisal['id']; ?>" class="btn btn-info hover:bg-[#DA7F00] bg-[#DA7F00] border-0">Send For Review</a>
 												<?php endif; ?>
 
-												<?php if ($appraisal['status'] == 'review' && in_array($this->session->userdata('role'), array("hrm", "super"))) : ?>
+												<?php if ($appraisal['status'] !== 'pending' && in_array($this->session->userdata('role'), array("hrm", "super"))) : ?>
 													<a href="<?php echo base_url(); ?>edit-appraisal/<?php echo $appraisal['id']; ?>" class="btn btn-success hover:bg-[#DA7F00] border-0">Check</a>
 												<?php endif; ?>
 

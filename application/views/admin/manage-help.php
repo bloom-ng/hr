@@ -38,7 +38,7 @@
           <div class="box-header">
             <h3 class="box-title  text-white"> Help Links</h3>
             <div class="d-flex mt-3">
-             
+
             </div>
           </div>
           <!-- /.box-header -->
@@ -60,7 +60,7 @@
                     <tr>
                       <td><?php echo $i; ?></td>
                       <td><?php echo $cnt['title']; ?></td>
-                      <td><?php echo $cnt['link']; ?></td>
+                      <td><a href="<?php echo $cnt['link']; ?>"><?php echo $cnt['link']; ?></a></td>
                     </tr>
 
 

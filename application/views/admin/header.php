@@ -121,7 +121,7 @@
             <ul class="treeview-menu">
               <li><a target="_blank" href="https://webmail.bloomdigitmedia.com"><i class="fa fa-circle-o"></i>Webmail</a></li>
               <li><a target="_blank" href="https://pm.bloomdigitmedia.com"><i class="fa fa-circle-o"></i>Project management</a></li>
-              <li><a target="_blank" href="https://invoice.bloomdigitmedia.com"><i class="fa fa-circle-o"></i>Invoice</a></li>
+              <li><a target="_blank" href="https://invoice.bloomdigitmedia.com"><i class="fa fa-circle-o"></i>Invoice / Voucher</a></li>
               <li><a target="_blank" href="https://inventory.bloomdigitmedia.com"><i class="fa fa-circle-o"></i>Asset Management</a></li>
               <li><a target="_blank" href="https://ticket.bloomdigitmedia.com"><i class="fa fa-circle-o"></i>Support/Ticket</a></li>
             </ul>
@@ -232,6 +232,18 @@
                 <li><a href="<?php echo base_url(); ?>manage-staff"><i class="fa fa-circle-o"></i> Manage Staff</a></li>
               </ul>
             </li>
+
+            <!-- <li class="treeview">
+              <a href="#">
+                <i class="fa fa-ticket"></i> <span>Voucher</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?php echo base_url(); ?>vouchers"><i class="fa fa-circle-o"></i> Manage Voucher</a></li>
+              </ul>
+            </li> -->
           <?php endif; ?>
 
           <?php if (in_array($this->session->userdata('role'), ["hrm", "super"])) : ?>
@@ -286,6 +298,19 @@
               <ul class="treeview-menu">
                 <li><a href="<?php echo base_url(); ?>add-department"><i class="fa fa-circle-o"></i> Add Department</a></li>
                 <li><a href="<?php echo base_url(); ?>manage-department"><i class="fa fa-circle-o"></i> Manage Department</a></li>
+              </ul>
+            </li>
+
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-file-pdf-o"></i> <span>Reports</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?php echo base_url(); ?>manage-report/<?php echo $this->session->userdata('staff_id') ?>"><i class="fa fa-circle-o"></i>Manage Reports</a></li>
+                <li><a href="<?php echo base_url(); ?>manage-hod-report/<?php echo $this->session->userdata('staff_id') ?>"><i class="fa fa-circle-o"></i>Manage Departmental Reports</a></li>
               </ul>
             </li>
 
@@ -364,15 +389,28 @@
               </ul>
             </li>
 
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-file-pdf-o"></i> <span>Reports</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?php echo base_url(); ?>list-report/<?php echo $this->session->userdata('staff_id') ?>"><i class="fa fa-circle-o"></i>My Reports</a></li>
+                <li><a href="<?php echo base_url(); ?>list-hod-report/<?php echo $this->session->userdata('department_id') ?>"><i class="fa fa-circle-o"></i>Departmental Reports</a></li>
+              </ul>
+            </li>
+
 
           <?php endif; ?>
 
 
           <li class="active"><a href="<?php echo base_url(); ?>profile"><i class="fa fa-user"></i>
-                <span>
-                  Profile
-                </span></a>
-            </li>
+              <span>
+                Profile
+              </span></a>
+          </li>
 
 
 

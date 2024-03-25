@@ -19,7 +19,7 @@ class Home extends CI_Controller
                 $data['staff'] = $this->Staff_model->select_staff();
                 $data['leave'] = $this->Leave_model->select_leave_forApprove();
                 $data['salary'] = $this->Salary_model->sum_salary();
-				$data['appraisal'] = $this->Appraisal_model->getWhere(['status' => Appraisal_model::APPRAISAL_REVIEW]);
+                $data['appraisal'] = $this->Appraisal_model->getWhere(['status' => Appraisal_model::APPRAISAL_REVIEW]);
 
                 $this->load->view('admin/header');
                 $this->load->view('admin/dashboard', $data);
@@ -27,10 +27,10 @@ class Home extends CI_Controller
             } else {
                 $staff = $this->session->userdata('staff_id');
                 $data['leave'] = $this->Leave_model->select_leave_byStaffID($staff);
-				$data['appraisal'] = $this->Appraisal_model->getWhere(['staff_id' => $staff, 'status' => Appraisal_model::APPRAISAL_APPROVED]);
-				$data['bonus'] = $this->Bonus_model->userBonus($staff);
-				$data['commission'] = $this->Commission_model->userCommission($staff);
-				$data['unpaidFine'] = $this->Deduction_model->userUnpaidFines($staff);
+                $data['appraisal'] = $this->Appraisal_model->getWhere(['staff_id' => $staff, 'status' => Appraisal_model::APPRAISAL_APPROVED]);
+                $data['bonus'] = $this->Bonus_model->userBonus($staff);
+                $data['commission'] = $this->Commission_model->userCommission($staff);
+                $data['unpaidFine'] = $this->Deduction_model->userUnpaidFines($staff);
                 $this->load->view('admin/header');
                 $this->load->view('staff/dashboard', $data);
                 $this->load->view('admin/footer');
@@ -82,6 +82,7 @@ class Home extends CI_Controller
             if ($check_login[0]['role'] == "staff") {
                 $staff = $this->Staff_model->getWhere(['user_id' => $check_login[0]['id']])[0];
                 $data['staff_id'] = $staff['id'];
+                $data['department_id'] = $staff['department_id'];
             }
             $this->session->set_userdata($data);
             redirect('/');

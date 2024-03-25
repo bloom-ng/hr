@@ -1,14 +1,14 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Profile extends CI_Controller {
+class Profile extends CI_Controller
+{
 
     function __construct()
     {
         parent::__construct();
-        if ( ! $this->session->userdata('logged_in'))
-        { 
-            redirect(base_url().'login');
+        if (!$this->session->userdata('logged_in')) {
+            redirect(base_url() . 'login');
         }
     }
 
@@ -27,38 +27,35 @@ class Profile extends CI_Controller {
     public function update($id)
     {
         $this->load->helper('form');
-       
+
         $this->form_validation->set_rules('username', 'Username', 'required');
         $this->form_validation->set_rules('role', 'Role', 'required');
-       
-        
-        $username=$this->input->post('username');
-        $role=$this->input->post('role');
-        $password=$this->input->post('password');
-        
-        if($this->form_validation->run() !== false)
-        {
-         
+
+
+        $username = $this->input->post('username');
+        $role = $this->input->post('role');
+        $password = $this->input->post('password');
+
+        if ($this->form_validation->run() !== false) {
+
             $user_data = [
                 'username' => $username,
-                'role'=>$role
+                'role' => $role
             ];
             if (!empty($password)) {
                 $user_data['password'] = password_hash($password, PASSWORD_DEFAULT);
             }
-            
+
             $this->User_model->update($user_data, $id);
-            
-            
-            if($this->db->affected_rows() > 0)
-            {
-                $this->session->set_flashdata('success', "Admin Updated Succesfully"); 
-            }else{
+
+
+            if ($this->db->affected_rows() > 0) {
+                $this->session->set_flashdata('success', "Admin Updated Succesfully");
+            } else {
                 $this->session->set_flashdata('error', "Sorry, Admin Updated Failed.");
             }
             redirect($_SERVER['HTTP_REFERER']);
-        }
-        else{
+        } else {
             $this->index();
             return false;
         }
@@ -70,10 +67,9 @@ class Profile extends CI_Controller {
     public function delete($id)
     {
         $this->User_model->delete_login_byID($id);
-        if($this->db->affected_rows() > 0)
-        {
-            $this->session->set_flashdata('success', "Admin Deleted Succesfully"); 
-        }else{
+        if ($this->db->affected_rows() > 0) {
+            $this->session->set_flashdata('success', "Admin Deleted Succesfully");
+        } else {
             $this->session->set_flashdata('error', "Sorry, Admin Delete Failed.");
         }
         redirect($_SERVER['HTTP_REFERER']);
@@ -82,18 +78,13 @@ class Profile extends CI_Controller {
     public function reset_password($id)
     {
         $user_data['password'] = password_hash("password", PASSWORD_DEFAULT);
-        
+
         $this->User_model->update($user_data, $id);
-        if($this->db->affected_rows() > 0)
-        {
-            $this->session->set_flashdata('success', "Admin Password Reset Succesfully"); 
-        }else{
+        if ($this->db->affected_rows() > 0) {
+            $this->session->set_flashdata('success', "Admin Password Reset Succesfully");
+        } else {
             $this->session->set_flashdata('error', "Something went wrong.");
         }
         redirect($_SERVER['HTTP_REFERER']);
     }
-    
-
-
-
 }

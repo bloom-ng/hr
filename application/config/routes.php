@@ -138,25 +138,18 @@ $route['memos/edit/(:num)'] = 'memo/edit/$1';
 $route['memos/update/(:num)'] = 'memo/update/$1';
 $route['memos/delete/(:num)'] = 'memo/delete/$1';
 
+// Voucher routes
+$route['vouchers'] = 'voucher/index';
+$route['voucher/add'] = 'voucher/add';
+$route['voucher/insert'] = 'voucher/insert';
+$route['voucher/edit/(:num)'] = 'voucher/edit/$1';
+$route['voucher/update/(:num)'] = 'voucher/update/$1';
+$route['voucher/delete/(:num)'] = 'voucher/delete/$1';
 // Help routes
 $route['helps'] = 'help/index';
 
 // Profile route
 $route['profile'] = 'profile/index';
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // PAYROLL ROUTES
 
@@ -169,3 +162,20 @@ $route['payroll/generate'] = 'payroll/generate';
 $route['payroll/manage/(:any)'] = 'payroll/manage/$1';
 $route['payroll/update'] = 'payroll/update';
 
+//Report route
+$route['manage-report'] = 'report/manage';
+$route['add-report/(:num)'] = 'report/add/$1';
+$route['edit-report/(:num)'] = 'report/edit/$1';
+$route['list-report/(:num)'] = 'report/index/$1';
+$route['view-report/(:num)'] = 'report/view/$1';
+$route['review-report/(:num)'] = 'report/send_report/$1';
+$route['approve-report/(:num)'] = 'report/approve_report/$1';
+
+//HOD Report route
+$route['manage-hod-report'] = 'report/hod_manage';
+$route['add-hod-report/(:num)'] = 'report/add_hod_report/$1';
+$route['edit-hod-report/(:num)'] = 'report/edit_hod_report/$1';
+$route['list-hod-report/(:num)'] = 'report/list_hod_report/$1';
+$route['view-hod-report/(:num)'] = 'report/view_hod_report/$1';
+$route['review-hod-report/(:num)'] = 'report/send_hod_report/$1';
+$route['approve-hod-report/(:num)'] = 'report/approve_hod_report/$1';
