@@ -53,11 +53,11 @@
             Save
         </button>
         <div class="px-4 py-4 -mx-4 overflow-x-auto sm:-mx-8 sm:px-8">
-            <div class="inline-block min-w-full overflow-hidden rounded-lg shadow">
+            <div class="block min-w-full overflow-y-auto rounded-lg shadow max-h-screen ">
 
-                <table class="min-w-full leading-normal overflow-x-auto  scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
-                    <thead>
-                    <tr>
+                <table class=" min-w-full leading-normal overflow-x-auto  scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+                    <thead class="sticky top-0">
+                    <tr class="">
                             <th scope="col" class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
                             </th>
                             <th scope="col" class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
@@ -202,19 +202,19 @@
                             $total_net += $net;
                         ?>
                     
-                        <tr>
+                        <tr class=" hover:bg-gray-200 ">
                         
-                            <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                            <td class="  px-5 py-5 text-sm bg-white border-b border-gray-200">
                                 <p class="text-gray-900 whitespace-no-wrap">
                                     <?php echo $i ?>
                                 </p>
                             </td>
-                            <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                            <td class="  px-5 py-5 text-sm bg-white border-b border-gray-200">
                                 <p class="text-gray-900 whitespace-no-wrap">
                                    <input type="date" name="date_<?php echo $cnt['id'] ?>"  value="<?php echo $cnt['date'] ?>" />
                                 </p>
                             </td>
-                            <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                            <td class="  px-5 py-5 text-sm bg-white border-b border-gray-200">
                                 <div class="flex items-center">
                                     <div class="ml-3">
                                         <p class="text-gray-900 whitespace-no-wrap">
@@ -346,7 +346,7 @@
                             <th scope="col" class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
                             </th>
                             <th scope="col" class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
-                                <?php echo $salary_sum ?>
+                                <?php echo number_format(  $salary_sum, 2) ?>
                             </th>
                             <th scope="col" class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
                             </th>
@@ -361,10 +361,10 @@
                             <th scope="col" class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
                             </th>
                             <th scope="col" class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-blue-50 border-b border-gray-200">
-                                <?php echo $total_gross ?>
+                                <?php echo number_format(  $total_gross, 2) ?>
                             </th>
                             <th scope="col" class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-green-50 border-b border-gray-200">
-                                <?php echo $total_advance_addition ?>
+                                <?php echo number_format(  $total_advance_addition, 2) ?>
                             </th>
                             <th scope="col" class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-green-50 border-b border-gray-200">
                             </th>
@@ -380,10 +380,10 @@
                             <th scope="col" class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-red-50 border-b border-gray-200">
                             </th>
                             <th scope="col" class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-red-50 border-b border-gray-200">
-                             <?php echo $total_others_deduction ?>
+                             <?php echo number_format(  $total_others_deduction, 2 ) ?>
                             </th>
                             <th scope="col" class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-green-100 border-b border-gray-200">
-                            <?php echo $total_net ?>
+                            <?php echo number_format( $total_net, 2 ) ?>
                             </th>
                            
                            
