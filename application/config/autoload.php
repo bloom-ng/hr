@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------
@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('session','database','form_validation');
+$autoload['libraries'] = array('session', 'database', 'form_validation');
 
 /*
 | -------------------------------------------------------------------
@@ -89,7 +89,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('url','form');
+$autoload['helper'] = array('url', 'form');
 
 /*
 | -------------------------------------------------------------------
@@ -139,14 +139,16 @@ $autoload['model'] = array(
     'Department_model',
     'Staff_model',
     'Salary_model',
-    'Leave_model', 
+    'Leave_model',
     'Deduction_model',
     'Attendance_model',
     'Commission_model',
     'Memo_model',
-	'Bonus_model',
-	'Appraisal_model',
-	'Help_model',
+    'Bonus_model',
+    'Appraisal_model',
+    'Help_model',
     'Log_model',
-    'Payroll_model'
+    'Payroll_model',
+    'Report_model',
+    'Hod_Report_model',
 );
