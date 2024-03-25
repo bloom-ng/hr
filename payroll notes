@@ -1,0 +1,43 @@
+schema
+
+payroll
+period
+staff_id --> additional fields: bank, acct, basic_salary
+
+housing - 0
+transport - 0
+utility - 0
+wardrobe - 0
+medical - 5544.00
+meal_subsidy - 0
+
+addition_advance_salary - 0
+addition_loans - 0
+addition_commission - 0
+addition_others
+
+deduction_advance_salary
+deduction_loans
+deduction_commission
+deduction_others
+
+remark
+
+
+update the staff schema - done
+Staff Account controller / view - done
+add bank, acct, basic_salary - done
+add submenu for staff list - done
+edit staff account info (bank, account, basic salary) - done
+
+create the payroll schema - done
+create the model - done
+
+create the controller and view for each actions:
+List payrolls can filter by period
+Generate Payroll for a period - done
+View / edit (same screen)
+generate pdf
+
+
+

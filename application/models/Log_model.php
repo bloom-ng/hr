@@ -1,9 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Sample_model extends CI_Model {
+class Log_model extends CI_Model {
 
-    public $table = "table_name";
+    public $table = "log";
     public $fields = [
         "id",
     ];
@@ -12,6 +12,30 @@ class Sample_model extends CI_Model {
     {
         $this->db->insert($this->table, $data);
         return $this->db->insert_id();
+    }
+
+    public function log($action, $user, $details, $payload)
+    {
+        $payload = $this->arrayToString($payload);
+
+        $data = [
+            'action' => $action,
+            'datetime' => date("Y-m-d H:i:s"),
+            'user_id' => $this->session->userdata('userid'),
+            'details' => $details ." \n" .$payload
+        ];
+        $this->db->insert($this->table, $data);
+        return $this->db->insert_id();
+    }
+
+    public function arrayToString($payload) {
+        $stringRepresentation = '';
+        foreach ($payload as $key => $value) {
+            $stringRepresentation .= $key . ': ' . $value . ', ';
+        }
+        // Remove the trailing comma and space
+        $stringRepresentation = rtrim($stringRepresentation, ', ');
+        return $stringRepresentation;
     }
 
     public function get($id)
@@ -65,42 +89,6 @@ class Sample_model extends CI_Model {
         $this->db->update($this->table, $data);
         $this->db->affected_rows();
     }
-
-    public function updateWhere($data, $where)
-    {
-        foreach ($where as $key => $value) {
-            if (is_int($key)) {
-                $this->db->where($value);
-                continue;
-            }
-            $this->db->where($key, $value);
-        }
-        $this->db->update($this->table, $data);
-        $this->db->affected_rows();
-    }
-
-    public function deleteWhere($where)
-    {
-        foreach ($where as $key => $value) {
-            if (is_int($key)) {
-                $this->db->where($value);
-                continue;
-            }
-            $this->db->where($key, $value);
-        }
-        $this->db->delete($this->table);
-        $this->db->affected_rows();
-    }
-
-    public function getRaw($sql) {
-		$query = $this->db->query($sql);
-
-		if ($query->num_rows() > 0) {
-			return $query->result_array();
-		} else {
-			return [];
-		}
-	}
 
 
 

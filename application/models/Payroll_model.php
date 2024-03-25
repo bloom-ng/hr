@@ -5,8 +5,9 @@ class Payroll_model extends CI_Model {
 
     public $table = "payroll";
     public $fields = [
-        "id", "staff_id", "period", "pay_date", "comments"
+        "id", "staff"
     ];
+  
 
     public function insert($data)
     {
@@ -58,6 +59,19 @@ class Payroll_model extends CI_Model {
         $this->db->affected_rows();
     }
 
+    public function deleteWhere($where)
+    {
+        foreach ($where as $key => $value) {
+            if (is_int($key)) {
+                $this->db->where($value);
+                continue;
+            }
+            $this->db->where($key, $value);
+        }
+        $this->db->delete($this->table);
+        $this->db->affected_rows();
+    }
+
     
     public function update($data, $id)
     {
@@ -65,6 +79,45 @@ class Payroll_model extends CI_Model {
         $this->db->update($this->table, $data);
         $this->db->affected_rows();
     }
+
+    public function updateWhere($data, $where)
+    {
+        foreach ($where as $key => $value) {
+            if (is_int($key)) {
+                $this->db->where($value);
+                continue;
+            }
+            $this->db->where($key, $value);
+        }
+        $this->db->update($this->table, $data);
+        $this->db->affected_rows();
+    }
+
+    public function getPayrollPeriods() {
+		$query = $this->db->query("
+            SELECT DISTINCT period FROM `{$this->table}`
+        ");
+
+		if ($query->num_rows() > 0) {
+			return $query->result_array();
+		} else {
+			return [];
+		}
+	}
+
+    public function getRaw($sql) {
+		$query = $this->db->query($sql);
+
+		if ($query->num_rows() > 0) {
+			return $query->result_array();
+		} else {
+			return [];
+		}
+	}
+
+  
+
+    
 
 
 

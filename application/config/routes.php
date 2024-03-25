@@ -143,3 +143,29 @@ $route['helps'] = 'help/index';
 
 // Profile route
 $route['profile'] = 'profile/index';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// PAYROLL ROUTES
+
+// Staff Accounts
+$route['staff/accounts'] = 'account/index';
+$route['staff/accounts/update/(:num)'] = 'account/update/$1';
+
+$route['payroll'] = 'payroll/index';
+$route['payroll/generate'] = 'payroll/generate';
+$route['payroll/manage/(:any)'] = 'payroll/manage/$1';
+$route['payroll/update'] = 'payroll/update';
+
