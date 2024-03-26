@@ -45,11 +45,11 @@
 						<h3>I. Overall Performance Rating</h3>
 						<div class="form-group">
 							<label for="overall_performance">Tick a box and leave a remark:</label><br>
-							<input type="radio" id="overall_performance1" name="overall_performance" value="1" <?php echo ($appraisal['overall_performance'] == '1') ? 'checked' : ''; ?> readonly disabled>
+							<input type="radio" id="overall_performance1" name="overall_performance" value="1" <?php echo ($appraisal['overall_performance'] == '1') ? 'checked' : ''; ?> onclick="return false;">
 							<label for="overall_performance1">Exceeds Expectations</label><br>
-							<input type="radio" id="overall_performance2" name="overall_performance" value="2" <?php echo ($appraisal['overall_performance'] == '2') ? 'checked' : ''; ?> readonly disabled>
+							<input type="radio" id="overall_performance2" name="overall_performance" value="2" <?php echo ($appraisal['overall_performance'] == '2') ? 'checked' : ''; ?> onclick="return false;">
 							<label for="overall_performance2">Meets Expectations</label><br>
-							<input type="radio" id="overall_performance3" name="overall_performance" value="3" <?php echo ($appraisal['overall_performance'] == '3') ? 'checked' : ''; ?> readonly disabled>
+							<input type="radio" id="overall_performance3" name="overall_performance" value="3" <?php echo ($appraisal['overall_performance'] == '3') ? 'checked' : ''; ?> onclick="return false;">
 							<label for="overall_performance3">Needs Improvement</label><br>
 							<textarea id="overall_performance_comment" name="overall_performance_comment" class="form-control" placeholder="Remark" readonly><?php echo $appraisal['overall_performance_comment']; ?></textarea>
 						</div>
@@ -59,11 +59,11 @@
 						<h4>A. Job Knowledge and Skills:</h4>
 						<div class="form-group">
 							<label for="job_knowledge">Tick a box and leave a remark:</label><br>
-							<input type="radio" id="job_knowledge1" name="job_knowledge" value="1" <?php echo ($appraisal['job_knowledge'] == '1') ? 'checked' : ''; ?> readonly disabled>
+							<input type="radio" id="job_knowledge1" name="job_knowledge" value="1" <?php echo ($appraisal['job_knowledge'] == '1') ? 'checked' : ''; ?> onclick="return false;">
 							<label for="job_knowledge1">Exceptional</label><br>
-							<input type="radio" id="job_knowledge2" name="job_knowledge" value="2" <?php echo ($appraisal['job_knowledge'] == '2') ? 'checked' : ''; ?> readonly disabled>
+							<input type="radio" id="job_knowledge2" name="job_knowledge" value="2" <?php echo ($appraisal['job_knowledge'] == '2') ? 'checked' : ''; ?> onclick="return false;">
 							<label for="job_knowledge2">Proficient</label><br>
-							<input type="radio" id="job_knowledge3" name="job_knowledge" value="3" <?php echo ($appraisal['job_knowledge'] == '3') ? 'checked' : ''; ?> readonly disabled>
+							<input type="radio" id="job_knowledge3" name="job_knowledge" value="3" <?php echo ($appraisal['job_knowledge'] == '3') ? 'checked' : ''; ?> onclick="return false;">
 							<label for="job_knowledge3">Needs Improvement</label><br>
 							<textarea id="job_knowledge_comment" name="job_knowledge_comment" class="form-control" placeholder="Remark" readonly><?php echo $appraisal['job_knowledge_comment']; ?></textarea>
 						</div>
@@ -72,11 +72,11 @@
 						<h4>B. Quality of Work:</h4>
 						<div class="form-group">
 							<label for="quality_of_work">Tick a box and leave a remark:</label><br>
-							<input type="radio" id="quality_of_work1" name="quality_of_work" value="1" <?php echo ($appraisal['quality_of_work'] == '1') ? 'checked' : ''; ?> readonly disabled>
+							<input type="radio" id="quality_of_work1" name="quality_of_work" value="1" <?php echo ($appraisal['quality_of_work'] == '1') ? 'checked' : ''; ?> onclick="return false;">
 							<label for="quality_of_work1">Outstanding</label><br>
-							<input type="radio" id="quality_of_work2" name="quality_of_work" value="2" <?php echo ($appraisal['quality_of_work'] == '2') ? 'checked' : ''; ?> readonly disabled>
+							<input type="radio" id="quality_of_work2" name="quality_of_work" value="2" <?php echo ($appraisal['quality_of_work'] == '2') ? 'checked' : ''; ?> onclick="return false;">
 							<label for="quality_of_work2">Satisfactory</label><br>
-							<input type="radio" id="quality_of_work3" name="quality_of_work" value="3" <?php echo ($appraisal['quality_of_work'] == '3') ? 'checked' : ''; ?> readonly disabled>
+							<input type="radio" id="quality_of_work3" name="quality_of_work" value="3" <?php echo ($appraisal['quality_of_work'] == '3') ? 'checked' : ''; ?> onclick="return false;">
 							<label for="quality_of_work3">Unsatisfactory</label><br>
 							<textarea id="quality_of_work_comment" name="quality_of_work_comment" class="form-control" placeholder="Remark" readonly><?php echo $appraisal['quality_of_work_comment']; ?></textarea>
 						</div>
@@ -85,11 +85,11 @@
 						<h4>C. Communication Skills:</h4>
 						<div class="form-group">
 							<label for="communication_skills">Tick a box and leave a remark:</label><br>
-							<input type="radio" id="communication_skills1" name="communication_skills" value="1" <?php echo ($appraisal['communication_skills'] == '1') ? 'checked' : ''; ?> readonly disabled>
+							<input type="radio" id="communication_skills1" name="communication_skills" value="1" <?php echo ($appraisal['communication_skills'] == '1') ? 'checked' : ''; ?> onclick="return false;">
 							<label for="communication_skills1">Excellent</label><br>
-							<input type="radio" id="communication_skills2" name="communication_skills" value="2" <?php echo ($appraisal['communication_skills'] == '2') ? 'checked' : ''; ?> readonly disabled>
+							<input type="radio" id="communication_skills2" name="communication_skills" value="2" <?php echo ($appraisal['communication_skills'] == '2') ? 'checked' : ''; ?> onclick="return false;">
 							<label for="communication_skills2">Good</label><br>
-							<input type="radio" id="communication_skills3" name="communication_skills" value="3" <?php echo ($appraisal['communication_skills'] == '3') ? 'checked' : ''; ?> readonly disabled>
+							<input type="radio" id="communication_skills3" name="communication_skills" value="3" <?php echo ($appraisal['communication_skills'] == '3') ? 'checked' : ''; ?> onclick="return false;">
 							<label for="communication_skills3">Needs Improvement</label><br>
 							<textarea id="communication_skills_comment" name="communication_skills_comment" class="form-control" placeholder="Remark" readonly><?php echo $appraisal['communication_skills_comment']; ?></textarea>
 						</div>
@@ -98,11 +98,11 @@
 						<h4>D. Teamwork and Collaboration:</h4>
 						<div class="form-group">
 							<label for="teamwork_collaboration">Tick a box and leave a remark:</label><br>
-							<input type="radio" id="teamwork_collaboration1" name="teamwork_collaboration" value="1" <?php echo ($appraisal['teamwork_collaboration'] == '1') ? 'checked' : ''; ?> readonly disabled>
+							<input type="radio" id="teamwork_collaboration1" name="teamwork_collaboration" value="1" <?php echo ($appraisal['teamwork_collaboration'] == '1') ? 'checked' : ''; ?> onclick="return false;">
 							<label for="teamwork_collaboration1">Strong</label><br>
-							<input type="radio" id="teamwork_collaboration2" name="teamwork_collaboration" value="2" <?php echo ($appraisal['teamwork_collaboration'] == '2') ? 'checked' : ''; ?> readonly disabled>
+							<input type="radio" id="teamwork_collaboration2" name="teamwork_collaboration" value="2" <?php echo ($appraisal['teamwork_collaboration'] == '2') ? 'checked' : ''; ?> onclick="return false;">
 							<label for="teamwork_collaboration2">Average</label><br>
-							<input type="radio" id="teamwork_collaboration3" name="teamwork_collaboration" value="3" <?php echo ($appraisal['teamwork_collaboration'] == '3') ? 'checked' : ''; ?> readonly disabled>
+							<input type="radio" id="teamwork_collaboration3" name="teamwork_collaboration" value="3" <?php echo ($appraisal['teamwork_collaboration'] == '3') ? 'checked' : ''; ?> onclick="return false;">
 							<label for="teamwork_collaboration3">Weak/Needs Improvement</label><br>
 							<textarea id="teamwork_collaboration_comment" name="teamwork_collaboration_comment" class="form-control" placeholder="Remark" readonly><?php echo $appraisal['teamwork_collaboration_comment']; ?></textarea>
 						</div>
@@ -113,16 +113,16 @@
 						<div class="form-group">
 							<label>A. Achievement of Goals:</label><br>
 							<label class="radio-inline">
-								<input type="radio" name="achievement_of_goals" value="1" <?php echo ($appraisal['achievement_of_goals'] == '1') ? 'checked' : ''; ?> readonly disabled> Exceeded Expectations
+								<input type="radio" name="achievement_of_goals" value="1" <?php echo ($appraisal['achievement_of_goals'] == '1') ? 'checked' : ''; ?> onclick="return false;"> Exceeded Expectations
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="achievement_of_goals" value="2" <?php echo ($appraisal['achievement_of_goals'] == '2') ? 'checked' : ''; ?> readonly disabled> Met Expectations
+								<input type="radio" name="achievement_of_goals" value="2" <?php echo ($appraisal['achievement_of_goals'] == '2') ? 'checked' : ''; ?> onclick="return false;"> Met Expectations
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="achievement_of_goals" value="3" <?php echo ($appraisal['achievement_of_goals'] == '3') ? 'checked' : ''; ?> readonly disabled> Partially Met Expectations
+								<input type="radio" name="achievement_of_goals" value="3" <?php echo ($appraisal['achievement_of_goals'] == '3') ? 'checked' : ''; ?> onclick="return false;"> Partially Met Expectations
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="achievement_of_goals" value="4" <?php echo ($appraisal['achievement_of_goals'] == '4') ? 'checked' : ''; ?> readonly disabled> Did not meet Expectations
+								<input type="radio" name="achievement_of_goals" value="4" <?php echo ($appraisal['achievement_of_goals'] == '4') ? 'checked' : ''; ?> onclick="return false;"> Did not meet Expectations
 							</label>
 							<label>Why?:</label>
 							<input type="text" class="form-control" name="achievement_of_goals_reason" value="<?php echo $appraisal['achievement_of_goals_reason']; ?>" readonly>
@@ -137,13 +137,13 @@
 							<input type="text" class="form-control" name="completed_projects_count" value="<?php echo $appraisal['completed_projects_count']; ?>" readonly><br>
 							<label>Outcome:</label><br>
 							<label class="radio-inline">
-								<input type="radio" name="completion_of_projects_outcome" value="1" <?php echo ($appraisal['completion_of_projects_outcome'] == '1') ? 'checked' : ''; ?> readonly disabled> Successful
+								<input type="radio" name="completion_of_projects_outcome" value="1" <?php echo ($appraisal['completion_of_projects_outcome'] == '1') ? 'checked' : ''; ?> onclick="return false;"> Successful
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="completion_of_projects_outcome" value="2" <?php echo ($appraisal['completion_of_projects_outcome'] == '2') ? 'checked' : ''; ?> readonly disabled> Partial Success
+								<input type="radio" name="completion_of_projects_outcome" value="2" <?php echo ($appraisal['completion_of_projects_outcome'] == '2') ? 'checked' : ''; ?> onclick="return false;"> Partial Success
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="completion_of_projects_outcome" value="3" <?php echo ($appraisal['completion_of_projects_outcome'] == '3') ? 'checked' : ''; ?> readonly disabled> Unsuccessful
+								<input type="radio" name="completion_of_projects_outcome" value="3" <?php echo ($appraisal['completion_of_projects_outcome'] == '3') ? 'checked' : ''; ?> onclick="return false;"> Unsuccessful
 							</label>
 							<label>State why?:</label>
 							<input type="text" class="form-control" name="completion_of_projects_reason" value="<?php echo $appraisal['completion_of_projects_reason']; ?>" readonly>
@@ -155,27 +155,27 @@
 							<label>Strengths:</label><br>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" name="outstanding_job_knowledge" value="true" <?php echo ($appraisal['outstanding_job_knowledge'] == '1') ? 'checked' : ''; ?> readonly disabled> Outstanding Job Knowledge
+									<input type="checkbox" name="outstanding_job_knowledge" value="true" <?php echo ($appraisal['outstanding_job_knowledge'] == '1') ? 'checked' : ''; ?> onclick="return false;"> Outstanding Job Knowledge
 								</label>
 							</div>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" name="effective_communication" value="true" <?php echo ($appraisal['effective_communication'] == '1') ? 'checked' : ''; ?> readonly disabled> Effective Communication
+									<input type="checkbox" name="effective_communication" value="true" <?php echo ($appraisal['effective_communication'] == '1') ? 'checked' : ''; ?> onclick="return false;"> Effective Communication
 								</label>
 							</div>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" name="strong_team_player" value="true" <?php echo ($appraisal['strong_team_player'] == '1') ? 'checked' : ''; ?> readonly disabled> Strong Team Player
+									<input type="checkbox" name="strong_team_player" value="true" <?php echo ($appraisal['strong_team_player'] == '1') ? 'checked' : ''; ?> onclick="return false;"> Strong Team Player
 								</label>
 							</div>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" name="innovative_thinking" value="true" <?php echo ($appraisal['innovative_thinking'] == '1') ? 'checked' : ''; ?> readonly disabled> Innovative Thinking
+									<input type="checkbox" name="innovative_thinking" value="true" <?php echo ($appraisal['innovative_thinking'] == '1') ? 'checked' : ''; ?> onclick="return false;"> Innovative Thinking
 								</label>
 							</div>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" name="adaptable_to_change" value="true" <?php echo ($appraisal['adaptable_to_change'] == '1') ? 'checked' : ''; ?> readonly disabled> Adaptable to Change
+									<input type="checkbox" name="adaptable_to_change" value="true" <?php echo ($appraisal['adaptable_to_change'] == '1') ? 'checked' : ''; ?> onclick="return false;"> Adaptable to Change
 								</label>
 							</div>
 						</div>
@@ -186,27 +186,27 @@
 							<label>Areas for Improvement:</label><br>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" name="time_management" value="true" <?php echo ($appraisal['time_management'] == '1') ? 'checked' : ''; ?> readonly disabled> Time Management
+									<input type="checkbox" name="time_management" value="true" <?php echo ($appraisal['time_management'] == '1') ? 'checked' : ''; ?> onclick="return false;"> Time Management
 								</label>
 							</div>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" name="conflict_resolution" value="true" <?php echo ($appraisal['conflict_resolution'] == '1') ? 'checked' : ''; ?> readonly disabled> Conflict Resolution
+									<input type="checkbox" name="conflict_resolution" value="true" <?php echo ($appraisal['conflict_resolution'] == '1') ? 'checked' : ''; ?> onclick="return false;"> Conflict Resolution
 								</label>
 							</div>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" name="technical_skills_enhancement" value="true" <?php echo ($appraisal['technical_skills_enhancement'] == '1') ? 'checked' : ''; ?> readonly disabled> Technical Skills Enhancement
+									<input type="checkbox" name="technical_skills_enhancement" value="true" <?php echo ($appraisal['technical_skills_enhancement'] == '1') ? 'checked' : ''; ?> onclick="return false;"> Technical Skills Enhancement
 								</label>
 							</div>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" name="goal_setting_and_achievement" value="true" <?php echo ($appraisal['goal_setting_and_achievement'] == '1') ? 'checked' : ''; ?> readonly disabled> Goal Setting and Achievement
+									<input type="checkbox" name="goal_setting_and_achievement" value="true" <?php echo ($appraisal['goal_setting_and_achievement'] == '1') ? 'checked' : ''; ?> onclick="return false;"> Goal Setting and Achievement
 								</label>
 							</div>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" name="communication_with_team_members" value="true" <?php echo ($appraisal['communication_with_team_members'] == '1') ? 'checked' : ''; ?> readonly disabled> Communication with Team Members
+									<input type="checkbox" name="communication_with_team_members" value="true" <?php echo ($appraisal['communication_with_team_members'] == '1') ? 'checked' : ''; ?> onclick="return false;"> Communication with Team Members
 								</label>
 							</div>
 						</div>
@@ -217,22 +217,22 @@
 							<label>Training and Development Needs:</label><br>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" name="leadership_training" value="true" <?php echo ($appraisal['leadership_training'] == '1') ? 'checked' : ''; ?> readonly disabled> Leadership Training
+									<input type="checkbox" name="leadership_training" value="true" <?php echo ($appraisal['leadership_training'] == '1') ? 'checked' : ''; ?> onclick="return false;"> Leadership Training
 								</label>
 							</div>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" name="technical_skills_training" value="true" <?php echo ($appraisal['technical_skills_training'] == '1') ? 'checked' : ''; ?> readonly disabled> Technical Skills Training
+									<input type="checkbox" name="technical_skills_training" value="true" <?php echo ($appraisal['technical_skills_training'] == '1') ? 'checked' : ''; ?> onclick="return false;"> Technical Skills Training
 								</label>
 							</div>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" name="communication_skills_workshop" value="true" <?php echo ($appraisal['communication_skills_workshop'] == '1') ? 'checked' : ''; ?> readonly disabled> Communication Skills Workshop
+									<input type="checkbox" name="communication_skills_workshop" value="true" <?php echo ($appraisal['communication_skills_workshop'] == '1') ? 'checked' : ''; ?> onclick="return false;"> Communication Skills Workshop
 								</label>
 							</div>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" name="project_management_training" value="true" <?php echo ($appraisal['project_management_training'] == '1') ? 'checked' : ''; ?> readonly disabled> Project Management Training
+									<input type="checkbox" name="project_management_training" value="true" <?php echo ($appraisal['project_management_training'] == '1') ? 'checked' : ''; ?> onclick="return false;"> Project Management Training
 								</label>
 							</div>
 						</div>
