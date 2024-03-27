@@ -164,6 +164,10 @@
               <?php if (in_array($this->session->userdata('role'), (array)"staff")) : ?>
                 <li><a href="<?php echo base_url(); ?>my-appraisal"><i class="fa fa-circle-o"></i> My Appraisal</a></li>
               <?php endif; ?>
+              <?php if (in_array($this->session->userdata('role'), ["hrm", "super"])) : ?>
+                <li><a href="<?php echo base_url(); ?>approved-appraisal"><i class="fa fa-circle-o"></i> Approved Appraisal</a></li>
+                <li><a href="<?php echo base_url(); ?>unapproved-appraisal"><i class="fa fa-circle-o"></i> Unapproved Appraisal</a></li>
+              <?php endif; ?>
             </ul>
           </li>
           <!-- APPRAISAL-->

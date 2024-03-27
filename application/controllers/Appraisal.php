@@ -96,6 +96,34 @@ class Appraisal extends CI_Controller
 		$this->load->view('admin/footer');
 	}
 
+	public function unapproved_appraisal()
+	{
+		$this->load->model('Appraisal_model');
+		$data['appraisals'] = $this->Appraisal_model->getWhere(["status" => $this->Appraisal_model::APPRAISAL_REVIEW]);
+
+		// if (in_array($this->session->userdata('role'), ["hrm", "super"])) {
+
+		// }
+
+		$this->load->view('admin/header');
+		$this->load->view('admin/unapproved-appraisal', $data);
+		$this->load->view('admin/footer');
+	}
+
+	public function approved_appraisal()
+	{
+		$this->load->model('Appraisal_model');
+		$data['appraisals'] = $this->Appraisal_model->getWhere(["status IN ('approved', 'done')"]);
+
+		// if (in_array($this->session->userdata('role'), ["hrm", "super"])) {
+
+		// }
+
+		$this->load->view('admin/header');
+		$this->load->view('admin/approved-appraisal', $data);
+		$this->load->view('admin/footer');
+	}
+
 	public function review_appraisal($id)
 	{
 		$this->load->model('Appraisal_model');
