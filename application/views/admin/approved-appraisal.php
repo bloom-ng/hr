@@ -43,7 +43,7 @@
                                             <td><?php echo $appraisal['status']; ?></td>
                                             <td>
                                                 <?php if ($appraisal['status'] == 'done' && in_array($this->session->userdata('role'), array("hrm", "super"))) : ?>
-                                                    <a href="<?php echo base_url(); ?>edit-appraisal/<?php echo $appraisal['id']; ?>" class="btn btn-success hover:bg-[#DA7F00] border-0">Check</a>
+                                                    <a href="<?php echo base_url(); ?>view-appraisal/<?php echo $appraisal['id']; ?>" class="btn btn-success hover:bg-[#DA7F00] border-0">Check</a>
                                                 <?php endif; ?>
                                             </td>
                                             <td style="display: none;"><?php echo $appraisal['department_id']; ?></td>

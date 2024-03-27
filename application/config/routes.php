@@ -119,6 +119,7 @@ $route['my-appraisal'] = 'appraisal/my_appraisal';
 $route['approved-appraisal'] = 'appraisal/approved_appraisal';
 $route['unapproved-appraisal'] = 'appraisal/unapproved_appraisal';
 $route['check-appraisal/(:num)'] = 'appraisal/check_appraisal/$1';
+$route['view-appraisal/(:num)'] = 'appraisal/view_appraisal/$1';
 
 //Bonus route
 $route['bonus-staff'] = 'bonus/index';

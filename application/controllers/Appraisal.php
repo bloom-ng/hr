@@ -68,6 +68,16 @@ class Appraisal extends CI_Controller
 		$this->load->view('admin/footer');
 	}
 
+	public function view_appraisal($id)
+	{
+		$this->load->model('Appraisal_model');
+		$data['appraisal'] = $this->Appraisal_model->get($id)[0];
+
+		$this->load->view('admin/header');
+		$this->load->view('admin/view-appraisal', $data);
+		$this->load->view('admin/footer');
+	}
+
 	public function list_appraisal($id)
 	{
 		$this->load->model('Appraisal_model');
@@ -157,10 +167,10 @@ class Appraisal extends CI_Controller
 			} else {
 				$this->session->set_flashdata('error', "Sorry, Unable To Approve Appraisal");
 			}
-			redirect(base_url() . "manage-appraisal");
+			$this->unapproved_appraisal();
 		} else {
 			$this->session->set_flashdata('error', "Sorry, Unable To Find Appraisal");
-			redirect(base_url() . "manage-appraisal");
+			$this->unapproved_appraisal();
 		}
 	}
 
@@ -367,5 +377,30 @@ class Appraisal extends CI_Controller
 		} else {
 			$this->session->set_flashdata('error', "Sorry, Unable To Edit Appraisal");
 		}
+	}
+
+	public function save_appraisal_comment($id)
+	{
+		$this->load->model('Appraisal_model');
+		// Assuming you have form validation rules set up
+
+		// Get form data
+		$data = array(
+			'additional_comments' => $this->input->post('additional_comments'),
+			'manager_comments' => $this->input->post('manager_comments'),
+			'action_plan_for_improvement' => $this->input->post('action_plan_for_improvement'),
+			'follow_up_meeting_schedule' => $this->input->post('follow_up_meeting_schedule'),
+		);
+
+		$result = $this->Appraisal_model->update($data, $id);
+
+		if ($result) {
+			$this->session->set_flashdata('success', "Appraisal Successfully Edited");
+		} else {
+			$this->session->set_flashdata('error', "Sorry, Unable To Edit Appraisal");
+		}
+
+		// Reload the current page
+		$this->view_appraisal($id);
 	}
 }

@@ -262,7 +262,7 @@
 							<!-- Action Plan for Improvement -->
 							<div class="form-group">
 								<label for="action_plan_for_improvement">X. Action Plan for Improvement:</label>
-								<textarea id="action_plan_for_improvement" name="action_plan_for_improvement" class="form-control" placeholder="Outline specific steps and goals for the employee's improvement." value="<?php echo $appraisal['action_plan_for_improvement']; ?>"></textarea>
+								<textarea id="action_plan_for_improvement" name="action_plan_for_improvement" class="form-control" placeholder="Outline specific steps and goals for the employee's improvement."><?php echo $appraisal['action_plan_for_improvement']; ?></textarea>
 							</div>
 
 							<!-- Follow-Up Meeting Schedule -->
@@ -272,6 +272,10 @@
 							</div>
 							<?php if ($appraisal['status'] == 'pending' && $appraisal['created_by'] == $this->session->userdata('userid')) : ?>
 								<button type="submit" class="btn btn-primary text-white">Submit</button>
+							<?php endif; ?>
+
+							<?php if ($appraisal['status'] == 'review' && $appraisal['created_by'] !== $this->session->userdata('userid') && in_array($this->session->userdata('role'), ["hrm", "super"])) : ?>
+								<button id="saveComment" type="button" class="btn btn-success text-[#DA7F00] hover:bg-[#DA7F00] bg-white border-0">Save Comment</button>
 							<?php endif; ?>
 
 							<?php if (in_array($this->session->userdata('role'), ["hrm", "super"])) : ?>
@@ -307,6 +311,25 @@
 			},
 			error: function() {
 				alert('An error occurred while checking existing attendance.');
+			}
+		});
+	});
+	document.getElementById("saveComment").addEventListener("click", function() {
+		var appraisalId = <?php echo $appraisal['id']; ?>;
+		$.ajax({
+			type: 'POST',
+			url: '<?php echo base_url('Appraisal/save_appraisal_comment/' . $appraisal['id']); ?>',
+			data: {
+				id: appraisalId,
+
+			},
+			success: function(data) {
+				console.log(data)
+				window.location.reload()
+			},
+			error: function() {
+				alert('An error occurred while checking existing attendance.');
+				window.location.reload()
 			}
 		});
 	});

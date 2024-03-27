@@ -47,7 +47,7 @@
                                                 <?php endif; ?>
 
                                                 <?php if ($appraisal['status'] !== 'pending' && in_array($this->session->userdata('role'), array("hrm", "super"))) : ?>
-                                                    <a href="<?php echo base_url(); ?>edit-appraisal/<?php echo $appraisal['id']; ?>" class="btn btn-success hover:bg-[#DA7F00] border-0">Check</a>
+                                                    <a href="<?php echo base_url(); ?>view-appraisal/<?php echo $appraisal['id']; ?>" class="btn btn-success hover:bg-[#DA7F00] border-0">Check</a>
                                                 <?php endif; ?>
 
                                                 <?php if ($appraisal['status']  == 'pending' && $this->session->userdata('userid') == $appraisal['created_by']) : ?>
