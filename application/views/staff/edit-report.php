@@ -60,22 +60,22 @@
                         </div>
                         <div class="form-group">
                             <label for="day_2_task">Tuesday Task:</label>
-                            <input type="text" class="form-control" id="day_2_task" name="day_2_task" placeholder="Tuesday Task" value="<?php echo $report["day_1_task"]; ?>">
+                            <input type="text" class="form-control" id="day_2_task" name="day_2_task" placeholder="Tuesday Task" value="<?php echo $report["day_2_task"]; ?>">
                             <input type="number" class="form-control" id="day_2_total_hours" name="day_2_total_hours" placeholder="Work Hours" value="<?php echo $report["day_2_total_hours"]; ?>">
                         </div>
                         <div class="form-group">
                             <label for="day_3_task">Wednesday Task:</label>
-                            <input type="text" class="form-control" id="day_3_task" name="day_3_task" placeholder="Wednesday Task" value="<?php echo $report["day_1_task"]; ?>">
+                            <input type="text" class="form-control" id="day_3_task" name="day_3_task" placeholder="Wednesday Task" value="<?php echo $report["day_3_task"]; ?>">
                             <input type="number" class="form-control" id="day_3_total_hours" name="day_3_total_hours" placeholder="Work Hours" value="<?php echo $report["day_3_total_hours"]; ?>">
                         </div>
                         <div class="form-group">
                             <label for="day_4_task">Thursday Task:</label>
-                            <input type="text" class="form-control" id="day_4_task" name="day_4_task" placeholder="Thursday Task" value="<?php echo $report["day_1_task"]; ?>">
+                            <input type="text" class="form-control" id="day_4_task" name="day_4_task" placeholder="Thursday Task" value="<?php echo $report["day_4_task"]; ?>">
                             <input type="number" class="form-control" id="day_4_total_hours" name="day_4_total_hours" placeholder="Work Hours" value="<?php echo $report["day_4_total_hours"]; ?>">
                         </div>
                         <div class="form-group">
                             <label for="day_5_task">Friday Task:</label>
-                            <input type="text" class="form-control" id="day_5_task" name="day_5_task" placeholder="Friday Task" value="<?php echo $report["day_1_task"]; ?>">
+                            <input type="text" class="form-control" id="day_5_task" name="day_5_task" placeholder="Friday Task" value="<?php echo $report["day_5_task"]; ?>">
                             <input type="number" class="form-control" id="day_5_total_hours" name="day_5_total_hours" placeholder="Work Hours" value="<?php echo $report["day_5_total_hours"]; ?>">
                         </div>
 
