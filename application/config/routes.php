@@ -173,6 +173,7 @@ $route['list-report/(:num)'] = 'report/index/$1';
 $route['view-report/(:num)'] = 'report/view/$1';
 $route['review-report/(:num)'] = 'report/send_report/$1';
 $route['approve-report/(:num)'] = 'report/approve_report/$1';
+$route['report/delete/(:num)'] = 'report/delete/$1';
 
 //HOD Report route
 $route['manage-hod-report'] = 'report/hod_manage';

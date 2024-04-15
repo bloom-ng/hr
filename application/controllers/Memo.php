@@ -122,7 +122,7 @@ class Memo extends CI_Controller {
         {
             $this->session->set_flashdata('success', "Memo Deleted Succesfully");
         }else{
-            $this->session->set_flashdata('error', "Sorry, Commission Delete Failed.");
+            $this->session->set_flashdata('error', "Sorry, Memo Delete Failed.");
         }
         redirect($_SERVER['HTTP_REFERER']);
     }

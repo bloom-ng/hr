@@ -260,7 +260,15 @@ class Report extends CI_Controller
 
     public function delete($id)
     {
-        // Delete voucher logic here
+        // Delete weekly report logic here
+        $this->Report_model->delete($id);
+        if($this->db->affected_rows() > 0)
+        {
+            $this->session->set_flashdata('success', "Report Deleted Succesfully");
+        }else{
+            $this->session->set_flashdata('error', "Sorry, Report Delete Failed.");
+        }
+        redirect($_SERVER['HTTP_REFERER']);
     }
 
     public function send_report($id)
@@ -299,7 +307,7 @@ class Report extends CI_Controller
                 $this->session->set_flashdata('error', "Sorry, Unable To Send Report For Review");
             }
         } else {
-            $this->session->set_flashdata('error', "Sorry, Unable To Find Reeport");
+            $this->session->set_flashdata('error', "Sorry, Unable To Find Report");
         }
 
         redirect($_SERVER['HTTP_REFERER']);

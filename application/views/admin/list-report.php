@@ -79,6 +79,12 @@
 
                                                     <a href="<?php echo base_url(); ?>view-report/<?php echo $report['id']; ?>" class="btn btn-success hover:bg-[#DA7F00] border-0">Preview</a>
                                                 <?php endif; ?>
+
+                                                <?php if (in_array($this->session->userdata('role'), ["hrm", "super"])) : ?>
+                                                    <a href="<?php echo base_url(); ?>report/delete/<?php echo $cnt['id']; ?>" class="btn btn-danger border-0 bg-[#595959] hover:bg-[#595959] btn-danger">
+                                                        Delete
+                                                    </a>
+                                                <?php endif; ?>
                                             </td>
                                         </tr>
                                     <?php $i++;
