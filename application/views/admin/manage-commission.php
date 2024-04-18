@@ -58,6 +58,7 @@
                     <th>Date</th>
                     <th>Status</th>
                     <th>Commission (%)</th>
+                    <th>Commission (&#8358;)</th>
                     <th>Actions</th>
                   </tr>
                 </thead>
@@ -75,6 +76,7 @@
                         <td><?php echo date('d-m-Y', strtotime($cnt['date'])); ?></td>
                         <td><?php echo  $this->Commission_model->getStatusMapping()[$cnt['status']]; ?></td>
                         <td><?php echo $cnt['commission']; ?></td>
+                        <td><?php echo ($cnt['commission'] * $cnt['total'] * 0.01) ; ?></td>
                         <td>
 							<?php if (in_array($this->session->userdata('role'), ["finance", "super"])) : ?>
                           <button type="button" data-toggle="modal" data-target="#commissionModal<?php echo $cnt['id'] ?>" class="btn btn-success border-0 bg-[#DA7F00] hover:bg-[#DA7F00]">Edit</button>
