@@ -81,7 +81,12 @@
                                                 <?php endif; ?>
 
                                                 <?php if (in_array($this->session->userdata('role'), ["hrm", "super"])) : ?>
-                                                    <a href="<?php echo base_url(); ?>report/delete/<?php echo $cnt['id']; ?>" class="btn btn-danger border-0 bg-[#595959] hover:bg-[#595959] btn-danger">
+                                                    <a href="<?php echo base_url(); ?>report/delete/<?php echo $report['id']; ?>" class="btn btn-danger border-0 bg-[#595959] hover:bg-[#595959] btn-danger">
+                                                        Delete
+                                                    </a>
+                                                <?php endif; ?>
+                                                <?php if (in_array($this->session->userdata('role'), ["staff"])) && $report['status']  == 'pending' : ?>
+                                                    <a href="<?php echo base_url(); ?>report/delete/<?php echo $report['id']; ?>" class="btn btn-danger border-0 bg-[#595959] hover:bg-[#595959] btn-danger">
                                                         Delete
                                                     </a>
                                                 <?php endif; ?>
