@@ -124,11 +124,12 @@ class Report extends CI_Controller
 
         if ($result) {
             $this->session->set_flashdata('success', "Report Succesfully Added");
-
-            $this->index($reportData['staff_id']);
+            redirect(base_url() . "list-report" . "/" . $reportData['staff_id']);
         } else {
             $this->session->set_flashdata('error', "Sorry, Unable To Create Report");
         }
+
+        
     }
 
     public function insert_hod_report()
@@ -206,7 +207,7 @@ class Report extends CI_Controller
         if ($result) {
             $this->session->set_flashdata('success', "Report Succesfully Edited");
 
-            $this->index($reportData['staff_id']);
+            redirect(base_url() . "list-report" . "/" . $reportData['staff_id']);
         } else {
             $this->session->set_flashdata('error', "Sorry, Unable To Edit Report");
         }
