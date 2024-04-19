@@ -26,11 +26,11 @@
   <link rel="shortcut icon" href="<?php echo base_url(); ?>uploads/profile-pic/favicon.png" type="image/x-icon">
 
   <!-- Week polyfill -->
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="http://www.modernizr.com/downloads/modernizr-latest.js"></script>
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/week-polyfill.css">
-    <script src="<?php echo base_url(); ?>assets/week-polyfill.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="https://www.modernizr.com/downloads/modernizr-latest.js"></script>
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/week-polyfill.css">
+  <script src="<?php echo base_url(); ?>assets/week-polyfill.min.js"></script>
   <!-- Week polyfill -->
 
 
