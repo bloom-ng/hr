@@ -128,8 +128,6 @@ class Report extends CI_Controller
         } else {
             $this->session->set_flashdata('error', "Sorry, Unable To Create Report");
         }
-
-        
     }
 
     public function insert_hod_report()
@@ -154,7 +152,9 @@ class Report extends CI_Controller
         if ($result) {
             $this->session->set_flashdata('success', "Report Succesfully Added");
 
-            $this->list_hod_report($reportData['department_id']);
+            redirect(base_url() . "list-hod-report" . "/" . $reportData['department_id']);
+
+            // $this->list_hod_report();
         } else {
             $this->session->set_flashdata('error', "Sorry, Unable To Create Report");
         }
@@ -235,7 +235,8 @@ class Report extends CI_Controller
         if ($result) {
             $this->session->set_flashdata('success', "Report Succesfully Added");
 
-            $this->list_hod_report($reportData["department_id"]);
+            redirect(base_url() . "list-hod-report" . "/" . $reportData['department_id']);
+            // $this->list_hod_report($reportData["department_id"]);
         } else {
             $this->session->set_flashdata('error', "Sorry, Unable To Create Report");
         }
@@ -263,10 +264,9 @@ class Report extends CI_Controller
     {
         // Delete weekly report logic here
         $this->Report_model->delete($id);
-        if($this->db->affected_rows() > 0)
-        {
+        if ($this->db->affected_rows() > 0) {
             $this->session->set_flashdata('success', "Report Deleted Succesfully");
-        }else{
+        } else {
             $this->session->set_flashdata('error', "Sorry, Report Delete Failed.");
         }
         redirect($_SERVER['HTTP_REFERER']);
@@ -345,7 +345,7 @@ class Report extends CI_Controller
             } else {
                 $this->session->set_flashdata('error', "Sorry, Unable To Approve Report");
             }
-            $this->list_hod_report($report["department_id"]);
+            redirect(base_url() . "list-hod-report" . "/" . $report['department_id']);
         } else {
             $this->session->set_flashdata('error', "Sorry, Unable To Find Report");
             redirect(base_url() . "manage-report");
