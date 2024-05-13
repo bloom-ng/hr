@@ -183,3 +183,9 @@ $route['list-hod-report/(:num)'] = 'report/list_hod_report/$1';
 $route['view-hod-report/(:num)'] = 'report/view_hod_report/$1';
 $route['review-hod-report/(:num)'] = 'report/send_hod_report/$1';
 $route['approve-hod-report/(:num)'] = 'report/approve_hod_report/$1';
+
+//Studio Income route
+$route['manage-studio-income']['GET'] = 'studioIncome/index';
+$route['manage-studio-income/insert']['POST'] = 'studioIncome/insert';
+$route['manage-studio-income/update/(:num)']['POST'] = 'studioIncome/update/$1';
+$route['manage-studio-income/delete/(:num)']['GET'] = 'studioIncome/delete/$1';
