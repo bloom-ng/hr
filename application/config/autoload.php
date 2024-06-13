@@ -152,4 +152,5 @@ $autoload['model'] = array(
     'Report_model',
     'Hod_Report_model',
     'Anonymous_model',
+    'Studio_Income_model',
 );

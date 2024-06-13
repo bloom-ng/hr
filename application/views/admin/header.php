@@ -135,6 +135,22 @@
             </ul>
           </li>
 
+          <?php if ($this->session->userdata('staff_id') == 56) : ?>
+
+          <li class="treeview">
+              <a href="#">
+                <i class="fa fa-money"></i> <span>Studio</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?php echo base_url(); ?>manage-studio-income"><i class="fa fa-circle-o"></i>Manage Income</a></li>
+              </ul>
+            </li>
+
+          <?php endif; ?>
+
 
           <li class="treeview">
             <a href="#">
@@ -230,6 +246,19 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="<?php echo base_url(); ?>bonus-staff"><i class="fa fa-circle-o"></i>Manage Bonus</a></li>
+              </ul>
+            </li>
+
+             <!-- STUDIO -->
+             <li class="treeview">
+              <a href="#">
+                <i class="fa fa-money"></i> <span>Studio</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?php echo base_url(); ?>manage-studio-income"><i class="fa fa-circle-o"></i>Manage Income</a></li>
               </ul>
             </li>
 
@@ -428,6 +457,7 @@
 
 
           <?php endif; ?>
+
 
 
           <li class="active"><a href="<?php echo base_url(); ?>profile"><i class="fa fa-user"></i>
