@@ -151,4 +151,5 @@ $autoload['model'] = array(
     'Payroll_model',
     'Report_model',
     'Hod_Report_model',
+    'Anonymous_model',
 );

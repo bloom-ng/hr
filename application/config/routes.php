@@ -57,6 +57,12 @@ $route['translate_uri_dashes'] = FALSE;
 $route['login'] = 'home/login_page';
 $route['logout'] = 'home/logout';
 
+// anonymous routes
+$route['anonymous'] = 'anonymous/add_page';
+$route['manage-anonymous'] = 'anonymous/manage';
+$route['view-anonymous/(:num)'] = 'anonymous/view/$1';
+$route['delete-anonymous/(:num)'] = 'anonymous/delete/$1';
+
 // department routes
 $route['add-department'] = 'department';
 $route['insert-department'] = 'department/insert';

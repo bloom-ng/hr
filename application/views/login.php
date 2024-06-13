@@ -44,7 +44,7 @@
           <div class="flex items-center justify-center
                       sm:items-start sm:justify-start
                       text-4xl md:text-[48px] pb-[10%] uppercase leading-[57px]">
-            <a href="#"><span class="text-[#FF9501]"><b>Bloom  </b></span> <span class="text-white "> Employee Management System(EMS)</span></a>
+            <a href="#"><span class="text-[#FF9501]"><b>Bloom </b></span> <span class="text-white "> Employee Management System(EMS)</span></a>
           </div>
           <!-- /.login-logo -->
           <div class="">
@@ -92,7 +92,7 @@
     <div class="lg:basis-1/2 lg:block hidden">
       <div class="relative">
         <div class="flex items-center justify-center">
-          <img class="z-10 py-[7%] xl:pt-[6px] xl:pb-[1px] mx-32 rounded-[90px] w-[700px] xl:h-[570px] h-[550px]" src="uploads/profile-pic/_MG_1393.png" alt="">
+          <img class="z-10 py-[7%] xl:pt-[6px] xl:pb-[1px] mx-32 rounded-[90px] w-[700px] xl:h-screen h-[550px]" src="uploads/profile-pic/_MG_1393.png" alt="">
         </div>
 
         <div class="absolute inset-0 bg-orange-300 opacity-50 h-screen">

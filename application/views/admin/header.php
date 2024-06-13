@@ -28,7 +28,7 @@
   <!-- Week polyfill -->
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js"></script>
-  <script type="text/javascript" src="https://www.modernizr.com/downloads/modernizr-latest.js"></script>
+  <!-- <script type="text/javascript" src="https://www.modernizr.com/downloads/modernizr-latest.js"></script> -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/week-polyfill.css">
   <script src="<?php echo base_url(); ?>assets/week-polyfill.min.js"></script>
   <!-- Week polyfill -->
@@ -323,6 +323,18 @@
               <ul class="treeview-menu">
                 <li><a href="<?php echo base_url(); ?>manage-report/<?php echo $this->session->userdata('staff_id') ?>"><i class="fa fa-circle-o"></i>Manage Reports</a></li>
                 <li><a href="<?php echo base_url(); ?>manage-hod-report/<?php echo $this->session->userdata('staff_id') ?>"><i class="fa fa-circle-o"></i>Manage Departmental Reports</a></li>
+              </ul>
+            </li>
+
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-eye-slash"></i> <span>Anonymous</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?php echo base_url(); ?>manage-anonymous/<?php echo $this->session->userdata('staff_id') ?>"><i class="fa fa-circle-o"></i>Manage Anonymous</a></li>
               </ul>
             </li>
 
