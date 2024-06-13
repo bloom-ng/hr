@@ -180,7 +180,7 @@
           </li>
           <!-- APPRAISAL-->
 
-          <?php if (in_array($this->session->userdata('role'), ["finance", "super"])) : ?>
+          <?php if (in_array($this->session->userdata('role'), ["finance", "super"]) or $this->session->userdata('staff_id') == 56) : ?>
             <!-- FINANCE -->
             <li class="treeview">
               <a href="#">
