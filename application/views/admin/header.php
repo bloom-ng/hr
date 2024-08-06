@@ -26,11 +26,12 @@
   <link rel="shortcut icon" href="<?php echo base_url(); ?>uploads/profile-pic/favicon.png" type="image/x-icon">
 
   <!-- Week polyfill -->
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/themes/base/jquery.ui.all.css" />
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js"></script>
-  <!-- <script type="text/javascript" src="https://www.modernizr.com/downloads/modernizr-latest.js"></script> -->
-  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/week-polyfill.css">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/week-polyfill.min.js"></script>
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/week-polyfill.css">
   <!-- Week polyfill -->
 
 
@@ -137,7 +138,7 @@
 
           <?php if ($this->session->userdata('staff_id') == 56) : ?>
 
-          <li class="treeview">
+            <li class="treeview">
               <a href="#">
                 <i class="fa fa-money"></i> <span>Studio</span>
                 <span class="pull-right-container">
@@ -249,8 +250,8 @@
               </ul>
             </li>
 
-             <!-- STUDIO -->
-             <li class="treeview">
+            <!-- STUDIO -->
+            <li class="treeview">
               <a href="#">
                 <i class="fa fa-money"></i> <span>Studio</span>
                 <span class="pull-right-container">
