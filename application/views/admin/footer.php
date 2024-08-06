@@ -1,12 +1,12 @@
  <footer class="main-footer bg-[#2C2C2C] text-white">
      <div class="pull-right hidden-xs">
          <div class="flex text-black">
-             <a href="https://www.instagram.com/bloom_digitalmedia?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank"><img src="assets/dist/img/Instagram.svg" alt="Instagram Link" /></a>
-             <a href="https://x.com/bloomdigitmedia?s=20" target="_blank"><img src="assets/dist/img/Twitter.svg" alt="X Link" /></a>
-             <a href="https://www.linkedin.com/company/bloom-digital-media-nigeria/" target="_blank"><img src="assets/dist/img/LinkedIn.svg" alt="LinkedIn Link" /></a>
-             <a href="https://www.facebook.com/bloomdigitmedia/" target="_blank"><img src="assets/dist/img/Facebook.svg" alt="Facebook Link" /></a>
-             <a href="https://www.tiktok.com/@bloomdigitmedia?_t=8j71WPhCotx&_r=1" target="_blank"><img src="assets/dist/img/TikTok.svg" alt="TikTok Link" /></a>
-             <a href="https://www.youtube.com/@Bloom_DigitalMedia" target="_blank"><img src="assets/dist/img/YouTube.svg" alt="Youtube Link" /></a>
+             <a href="https://www.instagram.com/bloom_digitalmedia?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank"><img src="<?php echo base_url(); ?>assets/dist/img/Instagram.svg" alt="Instagram Link" /></a>
+             <a href="https://x.com/bloomdigitmedia?s=20" target="_blank"><img src="<?php echo base_url(); ?>assets/dist/img/Twitter.svg" alt="X Link" /></a>
+             <a href="https://www.linkedin.com/company/bloom-digital-media-nigeria/" target="_blank"><img src="<?php echo base_url(); ?>assets/dist/img/LinkedIn.svg" alt="LinkedIn Link" /></a>
+             <a href="https://www.facebook.com/bloomdigitmedia/" target="_blank"><img src="<?php echo base_url(); ?>assets/dist/img/Facebook.svg" alt="Facebook Link" /></a>
+             <a href="https://www.tiktok.com/@bloomdigitmedia?_t=8j71WPhCotx&_r=1" target="_blank"><img src="<?php echo base_url(); ?>assets/dist/img/TikTok.svg" alt="TikTok Link" /></a>
+             <a href="https://www.youtube.com/@Bloom_DigitalMedia" target="_blank"><img src="<?php echo base_url(); ?>assets/dist/img/YouTube.svg" alt="Youtube Link" /></a>
          </div>
      </div>
      <strong>&copy; <?php echo date("Y"); ?></strong> Bloom Digital Media Ltd.
