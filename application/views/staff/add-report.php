@@ -44,8 +44,8 @@
                             <input type="text" class="form-control" id="supervisor" name="supervisor">
                         </div>
                         <div class="form-group">
-                            <label for="date">Date "YYYY-WWW - 2024-W33"</label>
-                            <input type="week" class="form-control" id="date" name="date" placeholder="MM/YYYY" required>
+                            <label for="date">Date "YYYY-WWW - 2024-W15"</label>
+                            <input type="text" class="form-control" id="date" name="date" placeholder="MM/YYYY" required>
                         </div>
 
                         <div class="form-group">
@@ -96,19 +96,21 @@
 </div>
 <!-- /.content-wrapper -->
 
+
 <script>
+    const dateInput = document.querySelector('#date');
+    document.addEventListener('DOMContentLoaded', function() {
+        dateInput.value = getCurrentWeek();
+        
+    });
     if (Modernizr.inputtypes.week) {
     // supported
     console.log('supported :>> ');
+    dateInput.type = 'week';
+   
     } else {
     // not-supported
         console.log('not-supported :>> ');
-        const input = document.querySelectorAll('input[type="week"]');
-        input.forEach(function(el) {
-            el.type = 'text';
-            el.value = getCurrentWeek();
-            el.placeholder = "YYYY-WWW - 2024-W33";
-        });
     }
 
     function getCurrentWeek() {
