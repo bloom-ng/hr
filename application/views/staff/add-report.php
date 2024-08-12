@@ -101,12 +101,11 @@
     const dateInput = document.querySelector('#date');
     document.addEventListener('DOMContentLoaded', function() {
         dateInput.value = getCurrentWeek();
-        
     });
     if (Modernizr.inputtypes.week) {
     // supported
-    console.log('supported :>> ');
-    dateInput.type = 'week';
+        console.log('supported :>> ');
+        dateInput.type = 'week';
    
     } else {
     // not-supported
