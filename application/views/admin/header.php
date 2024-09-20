@@ -133,6 +133,7 @@
               <li><a target="_blank" href="https://invoice.bloomdigitmedia.com"><i class="fa fa-circle-o"></i>Invoice / Voucher</a></li>
               <li><a target="_blank" href="https://inventory.bloomdigitmedia.com"><i class="fa fa-circle-o"></i>Asset Management</a></li>
               <li><a target="_blank" href="https://ticket.bloomdigitmedia.com"><i class="fa fa-circle-o"></i>Support/Ticket</a></li>
+              <li><a href="<?php echo base_url('ai-smm'); ?>"><i class="fa fa-circle-o"></i>AI-SMM</a></li>
             </ul>
           </li>
 

@@ -195,3 +195,6 @@ $route['manage-studio-income']['GET'] = 'studioIncome/index';
 $route['manage-studio-income/insert']['POST'] = 'studioIncome/insert';
 $route['manage-studio-income/update/(:num)']['POST'] = 'studioIncome/update/$1';
 $route['manage-studio-income/delete/(:num)']['GET'] = 'studioIncome/delete/$1';
+
+$route['ai-smm'] = 'ai_smm/index';
+$route['ai-smm/generate'] = 'ai_smm/generate';
