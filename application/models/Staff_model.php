@@ -86,6 +86,7 @@ class Staff_model extends CI_Model {
         $this->db->select("staff_tbl.*,department_tbl.department_name");
         $this->db->from("staff_tbl");
         $this->db->join("department_tbl",'department_tbl.id=staff_tbl.department_id');
+        $this->db->where('staff_tbl.status', 1);
         $qry = $this->db->get();
         
         if($qry->num_rows() > 0)
