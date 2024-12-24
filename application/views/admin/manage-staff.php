@@ -49,6 +49,7 @@
 
                     <th>#</th>
                     <th>Name</th>
+                    <th>Staff ID</th>
                     <th>Photo</th>
                     <th>Department</th>
                     <th>Gender</th>
@@ -74,6 +75,7 @@
                         </td>
                         <td><?php echo $i; ?></td>
                         <td><?php echo $cnt['staff_name']; ?></td>
+                        <td>BDM-<?php echo $cnt['staff_number']; ?></td>
                         <td><img src="<?php echo base_url(); ?>uploads/profile-pic/<?php echo $cnt['pic'] ?>" class="img-circle" width="50px" alt="User Image"></td>
                         <td><?php echo $cnt['department_name']; ?></td>
                         <td><?php echo $cnt['gender']; ?></td>

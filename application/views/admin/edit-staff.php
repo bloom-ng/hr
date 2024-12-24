@@ -69,6 +69,12 @@
                       <input type="text" name="txtname" value="<?php echo $cnt['staff_name'] ?>" class="form-control bg-gray-200" placeholder="Full Name">
                     </div>
                   </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Staff ID Number: BDM-</label>
+                      <input type="text" name="txtstaff_number" value="<?php echo $cnt['staff_number'] ?>" class="form-control bg-gray-200" placeholder="Full Name">
+                    </div>
+                  </div>
 
                   <div class="col-md-6">
                     <div class="form-group">

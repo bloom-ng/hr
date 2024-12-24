@@ -198,6 +198,22 @@
           </li>
           <!-- APPRAISAL-->
 
+          <?php if (in_array($this->session->userdata('role'), ["finance"])) : ?>
+
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-users"></i> <span>Staff</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?php echo base_url(); ?>manage-staff"><i class="fa fa-circle-o"></i> Manage Staff</a></li>
+              </ul>
+            </li>
+
+          <?php endif; ?>
+
           <?php if (in_array($this->session->userdata('role'), ["finance", "super"])) : ?>
             <!-- FINANCE -->
             <li class="treeview">
@@ -264,17 +280,7 @@
               </ul>
             </li>
 
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-users"></i> <span>Staff</span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="<?php echo base_url(); ?>manage-staff"><i class="fa fa-circle-o"></i> Manage Staff</a></li>
-              </ul>
-            </li>
+           
 
             <!-- <li class="treeview">
               <a href="#">

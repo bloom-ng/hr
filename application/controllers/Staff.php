@@ -128,6 +128,7 @@ class Staff extends CI_Controller
 
         $id = $this->input->post('txtid');
         $name = $this->input->post('txtname');
+        $staff_number = $this->input->post('txtstaff_number');
         $gender = $this->input->post('slcgender');
         $department = $this->input->post('slcdepartment');
         $email = $this->input->post('txtemail');
@@ -145,6 +146,7 @@ class Staff extends CI_Controller
                 $data = $this->Staff_model->update_staff(
                     array(
                         'staff_name' => $name,
+                        'staff_number' => $staff_number,
                         'gender' => $gender,
                         'email' => $email,
                         'mobile' => $mobile,
