@@ -198,3 +198,14 @@ $route['manage-studio-income/delete/(:num)']['GET'] = 'studioIncome/delete/$1';
 
 $route['ai-smm'] = 'ai_smm/index';
 $route['ai-smm/generate'] = 'ai_smm/generate';
+
+// API Auth routes
+$route['api/auth/login']['POST'] = 'api/Auth/login';
+$route['api/auth/refresh-token'] = 'api/auth/refresh_token';
+$route['api/auth/update-push-token'] = 'api/auth/update_push_token';
+$route['api/auth/remove-push-token'] = 'api/auth/remove_push_token';
+
+// Notification Routes
+
+$route['notify'] = 'notify/index';
+$route['notify/send_social_notification']['POST'] = 'notify/send_social_notification';

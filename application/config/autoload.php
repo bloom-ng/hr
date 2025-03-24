@@ -153,4 +153,5 @@ $autoload['model'] = array(
     'Hod_Report_model',
     'Anonymous_model',
     'Studio_Income_model',
+    'PushToken_model'
 );

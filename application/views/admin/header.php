@@ -280,7 +280,7 @@
               </ul>
             </li>
 
-           
+
 
             <!-- <li class="treeview">
               <a href="#">
@@ -375,6 +375,33 @@
               </ul>
             </li>
 
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-bell"></i>
+                <span>Notifications</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?php echo base_url(); ?>notify"><i class="fa fa-circle-o"></i> Send Notifications</a></li>
+              </ul>
+            </li>
+          <?php endif; ?>
+
+          <?php if ($this->session->userdata('staff_id') == 17) : ?>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-bell"></i>
+                <span>Notifications</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?php echo base_url(); ?>notify"><i class="fa fa-circle-o"></i> Send Notifications</a></li>
+              </ul>
+            </li>
           <?php endif; ?>
 
 
