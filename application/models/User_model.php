@@ -1,44 +1,47 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class User_model extends CI_Model {
+class User_model extends CI_Model
+{
 
     const USERTYPE_SUPERADMIN = 1;
     const USERTYPE_ADMIN = 2;
     const USERTYPE_FINANCE = 3;
     const USERTYPE_EMPLOYEE = 4;
-    
+
     public $table = "users";
 
     public $roles = ["staff", "hrm", "finance", "super"];
     public $admins = ["hrm", "finance", "super"];
 
 
-    function logindata($un)
+    public function logindata($username)
     {
-        $this->db->where('username',$un);
-        $qry=$this->db->get("users");
-        if($qry->num_rows()>0)
-        {
-            $result=$qry->result_array();
-            return $result;
+        $this->db->select('users.*, staff_tbl.staff_name');
+        $this->db->from('users');
+        $this->db->join('staff_tbl', 'staff_tbl.user_id = users.id', 'left');
+        $this->db->where('users.username', $username);
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) {
+            return $query->result_array();
         }
+        return array();
     }
 
-    
+
     public function get($id)
     {
-        $this->db->where('id',$id);
+        $this->db->where('id', $id);
         $qry = $this->db->get($this->table);
-        if($qry->num_rows()>0)
-        {
+        if ($qry->num_rows() > 0) {
             return $qry->result_array();
         }
     }
 
     function insert_user($data)
     {
-        $this->db->insert("users",$data);
+        $this->db->insert("users", $data);
         return $this->db->insert_id();
     }
 
@@ -52,10 +55,9 @@ class User_model extends CI_Model {
 
     function select_countries()
     {
-        $qry=$this->db->get('country_tbl');
-        if($qry->num_rows()>0)
-        {
-            $result=$qry->result_array();
+        $qry = $this->db->get('country_tbl');
+        if ($qry->num_rows() > 0) {
+            $result = $qry->result_array();
             return $result;
         }
     }
@@ -78,8 +80,7 @@ class User_model extends CI_Model {
             $this->db->where($key, $value);
         }
         $qry = $this->db->get($this->table);
-        if($qry->num_rows()>0)
-        {
+        if ($qry->num_rows() > 0) {
             return $qry->result_array();
         }
     }
@@ -88,8 +89,4 @@ class User_model extends CI_Model {
     {
         return ["hrm", "finance", "super"];
     }
-
-
-
-
 }

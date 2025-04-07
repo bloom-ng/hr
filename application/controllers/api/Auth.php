@@ -91,7 +91,8 @@ class Auth extends API_Controller
                     'id' => $user['id'],
                     'username' => $user['username'],
                     'role' => $user['role'],
-                    'usertype' => $user['usertype']
+                    'usertype' => $user['usertype'],
+                    'staff_name' => $user['staff_name'] ?? null
                 ]
             ]
         ]);
