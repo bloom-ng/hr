@@ -106,7 +106,7 @@
                                 <input type="text" class="form-control" name="title" placeholder="Title" required>
                             </div>
                             <div class="form-group">
-                                <label for="time" class="text-black">Notification Message</label>
+                                <label for="time" class="text-black">Meeting Time</label>
                                 <input type="time" class="form-control" name="time" required>
                             </div>
                             <div class="form-group">

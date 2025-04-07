@@ -55,9 +55,9 @@ class Notify extends CI_Controller
                 'message' => $message
             ]);
 
-            $this->session->set_flashdata('success', 'Break notification sent successfully');
+            $this->session->set_flashdata('success', 'General notification sent successfully');
         } catch (Exception $e) {
-            $this->session->set_flashdata('error', 'Failed to send break notification: ' . $e->getMessage());
+            $this->session->set_flashdata('error', 'Failed to send general notification: ' . $e->getMessage());
         }
 
         redirect('/notify');
@@ -78,9 +78,9 @@ class Notify extends CI_Controller
                 'link' => $link
             ]);
 
-            $this->session->set_flashdata('success', 'Break notification sent successfully');
+            $this->session->set_flashdata('success', 'Meeting notification sent successfully');
         } catch (Exception $e) {
-            $this->session->set_flashdata('error', 'Failed to send break notification: ' . $e->getMessage());
+            $this->session->set_flashdata('error', 'Failed to send meeting notification: ' . $e->getMessage());
         }
 
         redirect('/notify');
