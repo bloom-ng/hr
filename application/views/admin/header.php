@@ -151,6 +151,21 @@
               </ul>
             </li>
 
+            <!-- Equipment Management -->
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-laptop"></i> <span>Equipment Management</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?php echo base_url(); ?>equipment"><i class="fa fa-circle-o"></i> Equipment List</a></li>
+                <li><a href="<?php echo base_url(); ?>equipment/pendingRequests"><i class="fa fa-circle-o"></i> Pending Requests</a></li>
+                <li><a href="<?php echo base_url(); ?>equipment/logs"><i class="fa fa-circle-o"></i> Logs</a></li>
+              </ul>
+            </li>
+
           <?php endif; ?>
 
 
@@ -296,6 +311,21 @@
           <?php endif; ?>
 
           <?php if (in_array($this->session->userdata('role'), ["hrm", "super"])) : ?>
+            <!-- Equipment Management -->
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-laptop"></i> <span>Equipment Management</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?php echo base_url(); ?>equipment"><i class="fa fa-circle-o"></i> Equipment List</a></li>
+                <li><a href="<?php echo base_url(); ?>equipment/pendingRequests"><i class="fa fa-circle-o"></i> Pending Requests</a></li>
+                <li><a href="<?php echo base_url(); ?>equipment/logs"><i class="fa fa-circle-o"></i> Logs</a></li>
+              </ul>
+            </li>
+
             <!-- HR ADMIN -->
             <li class="treeview">
               <a href="#">
@@ -487,6 +517,19 @@
               <ul class="treeview-menu">
                 <li><a href="<?php echo base_url(); ?>list-report/<?php echo $this->session->userdata('staff_id') ?>"><i class="fa fa-circle-o"></i>My Reports</a></li>
                 <li><a href="<?php echo base_url(); ?>list-hod-report/<?php echo $this->session->userdata('department_id') ?>"><i class="fa fa-circle-o"></i>Departmental Reports</a></li>
+              </ul>
+            </li>
+
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-laptop"></i> <span>Equipment</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?php echo base_url(); ?>equipment/requestEquipment"><i class="fa fa-circle-o"></i> Request Equipment</a></li>
+                <li><a href="<?php echo base_url(); ?>equipment/myRequests"><i class="fa fa-circle-o"></i> My Requests</a></li>
               </ul>
             </li>
 

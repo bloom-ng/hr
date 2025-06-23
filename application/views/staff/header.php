@@ -122,6 +122,8 @@
             </a>
             <ul class="treeview-menu">
               <li><a href="<?php echo base_url(); ?>view-salary"><i class="fa fa-circle-o"></i> View Salary</a></li>
+
+
             </ul>
           </li>
 
