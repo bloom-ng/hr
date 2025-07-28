@@ -306,6 +306,17 @@ class Equipment extends MY_Controller
 
             if ($this->Equipment_log_model->insert($log_data)) {
                 $this->session->set_flashdata('success', 'Equipment request submitted successfully');
+
+                $departments = $this->Department_model->select_departments();
+
+                if (isset($departments)) {
+                    foreach ($departments as $department) {
+                        $staff = $this->Staff_model->select_staff_byID($department['staff_id']);
+
+                        $this->send_email_notification($staff[0]['email'], $equipment['name']);
+                    }
+                }
+
                 redirect('equipment/myRequests');
             }
         }
@@ -359,5 +370,33 @@ class Equipment extends MY_Controller
         if (!$this->session->userdata('role') == 'staff') {
             show_error('Unauthorized access', 403);
         }
+    }
+
+    private function send_email_notification($employee_email, $equipment_name)
+    {
+        // Load the email library
+        $this->load->library('email');
+
+        // Configure email settings
+        $config['protocol'] = $this->config->item('protocol');
+        $config['smtp_host'] = $this->config->item('smtp_host');
+        $config['smtp_port'] = $this->config->item('smtp_port');
+        $config['smtp_crypto'] = $this->config->item('smtp_crypto');
+        $config['smtp_user'] = $this->config->item('smtp_user');
+        $config['smtp_pass'] = $this->config->item('smtp_pass');
+        $config['mailtype'] = $this->config->item('mailtype');
+        $config['charset'] = $this->config->item('charset');
+        $config['newline'] = $this->config->item('newline');
+
+        $this->email->initialize($config);
+
+        // Email content
+        $this->email->from('support@bloomdigitmedia.com', 'Bloom EMS');
+        $this->email->to($employee_email);
+        $this->email->subject("Equipment Request");
+        $this->email->message("Dear HOD a staff just requested an equipment " . $equipment_name);
+
+        // Send email
+        $this->email->send();
     }
 }

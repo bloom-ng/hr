@@ -43,6 +43,7 @@ class Appraisal extends CI_Controller
 
 		$data['staff_members'] = $this->Staff_model->get_all_staffs();
 		$data['departments'] = $this->Department_model->select_departments();
+
 		$this->load->view("admin/header");
 		$this->load->view("admin/manage-appraisal", $data);
 		$this->load->view("admin/footer");
@@ -163,6 +164,8 @@ class Appraisal extends CI_Controller
 			$data = $this->Appraisal_model->update(array('status' => $this->Appraisal_model::APPRAISAL_APPROVED), $id);
 
 			if ($this->db->affected_rows() > 0) {
+				$user = $this->Staff_model->select_staff_byID($appraisal[0]['staff_id']);
+				$this->send_email_notification($user[0]['email'], $user[0]['staff_name']);
 				$this->session->set_flashdata('success', "Appraisal Succesfully Approved");
 			} else {
 				$this->session->set_flashdata('error', "Sorry, Unable To Approve Appraisal");
@@ -207,6 +210,7 @@ class Appraisal extends CI_Controller
 			$this->session->set_flashdata('error', "Sorry, Unable To Complete Self Appraisal");
 		}
 	}
+
 	public function check_appraisal($id)
 	{
 		$this->load->model('Appraisal_model');
@@ -402,5 +406,33 @@ class Appraisal extends CI_Controller
 
 		// Reload the current page
 		$this->view_appraisal($id);
+	}
+
+	private function send_email_notification($employee_email, $employee_name)
+	{
+		// Load the email library
+		$this->load->library('email');
+
+		// Configure email settings
+		$config['protocol'] = $this->config->item('protocol');
+		$config['smtp_host'] = $this->config->item('smtp_host');
+		$config['smtp_port'] = $this->config->item('smtp_port');
+		$config['smtp_crypto'] = $this->config->item('smtp_crypto');
+		$config['smtp_user'] = $this->config->item('smtp_user');
+		$config['smtp_pass'] = $this->config->item('smtp_pass');
+		$config['mailtype'] = $this->config->item('mailtype');
+		$config['charset'] = $this->config->item('charset');
+		$config['newline'] = $this->config->item('newline');
+
+		$this->email->initialize($config);
+
+		// Email content
+		$this->email->from('support@bloomdigitmedia.com', 'Bloom EMS');
+		$this->email->to($employee_email);
+		$this->email->subject("Appraisal Available");
+		$this->email->message("Dear $employee_name, your appraisal is now available for self appraisal visit your hr portal for that.");
+
+		// Send email
+		$this->email->send();
 	}
 }
