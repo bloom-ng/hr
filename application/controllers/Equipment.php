@@ -317,6 +317,8 @@ class Equipment extends MY_Controller
                     }
                 }
 
+                $this->send_email_notification("lizzyinyang@bloomdigitmedia.com", $equipment['name']);
+
                 redirect('equipment/myRequests');
             }
         }
