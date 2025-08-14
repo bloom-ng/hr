@@ -65,7 +65,11 @@
                                                 <div class="flex items-center">
                                                     <?php if ($item['image']) : ?>
                                                         <div class="h-[30px] w-[30px]">
-                                                            <img class="h-[30px] w-[30px] rounded-lg" src="<?php echo base_url(); ?>uploads/equipment/<?php echo $item['image']; ?>" alt="<?php echo $item['name']; ?>" />
+                                                            <img class="h-[30px] w-[30px] rounded-lg" 
+                                                                src="<?php echo $item['image'] 
+                                                                    ? base_url('uploads/equipment/' . $item['image']) 
+                                                                    : 'https://ui-avatars.com/api/?name=' . urlencode($item['name']); ?>" 
+                                                                alt="<?php echo htmlspecialchars($item['name']); ?>" />
                                                         </div>
                                                     <?php endif; ?>
                                                     <div class="ml-3">
