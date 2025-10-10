@@ -396,4 +396,47 @@ class Projects extends MY_Controller
             echo json_encode(['success' => false, 'message' => 'No staff found']);
         }
     }
+
+    public function validate_receipt()
+    {
+        // Only allow AJAX requests
+        if (!$this->input->is_ajax_request()) {
+            show_404();
+        }
+
+        // Check if user has permission to validate receipts
+        if (!in_array($this->role, ['super', 'finance'])) {
+            echo json_encode(['success' => false, 'message' => 'Permission denied']);
+            return;
+        }
+
+        $receipt_id = $this->input->post('receipt_id');
+
+        if (!$receipt_id) {
+            echo json_encode(['success' => false, 'message' => 'Receipt ID is required']);
+            return;
+        }
+
+        // Load the Project model if not already loaded
+        $this->load->model('Project_model');
+
+        // Use the model's validate_receipt method
+        $is_valid = $this->Project_model->validate_receipt($receipt_id);
+
+        if ($is_valid) {
+            echo json_encode([
+                'success' => true,
+                'message' => 'Receipt validated successfully',
+                'data' => [
+                    'receipt_id' => $receipt_id,
+                    'validated_at' => date('Y-m-d H:i:s')
+                ]
+            ]);
+        } else {
+            echo json_encode([
+                'success' => false,
+                'message' => 'Invalid receipt ID or receipt not found'
+            ]);
+        }
+    }
 }

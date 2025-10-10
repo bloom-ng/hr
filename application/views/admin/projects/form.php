@@ -202,8 +202,35 @@ $user_role = $this->session->userdata('role');
 
                     <div class="form-group">
                         <label for="receipt_id" class="control-label text-white">Receipt ID</label>
-                        <input type="text" class="form-control bg-[#3E3E3E] border border-[#555] text-white" id="receipt_id" name="receipt_id"
-                            value="<?= $is_edit && isset($project->receipt_id) ? html_escape($project->receipt_id) : set_value('receipt_id') ?>">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-[#3E3E3E] border border-[#555] text-white" id="receipt_id" name="receipt_id"
+                                value="<?= $is_edit && isset($project->receipt_id) ? html_escape($project->receipt_id) : set_value('receipt_id') ?>"
+                                placeholder="Enter receipt code to validate">
+                            <div class="input-group-append">
+                                <button type="button" class="bg-[#DA7F00] px-6 py-2" id="validate_receipt_btn" onclick="validateReceipt()">
+                                    <i class="fa fa-check-circle"></i> Validate
+                                </button>
+                            </div>
+                        </div>
+                        <div id="receipt_validation_status" class="mt-2" style="display: none;">
+                            <div id="receipt_loading" class="text-yellow-400" style="display: none;">
+                                <i class="fa fa-spinner fa-spin"></i> Validating receipt...
+                            </div>
+                            <div id="receipt_success" class="text-green-400" style="display: none;">
+                                <i class="fa fa-check-circle"></i> Receipt validated successfully
+                                <?php if (in_array($user_role, ['super', 'finance'])): ?>
+                                    <button type="button" class="btn btn-sm btn-success ml-2" id="view_invoice_btn" onclick="viewInvoice()" style="display: none;">
+                                        <i class="fa fa-external-link-alt"></i> View Invoice
+                                    </button>
+                                <?php endif; ?>
+                            </div>
+                            <div id="receipt_error" class="text-red-400" style="display: none;">
+                                <i class="fa fa-times-circle"></i> <span class="" id="receipt_error_msg"></span>
+                            </div>
+                        </div>
+                        <small class="help-block text-gray-400">
+                            Enter a receipt code to validate it against our payment system
+                        </small>
                     </div>
                 <?php endif; ?>
 
@@ -352,5 +379,95 @@ $user_role = $this->session->userdata('role');
         $('input, select, textarea').on('input change', function() {
             $(this).removeClass('border-red-500');
         });
+
+        // Initialize receipt validation status if editing with existing receipt
+        <?php if ($is_edit && isset($project->receipt_id) && !empty($project->receipt_id)): ?>
+            $('#receipt_validation_status').show();
+            $('#receipt_success').show();
+            <?php if (in_array($user_role, ['super', 'finance'])): ?>
+                $('#view_invoice_btn').show();
+            <?php endif; ?>
+            $('#validate_receipt_btn').prop('disabled', true).text('Validated');
+        <?php endif; ?>
+    });
+
+    // Receipt validation function
+    function validateReceipt() {
+        var receiptId = $('#receipt_id').val().trim();
+
+        if (!receiptId) {
+            alert('Please enter a receipt ID to validate');
+            return;
+        }
+
+        // Show loading state
+        $('#receipt_validation_status').show();
+        $('#receipt_loading').show();
+        $('#receipt_success').hide();
+        $('#receipt_error').hide();
+        $('#view_invoice_btn').hide();
+        $('#validate_receipt_btn').prop('disabled', true);
+
+        // Make AJAX call to validate receipt
+        $.ajax({
+            url: '<?= site_url("projects/validate_receipt") ?>',
+            type: 'POST',
+            data: {
+                receipt_id: receiptId
+            },
+            dataType: 'json',
+            success: function(response) {
+                $('#receipt_loading').hide();
+
+                if (response.success) {
+                    $('#receipt_success').show();
+                    <?php if (in_array($user_role, ['super', 'finance'])): ?>
+                        $('#view_invoice_btn').show();
+                    <?php endif; ?>
+                    $('#validate_receipt_btn').text('Validated').removeClass('btn-outline-warning').addClass('btn-outline-success');
+
+                    // Store receipt data for invoice viewing
+                    window.validatedReceiptId = receiptId;
+                    window.validatedReceiptData = response.data;
+                } else {
+                    $('#receipt_error').show();
+                    $('#receipt_error_msg').text(response.message || 'Receipt validation failed');
+                    $('#validate_receipt_btn').prop('disabled', false);
+                }
+            },
+            error: function(xhr, status, error) {
+                $('#receipt_loading').hide();
+                $('#receipt_error').show();
+                $('#receipt_error_msg').text('Error validating receipt. Please try again.');
+                $('#validate_receipt_btn').prop('disabled', false);
+
+                console.error('Receipt validation error:', error);
+            }
+        });
+    }
+
+    // View invoice function
+    function viewInvoice() {
+        var receiptId = window.validatedReceiptId || $('#receipt_id').val().trim();
+
+        if (!receiptId) {
+            alert('No receipt ID available');
+            return;
+        }
+
+        // Open invoice in new tab
+        var invoiceUrl = 'https://invoice.bloomdigitmedia.com/receipt/' + receiptId;
+        window.open(invoiceUrl, '_blank');
+    }
+
+    // Auto-validate receipt when input changes (for existing receipts)
+    $('#receipt_id').on('blur', function() {
+        var receiptId = $(this).val().trim();
+        if (receiptId && !$('#validate_receipt_btn').prop('disabled')) {
+            // Only auto-validate if it's a new receipt (not already validated)
+            if (!window.validatedReceiptId || window.validatedReceiptId !== receiptId) {
+                validateReceipt();
+            }
+        }
     });
 </script>

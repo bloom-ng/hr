@@ -94,14 +94,14 @@
                                                 ?>
                                             </td>
                                             <td>
-                                                <span class="font-semibold rounded-full <?php
-                                                                                        echo $project->priority === 'high' ? 'bg-red-500 px-4 py-2' : ($project->priority === 'medium' ? 'bg-yellow-500' : 'bg-blue-500');
-                                                                                        ?>">
+                                                <span class="px-4 py-2 font-semibold rounded-full <?php
+                                                                                                    echo $project->priority === 'high' ? 'bg-red-500' : ($project->priority === 'medium' ? 'bg-yellow-500' : 'bg-blue-500');
+                                                                                                    ?>">
                                                     <?php echo ucfirst($project->priority); ?>
                                                 </span>
                                             </td>
                                             <td>
-                                                <span class="px-2 py-1 font-semibold rounded-full <?php
+                                                <span class="px-4 py-2 font-semibold rounded-full <?php
                                                                                                     echo $project->status === 'completed' ? 'bg-green-500' : ($project->status === 'in_progress' ? 'bg-blue-500' : ($project->status === 'pending' ? 'bg-yellow-500' : 'bg-gray-500'));
                                                                                                     ?>">
                                                     <?php echo ucfirst(str_replace('_', ' ', $project->status)); ?>

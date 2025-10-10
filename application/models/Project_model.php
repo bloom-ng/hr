@@ -182,25 +182,61 @@ class Project_model extends CI_Model
         }
     }
 
-    protected function validate_receipt($receipt_id)
+    public function validate_receipt($receipt_id)
     {
-        // In a real implementation, this would call an external API to validate the receipt
-        // For now, we'll simulate a successful validation
-        // Replace this with actual API call in production
+        if (empty($receipt_id)) {
+            return false;
+        }
 
-        // Example API call (commented out):
-        /*
-        $this->load->library('curl');
-        $response = $this->curl->simple_post('https://receipt-validation-api.example.com/validate', [
-            'receipt_id' => $receipt_id,
-            'api_key' => 'your_api_key_here'
+        // Make API call to validate receipt
+        $api_url = "https://ads.bloomdigitmedia.com/api/receipt/confirm/{$receipt_id}";
+
+        // Initialize cURL
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $api_url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Content-Type: application/json',
+            'Accept: application/json'
         ]);
-        
-        $result = json_decode($response);
-        return $result->valid === true;
-        */
 
-        // For development, return true if receipt is not empty
-        return !empty($receipt_id);
+        // Execute the request
+        $response = curl_exec($ch);
+        $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $curl_error = curl_error($ch);
+        curl_close($ch);
+
+        // Check for cURL errors
+        if ($curl_error) {
+            log_message('error', 'Receipt validation cURL error: ' . $curl_error);
+            return false;
+        }
+
+        // Check HTTP status code
+        if ($http_code !== 200) {
+            log_message('error', 'Receipt validation API returned HTTP code: ' . $http_code);
+            return false;
+        }
+
+        // Parse JSON response
+        $result = json_decode($response, true);
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            log_message('error', 'Receipt validation API returned invalid JSON');
+            return false;
+        }
+
+        // Check if the response indicates success
+        if (isset($result['status']) && $result['status'] === 'success' && isset($result['data'])) {
+            // Log successful validation for audit purposes
+            log_message('info', 'Receipt validated successfully: ' . $receipt_id);
+            return true;
+        }
+
+        // Log failure reason
+        $message = isset($result['message']) ? $result['message'] : 'Unknown error';
+        log_message('error', 'Receipt validation failed: ' . $message);
+        return false;
     }
 }
