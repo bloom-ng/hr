@@ -28,7 +28,11 @@ class Projects extends MY_Controller
         } else {
             // Regular staff - show projects from their department
             $staff = $this->Staff_model->select_staff_byID($this->staff_id);
-            $data['projects'] = $this->Project_model->get_by_department($staff[0]['department_id']);
+            if ($staff && !empty($staff)) {
+                $data['projects'] = $this->Project_model->get_by_department($staff[0]['department_id']);
+            } else {
+                $data['projects'] = [];
+            }
         }
 
         $data['title'] = 'Projects';
@@ -47,10 +51,15 @@ class Projects extends MY_Controller
 
         // Check permissions
         $staff = $this->Staff_model->select_staff_byID($this->staff_id);
-        $staff = $staff[0]; // Get first result
         $is_manager = ($project->manager_id == $this->staff_id);
-        $is_same_department = ($project->department_id == $staff['department_id']);
+        $is_same_department = false;
         $user_role = $this->session->userdata('role');
+
+        // Only check department if user is a staff member (not super/hrm)
+        if (!in_array($user_role, ['super', 'hrm']) && $staff && !empty($staff)) {
+            $staff = $staff[0]; // Get first result
+            $is_same_department = ($project->department_id == $staff['department_id']);
+        }
 
         // Allow admin, HR, manager of the project, or HOD of the department
         if ($user_role !== 'super' && $user_role !== 'hrm' && !$is_manager && !$is_same_department) {
@@ -151,9 +160,14 @@ class Projects extends MY_Controller
 
         // Check if user has permission to view this project
         $staff = $this->Staff_model->select_staff_byID($this->staff_id);
-        $staff = $staff[0]; // Get first result
         $is_manager = ($project->manager_id == $this->staff_id);
-        $is_same_department = ($project->department_id == $staff['department_id']);
+        $is_same_department = false;
+
+        // Only check department if user is a staff member (not super/hrm)
+        if (!in_array($this->role, ['super', 'hrm']) && $staff && !empty($staff)) {
+            $staff = $staff[0]; // Get first result
+            $is_same_department = ($project->department_id == $staff['department_id']);
+        }
 
         if (!in_array($this->role, ['super', 'hrm']) && !$is_manager && !$is_same_department) {
             $this->session->set_flashdata('error', 'You do not have permission to view this project');
