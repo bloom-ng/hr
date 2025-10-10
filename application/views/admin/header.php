@@ -311,6 +311,20 @@
           <?php endif; ?>
 
           <?php if (in_array($this->session->userdata('role'), ["hrm", "super"])) : ?>
+            <!-- Projects Management -->
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-tasks"></i> <span>Projects</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?php echo site_url('projects'); ?>"><i class="fa fa-circle-o"></i> All Projects</a></li>
+                <li><a href="<?php echo site_url('projects/create'); ?>"><i class="fa fa-plus-circle"></i> Create Project</a></li>
+              </ul>
+            </li>
+
             <!-- Equipment Management -->
             <li class="treeview">
               <a href="#">
@@ -530,6 +544,19 @@
               <ul class="treeview-menu">
                 <li><a href="<?php echo base_url(); ?>equipment/requestEquipment"><i class="fa fa-circle-o"></i> Request Equipment</a></li>
                 <li><a href="<?php echo base_url(); ?>equipment/myRequests"><i class="fa fa-circle-o"></i> My Requests</a></li>
+              </ul>
+            </li>
+
+            <!-- Projects Menu for Staff -->
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-tasks"></i> <span>My Projects</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?php echo base_url('projects'); ?>"><i class="fa fa-circle-o"></i> View My Projects</a></li>
               </ul>
             </li>
 

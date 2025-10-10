@@ -140,6 +140,18 @@
             </ul>
           </li>
 
+          <!-- Projects Menu for Staff -->
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-tasks"></i> <span>My Projects</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="<?php echo base_url('projects'); ?>"><i class="fa fa-circle-o"></i> View My Projects</a></li>
+            </ul>
+          </li>
 
         </ul>
       </section>

@@ -127,6 +127,14 @@ $route['unapproved-appraisal'] = 'appraisal/unapproved_appraisal';
 $route['check-appraisal/(:num)'] = 'appraisal/check_appraisal/$1';
 $route['view-appraisal/(:num)'] = 'appraisal/view_appraisal/$1';
 
+// Project routes
+$route['projects'] = 'projects';
+$route['projects/create'] = 'projects/create';
+$route['projects/edit/(:num)'] = 'projects/edit/$1';
+$route['projects/view/(:num)'] = 'projects/view/$1';
+$route['projects/delete/(:num)'] = 'projects/delete/$1';
+$route['projects/approve/(:num)'] = 'projects/approve/$1';
+
 //Bonus route
 $route['bonus-staff'] = 'bonus/index';
 $route['bonus/insert'] = 'bonus/insert';

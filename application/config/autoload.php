@@ -155,5 +155,6 @@ $autoload['model'] = array(
     'Studio_Income_model',
     'PushToken_model',
     'Equipment_model',
-    'Equipment_log_model'
+    'Equipment_log_model',
+    'Project_model',
 );

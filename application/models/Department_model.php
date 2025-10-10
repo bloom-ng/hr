@@ -48,9 +48,18 @@ class Department_model extends CI_Model {
         $this->db->affected_rows();
     }
 
-    
+    function is_head_of_department($staff_id) {
+        $this->db->where('staff_id', $staff_id);
+        $query = $this->db->get('department_tbl');
+        return $query->num_rows() > 0;
+    }
 
-
-
+    public function get_department_name($department_id) {
+        $this->db->select('department_name');
+        $this->db->where('id', $department_id);
+        $query = $this->db->get('department_tbl');
+        $result = $query->row_array();
+        return $result ? $result['department_name'] : 'N/A';
+    }
 
 }
