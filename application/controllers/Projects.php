@@ -114,10 +114,13 @@ class Projects extends MY_Controller
                 if (in_array($this->role, ['super', 'hrm'])) {
                     $updatable_fields[] = 'status';
                     $updatable_fields[] = 'department_id';
+                } else {
+                    // For non-admin users, preserve the current status
+                    $update_data['status'] = $project->status;
                 }
 
                 // Only finance can update payment status and receipt ID
-                if ($this->role === 'finance') {
+                if (in_array($this->role, ['super', 'finance'])) {
                     $updatable_fields[] = 'payment_status';
                     $updatable_fields[] = 'receipt_id';
                 }
@@ -421,15 +424,15 @@ class Projects extends MY_Controller
         $this->load->model('Project_model');
 
         // Use the model's validate_receipt method
-        $is_valid = $this->Project_model->validate_receipt($receipt_id);
+        $response = $this->Project_model->validate_receipt($receipt_id);
 
-        if ($is_valid) {
+        if ($response) {
             echo json_encode([
                 'success' => true,
                 'message' => 'Receipt validated successfully',
                 'data' => [
-                    'receipt_id' => $receipt_id,
-                    'validated_at' => date('Y-m-d H:i:s')
+                    'receipt_id' => $response['data']['receipt_id'],
+                    'validated_at' => date('Y-m-d H:i:s'),
                 ]
             ]);
         } else {

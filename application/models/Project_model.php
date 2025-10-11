@@ -54,7 +54,7 @@ class Project_model extends CI_Model
 
         // Only finance can update payment status and receipt ID
         $user_role = $this->session->userdata('role');
-        if ($user_role !== 'finance') {
+        if (!in_array($user_role, ['super', 'finance'])) {
             unset($data['payment_status']);
             unset($data['receipt_id']);
         }
@@ -222,6 +222,7 @@ class Project_model extends CI_Model
         // Parse JSON response
         $result = json_decode($response, true);
 
+
         if (json_last_error() !== JSON_ERROR_NONE) {
             log_message('error', 'Receipt validation API returned invalid JSON');
             return false;
@@ -231,7 +232,8 @@ class Project_model extends CI_Model
         if (isset($result['status']) && $result['status'] === 'success' && isset($result['data'])) {
             // Log successful validation for audit purposes
             log_message('info', 'Receipt validated successfully: ' . $receipt_id);
-            return true;
+
+            return $result;
         }
 
         // Log failure reason

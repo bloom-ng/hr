@@ -74,7 +74,15 @@ $user_role = $this->session->userdata('role');
                         <select name="department_id" id="department_id" class="form-control bg-[#3E3E3E] border border-[#555] text-white" required>
                             <option value="">Select Department</option>
                             <?php foreach ($departments as $dept): ?>
-                                <option value="<?= $dept['id'] ?>" <?= ($dept['id'] == $staff_department) ? 'selected' : '' ?>>
+                                <?php
+                                $selected = false;
+                                if ($is_edit && isset($project->department_id)) {
+                                    $selected = ($dept['id'] == $project->department_id);
+                                } elseif (!$is_edit && $dept['id'] == $staff_department) {
+                                    $selected = true;
+                                }
+                                ?>
+                                <option value="<?= $dept['id'] ?>" <?= $selected ? 'selected' : '' ?>>
                                     <?= html_escape($dept['department_name']) ?>
                                 </option>
                             <?php endforeach; ?>
@@ -241,6 +249,7 @@ $user_role = $this->session->userdata('role');
                             <?php
                             $statuses = [
                                 'pending' => 'Pending',
+                                'approved' => 'Approved',
                                 'in_progress' => 'In Progress',
                                 'on_hold' => 'On Hold',
                                 'completed' => 'Completed',
@@ -427,7 +436,7 @@ $user_role = $this->session->userdata('role');
                     $('#validate_receipt_btn').text('Validated').removeClass('btn-outline-warning').addClass('btn-outline-success');
 
                     // Store receipt data for invoice viewing
-                    window.validatedReceiptId = receiptId;
+                    window.validatedReceiptId = response.data.receipt_id;
                     window.validatedReceiptData = response.data;
                 } else {
                     $('#receipt_error').show();
