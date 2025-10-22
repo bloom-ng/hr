@@ -135,6 +135,14 @@ $route['projects/view/(:num)'] = 'projects/view/$1';
 $route['projects/delete/(:num)'] = 'projects/delete/$1';
 $route['projects/approve/(:num)'] = 'projects/approve/$1';
 
+// Fund Request routes
+$route['fund-requests'] = 'FundRequest/index';
+$route['fund-requests/create'] = 'FundRequest/create';
+$route['fund-requests/view/(:num)'] = 'FundRequest/view/$1';
+$route['fund-requests/approve/(:num)'] = 'FundRequest/approve/$1';
+$route['fund-requests/decline/(:num)'] = 'FundRequest/decline/$1';
+$route['fund-requests/update-payment/(:num)'] = 'FundRequest/update_payment/$1';
+
 //Bonus route
 $route['bonus-staff'] = 'bonus/index';
 $route['bonus/insert'] = 'bonus/insert';

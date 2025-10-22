@@ -140,7 +140,7 @@ class Project_model extends CI_Model
                     if (!empty($staff_member['email'])) {
                         $this->email->clear();
                         $this->email->to($staff_member['email']);
-                        $this->email->from('noreply@bloom.com', 'Bloom HR');
+                        $this->email->from('support@bloomdigitmedia.com', 'Bloom HR');
                         $this->email->subject($subject);
                         $this->email->message($message);
                         $this->email->send();
@@ -160,7 +160,7 @@ class Project_model extends CI_Model
                         if (!empty($staff)) {
                             $this->email->clear();
                             $this->email->to($staff[0]['email']);
-                            $this->email->from('noreply@bloom.com', 'Bloom HR');
+                            $this->email->from('support@bloomdigitmedia.com', 'Bloom HR');
                             $this->email->subject($subject);
                             $this->email->message($message);
                             $this->email->send();

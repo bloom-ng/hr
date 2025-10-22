@@ -157,4 +157,5 @@ $autoload['model'] = array(
     'Equipment_model',
     'Equipment_log_model',
     'Project_model',
+    'Fund_request_model',
 );
