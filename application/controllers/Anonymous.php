@@ -59,6 +59,8 @@ class Anonymous extends CI_Controller
     public function view($id)
     {
         $data['anonymous'] = $this->Anonymous_model->get($id)[0];
+        $data['next_id'] = $this->Anonymous_model->getNext($id);
+        $data['prev_id'] = $this->Anonymous_model->getPrevious($id);
 
         $this->load->view('admin/header');
         $this->load->view('admin/view-anonymous', $data);

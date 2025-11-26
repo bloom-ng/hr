@@ -34,6 +34,20 @@
                         </div>
                     </div>
                     <!-- /.box-body -->
+                    <div class="box-footer">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <?php if (isset($prev_id) && $prev_id): ?>
+                                    <a href="<?php echo base_url('anonymous/view/' . $prev_id); ?>" class="btn btn-primary">Previous</a>
+                                <?php endif; ?>
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <?php if (isset($next_id) && $next_id): ?>
+                                    <a href="<?php echo base_url('anonymous/view/' . $next_id); ?>" class="btn btn-primary">Next</a>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- /.box -->
             </div>

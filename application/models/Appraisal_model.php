@@ -32,6 +32,7 @@ class Appraisal_model extends CI_Model {
 	public function list_appraisals($user_id)
 	{
 		$this->db->where('staff_id', $user_id);
+		$this->db->order_by('id', 'DESC');
 		$qry = $this->db->get('appraisal_tbl');
 		if($qry->num_rows()>0)
 		{
@@ -59,6 +60,7 @@ class Appraisal_model extends CI_Model {
 			$this->db->where($key, $value);
 		}
 //		$this->db->where('id', $id);
+		$this->db->order_by('id', 'DESC');
 		$qry = $this->db->get('appraisal_tbl');
 		if($qry->num_rows()>0)
 		{

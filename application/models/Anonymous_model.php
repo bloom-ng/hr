@@ -35,6 +35,7 @@ class Anonymous_model extends CI_Model
             }
             $this->db->where($key, $value);
         }
+        $this->db->order_by('id', 'DESC');
         $qry = $this->db->get($this->table);
         if ($qry->num_rows() > 0) {
             return $qry->result_array();
@@ -43,6 +44,7 @@ class Anonymous_model extends CI_Model
 
     public function getAll()
     {
+        $this->db->order_by('id', 'DESC');
         $qry = $this->db->get($this->table);
         if ($qry->num_rows() > 0) {
             return $qry->result_array();
@@ -101,5 +103,28 @@ class Anonymous_model extends CI_Model
         } else {
             return [];
         }
+    }
+    public function getNext($id)
+    {
+        $this->db->where('id <', $id);
+        $this->db->order_by('id', 'DESC');
+        $this->db->limit(1);
+        $qry = $this->db->get($this->table);
+        if ($qry->num_rows() > 0) {
+            return $qry->row()->id;
+        }
+        return null;
+    }
+
+    public function getPrevious($id)
+    {
+        $this->db->where('id >', $id);
+        $this->db->order_by('id', 'ASC');
+        $this->db->limit(1);
+        $qry = $this->db->get($this->table);
+        if ($qry->num_rows() > 0) {
+            return $qry->row()->id;
+        }
+        return null;
     }
 }

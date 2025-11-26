@@ -50,6 +50,7 @@ class Hod_Report_model extends CI_Model
             }
             $this->db->where($key, $value);
         }
+        $this->db->order_by('id', 'DESC');
         $qry = $this->db->get($this->table);
         if ($qry->num_rows() > 0) {
             return $qry->result_array();
@@ -58,6 +59,7 @@ class Hod_Report_model extends CI_Model
 
     public function getAll()
     {
+        $this->db->order_by('id', 'DESC');
         $qry = $this->db->get($this->table);
         if ($qry->num_rows() > 0) {
             return $qry->result_array();

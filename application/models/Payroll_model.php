@@ -95,7 +95,7 @@ class Payroll_model extends CI_Model {
 
     public function getPayrollPeriods() {
 		$query = $this->db->query("
-            SELECT DISTINCT period FROM `{$this->table}`
+            SELECT DISTINCT period FROM `{$this->table}` ORDER BY MAX(id) DESC
         ");
 
 		if ($query->num_rows() > 0) {

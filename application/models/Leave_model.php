@@ -55,6 +55,7 @@ class Leave_model extends CI_Model {
 
     function select_leave_forApprove()
     {
+        $this->db->order_by('leave_tbl.id', 'DESC');
         $this->db->where('leave_tbl.status',0);
         $this->db->select("leave_tbl.*,staff_tbl.pic,staff_tbl.staff_name,staff_tbl.mobile,staff_tbl.email,department_tbl.department_name");
         $this->db->from("leave_tbl");
