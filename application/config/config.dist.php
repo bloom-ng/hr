@@ -540,3 +540,5 @@ $config['newline'] = "";
 */
 $config['jwt_secret_key'] = '';
 $config['jwt_token_header'] = '';
+
+$config['groq_api_key'] = '';
