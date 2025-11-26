@@ -187,6 +187,13 @@ $route['payroll/generate'] = 'payroll/generate';
 $route['payroll/manage/(:any)'] = 'payroll/manage/$1';
 $route['payroll/update'] = 'payroll/update';
 
+// Payslip Routes
+$route['payslip'] = 'payslip/index';
+$route['payslip/generate/(:any)'] = 'payslip/generate/$1';
+$route['payslip/manage/(:any)'] = 'payslip/manage/$1';
+$route['payslip/view/(:num)'] = 'payslip/view/$1';
+$route['my-payslips'] = 'payslip/my_payslips';
+
 //Report route
 $route['manage-report'] = 'report/manage';
 $route['add-report/(:num)'] = 'report/add/$1';

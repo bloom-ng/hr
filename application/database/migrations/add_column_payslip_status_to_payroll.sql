@@ -1,0 +1,1 @@
+ALTER TABLE `payroll` ADD COLUMN `payslip_status` INT(1) DEFAULT 0 AFTER `remark`;

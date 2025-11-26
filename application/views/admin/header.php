@@ -240,6 +240,7 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="<?php echo base_url(); ?>payroll"><i class="fa fa-circle-o"></i>Payroll Management</a></li>
+                <li><a href="<?php echo base_url(); ?>payslip"><i class="fa fa-circle-o"></i>Payslip Management</a></li>
                 <li><a href="<?php echo base_url(); ?>staff/accounts"><i class="fa fa-circle-o"></i>Staff Accounts</a></li>
               </ul>
             </li>
@@ -506,6 +507,7 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="<?php echo base_url(); ?>view-salary"><i class="fa fa-circle-o"></i> View Salary</a></li>
+                <li><a href="<?php echo base_url(); ?>my-payslips"><i class="fa fa-circle-o"></i> My Payslips</a></li>
               </ul>
             </li>
 
