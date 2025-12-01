@@ -1,13 +1,15 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Payroll_model extends CI_Model {
+class Payroll_model extends CI_Model
+{
 
     public $table = "payroll";
     public $fields = [
-        "id", "staff"
+        "id",
+        "staff"
     ];
-  
+
 
     public function insert($data)
     {
@@ -17,10 +19,9 @@ class Payroll_model extends CI_Model {
 
     public function get($id)
     {
-        $this->db->where('id',$id);
+        $this->db->where('id', $id);
         $qry = $this->db->get($this->table);
-        if($qry->num_rows()>0)
-        {
+        if ($qry->num_rows() > 0) {
             return $qry->result_array();
         }
     }
@@ -35,8 +36,7 @@ class Payroll_model extends CI_Model {
             $this->db->where($key, $value);
         }
         $qry = $this->db->get($this->table);
-        if($qry->num_rows()>0)
-        {
+        if ($qry->num_rows() > 0) {
             return $qry->result_array();
         }
     }
@@ -44,8 +44,7 @@ class Payroll_model extends CI_Model {
     public function getAll()
     {
         $qry = $this->db->get($this->table);
-        if($qry->num_rows()>0)
-        {
+        if ($qry->num_rows() > 0) {
             return $qry->result_array();
         }
     }
@@ -72,7 +71,7 @@ class Payroll_model extends CI_Model {
         $this->db->affected_rows();
     }
 
-    
+
     public function update($data, $id)
     {
         $this->db->where('id', $id);
@@ -93,33 +92,27 @@ class Payroll_model extends CI_Model {
         $this->db->affected_rows();
     }
 
-    public function getPayrollPeriods() {
-		$query = $this->db->query("
-            SELECT DISTINCT period FROM `{$this->table}` ORDER BY MAX(id) DESC
+    public function getPayrollPeriods()
+    {
+        $query = $this->db->query("
+            SELECT DISTINCT period FROM `{$this->table}` ORDER BY DESC
         ");
 
-		if ($query->num_rows() > 0) {
-			return $query->result_array();
-		} else {
-			return [];
-		}
-	}
+        if ($query->num_rows() > 0) {
+            return $query->result_array();
+        } else {
+            return [];
+        }
+    }
 
-    public function getRaw($sql) {
-		$query = $this->db->query($sql);
+    public function getRaw($sql)
+    {
+        $query = $this->db->query($sql);
 
-		if ($query->num_rows() > 0) {
-			return $query->result_array();
-		} else {
-			return [];
-		}
-	}
-
-  
-
-    
-
-
-
-
+        if ($query->num_rows() > 0) {
+            return $query->result_array();
+        } else {
+            return [];
+        }
+    }
 }
