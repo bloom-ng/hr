@@ -51,6 +51,7 @@
                   <th>Department</th>
                   <th>Staff</th>
                   <th>Amount</th>
+                  <th>Approved Amount</th>
                   <th>Status</th>
                   <th>Payment</th>
                   <th>Created</th>
@@ -67,6 +68,7 @@
                         <?php $staff = $this->Staff_model->select_staff_byID($req['staff_id']); echo !empty($staff) ? html_escape($staff[0]['staff_name']) : 'N/A'; ?>
                       </td>
                       <td>₦<?= number_format($req['amount'], 2); ?></td>
+                      <td>₦<?= number_format($req['approved_amount'], 2); ?></td> 
                       <td>
                         <span class="px-4 py-2 font-semibold rounded-full <?= $req['status']==='Approved' ? 'bg-green-500' : ($req['status']==='Pending' ? 'bg-yellow-500' : 'bg-red-500'); ?>">
                           <?= html_escape($req['status']); ?>

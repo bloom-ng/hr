@@ -70,7 +70,8 @@ class FundRequest extends MY_Controller
                     'amount' => $this->input->post('amount', TRUE),
                     'message' => $this->input->post('message', TRUE),
                     'status' => 'Pending',
-                    'payment_status' => 'Pending'
+                    'payment_status' => 'Pending',
+                    'approved_amount' => $this->input->post('amount', TRUE) // Default to requested amount
                 ];
 
                 $id = $this->Fund_request_model->create($data);
@@ -109,7 +110,21 @@ class FundRequest extends MY_Controller
             show_404();
         }
 
-        $this->Fund_request_model->update_status($id, 'Approved');
+        if ($req['status'] === 'Approved') {
+            $this->session->set_flashdata('error', 'Request already approved and cannot be modified.');
+            redirect('fund-requests/view/' . $id);
+        }
+
+        $approved_amount = $this->input->post('approved_amount');
+        if (!$approved_amount || $approved_amount <= 0) {
+            // Fallback to original amount if not provided or invalid (though UI should enforce)
+             $approved_amount = $req['amount'];
+        }
+
+        $this->Fund_request_model->update($id, [
+            'status' => 'Approved',
+            'approved_amount' => $approved_amount
+        ]);
 
         // Notify finance
         $this->notify_roles(['finance'], 'Fund Request Approved', 'A fund request was approved and requires payment update.', [

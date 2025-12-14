@@ -55,6 +55,12 @@
                     <td class="text-[#DA7F00] font-weight-bold">Amount:</td>
                     <td>₦<?= number_format($request['amount'], 2); ?></td>
                   </tr>
+                  <?php if (!empty($request['approved_amount'])): ?>
+                  <tr>
+                    <td class="text-[#DA7F00] font-weight-bold">Approved Amount:</td>
+                    <td>₦<?= number_format($request['approved_amount'], 2); ?></td>
+                  </tr>
+                  <?php endif; ?>
                   <tr>
                     <td class="text-[#DA7F00] font-weight-bold">Status:</td>
                     <td>
@@ -94,9 +100,17 @@
           <div class="box-body">
             <?php $role = $this->session->userdata('role'); ?>
             <?php if ($role === 'super' && $request['status'] === 'Pending'): ?>
-              <a href="<?= base_url('fund-requests/approve/'.$request['id']); ?>" class="btn btn-success btn-block mb-3" onclick="return confirm('Approve this request?')">
-                <i class="fa fa-check"></i> Approve Request
-              </a>
+              <form method="post" action="<?= base_url('fund-requests/approve/'.$request['id']); ?>">
+                <div class="form-group">
+                  <label for="approved_amount" class="text-white">Approved Amount</label>
+                  <input type="number" step="0.01" min="0" name="approved_amount" id="approved_amount" 
+                         class="form-control bg-[#3E3E3E] border border-[#555] text-white" 
+                         value="<?= $request['amount']; ?>" required>
+                </div>
+                <button type="submit" class="btn btn-success btn-block mb-3" onclick="return confirm('Approve this request?')">
+                    <i class="fa fa-check"></i> Approve Request
+                </button>
+              </form>
               <a href="<?= base_url('fund-requests/decline/'.$request['id']); ?>" class="btn btn-danger btn-block mb-3" onclick="return confirm('Decline this request?')">
                 <i class="fa fa-times"></i> Decline Request
               </a>
