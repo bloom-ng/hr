@@ -13,7 +13,9 @@
 	"require": {
 		"php": ">=5.3.7",
 		"firebase/php-jwt": "^6.10",
-		"ctwillie/expo-server-sdk-php": "^2.1"
+		"ctwillie/expo-server-sdk-php": "^2.1",
+		"phpoffice/phpword": "^1.4",
+		"smalot/pdfparser": "^2.12"
 	},
 	"suggest": {
 		"paragonie/random_compat": "Provides better randomness in PHP 5.x"

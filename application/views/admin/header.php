@@ -134,6 +134,9 @@
               <li><a target="_blank" href="https://inventory.bloomdigitmedia.com"><i class="fa fa-circle-o"></i>Asset Management</a></li>
               <li><a target="_blank" href="https://ticket.bloomdigitmedia.com"><i class="fa fa-circle-o"></i>Support/Ticket</a></li>
               <li><a href="<?php echo base_url('ai-smm'); ?>"><i class="fa fa-circle-o"></i>AI-SMM</a></li>
+              <!-- NEW AI TOOLS -->
+              <li><a href="<?php echo base_url('attendance_ai'); ?>"><i class="fa fa-clock-o"></i> Attendance AI</a></li>
+              <li><a href="<?php echo base_url('proposal_ai'); ?>"><i class="fa fa-file-text-o"></i> Proposal AI</a></li>
             </ul>
           </li>
 
