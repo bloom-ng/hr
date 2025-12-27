@@ -58,6 +58,8 @@ class Payroll extends CI_Controller {
 				$commission = $this->Commission_model->userCommission($staff['id']);
 				$unpaidFine = $this->Deduction_model->userUnpaidFines($staff['id']);
 
+                $medical_allowance = 5544;
+
                 $payrollData = [
                     'staff_id'      => $staff['id'],
                     'period'        => $period,
@@ -66,7 +68,7 @@ class Payroll extends CI_Controller {
                     'transport'     => 0,
                     'utility'       => 0,
                     'wardrobe'      => 0,
-                    'medical'       => 5544,
+                    'medical'       => $medical_allowance,
                     'meal_subsidy'  => 0,
 
                     'addition_advance_salary'  => 0,
@@ -77,7 +79,7 @@ class Payroll extends CI_Controller {
                     'deduction_advance_salary'  => 0,
                     'deduction_loans'  => 0,
                     'deduction_commission'  => 0,
-                    'deduction_others'  => 0 + $unpaidFine,
+                    'deduction_others'  => 0 + $unpaidFine + $medical_allowance,
 
                     'date'              => date("Y-m-d"),
                     'remark'            => ""
