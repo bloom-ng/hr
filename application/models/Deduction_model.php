@@ -89,4 +89,10 @@ class Deduction_model extends CI_Model {
     }
 
 
+    public function mark_all_paid()
+    {
+        $this->db->where('status', self::DEDUCTION_PENDING);
+        $this->db->update($this->table, ['status' => self::DEDUCTION_PAID]);
+        return $this->db->affected_rows();
+    }
 }

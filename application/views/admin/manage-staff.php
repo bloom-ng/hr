@@ -38,6 +38,9 @@
         <div class="box border-t-10 border-[#DA7F00] bg-[#2C2C2C]">
           <div class="box-header">
             <h3 class="box-title text-white">Manage Staff</h3>
+            <div class="box-tools pull-right">
+              <a href="<?php echo base_url(); ?>deduction/pay_all" class="btn btn-success btn-flat" onclick="return confirm('Are you sure you want to pay all deductions?');">Pay All Deductions</a>
+            </div>
           </div>
           <!-- /.box-header -->
           <div class="box-body">

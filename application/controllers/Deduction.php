@@ -127,8 +127,12 @@ class Deduction extends CI_Controller {
         redirect($_SERVER['HTTP_REFERER']);
     }
 
-    
 
-
+    public function pay_all()
+    {
+        $this->Deduction_model->mark_all_paid();
+        $this->session->set_flashdata('success', "All deductions marked as paid.");
+        redirect($_SERVER['HTTP_REFERER']);
+    }
 
 }
