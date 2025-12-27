@@ -40,7 +40,7 @@
         From
         <address>
           <strong>Bloom Digital Media Ltd.</strong><br>
-          S03 Pathfield Mall, <br>
+          Plot 91A, 43 Crescent, Gwarinpa Estate, <br>
           4th Avenue, Gwarimpa, <br>
           Abuja.<br>
           Email: info@bloomdigitmedia.com
