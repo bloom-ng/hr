@@ -325,6 +325,18 @@
                 <li><a href="<?php echo base_url(); ?>fund-requests"><i class="fa fa-circle-o"></i> Manage Fund Requests</a></li>
               </ul>
             </li>
+
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-money"></i> <span>Department Budget</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?php echo base_url(); ?>budget"><i class="fa fa-circle-o"></i> Manage Budgets</a></li>
+              </ul>
+            </li>
             
             <!-- <li class="treeview">
               <a href="#">
@@ -600,6 +612,18 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="<?php echo base_url(); ?>fund-requests"><i class="fa fa-circle-o"></i> Fund Requests</a></li>
+              </ul>
+            </li>
+
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-money"></i> <span>Department Budget</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                  <li><a href="<?php echo base_url(); ?>budget"><i class="fa fa-circle-o"></i> View Budget</a></li>
               </ul>
             </li>
 
