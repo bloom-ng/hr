@@ -205,8 +205,13 @@
             </a>
             <ul class="treeview-menu">
               <li><a href="<?php echo base_url(); ?>manage-appraisal"><i class="fa fa-circle-o"></i>Manage Appraisal</a></li>
+              
+              <!-- 2026 Appraisal System -->
+              <li><a href="<?php echo base_url('appraisal_new/manage'); ?>"><i class="fa fa-circle-o"></i>Manage Appraisal (2026)</a></li>
+              
               <?php if (in_array($this->session->userdata('role'), (array)"staff")) : ?>
                 <li><a href="<?php echo base_url(); ?>my-appraisal"><i class="fa fa-circle-o"></i> My Appraisal</a></li>
+                 <li><a href="<?php echo base_url('appraisal_new/my_appraisals'); ?>"><i class="fa fa-circle-o"></i> My Appraisal (2026)</a></li>
               <?php endif; ?>
               <?php if (in_array($this->session->userdata('role'), ["hrm", "super"])) : ?>
                 <li><a href="<?php echo base_url(); ?>approved-appraisal"><i class="fa fa-circle-o"></i> Approved Appraisal</a></li>
