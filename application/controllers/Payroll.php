@@ -57,6 +57,13 @@ class Payroll extends CI_Controller {
                 $bonus = $this->Bonus_model->userBonus($staff['id']);
 				$commission = $this->Commission_model->userCommission($staff['id']);
 				$unpaidFine = $this->Deduction_model->userUnpaidFines($staff['id']);
+                $clothing_allowance = 0;
+
+                if($this->Department_model->is_head_of_department($staff['id'])){
+                    $clothing_allowance = 16667;
+                } else {
+                    $clothing_allowance = 12500;
+                }
 
                 $medical_allowance = 5544;
 
@@ -67,7 +74,7 @@ class Payroll extends CI_Controller {
                     'housing'       => 0,
                     'transport'     => 0,
                     'utility'       => 0,
-                    'wardrobe'      => 0,
+                    'wardrobe'      => $clothing_allowance,
                     'medical'       => $medical_allowance,
                     'meal_subsidy'  => 0,
 
@@ -79,7 +86,7 @@ class Payroll extends CI_Controller {
                     'deduction_advance_salary'  => 0,
                     'deduction_loans'  => 0,
                     'deduction_commission'  => 0,
-                    'deduction_others'  => 0 + $unpaidFine + $medical_allowance,
+                    'deduction_others'  => 0 + $unpaidFine + $medical_allowance + $clothing_allowance,
 
                     'date'              => date("Y-m-d"),
                     'remark'            => ""
