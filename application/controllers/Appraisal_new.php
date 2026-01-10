@@ -51,7 +51,7 @@ class Appraisal_new extends CI_Controller
     // Helper to check HOD status logic from existing controller
     private function check_is_hod() {
         $departments = $this->Department_model->select_departments();
-        $loggedInUserId = $this->session->userdata('userid');
+        $loggedInUserId = $this->session->userdata('staff_id');
         if (isset($departments)) {
             foreach ($departments as $department) {
                 if ($loggedInUserId == $department['staff_id']) {
@@ -215,7 +215,7 @@ class Appraisal_new extends CI_Controller
         $this->session->set_flashdata('success', 'Appraisal submitted to HR.');
         
         // Redirect back to list
-        if(in_array($this->session->userdata('role'), ['hod', 'admin'])) {
+        if($this->check_is_hod()) {
              redirect('appraisal_new/list_staff_appraisals/'.$appraisal['staff_id']);
         } else {
              redirect('appraisal_new/manage');
@@ -235,7 +235,7 @@ class Appraisal_new extends CI_Controller
         $this->load->view('admin/header');
 
         // Logic to determine which view to load
-        $current_user_id = $this->session->userdata('userid');
+        $current_user_id = $this->session->userdata('staff_id');
         if ($current_user_id == $data['appraisal']['staff_id']) {
              $this->load->view('admin/appraisal_new/user_view', $data);
         } else {
@@ -267,7 +267,7 @@ class Appraisal_new extends CI_Controller
         if (strpos($_SERVER['HTTP_REFERER'], 'view') !== false) {
              redirect('appraisal_new/view/'.$id);
         } else {
-             redirect('appraisal_new/manage');
+             redirect('appraisal_new/unapproved_appraisal');
         }
     }
 
@@ -297,13 +297,13 @@ class Appraisal_new extends CI_Controller
          if (strpos($_SERVER['HTTP_REFERER'], 'view') !== false) {
              redirect('appraisal_new/view/'.$id);
         } else {
-             redirect('appraisal_new/manage');
+             redirect('appraisal_new/unapproved_appraisal');
         }
     }
 
     public function my_appraisals()
     {
-        $staff_id = $this->session->userdata('staff_id'); // Assuming userid maps to staff_id
+        $staff_id = $this->session->userdata('staff_id');
         // If retrieving by role 'staff', we pass the ID
         $data['appraisals'] = $this->Appraisal_new_model->getWhere(['staff_id' => $staff_id, "status IN ('hr_approved', 'staff_replied', 'final')"]);
         
@@ -350,7 +350,7 @@ class Appraisal_new extends CI_Controller
 
         if ($this->session->userdata('role') == 'staff') {
 			// Fetch the logged-in user's department ID
-			$loggedInUserId = $this->session->userdata('userid');
+			$loggedInUserId = $this->session->userdata('staff_id');
 			$loggedInUser = $this->Staff_model->select_staff_byID($loggedInUserId)[0];
 			$loggedInUserDepartmentId = $loggedInUser['department_id'];
 
@@ -371,10 +371,51 @@ class Appraisal_new extends CI_Controller
 
     public function unapproved_appraisal()
 	{
-		$data['appraisals'] = $this->Appraisal_new_model->getWhere(["status" => $this->Appraisal_new_model::APPRAISAL_STAFF_REPLIED]);
+        if(!in_array($this->session->userdata('role'), ["super", "hrm"])) {
+            $this->session->set_flashdata('error', 'Access denied.');
+            redirect('appraisal_new/manage');
+        }
+
+		if($this->session->userdata('role') == 'hrm') {
+            $data['appraisals'] = $this->Appraisal_new_model->getWhere(["status" => $this->Appraisal_new_model::APPRAISAL_PENDING]);
+        } else {
+            $data['appraisals'] = $this->Appraisal_new_model->getWhere(["status" => $this->Appraisal_new_model::APPRAISAL_STAFF_REPLIED]);
+        }
+
+        if(isset($data['appraisals'])) {
+            foreach($data['appraisals'] as $key => $appraisal) {
+                $data['appraisals'][$key]['department'] = $this->Department_model->get_department_name($appraisal['department_id']);
+                $data['appraisals'][$key]['name'] = $this->Staff_model->select_staff_byID($appraisal['staff_id'])[0]['staff_name'];
+            }
+        } else {
+            $data['appraisals'] = [];
+        }
 
 		$this->load->view('admin/header');
-		$this->load->view('admin/unapproved-appraisal', $data);
+		$this->load->view('admin/appraisal_new/unapproved', $data);
+		$this->load->view('admin/footer');
+	}
+
+    public function approved_appraisal()
+	{
+        if(!in_array($this->session->userdata('role'), ["super", "hrm"])) {
+            $this->session->set_flashdata('error', 'Access denied.');
+            redirect('appraisal_new/manage');
+        }
+
+        $data['appraisals'] = $this->Appraisal_new_model->getWhere(["status" => $this->Appraisal_new_model::APPRAISAL_FINAL]);
+        
+        if(isset($data['appraisals'])) {
+            foreach($data['appraisals'] as $key => $appraisal) {
+                $data['appraisals'][$key]['department'] = $this->Department_model->get_department_name($appraisal['department_id']);
+                $data['appraisals'][$key]['name'] = $this->Staff_model->select_staff_byID($appraisal['staff_id'])[0]['staff_name'];
+            }
+        } else {
+            $data['appraisals'] = [];
+        }
+
+		$this->load->view('admin/header');
+		$this->load->view('admin/appraisal_new/approved', $data);
 		$this->load->view('admin/footer');
 	}
 

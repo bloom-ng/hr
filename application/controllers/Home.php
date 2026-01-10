@@ -19,7 +19,7 @@ class Home extends CI_Controller
                 $data['staff'] = $this->Staff_model->select_staff();
                 $data['leave'] = $this->Leave_model->select_leave_forApprove();
                 $data['salary'] = $this->Salary_model->sum_salary();
-                $data['appraisal'] = $this->Appraisal_model->getWhere(['status' => Appraisal_model::APPRAISAL_REVIEW]);
+                $data['appraisal'] = $this->Appraisal_new_model->getWhere(['status' => Appraisal_new_model::APPRAISAL_STAFF_REPLIED]);
 
                 $this->load->view('admin/header');
                 $this->load->view('admin/dashboard', $data);
@@ -27,7 +27,7 @@ class Home extends CI_Controller
             } else {
                 $staff = $this->session->userdata('staff_id');
                 $data['leave'] = $this->Leave_model->select_leave_byStaffID($staff);
-                $data['appraisal'] = $this->Appraisal_model->getWhere(['staff_id' => $staff, 'status' => Appraisal_model::APPRAISAL_APPROVED]);
+                $data['appraisal'] = $this->Appraisal_new_model->getWhere(['staff_id' => $staff, 'status' => Appraisal_new_model::APPRAISAL_HR_APPROVED]);
                 $data['bonus'] = $this->Bonus_model->userBonus($staff);
                 $data['commission'] = $this->Commission_model->userCommission($staff);
                 $data['unpaidFine'] = $this->Deduction_model->userUnpaidFines($staff);

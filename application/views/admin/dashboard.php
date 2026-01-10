@@ -120,7 +120,7 @@
               <div class="icon">
                 <i class="ionicons ion-thumbsup"></i>
               </div>
-              <a href="<?php echo base_url(); ?>manage-appraisal" class="small-box-footer pull-right bg-[#D9D9D9] text-black px-16 py-2">More Info <i class="fa fa-arrow-circle-right"></i></a>
+              <a href="<?php echo base_url(); ?>Appraisal_new/unapproved_appraisal" class="small-box-footer pull-right bg-[#D9D9D9] text-black px-16 py-2">More Info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
         <?php endif; ?>
