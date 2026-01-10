@@ -10,6 +10,23 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
+                <?php if ($this->session->flashdata('success')) : ?>
+                    <div class="col-md-12">
+                        <div class="alert alert-success alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h4><i class="icon fa fa-check"></i> Success!</h4>
+                            <?php echo $this->session->flashdata('success'); ?>
+                        </div>
+                    </div>
+                <?php elseif ($this->session->flashdata('error')) : ?>
+                    <div class="col-md-12">
+                        <div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h4><i class="icon fa fa-check"></i> Failed!</h4>
+                            <?php echo $this->session->flashdata('error'); ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
                 <div class="col-md-12">
                      <div class="box border-t-10 border-[#DA7F00] bg-[#2C2C2C]">
                         <div class="box-header">
