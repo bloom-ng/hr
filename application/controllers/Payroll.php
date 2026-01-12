@@ -65,7 +65,7 @@ class Payroll extends CI_Controller {
                     $clothing_allowance = 12500;
                 }
 
-                $medical_allowance = 5544;
+                $medical_allowance = 50000;
 
                 $payrollData = [
                     'staff_id'      => $staff['id'],
