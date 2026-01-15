@@ -201,7 +201,7 @@
 
                             </div>
 
-                            <?php if($appraisal['status'] == 'hr_approved' && $appraisal['hr_remarks'] != ''): ?>
+                            <?php if($appraisal['status'] == 'hr_approved'): ?>
                                 <div class="card-footer px-4 py-2">
                                     <button type="submit" class="btn btn-success">Send for Approval</button>
                                 </div>
