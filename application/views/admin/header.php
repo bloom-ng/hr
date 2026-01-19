@@ -171,6 +171,23 @@
 
           <?php endif; ?>
 
+          <?php if ($this->session->userdata('staff_id') == 17) : ?>
+            <!-- Equipment Management -->
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-laptop"></i> <span>Equipment Management</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?php echo base_url(); ?>equipment"><i class="fa fa-circle-o"></i> Equipment List</a></li>
+                <li><a href="<?php echo base_url(); ?>equipment/pendingRequests"><i class="fa fa-circle-o"></i> Pending Requests</a></li>
+                <li><a href="<?php echo base_url(); ?>equipment/logs"><i class="fa fa-circle-o"></i> Logs</a></li>
+              </ul>
+            </li>
+          <?php endif; ?>
+
 
           <li class="treeview">
             <a href="#">
