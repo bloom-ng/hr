@@ -283,9 +283,9 @@ class Appraisal_new extends CI_Controller
     }
 
     public function super_approve($id) {
-         if ($this->session->userdata('role') != 'super') {
-             $this->session->set_flashdata('error', 'Access denied.');
-             redirect('appraisal_new/manage');
+        if (!in_array($this->session->userdata('role'), ["super", "hrm"])) {
+            $this->session->set_flashdata('error', 'Access denied.');
+            redirect('appraisal_new/manage');
         }
         
         $data = [
@@ -294,10 +294,10 @@ class Appraisal_new extends CI_Controller
         $this->Appraisal_new_model->update_appraisal($id, $data);
         $this->session->set_flashdata('success', 'Appraisal finalized.');
         
-         if (strpos($_SERVER['HTTP_REFERER'], 'view') !== false) {
-             redirect('appraisal_new/view/'.$id);
+        if (strpos($_SERVER['HTTP_REFERER'], 'view') !== false) {
+            redirect('appraisal_new/view/'.$id);
         } else {
-             redirect('appraisal_new/unapproved_appraisal');
+            redirect('appraisal_new/unapproved_appraisal');
         }
     }
 
