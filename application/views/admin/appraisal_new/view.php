@@ -222,7 +222,7 @@
                                 <?php if ($is_super_or_hr && $is_pending): ?>
                                     <button type="submit" class="btn btn-success">Approve</button>
                                 <?php endif; ?>
-                                <?php if ($is_super && $is_staff_replied): ?>
+                                <?php if ($is_super_or_hr && $is_staff_replied): ?>
                                     <button type="submit" class="btn btn-success">Finalize</button>
                                 <?php endif; ?>
                             </div>
