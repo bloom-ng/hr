@@ -320,7 +320,17 @@ class Appraisal_new extends CI_Controller
         }
 
         $data['departments'] = $this->Department_model->select_departments();
-        $data['staff_members'] = $this->Staff_model->get_all_staffs();
+        if ($this->session->userdata('role') == 'staff') {
+            $staff_id = $this->session->userdata('staff_id');
+            $staff = $this->Staff_model->select_staff_byID($staff_id);
+            if (!empty($staff)) {
+                $data['staff_members'] = $this->Staff_model->select_staff_byDept($staff[0]['department_id']);
+            } else {
+                $data['staff_members'] = [];
+            }
+        } else {
+            $data['staff_members'] = $this->Staff_model->get_all_staffs();
+        }
          
         // Helper for department names
         $dept_map = [];
