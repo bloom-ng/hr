@@ -117,8 +117,10 @@ class Budget extends CI_Controller {
 
     public function save_budget()
     {
-        if ($this->session->userdata('role') != 'super') {
-            redirect($_SERVER['HTTP_REFERER']);
+        if (!in_array($this->session->userdata('role'), ['super', 'finance'])) {
+            // Only finance can add spending logs? Request says "then finance can add spending logs"
+             $this->session->set_flashdata('error', "Only Finance can add expenses.");
+             redirect($_SERVER['HTTP_REFERER']);
         }
         
         $department_id = $this->input->post('department_id');
@@ -133,7 +135,7 @@ class Budget extends CI_Controller {
 
     public function add_expense()
     {
-        if ($this->session->userdata('role') != 'finance') {
+        if (!in_array($this->session->userdata('role'), ['super', 'finance'])) {
             // Only finance can add spending logs? Request says "then finance can add spending logs"
              $this->session->set_flashdata('error', "Only Finance can add expenses.");
              redirect($_SERVER['HTTP_REFERER']);
@@ -158,9 +160,9 @@ class Budget extends CI_Controller {
 
     public function update_status($id, $status)
     {
-        if ($this->session->userdata('role') != 'super') {
-             $this->session->set_flashdata('error', "Access Denied");
-             redirect($_SERVER['HTTP_REFERER']);
+        if (!in_array($this->session->userdata('role'), ['super', 'finance'])) {
+            $this->session->set_flashdata('error', "Access Denied");
+            redirect($_SERVER['HTTP_REFERER']);
         }
         
         if (in_array($status, ['approved', 'rejected'])) {

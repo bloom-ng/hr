@@ -47,7 +47,7 @@
                     <h3 class="text-<?php echo $color; ?>">Balance: <?php echo number_format($balance, 2); ?></h3>
                 </div>
                 
-                <?php if($role == 'super'): ?>
+                <?php if(in_array($role, ['finance', 'super'])): ?>
                 <div class="box-footer">
                     <form action="<?php echo base_url(); ?>budget/save_budget" method="post" class="bg-[#2C2C2C]">
                         <div class="input-group">
@@ -75,7 +75,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Title</label>
+                                    <label>Item</label>
                                     <input type="text" name="title" class="form-control" required>
                                 </div>
                             </div>
