@@ -289,6 +289,7 @@ class Appraisal_new extends CI_Controller
         }
         
         $data = [
+            'hr_remarks' => $this->input->post('hr_remarks'),
             'status' => Appraisal_new_model::APPRAISAL_FINAL
         ];
         $this->Appraisal_new_model->update_appraisal($id, $data);
@@ -387,7 +388,7 @@ class Appraisal_new extends CI_Controller
         }
 
 		if($this->session->userdata('role') == 'hrm') {
-            $data['appraisals'] = $this->Appraisal_new_model->getWhere(["status" => $this->Appraisal_new_model::APPRAISAL_PENDING]);
+            $data['appraisals'] = $this->Appraisal_new_model->getWhere(["status IN ('pending', 'staff_replied')"]);
         } else {
             $data['appraisals'] = $this->Appraisal_new_model->getWhere(["status" => $this->Appraisal_new_model::APPRAISAL_STAFF_REPLIED]);
         }
