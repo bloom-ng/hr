@@ -127,7 +127,7 @@
 
                                                     $is_manager = ($project->manager_id == $current_user_id);
                                                     $is_same_department = ($project->department_id == $current_user_department);
-                                                    $can_edit = in_array($current_user_role, ['super', 'hrm']) || $is_manager;
+                                                    $can_edit = in_array($current_user_role, ['super', 'hrm', 'finance']) || $is_manager;
 
                                                     if ($can_edit) : ?>
                                                         <!-- Edit Button -->
