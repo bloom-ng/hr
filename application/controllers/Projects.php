@@ -167,12 +167,12 @@ class Projects extends MY_Controller
         $is_same_department = false;
 
         // Only check department if user is a staff member (not super/hrm)
-        if (!in_array($this->role, ['super', 'hrm']) && $staff && !empty($staff)) {
+        if (!in_array($this->role, ['super', 'hrm', 'finance']) && $staff && !empty($staff)) {
             $staff = $staff[0]; // Get first result
             $is_same_department = ($project->department_id == $staff['department_id']);
         }
 
-        if (!in_array($this->role, ['super', 'hrm']) && !$is_manager && !$is_same_department) {
+        if (!in_array($this->role, ['super', 'hrm', 'finance']) && !$is_manager && !$is_same_department) {
             $this->session->set_flashdata('error', 'You do not have permission to view this project');
             redirect('projects');
         }
