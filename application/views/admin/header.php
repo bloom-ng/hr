@@ -669,15 +669,37 @@
 
 
 
+
+          <!-- Events Menu -->
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-calendar"></i> <span>Events</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="<?php echo base_url('events'); ?>"><i class="fa fa-circle-o"></i> Calendar View</a></li>
+              <?php if (in_array($this->session->userdata('role'), ["hrm", "finance", "super"])) : ?>
+                <li><a href="<?php echo base_url('events/manage'); ?>"><i class="fa fa-circle-o"></i> Manage Events</a></li>
+              <?php endif; ?>
+            </ul>
+          </li>
+          <!-- /.Events Menu -->
+
           <li class="active"><a href="<?php echo base_url(); ?>profile"><i class="fa fa-user"></i>
               <span>
                 Profile
               </span></a>
           </li>
-
-
-
-
+          
+          <li class=""><a href="<?php echo base_url(); ?>logout"><i class="fa fa-sign-out"></i>
+              <span>
+                Sign out
+              </span></a>
+          </li>
+          
+          
         </ul>
       </section>
       <!-- /.sidebar -->
