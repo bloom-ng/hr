@@ -62,7 +62,7 @@ class Projects extends MY_Controller
         }
 
         // Allow admin, HR, manager of the project, or HOD of the department
-        if ($user_role !== 'super' && $user_role !== 'hrm' && !$is_manager && !$is_same_department) {
+        if (!in_array($user_role, ['super', 'hrm', 'finance']) && !$is_manager && !$is_same_department) {
             $this->session->set_flashdata('error', 'You do not have permission to edit this project');
             redirect('projects');
         }
