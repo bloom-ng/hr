@@ -40,7 +40,7 @@
                             <?php
                             $user_role = $this->session->userdata('role');
                             $user_id = $this->session->userdata('userid');
-                            $is_admin = in_array($user_role, ['super', 'hrm']);
+                            $is_admin = in_array($user_role, ['super', 'hrm', 'finance']);
                             $is_hod = false;
 
                             // Check if user is HOD

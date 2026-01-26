@@ -43,7 +43,7 @@
                             $current_staff = $this->Staff_model->select_staff_byID($current_user_id);
                             $current_user_department = $current_staff ? $current_staff[0]['department_id'] : null;
                             $is_same_department = ($project->department_id == $current_user_department);
-                            $can_edit = in_array($current_user_role, ['super', 'hrm']) || $is_manager;
+                            $can_edit = in_array($current_user_role, ['super', 'hrm', 'finance']) || $is_manager;
 
                             if ($can_edit) : ?>
                                 <a href="<?= site_url('projects/edit/' . $project->id) ?>" class="btn btn-warning btn-sm">
