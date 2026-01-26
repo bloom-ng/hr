@@ -56,7 +56,7 @@ class Projects extends MY_Controller
         $user_role = $this->session->userdata('role');
 
         // Only check department if user is a staff member (not super/hrm)
-        if (!in_array($user_role, ['super', 'hrm']) && $staff && !empty($staff)) {
+        if (!in_array($user_role, ['super', 'hrm', 'finance']) && $staff && !empty($staff)) {
             $staff = $staff[0]; // Get first result
             $is_same_department = ($project->department_id == $staff['department_id']);
         }
@@ -68,7 +68,7 @@ class Projects extends MY_Controller
         }
 
         // Prepare data for the form
-        $is_admin = in_array($this->role, ['super', 'hrm']);
+        $is_admin = in_array($this->role, ['super', 'hrm', 'finance']);
         $data = [];
         $data['departments'] = $is_admin ? $this->Department_model->select_departments() : [];
         $data['staff_department'] = $staff['department_id'] ?? null;
