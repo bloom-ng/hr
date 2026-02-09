@@ -146,7 +146,11 @@ $user_role = $this->session->userdata('role');
                             'high' => 'High'
                         ];
                         foreach ($priorities as $value => $label):
-                            $selected = ($is_edit && $project->priority === $value) || set_select('priority', $value);
+                            if ($_POST && isset($_POST['priority'])) {
+                                $selected = ($_POST['priority'] === $value);
+                            } else {
+                                $selected = ($is_edit && $project->priority === $value);
+                            }
                             $color_class = [
                                 'low' => 'bg-blue-500',
                                 'medium' => 'bg-yellow-500',
@@ -173,7 +177,11 @@ $user_role = $this->session->userdata('role');
                             'one-off' => 'One-off'
                         ];
                         foreach ($schedule_types as $value => $label):
-                            $selected = ($is_edit && $project->schedule_type === $value) || set_select('schedule_type', $value);
+                            if ($_POST && isset($_POST['schedule_type'])) {
+                                $selected = ($_POST['schedule_type'] === $value);
+                            } else {
+                                $selected = ($is_edit && $project->schedule_type === $value);
+                            }
                         ?>
                             <option value="<?= $value ?>" <?= $selected ? 'selected' : '' ?>>
                                 <?= $label ?>
@@ -199,7 +207,11 @@ $user_role = $this->session->userdata('role');
                                 'refunded' => 'Refunded'
                             ];
                             foreach ($payment_statuses as $value => $label):
-                                $selected = ($is_edit && isset($project->payment_status) && $project->payment_status === $value) || set_select('payment_status', $value);
+                                if ($_POST && isset($_POST['payment_status'])) {
+                                    $selected = ($_POST['payment_status'] === $value);
+                                } else {
+                                    $selected = ($is_edit && isset($project->payment_status) && $project->payment_status === $value);
+                                }
                             ?>
                                 <option value="<?= $value ?>" <?= $selected ? 'selected' : '' ?>>
                                     <?= $label ?>
@@ -250,13 +262,19 @@ $user_role = $this->session->userdata('role');
                             $statuses = [
                                 'pending' => 'Pending',
                                 'approved' => 'Approved',
-                                'in_progress' => 'In Progress',
-                                'on_hold' => 'On Hold',
-                                'completed' => 'Completed',
+                                'in-progress' => 'In Progress',
+                                'on-hold' => 'On Hold',
+                                'delivered' => 'Delivered',
                                 'cancelled' => 'Cancelled'
                             ];
                             foreach ($statuses as $value => $label):
-                                $selected = ($is_edit && isset($project->status) && $project->status === $value) || set_select('status', $value);
+                                // Check if form was submitted (validation failed) - use POST value
+                                // Otherwise use the project's current status
+                                if ($_POST && isset($_POST['status'])) {
+                                    $selected = ($_POST['status'] === $value);
+                                } else {
+                                    $selected = ($is_edit && isset($project->status) && $project->status === $value);
+                                }
                             ?>
                                 <option value="<?= $value ?>" <?= $selected ? 'selected' : '' ?>>
                                     <?= $label ?>
