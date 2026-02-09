@@ -247,6 +247,9 @@ class Projects extends MY_Controller
         $result = $this->Project_model->update($id, ['status' => 'approved'], $project);
 
         if ($result === true) {
+            // Notify the project manager about the approval
+            $this->Project_model->notify_manager_approved($id);
+            
             $this->session->set_flashdata('success', 'Project "' . $project->name . '" approved successfully');
         } elseif (is_array($result) && isset($result['message'])) {
             $this->session->set_flashdata('error', $result['message']);

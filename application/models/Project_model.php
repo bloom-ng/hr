@@ -182,6 +182,51 @@ class Project_model extends CI_Model
         }
     }
 
+    /**
+     * Notify the project manager when their project has been approved
+     */
+    public function notify_manager_approved($project_id)
+    {
+        $project = $this->get($project_id);
+        if (!$project) {
+            return false;
+        }
+
+        // Get project manager details
+        $manager = $this->Staff_model->select_staff_byID($project->manager_id);
+        if (!$manager || empty($manager[0]['email'])) {
+            log_message('error', 'Could not notify manager for approved project: Manager not found or no email');
+            return false;
+        }
+
+        $manager = $manager[0];
+        $subject = "Project Approved: {$project->name}";
+        
+        $message = "Dear {$manager['staff_name']},\n\n";
+        $message .= "Great news! Your project has been approved.\n\n";
+        $message .= "Project Details:\n";
+        $message .= "Name: {$project->name}\n";
+        $message .= "Priority: " . ucfirst($project->priority) . "\n";
+        $message .= "Status: Approved\n\n";
+        $message .= "You can now proceed with the project execution.\n\n";
+        $message .= "Click here to view the project: " . site_url("projects/view/{$project->id}") . "\n\n";
+        $message .= "Best regards,\nBloom HR System";
+
+        $this->email->clear();
+        $this->email->to($manager['email']);
+        $this->email->from('support@bloomdigitmedia.com', 'Bloom HR');
+        $this->email->subject($subject);
+        $this->email->message($message);
+        
+        if ($this->email->send()) {
+            log_message('info', "Project approval notification sent to manager: {$manager['email']} for project ID: {$project_id}");
+            return true;
+        } else {
+            log_message('error', 'Failed to send project approval notification: ' . $this->email->print_debugger(['headers']));
+            return false;
+        }
+    }
+
     public function validate_receipt($receipt_id)
     {
         if (empty($receipt_id)) {
