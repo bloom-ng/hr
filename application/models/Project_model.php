@@ -59,16 +59,16 @@ class Project_model extends CI_Model
             unset($data['receipt_id']);
         }
 
-        // Only Super Admin can approve projects
-        if ($user_role !== 'super' && isset($data['status']) && $data['status'] === 'approved') {
-            return ['success' => false, 'message' => 'Only Super Admin can approve projects'];
-        }
-
         // If receipt_id is being updated, validate it
         if (isset($data['receipt_id']) && $data['receipt_id'] !== $project->receipt_id) {
             if (!$this->validate_receipt($data['receipt_id'])) {
                 return ['success' => false, 'message' => 'Invalid receipt number'];
             }
+        }
+
+        // Only Super Admin can approve projects
+        if ($user_role !== 'super' && isset($data['status']) && $data['status'] === 'approved') {
+            return ['success' => false, 'message' => 'Only Super Admin can approve projects'];
         }
 
         $this->db->where($this->primary_key, $id);
