@@ -391,17 +391,19 @@
             </li>
 
             <!-- Fund Requests -->
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-money"></i> <span>Fund Requests</span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="<?php echo base_url(); ?>fund-requests"><i class="fa fa-circle-o"></i> Manage Fund Requests</a></li>
-              </ul>
-            </li>
+            <?php if($this->session->userdata('role') == "hrm"): ?>
+              <li class="treeview">
+                <a href="#">
+                  <i class="fa fa-money"></i> <span>Fund Requests</span>
+                  <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                  </span>
+                </a>
+                <ul class="treeview-menu">
+                  <li><a href="<?php echo base_url(); ?>fund-requests"><i class="fa fa-circle-o"></i> Manage Fund Requests</a></li>
+                </ul>
+              </li>
+            <?php endif; ?>
 
             <!-- Equipment Management -->
             <li class="treeview">
