@@ -101,10 +101,19 @@
                                                 </span>
                                             </td>
                                             <td>
-                                                <span class="px-4 py-2 font-semibold rounded-full <?php
-                                                                                                    echo $project->status === 'completed' ? 'bg-green-500' : ($project->status === 'in_progress' ? 'bg-blue-500' : ($project->status === 'pending' ? 'bg-yellow-500' : 'bg-gray-500'));
-                                                                                                    ?>">
-                                                    <?php echo ucfirst(str_replace('_', ' ', $project->status)); ?>
+                                                <?php
+                                                $status_colors = [
+                                                    'delivered' => 'bg-green-500',
+                                                    'in-progress' => 'bg-blue-500',
+                                                    'approved' => 'bg-blue-400',
+                                                    'pending' => 'bg-yellow-500',
+                                                    'on-hold' => 'bg-orange-500',
+                                                    'cancelled' => 'bg-red-500'
+                                                ];
+                                                $status_class = $status_colors[$project->status] ?? 'bg-gray-500';
+                                                ?>
+                                                <span class="px-4 py-2 font-semibold rounded-full <?= $status_class ?>">
+                                                    <?php echo ucfirst(str_replace('-', ' ', $project->status)); ?>
                                                 </span>
                                             </td>
                                             <td>
