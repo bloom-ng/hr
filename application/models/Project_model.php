@@ -138,12 +138,92 @@ class Project_model extends CI_Model
         $project = $this->get($project_id);
         if (!$project) return;
 
-        $subject = "Project {$project->name} has been {$action}";
-        $message = "Project: {$project->name}\n";
-        $message .= "Status: " . ucfirst(str_replace('-', ' ', $project->status)) . "\n";
-        $message .= "Priority: " . ucfirst($project->priority) . "\n";
-        $message .= "Payment Status: " . ucfirst($project->payment_status) . "\n\n";
-        $message .= "Click here to view: " . site_url("projects/view/{$project->id}");
+        $subject = "Project " . html_escape($project->name) . " has been {$action}";
+
+        // Build status/priority badge colors for email
+        $status_colors = [
+            'pending' => '#EAB308', 'approved' => '#60A5FA', 'in-progress' => '#3B82F6',
+            'on-hold' => '#F97316', 'delivered' => '#22C55E', 'cancelled' => '#EF4444'
+        ];
+        $priority_colors = ['low' => '#3B82F6', 'medium' => '#EAB308', 'high' => '#EF4444'];
+        $payment_colors = ['pending' => '#EAB308', 'paid' => '#22C55E', 'refunded' => '#EF4444'];
+
+        $status_color = $status_colors[$project->status] ?? '#6B7280';
+        $priority_color = $priority_colors[$project->priority] ?? '#6B7280';
+        $payment_color = $payment_colors[$project->payment_status] ?? '#6B7280';
+
+        $status_label = ucfirst(str_replace('-', ' ', $project->status));
+        $priority_label = ucfirst($project->priority);
+        $payment_label = ucfirst($project->payment_status);
+        $project_url = site_url("projects/view/{$project->id}");
+
+        $message = '
+        <!DOCTYPE html>
+        <html>
+        <head><meta charset="utf-8"></head>
+        <body style="margin:0;padding:0;background-color:#1a1a1a;font-family:Arial,Helvetica,sans-serif;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#1a1a1a;padding:30px 0;">
+                <tr><td align="center">
+                    <table width="600" cellpadding="0" cellspacing="0" style="background-color:#2C2C2C;border-radius:8px;overflow:hidden;">
+                        <!-- Header -->
+                        <tr>
+                            <td style="background-color:#DA7F00;padding:24px 30px;">
+                                <h1 style="margin:0;color:#ffffff;font-size:20px;font-weight:700;">Bloom HR</h1>
+                            </td>
+                        </tr>
+                        <!-- Body -->
+                        <tr>
+                            <td style="padding:30px;">
+                                <h2 style="margin:0 0 8px;color:#ffffff;font-size:18px;">Project ' . ucfirst($action) . '</h2>
+                                <p style="margin:0 0 24px;color:#9CA3AF;font-size:14px;">The project <strong style="color:#DA7F00;">' . html_escape($project->name) . '</strong> has been ' . $action . '.</p>
+
+                                <!-- Details Table -->
+                                <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#3E3E3E;border-radius:6px;margin-bottom:24px;">
+                                    <tr>
+                                        <td style="padding:14px 20px;border-bottom:1px solid #555;color:#9CA3AF;font-size:13px;width:140px;">Project Name</td>
+                                        <td style="padding:14px 20px;border-bottom:1px solid #555;color:#ffffff;font-size:14px;font-weight:600;">' . html_escape($project->name) . '</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:14px 20px;border-bottom:1px solid #555;color:#9CA3AF;font-size:13px;">Status</td>
+                                        <td style="padding:14px 20px;border-bottom:1px solid #555;">
+                                            <span style="background-color:' . $status_color . ';color:#fff;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;">' . $status_label . '</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:14px 20px;border-bottom:1px solid #555;color:#9CA3AF;font-size:13px;">Priority</td>
+                                        <td style="padding:14px 20px;border-bottom:1px solid #555;">
+                                            <span style="background-color:' . $priority_color . ';color:#fff;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;">' . $priority_label . '</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:14px 20px;color:#9CA3AF;font-size:13px;">Payment Status</td>
+                                        <td style="padding:14px 20px;">
+                                            <span style="background-color:' . $payment_color . ';color:#fff;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;">' . $payment_label . '</span>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <!-- CTA Button -->
+                                <table width="100%" cellpadding="0" cellspacing="0">
+                                    <tr><td align="center">
+                                        <a href="' . $project_url . '" style="display:inline-block;background-color:#DA7F00;color:#ffffff;text-decoration:none;padding:12px 32px;border-radius:6px;font-size:14px;font-weight:600;">
+                                            View Project Details
+                                        </a>
+                                    </td></tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <!-- Footer -->
+                        <tr>
+                            <td style="background-color:#1a1a1a;padding:20px 30px;text-align:center;">
+                                <p style="margin:0;color:#6B7280;font-size:12px;">&copy; ' . date('Y') . ' Bloom Digit Media. All rights reserved.</p>
+                            </td>
+                        </tr>
+                    </table>
+                </td></tr>
+            </table>
+        </body>
+        </html>';
 
         // Collect all recipient emails (deduplicated)
         $recipients = ["agharayetseyi@bloomdigitmedia.com", "hr@bloomdigitmedia.com", "finance@bloomdigitmedia.com", "davidaremu@bloomdigitmedia.com"];
@@ -197,17 +277,75 @@ class Project_model extends CI_Model
         }
 
         $manager = $manager[0];
-        $subject = "Project Approved: {$project->name}";
+        $subject = "Project Approved: " . html_escape($project->name);
         
-        $message = "Dear {$manager['staff_name']},\n\n";
-        $message .= "Great news! Your project has been approved.\n\n";
-        $message .= "Project Details:\n";
-        $message .= "Name: {$project->name}\n";
-        $message .= "Priority: " . ucfirst($project->priority) . "\n";
-        $message .= "Status: Approved\n\n";
-        $message .= "You can now proceed with the project execution.\n\n";
-        $message .= "Click here to view the project: " . site_url("projects/view/{$project->id}") . "\n\n";
-        $message .= "Best regards,\nBloom HR System";
+        $priority_colors = ['low' => '#3B82F6', 'medium' => '#EAB308', 'high' => '#EF4444'];
+        $priority_color = $priority_colors[$project->priority] ?? '#6B7280';
+        $priority_label = ucfirst($project->priority);
+        $project_url = site_url("projects/view/{$project->id}");
+
+        $message = '
+        <!DOCTYPE html>
+        <html>
+        <head><meta charset="utf-8"></head>
+        <body style="margin:0;padding:0;background-color:#1a1a1a;font-family:Arial,Helvetica,sans-serif;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#1a1a1a;padding:30px 0;">
+                <tr><td align="center">
+                    <table width="600" cellpadding="0" cellspacing="0" style="background-color:#2C2C2C;border-radius:8px;overflow:hidden;">
+                        <!-- Header -->
+                        <tr>
+                            <td style="background-color:#DA7F00;padding:24px 30px;">
+                                <h1 style="margin:0;color:#ffffff;font-size:20px;font-weight:700;">Bloom HR</h1>
+                            </td>
+                        </tr>
+                        <!-- Body -->
+                        <tr>
+                            <td style="padding:30px;">
+                                <h2 style="margin:0 0 8px;color:#ffffff;font-size:18px;">Project Approved &#10003;</h2>
+                                <p style="margin:0 0 6px;color:#9CA3AF;font-size:14px;">Dear <strong style="color:#ffffff;">' . html_escape($manager['staff_name']) . '</strong>,</p>
+                                <p style="margin:0 0 24px;color:#9CA3AF;font-size:14px;">Great news! Your project <strong style="color:#DA7F00;">' . html_escape($project->name) . '</strong> has been approved. You can now proceed with execution.</p>
+
+                                <!-- Details Table -->
+                                <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#3E3E3E;border-radius:6px;margin-bottom:24px;">
+                                    <tr>
+                                        <td style="padding:14px 20px;border-bottom:1px solid #555;color:#9CA3AF;font-size:13px;width:140px;">Project Name</td>
+                                        <td style="padding:14px 20px;border-bottom:1px solid #555;color:#ffffff;font-size:14px;font-weight:600;">' . html_escape($project->name) . '</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:14px 20px;border-bottom:1px solid #555;color:#9CA3AF;font-size:13px;">Status</td>
+                                        <td style="padding:14px 20px;border-bottom:1px solid #555;">
+                                            <span style="background-color:#22C55E;color:#fff;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;">Approved</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:14px 20px;color:#9CA3AF;font-size:13px;">Priority</td>
+                                        <td style="padding:14px 20px;">
+                                            <span style="background-color:' . $priority_color . ';color:#fff;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;">' . $priority_label . '</span>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <!-- CTA Button -->
+                                <table width="100%" cellpadding="0" cellspacing="0">
+                                    <tr><td align="center">
+                                        <a href="' . $project_url . '" style="display:inline-block;background-color:#DA7F00;color:#ffffff;text-decoration:none;padding:12px 32px;border-radius:6px;font-size:14px;font-weight:600;">
+                                            View Project Details
+                                        </a>
+                                    </td></tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <!-- Footer -->
+                        <tr>
+                            <td style="background-color:#1a1a1a;padding:20px 30px;text-align:center;">
+                                <p style="margin:0;color:#6B7280;font-size:12px;">&copy; ' . date('Y') . ' Bloom Digit Media. All rights reserved.</p>
+                            </td>
+                        </tr>
+                    </table>
+                </td></tr>
+            </table>
+        </body>
+        </html>';
 
         $this->email->clear();
         $this->email->to($manager['email']);
