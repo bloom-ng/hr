@@ -69,15 +69,15 @@
                                             <?php
                                             $status_class = [
                                                 'pending' => 'bg-yellow-500',
-                                                'approved' => 'bg-blue-500',
-                                                'in_progress' => 'bg-blue-600',
-                                                'on_hold' => 'bg-orange-500',
-                                                'completed' => 'bg-green-500',
+                                                'approved' => 'bg-blue-400',
+                                                'in-progress' => 'bg-blue-500',
+                                                'on-hold' => 'bg-orange-500',
+                                                'delivered' => 'bg-green-500',
                                                 'cancelled' => 'bg-red-500'
                                             ][$project->status] ?? 'bg-gray-500';
                                             ?>
                                             <span class="px-3 py-1 font-semibold rounded-full <?= $status_class ?> text-white">
-                                                <?= ucfirst(str_replace('_', ' ', $project->status)) ?>
+                                                <?= ucfirst(str_replace('-', ' ', $project->status)) ?>
                                             </span>
                                         </td>
                                     </tr>
@@ -217,20 +217,20 @@
                             <div class="progress" style="height: 25px;">
                                 <?php
                                 $progress = [
-                                    'pending' => 25,
-                                    'approved' => 50,
-                                    'in_progress' => 75,
-                                    'on_hold' => 60,
-                                    'completed' => 100,
+                                    'pending' => 10,
+                                    'approved' => 30,
+                                    'in-progress' => 60,
+                                    'on-hold' => 50,
+                                    'delivered' => 100,
                                     'cancelled' => 0
                                 ][$project->status] ?? 10;
 
                                 $progress_class = [
                                     'pending' => 'bg-yellow-500',
-                                    'approved' => 'bg-blue-500',
-                                    'in_progress' => 'bg-blue-600',
-                                    'on_hold' => 'bg-orange-500',
-                                    'completed' => 'bg-green-500',
+                                    'approved' => 'bg-blue-400',
+                                    'in-progress' => 'bg-blue-500',
+                                    'on-hold' => 'bg-orange-500',
+                                    'delivered' => 'bg-green-500',
                                     'cancelled' => 'bg-red-500'
                                 ][$project->status] ?? 'bg-gray-500';
                                 ?>
@@ -244,7 +244,7 @@
                                 </div>
                             </div>
                             <p class="text-center mt-2 text-gray-400">
-                                <small><?= ucfirst(str_replace('_', ' ', $project->status)) ?></small>
+                                <small><?= ucfirst(str_replace('-', ' ', $project->status)) ?></small>
                             </p>
                         </div>
                     </div>

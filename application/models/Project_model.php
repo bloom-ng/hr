@@ -26,6 +26,19 @@ class Project_model extends CI_Model
     {
         parent::__construct();
         $this->load->library('email');
+
+        // Configure email settings
+        $config['protocol'] = $this->config->item('protocol');
+        $config['smtp_host'] = $this->config->item('smtp_host');
+        $config['smtp_port'] = $this->config->item('smtp_port');
+        $config['smtp_crypto'] = $this->config->item('smtp_crypto');
+        $config['smtp_user'] = $this->config->item('smtp_user');
+        $config['smtp_pass'] = $this->config->item('smtp_pass');
+        $config['mailtype'] = $this->config->item('mailtype');
+        $config['charset'] = $this->config->item('charset');
+        $config['newline'] = $this->config->item('newline');
+
+        $this->email->initialize($config);
     }
 
     public function get($id = null, $where = [])
@@ -123,62 +136,46 @@ class Project_model extends CI_Model
     protected function notify_team($project_id, $action)
     {
         $project = $this->get($project_id);
+        if (!$project) return;
 
         $subject = "Project {$project->name} has been {$action}";
         $message = "Project: {$project->name}\n";
-        $message .= "Status: " . ucfirst($project->status) . "\n";
+        $message .= "Status: " . ucfirst(str_replace('-', ' ', $project->status)) . "\n";
         $message .= "Priority: " . ucfirst($project->priority) . "\n";
         $message .= "Payment Status: " . ucfirst($project->payment_status) . "\n\n";
         $message .= "Click here to view: " . site_url("projects/view/{$project->id}");
 
-        if ($action === 'created') {
-            // When project is created, notify all staff in the project's department
-            $department_staff = $this->Staff_model->select_staff_byDept($project->department_id);
+        // Collect all recipient emails (deduplicated)
+        $recipients = ["agharayetseyi@bloomdigitmedia.com", "hr@bloomdigitmedia.com", "finance@bloomdigitmedia.com", "davidaremu@bloomdigitmedia.com"];
 
-            if (!empty($department_staff)) {
-                foreach ($department_staff as $staff_member) {
-                    if (!empty($staff_member['email'])) {
-                        $this->email->clear();
-                        $this->email->to($staff_member['email']);
-                        $this->email->from('support@bloomdigitmedia.com', 'Bloom HR');
-                        $this->email->subject($subject);
-                        $this->email->message($message);
-                        $this->email->send();
+        // 2. Get department HOD
+        $departments = $this->Department_model->select_departments();
+        if (!empty($departments)) {
+            foreach ($departments as $department) {
+                if ($department['id'] == $project->department_id && !empty($department['staff_id'])) {
+                    $hod = $this->Staff_model->select_staff_byID($department['staff_id']);
+                    if (!empty($hod) && !empty($hod[0]['email'])) {
+                        $recipients[$hod[0]['email']] = $hod[0]['email'];
                     }
+                    break;
                 }
             }
-        } else {
-            // For updates, notify HOD and project manager only
-            $departments = $this->Department_model->select_departments();
+        }
 
-            // Send to HOD of the project's department
-            if (isset($departments)) {
-                foreach ($departments as $department) {
-                    // Only notify HOD from the project's department
-                    if ($department['id'] == $project->department_id) {
-                        $staff = $this->Staff_model->select_staff_byID($department['staff_id']);
-                        if (!empty($staff)) {
-                            $this->email->clear();
-                            $this->email->to($staff[0]['email']);
-                            $this->email->from('support@bloomdigitmedia.com', 'Bloom HR');
-                            $this->email->subject($subject);
-                            $this->email->message($message);
-                            $this->email->send();
-                        }
-                    }
-                }
-            }
+        // 3. Get project manager
+        $manager = $this->Staff_model->select_staff_byID($project->manager_id);
+        if (!empty($manager) && !empty($manager[0]['email'])) {
+            $recipients[$manager[0]['email']] = $manager[0]['email'];
+        }
 
-            // Also notify the project manager
-            $manager = $this->Staff_model->select_staff_byID($project->manager_id);
-            if ($manager && !empty($manager[0]['email'])) {
-                $this->email->clear();
-                $this->email->to($manager[0]['email']);
-                $this->email->from('noreply@bloom.com', 'Bloom HR');
-                $this->email->subject($subject);
-                $this->email->message($message);
-                $this->email->send();
-            }
+        // Send email to all unique recipients
+        foreach ($recipients as $email) {
+            $this->email->clear();
+            $this->email->to($email);
+            $this->email->from('support@bloomdigitmedia.com', 'Bloom HR');
+            $this->email->subject($subject);
+            $this->email->message($message);
+            $this->email->send();
         }
     }
 
