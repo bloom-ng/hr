@@ -65,6 +65,7 @@
                                     <th>Department</th>
                                     <th>Manager</th>
                                     <th>Priority</th>
+                                    <th>Payment Status</th>
                                     <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
@@ -103,11 +104,24 @@
                                             <td>
                                                 <?php
                                                 $status_colors = [
-                                                    'delivered' => 'bg-green-500',
-                                                    'in-progress' => 'bg-blue-500',
-                                                    'approved' => 'bg-blue-400',
                                                     'pending' => 'bg-yellow-500',
+                                                    'paid' => 'bg-green-500',
+                                                    'refunded' => 'bg-red-500',
+                                                ];
+                                                $status_class = $status_colors[$project->payment_status] ?? 'bg-gray-500';
+                                                ?>
+                                                <span class="px-4 py-2 font-semibold rounded-full <?php echo $status_class; ?>">
+                                                    <?php echo ucfirst($project->payment_status); ?>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <?php
+                                                $status_colors = [
+                                                    'pending' => 'bg-yellow-500',
+                                                    'approved' => 'bg-blue-400',
+                                                    'in-progress' => 'bg-blue-500',
                                                     'on-hold' => 'bg-orange-500',
+                                                    'delivered' => 'bg-green-500',
                                                     'cancelled' => 'bg-red-500'
                                                 ];
                                                 $status_class = $status_colors[$project->status] ?? 'bg-gray-500';
