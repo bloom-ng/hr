@@ -226,7 +226,7 @@ class Project_model extends CI_Model
         </html>';
 
         // Collect all recipient emails (deduplicated)
-        $recipients = ["agharayetseyi@bloomdigitmedia.com", "hr@bloomdigitmedia.com", "finance@bloomdigitmedia.com", "davidaremu@bloomdigitmedia.com"];
+        $recipients = ["agharayetseyi@bloomdigitmedia.com", "hr@bloomdigitmedia.com", "finance@bloomdigitmedia.com"];
 
         // 2. Get department HOD
         $departments = $this->Department_model->select_departments();
