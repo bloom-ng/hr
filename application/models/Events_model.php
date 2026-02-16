@@ -43,4 +43,13 @@ class Events_model extends CI_Model
         $this->db->delete($this->table);
         return $this->db->affected_rows();
     }
+
+    public function check_duplicate($title, $start_date, $end_date)
+    {
+        $this->db->where('title', $title);
+        $this->db->where('start_date', $start_date);
+        $this->db->where('end_date', $end_date);
+        $query = $this->db->get($this->table);
+        return $query->num_rows() > 0;
+    }
 }

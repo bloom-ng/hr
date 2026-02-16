@@ -14,10 +14,25 @@
     <section class="content">
         <div class="row">
             <div class="col-xs-12">
+                <?php if ($this->session->flashdata('success')) : ?>
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h4><i class="icon fa fa-check"></i> Success!</h4>
+                        <?php echo $this->session->flashdata('success'); ?>
+                    </div>
+                <?php endif; ?>
+                <?php if ($this->session->flashdata('error')) : ?>
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h4><i class="icon fa fa-ban"></i> Error!</h4>
+                        <?php echo $this->session->flashdata('error'); ?>
+                    </div>
+                <?php endif; ?>
                 <div class="box border-t-10 border-[#DA7F00] bg-[#2C2C2C]">
                     <div class="box-header">
                         <h3 class="box-title text-white">Events List</h3>
                         <div class="box-tools">
+                            <a href="<?php echo base_url('events/import'); ?>" class="btn btn-success hover:border-[#00a65a] border-[#00a65a] bg-[#00a65a] hover:bg-[#00a65a] mr-2"><i class="fa fa-upload"></i> Import Events</a>
                             <a href="<?php echo base_url('events/create'); ?>" class="btn btn-primary hover:border-[#DA7F00] border-[#DA7F00] bg-[#DA7F00] hover:bg-[#DA7F00]"><i class="fa fa-plus"></i> Add Event</a>
                         </div>
                     </div>
