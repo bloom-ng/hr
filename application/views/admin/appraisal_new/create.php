@@ -103,9 +103,10 @@
                                             <th>Expected Output</th>
                                             <th>Actual Output</th>
                                             <th>Rating (1-10)</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="kpa-tbody">
                                         <?php for($i=0; $i<4; $i++): ?>
                                         <tr>
                                             <td><input type="text" class="form-control" name="kpa_category[]"></td>
@@ -113,10 +114,12 @@
                                             <td><input type="text" class="form-control" name="kpa_expected[]"></td>
                                             <td><input type="text" class="form-control" name="kpa_actual[]"></td>
                                             <td><input type="number" class="form-control" name="kpa_rating[]" min="1" max="10"></td>
+                                            <td><button type="button" class="btn btn-sm btn-danger" onclick="this.closest('tr').remove();">X</button></td>
                                         </tr>
                                         <?php endfor; ?>
                                     </tbody>
                                 </table>
+                                <button type="button" class="btn btn-sm btn-secondary mb-4" onclick="addKpaRow()">+ Add KPA Row</button>
 
                                 <h4 class="mt-4 mb-3">SECTION 2: TASK TRACKING</h4>
                                 <div class="row">
@@ -155,27 +158,63 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Employee Strengths</label>
-                                        <?php for($i=0; $i<3; $i++): ?>
-                                            <input type="text" class="form-control mb-2" name="strengths[]" placeholder="Strength <?php echo $i+1; ?>">
-                                        <?php endfor; ?>
+                                        <div id="strengths-container">
+                                            <?php for($i=0; $i<3; $i++): ?>
+                                            <select class="form-control mb-2" name="strengths[]">
+                                                <option value="">Select Strength</option>
+                                                <option value="Effective Communication">Effective Communication</option>
+                                                <option value="Outstanding knowledge of the job">Outstanding knowledge of the job</option>
+                                                <option value="Strong Team Player">Strong Team Player</option>
+                                                <option value="Innovative Thinking">Innovative Thinking</option>
+                                                <option value="Adaptable to Change">Adaptable to Change</option>
+                                                <option value="Willingness to learn & improve">Willingness to learn & improve</option>
+                                            </select>
+                                            <?php endfor; ?>
+                                        </div>
+                                        <button type="button" class="btn btn-sm btn-secondary mb-3" onclick="addDropdown('strengths-container', 'strengths[]', getStrengthOptions())">+ Add Strength</button>
+                                        <textarea class="form-control mb-3" name="strength_comment" placeholder="Further comments on strengths..." rows="2"></textarea>
                                     </div>
                                     <div class="col-md-6">
                                         <label>Weaknesses / Areas for Improvement</label>
-                                        <?php for($i=0; $i<3; $i++): ?>
-                                            <input type="text" class="form-control mb-2" name="weaknesses[]" placeholder="Weakness <?php echo $i+1; ?>">
-                                        <?php endfor; ?>
+                                        <div id="weaknesses-container">
+                                            <?php for($i=0; $i<3; $i++): ?>
+                                            <select class="form-control mb-2" name="weaknesses[]">
+                                                <option value="">Select Weakness</option>
+                                                <option value="Time Management">Time Management</option>
+                                                <option value="Conflict Resolution">Conflict Resolution</option>
+                                                <option value="Technical Skills Enhancement">Technical Skills Enhancement</option>
+                                                <option value="Goal Setting and Achievement">Goal Setting and Achievement</option>
+                                                <option value="Communication with Team Members">Communication with Team Members</option>
+                                            </select>
+                                            <?php endfor; ?>
+                                        </div>
+                                        <button type="button" class="btn btn-sm btn-secondary mb-3" onclick="addDropdown('weaknesses-container', 'weaknesses[]', getWeaknessOptions())">+ Add Weakness</button>
+                                        <textarea class="form-control mb-3" name="weakness_comment" placeholder="Further comments on weaknesses..." rows="2"></textarea>
                                     </div>
                                 </div>
 
                                 <h4 class="mt-4 mb-3">SECTION 4: TRAINING & DEVELOPMENT NEEDS</h4>
-                                <?php for($i=0; $i<3; $i++): ?>
-                                    <input type="text" class="form-control mb-2" name="training_needs[]" placeholder="Training Need <?php echo $i+1; ?>">
-                                <?php endfor; ?>
+                                <div id="training-container">
+                                    <?php for($i=0; $i<3; $i++): ?>
+                                    <select class="form-control mb-2" name="training_needs[]">
+                                        <option value="">Select Training Need</option>
+                                        <option value="Leadership Training">Leadership Training</option>
+                                        <option value="Technical Skills Training">Technical Skills Training</option>
+                                        <option value="Communication Skills Workshop">Communication Skills Workshop</option>
+                                        <option value="Project Management Training">Project Management Training</option>
+                                    </select>
+                                    <?php endfor; ?>
+                                </div>
+                                <button type="button" class="btn btn-sm btn-secondary mb-3" onclick="addDropdown('training-container', 'training_needs[]', getTrainingOptions())">+ Add Training Need</button>
+                                <textarea class="form-control mb-3" name="training_comment" placeholder="Further comments on training needs..." rows="2"></textarea>
 
                                 <h4 class="mt-4 mb-3">SECTION 5: Goals & Objectives for Next Month</h4>
-                                <?php for($i=0; $i<3; $i++): ?>
-                                    <input type="text" class="form-control mb-2" name="next_month_goals[]" placeholder="Goal <?php echo $i+1; ?>">
-                                <?php endfor; ?>
+                                <div id="goals-container">
+                                    <?php for($i=0; $i<3; $i++): ?>
+                                        <input type="text" class="form-control mb-2" name="next_month_goals[]" placeholder="Goal <?php echo $i+1; ?>">
+                                    <?php endfor; ?>
+                                </div>
+                                <button type="button" class="btn btn-sm btn-secondary mb-3" onclick="addInput('goals-container', 'next_month_goals[]', 'Goal')">+ Add Goal</button>
 
                                 <h4 class="mt-4 mb-3">SECTION 6: REMARKS</h4>
                                 <div class="form-group">
@@ -203,5 +242,72 @@ function calculateCompletion() {
         var rate = (completed / assigned) * 100;
         document.getElementById('completion_rate').value = rate.toFixed(2);
     }
+}
+
+function getStrengthOptions() {
+    return `
+        <option value="">Select Strength</option>
+        <option value="Effective Communication">Effective Communication</option>
+        <option value="Outstanding knowledge of the job">Outstanding knowledge of the job</option>
+        <option value="Strong Team Player">Strong Team Player</option>
+        <option value="Innovative Thinking">Innovative Thinking</option>
+        <option value="Adaptable to Change">Adaptable to Change</option>
+        <option value="Willingness to learn & improve">Willingness to learn & improve</option>
+    `;
+}
+
+function getWeaknessOptions() {
+    return `
+        <option value="">Select Weakness</option>
+        <option value="Time Management">Time Management</option>
+        <option value="Conflict Resolution">Conflict Resolution</option>
+        <option value="Technical Skills Enhancement">Technical Skills Enhancement</option>
+        <option value="Goal Setting and Achievement">Goal Setting and Achievement</option>
+        <option value="Communication with Team Members">Communication with Team Members</option>
+    `;
+}
+
+function getTrainingOptions() {
+    return `
+        <option value="">Select Training Need</option>
+        <option value="Leadership Training">Leadership Training</option>
+        <option value="Technical Skills Training">Technical Skills Training</option>
+        <option value="Communication Skills Workshop">Communication Skills Workshop</option>
+        <option value="Project Management Training">Project Management Training</option>
+    `;
+}
+
+function addDropdown(containerId, inputName, optionsHtml) {
+    var container = document.getElementById(containerId);
+    var select = document.createElement('select');
+    select.className = 'form-control mb-2';
+    select.name = inputName;
+    select.innerHTML = optionsHtml;
+    container.appendChild(select);
+}
+
+function addInput(containerId, inputName, placeholderPrefix) {
+    var container = document.getElementById(containerId);
+    var count = container.querySelectorAll('input').length + 1;
+    var input = document.createElement('input');
+    input.type = 'text';
+    input.className = 'form-control mb-2';
+    input.name = inputName;
+    input.placeholder = placeholderPrefix + ' ' + count;
+    container.appendChild(input);
+}
+
+function addKpaRow() {
+    var tbody = document.getElementById('kpa-tbody');
+    var tr = document.createElement('tr');
+    tr.innerHTML = `
+        <td><input type="text" class="form-control" name="kpa_category[]"></td>
+        <td><input type="text" class="form-control" name="kpa_description[]"></td>
+        <td><input type="text" class="form-control" name="kpa_expected[]"></td>
+        <td><input type="text" class="form-control" name="kpa_actual[]"></td>
+        <td><input type="number" class="form-control" name="kpa_rating[]" min="1" max="10"></td>
+        <td><button type="button" class="btn btn-sm btn-danger" onclick="this.closest('tr').remove();">X</button></td>
+    `;
+    tbody.appendChild(tr);
 }
 </script>

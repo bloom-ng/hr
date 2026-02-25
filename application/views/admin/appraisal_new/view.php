@@ -171,35 +171,77 @@
 
                                 <h4 class="mt-4 mb-3">SECTION 3: PERFORMANCE SUMMARY</h4>
                                 <?php 
-                                    $strengths = json_decode($appraisal['strengths'], true) ?: [];
-                                    $weaknesses = json_decode($appraisal['weaknesses'], true) ?: [];
-                                    $training_needs = json_decode($appraisal['training_needs'], true) ?: [];
+                                    $raw_strengths = json_decode($appraisal['strengths'], true) ?: [];
+                                    $strengths = isset($raw_strengths['selections']) ? $raw_strengths['selections'] : ((is_array($raw_strengths) && !isset($raw_strengths['selections']) && !isset($raw_strengths['comment'])) ? $raw_strengths : []);
+                                    $strength_comment = isset($raw_strengths['comment']) ? $raw_strengths['comment'] : '';
+
+                                    $raw_weaknesses = json_decode($appraisal['weaknesses'], true) ?: [];
+                                    $weaknesses = isset($raw_weaknesses['selections']) ? $raw_weaknesses['selections'] : ((is_array($raw_weaknesses) && !isset($raw_weaknesses['selections']) && !isset($raw_weaknesses['comment'])) ? $raw_weaknesses : []);
+                                    $weakness_comment = isset($raw_weaknesses['comment']) ? $raw_weaknesses['comment'] : '';
+
+                                    $raw_training = json_decode($appraisal['training_needs'], true) ?: [];
+                                    $training_needs = isset($raw_training['selections']) ? $raw_training['selections'] : ((is_array($raw_training) && !isset($raw_training['selections']) && !isset($raw_training['comment'])) ? $raw_training : []);
+                                    $training_comment = isset($raw_training['comment']) ? $raw_training['comment'] : '';
+
                                     $goals = json_decode($appraisal['next_month_goals'], true) ?: [];
                                 ?>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Employee Strengths</label>
-                                        <?php for($i=0; $i<3; $i++): ?>
-                                            <input type="text" class="form-control mb-2" name="strengths[]" placeholder="Strength <?php echo $i+1; ?>" value="<?php echo isset($strengths[$i]) ? $strengths[$i] : ''; ?>" readonly>
-                                        <?php endfor; ?>
+                                        <?php if(empty($strengths)): ?>
+                                             <input type="text" class="form-control mb-2" readonly value="">
+                                        <?php else: ?>
+                                            <?php foreach($strengths as $val): ?>
+                                                <?php if(!empty($val)): ?>
+                                                    <input type="text" class="form-control mb-2" readonly value="<?php echo htmlspecialchars($val); ?>">
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
+                                        <?php if(!empty($strength_comment)): ?>
+                                            <textarea class="form-control mb-3" rows="2" readonly><?php echo htmlspecialchars($strength_comment); ?></textarea>
+                                        <?php endif; ?>
                                     </div>
                                     <div class="col-md-6">
                                         <label>Weaknesses / Areas for Improvement</label>
-                                        <?php for($i=0; $i<3; $i++): ?>
-                                            <input type="text" class="form-control mb-2" name="weaknesses[]" placeholder="Weakness <?php echo $i+1; ?>" value="<?php echo isset($weaknesses[$i]) ? $weaknesses[$i] : ''; ?>" readonly>
-                                        <?php endfor; ?>
+                                        <?php if(empty($weaknesses)): ?>
+                                             <input type="text" class="form-control mb-2" readonly value="">
+                                        <?php else: ?>
+                                            <?php foreach($weaknesses as $val): ?>
+                                                <?php if(!empty($val)): ?>
+                                                    <input type="text" class="form-control mb-2" readonly value="<?php echo htmlspecialchars($val); ?>">
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
+                                        <?php if(!empty($weakness_comment)): ?>
+                                            <textarea class="form-control mb-3" rows="2" readonly><?php echo htmlspecialchars($weakness_comment); ?></textarea>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
 
                                 <h4 class="mt-4 mb-3">SECTION 4: TRAINING & DEVELOPMENT NEEDS</h4>
-                                <?php for($i=0; $i<3; $i++): ?>
-                                    <input type="text" class="form-control mb-2" name="training_needs[]" placeholder="Training Need <?php echo $i+1; ?>" value="<?php echo isset($training_needs[$i]) ? $training_needs[$i] : ''; ?>" readonly>
-                                <?php endfor; ?>
+                                <?php if(empty($training_needs)): ?>
+                                     <input type="text" class="form-control mb-2" readonly value="">
+                                <?php else: ?>
+                                    <?php foreach($training_needs as $val): ?>
+                                        <?php if(!empty($val)): ?>
+                                            <input type="text" class="form-control mb-2" readonly value="<?php echo htmlspecialchars($val); ?>">
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                                <?php if(!empty($training_comment)): ?>
+                                    <textarea class="form-control mb-3" rows="2" readonly><?php echo htmlspecialchars($training_comment); ?></textarea>
+                                <?php endif; ?>
 
                                 <h4 class="mt-4 mb-3">SECTION 5: Goals & Objectives for Next Month</h4>
-                                <?php for($i=0; $i<3; $i++): ?>
-                                    <input type="text" class="form-control mb-2" name="next_month_goals[]" placeholder="Goal <?php echo $i+1; ?>" value="<?php echo isset($goals[$i]) ? $goals[$i] : ''; ?>" readonly>
-                                <?php endfor; ?>
+                                <?php if(empty($goals)): ?>
+                                     <input type="text" class="form-control mb-2" readonly value="">
+                                <?php else: ?>
+                                    <?php foreach($goals as $val): ?>
+                                        <?php if(!empty($val)): ?>
+                                            <input type="text" class="form-control mb-2" readonly value="<?php echo htmlspecialchars($val); ?>">
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
 
                                 <h4 class="mt-4 mb-3">SECTION 6: REMARKS</h4>
                                 <div class="form-group">

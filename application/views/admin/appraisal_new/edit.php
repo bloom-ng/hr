@@ -103,9 +103,10 @@
                                             <th>Expected Output</th>
                                             <th>Actual Output</th>
                                             <th>Rating (1-10)</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="kpa-tbody">
                                         <?php 
                                         $kpas = isset($appraisal['kpas']) ? $appraisal['kpas'] : [];
                                         $count = max(4, count($kpas));
@@ -113,15 +114,17 @@
                                             $kpa = isset($kpas[$i]) ? $kpas[$i] : null;
                                         ?>
                                         <tr>
-                                            <td><input type="text" class="form-control" name="kpa_category[]" value="<?php echo $kpa ? $kpa['category'] : ''; ?>"></td>
-                                            <td><input type="text" class="form-control" name="kpa_description[]" value="<?php echo $kpa ? $kpa['description'] : ''; ?>"></td>
-                                            <td><input type="text" class="form-control" name="kpa_expected[]" value="<?php echo $kpa ? $kpa['expected_output'] : ''; ?>"></td>
-                                            <td><input type="text" class="form-control" name="kpa_actual[]" value="<?php echo $kpa ? $kpa['actual_output'] : ''; ?>"></td>
+                                            <td><input type="text" class="form-control" name="kpa_category[]" value="<?php echo $kpa ? htmlspecialchars($kpa['category']) : ''; ?>"></td>
+                                            <td><input type="text" class="form-control" name="kpa_description[]" value="<?php echo $kpa ? htmlspecialchars($kpa['description']) : ''; ?>"></td>
+                                            <td><input type="text" class="form-control" name="kpa_expected[]" value="<?php echo $kpa ? htmlspecialchars($kpa['expected_output']) : ''; ?>"></td>
+                                            <td><input type="text" class="form-control" name="kpa_actual[]" value="<?php echo $kpa ? htmlspecialchars($kpa['actual_output']) : ''; ?>"></td>
                                             <td><input type="number" class="form-control" name="kpa_rating[]" min="1" max="10" value="<?php echo $kpa ? $kpa['rating'] : ''; ?>"></td>
+                                            <td><button type="button" class="btn btn-sm btn-danger" onclick="this.closest('tr').remove();">X</button></td>
                                         </tr>
                                         <?php endfor; ?>
                                     </tbody>
                                 </table>
+                                <button type="button" class="btn btn-sm btn-secondary mb-4" onclick="addKpaRow()">+ Add KPA Row</button>
 
                                 <h4 class="mt-4 mb-3">SECTION 2: TASK TRACKING</h4>
                                 <div class="row">
@@ -158,35 +161,105 @@
 
                                 <h4 class="mt-4 mb-3">SECTION 3: PERFORMANCE SUMMARY</h4>
                                 <?php 
-                                    $strengths = json_decode($appraisal['strengths'], true) ?: [];
-                                    $weaknesses = json_decode($appraisal['weaknesses'], true) ?: [];
-                                    $training_needs = json_decode($appraisal['training_needs'], true) ?: [];
+                                    $raw_strengths = json_decode($appraisal['strengths'], true) ?: [];
+                                    $strengths = isset($raw_strengths['selections']) ? $raw_strengths['selections'] : ((is_array($raw_strengths) && !isset($raw_strengths['selections']) && !isset($raw_strengths['comment'])) ? $raw_strengths : []);
+                                    $strength_comment = isset($raw_strengths['comment']) ? $raw_strengths['comment'] : '';
+
+                                    $raw_weaknesses = json_decode($appraisal['weaknesses'], true) ?: [];
+                                    $weaknesses = isset($raw_weaknesses['selections']) ? $raw_weaknesses['selections'] : ((is_array($raw_weaknesses) && !isset($raw_weaknesses['selections']) && !isset($raw_weaknesses['comment'])) ? $raw_weaknesses : []);
+                                    $weakness_comment = isset($raw_weaknesses['comment']) ? $raw_weaknesses['comment'] : '';
+
+                                    $raw_training = json_decode($appraisal['training_needs'], true) ?: [];
+                                    $training_needs = isset($raw_training['selections']) ? $raw_training['selections'] : ((is_array($raw_training) && !isset($raw_training['selections']) && !isset($raw_training['comment'])) ? $raw_training : []);
+                                    $training_comment = isset($raw_training['comment']) ? $raw_training['comment'] : '';
+
                                     $goals = json_decode($appraisal['next_month_goals'], true) ?: [];
                                 ?>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Employee Strengths</label>
-                                        <?php for($i=0; $i<3; $i++): ?>
-                                            <input type="text" class="form-control mb-2" name="strengths[]" placeholder="Strength <?php echo $i+1; ?>" value="<?php echo isset($strengths[$i]) ? $strengths[$i] : ''; ?>">
-                                        <?php endfor; ?>
+                                        <div id="strengths-container">
+                                            <?php 
+                                            $count = max(3, count($strengths));
+                                            for($i=0; $i<$count; $i++): 
+                                                $val = isset($strengths[$i]) ? $strengths[$i] : '';
+                                            ?>
+                                            <select class="form-control mb-2" name="strengths[]">
+                                                <option value="">Select Strength</option>
+                                                <option value="Effective Communication" <?php echo ($val == 'Effective Communication') ? 'selected' : ''; ?>>Effective Communication</option>
+                                                <option value="Outstanding knowledge of the job" <?php echo ($val == 'Outstanding knowledge of the job') ? 'selected' : ''; ?>>Outstanding knowledge of the job</option>
+                                                <option value="Strong Team Player" <?php echo ($val == 'Strong Team Player') ? 'selected' : ''; ?>>Strong Team Player</option>
+                                                <option value="Innovative Thinking" <?php echo ($val == 'Innovative Thinking') ? 'selected' : ''; ?>>Innovative Thinking</option>
+                                                <option value="Adaptable to Change" <?php echo ($val == 'Adaptable to Change') ? 'selected' : ''; ?>>Adaptable to Change</option>
+                                                <option value="Willingness to learn & improve" <?php echo ($val == 'Willingness to learn & improve') ? 'selected' : ''; ?>>Willingness to learn & improve</option>
+                                                <?php if($val && !in_array($val, ['Effective Communication', 'Outstanding knowledge of the job', 'Strong Team Player', 'Innovative Thinking', 'Adaptable to Change', 'Willingness to learn & improve'])): ?>
+                                                    <option value="<?php echo htmlspecialchars($val); ?>" selected><?php echo htmlspecialchars($val); ?></option>
+                                                <?php endif; ?>
+                                            </select>
+                                            <?php endfor; ?>
+                                        </div>
+                                        <button type="button" class="btn btn-sm btn-secondary mb-3" onclick="addDropdown('strengths-container', 'strengths[]', getStrengthOptions())">+ Add Strength</button>
+                                        <textarea class="form-control mb-3" name="strength_comment" placeholder="Further comments on strengths..." rows="2"><?php echo htmlspecialchars($strength_comment); ?></textarea>
                                     </div>
                                     <div class="col-md-6">
                                         <label>Weaknesses / Areas for Improvement</label>
-                                        <?php for($i=0; $i<3; $i++): ?>
-                                            <input type="text" class="form-control mb-2" name="weaknesses[]" placeholder="Weakness <?php echo $i+1; ?>" value="<?php echo isset($weaknesses[$i]) ? $weaknesses[$i] : ''; ?>">
-                                        <?php endfor; ?>
+                                        <div id="weaknesses-container">
+                                            <?php 
+                                            $count = max(3, count($weaknesses));
+                                            for($i=0; $i<$count; $i++): 
+                                                $val = isset($weaknesses[$i]) ? $weaknesses[$i] : '';
+                                            ?>
+                                            <select class="form-control mb-2" name="weaknesses[]">
+                                                <option value="">Select Weakness</option>
+                                                <option value="Time Management" <?php echo ($val == 'Time Management') ? 'selected' : ''; ?>>Time Management</option>
+                                                <option value="Conflict Resolution" <?php echo ($val == 'Conflict Resolution') ? 'selected' : ''; ?>>Conflict Resolution</option>
+                                                <option value="Technical Skills Enhancement" <?php echo ($val == 'Technical Skills Enhancement') ? 'selected' : ''; ?>>Technical Skills Enhancement</option>
+                                                <option value="Goal Setting and Achievement" <?php echo ($val == 'Goal Setting and Achievement') ? 'selected' : ''; ?>>Goal Setting and Achievement</option>
+                                                <option value="Communication with Team Members" <?php echo ($val == 'Communication with Team Members') ? 'selected' : ''; ?>>Communication with Team Members</option>
+                                                <?php if($val && !in_array($val, ['Time Management', 'Conflict Resolution', 'Technical Skills Enhancement', 'Goal Setting and Achievement', 'Communication with Team Members'])): ?>
+                                                    <option value="<?php echo htmlspecialchars($val); ?>" selected><?php echo htmlspecialchars($val); ?></option>
+                                                <?php endif; ?>
+                                            </select>
+                                            <?php endfor; ?>
+                                        </div>
+                                        <button type="button" class="btn btn-sm btn-secondary mb-3" onclick="addDropdown('weaknesses-container', 'weaknesses[]', getWeaknessOptions())">+ Add Weakness</button>
+                                        <textarea class="form-control mb-3" name="weakness_comment" placeholder="Further comments on weaknesses..." rows="2"><?php echo htmlspecialchars($weakness_comment); ?></textarea>
                                     </div>
                                 </div>
 
                                 <h4 class="mt-4 mb-3">SECTION 4: TRAINING & DEVELOPMENT NEEDS</h4>
-                                <?php for($i=0; $i<3; $i++): ?>
-                                    <input type="text" class="form-control mb-2" name="training_needs[]" placeholder="Training Need <?php echo $i+1; ?>" value="<?php echo isset($training_needs[$i]) ? $training_needs[$i] : ''; ?>">
-                                <?php endfor; ?>
+                                <div id="training-container">
+                                    <?php 
+                                    $count = max(3, count($training_needs));
+                                    for($i=0; $i<$count; $i++): 
+                                        $val = isset($training_needs[$i]) ? $training_needs[$i] : '';
+                                    ?>
+                                    <select class="form-control mb-2" name="training_needs[]">
+                                        <option value="">Select Training Need</option>
+                                        <option value="Leadership Training" <?php echo ($val == 'Leadership Training') ? 'selected' : ''; ?>>Leadership Training</option>
+                                        <option value="Technical Skills Training" <?php echo ($val == 'Technical Skills Training') ? 'selected' : ''; ?>>Technical Skills Training</option>
+                                        <option value="Communication Skills Workshop" <?php echo ($val == 'Communication Skills Workshop') ? 'selected' : ''; ?>>Communication Skills Workshop</option>
+                                        <option value="Project Management Training" <?php echo ($val == 'Project Management Training') ? 'selected' : ''; ?>>Project Management Training</option>
+                                        <?php if($val && !in_array($val, ['Leadership Training', 'Technical Skills Training', 'Communication Skills Workshop', 'Project Management Training'])): ?>
+                                            <option value="<?php echo htmlspecialchars($val); ?>" selected><?php echo htmlspecialchars($val); ?></option>
+                                        <?php endif; ?>
+                                    </select>
+                                    <?php endfor; ?>
+                                </div>
+                                <button type="button" class="btn btn-sm btn-secondary mb-3" onclick="addDropdown('training-container', 'training_needs[]', getTrainingOptions())">+ Add Training Need</button>
+                                <textarea class="form-control mb-3" name="training_comment" placeholder="Further comments on training needs..." rows="2"><?php echo htmlspecialchars($training_comment); ?></textarea>
 
                                 <h4 class="mt-4 mb-3">SECTION 5: Goals & Objectives for Next Month</h4>
-                                <?php for($i=0; $i<3; $i++): ?>
-                                    <input type="text" class="form-control mb-2" name="next_month_goals[]" placeholder="Goal <?php echo $i+1; ?>" value="<?php echo isset($goals[$i]) ? $goals[$i] : ''; ?>">
-                                <?php endfor; ?>
+                                <div id="goals-container">
+                                    <?php 
+                                    $count = max(3, count($goals));
+                                    for($i=0; $i<$count; $i++): 
+                                        $val = isset($goals[$i]) ? $goals[$i] : '';
+                                    ?>
+                                        <input type="text" class="form-control mb-2" name="next_month_goals[]" placeholder="Goal <?php echo $i+1; ?>" value="<?php echo htmlspecialchars($val); ?>">
+                                    <?php endfor; ?>
+                                </div>
+                                <button type="button" class="btn btn-sm btn-secondary mb-3" onclick="addInput('goals-container', 'next_month_goals[]', 'Goal')">+ Add Goal</button>
 
                                 <h4 class="mt-4 mb-3">SECTION 6: REMARKS</h4>
                                 <div class="form-group">
@@ -224,5 +297,72 @@ function calculateCompletion() {
         var rate = (completed / assigned) * 100;
         document.getElementById('completion_rate').value = rate.toFixed(2);
     }
+}
+
+function getStrengthOptions() {
+    return `
+        <option value="">Select Strength</option>
+        <option value="Effective Communication">Effective Communication</option>
+        <option value="Outstanding knowledge of the job">Outstanding knowledge of the job</option>
+        <option value="Strong Team Player">Strong Team Player</option>
+        <option value="Innovative Thinking">Innovative Thinking</option>
+        <option value="Adaptable to Change">Adaptable to Change</option>
+        <option value="Willingness to learn & improve">Willingness to learn & improve</option>
+    `;
+}
+
+function getWeaknessOptions() {
+    return `
+        <option value="">Select Weakness</option>
+        <option value="Time Management">Time Management</option>
+        <option value="Conflict Resolution">Conflict Resolution</option>
+        <option value="Technical Skills Enhancement">Technical Skills Enhancement</option>
+        <option value="Goal Setting and Achievement">Goal Setting and Achievement</option>
+        <option value="Communication with Team Members">Communication with Team Members</option>
+    `;
+}
+
+function getTrainingOptions() {
+    return `
+        <option value="">Select Training Need</option>
+        <option value="Leadership Training">Leadership Training</option>
+        <option value="Technical Skills Training">Technical Skills Training</option>
+        <option value="Communication Skills Workshop">Communication Skills Workshop</option>
+        <option value="Project Management Training">Project Management Training</option>
+    `;
+}
+
+function addDropdown(containerId, inputName, optionsHtml) {
+    var container = document.getElementById(containerId);
+    var select = document.createElement('select');
+    select.className = 'form-control mb-2';
+    select.name = inputName;
+    select.innerHTML = optionsHtml;
+    container.appendChild(select);
+}
+
+function addInput(containerId, inputName, placeholderPrefix) {
+    var container = document.getElementById(containerId);
+    var count = container.querySelectorAll('input').length + 1;
+    var input = document.createElement('input');
+    input.type = 'text';
+    input.className = 'form-control mb-2';
+    input.name = inputName;
+    input.placeholder = placeholderPrefix + ' ' + count;
+    container.appendChild(input);
+}
+
+function addKpaRow() {
+    var tbody = document.getElementById('kpa-tbody');
+    var tr = document.createElement('tr');
+    tr.innerHTML = `
+        <td><input type="text" class="form-control" name="kpa_category[]"></td>
+        <td><input type="text" class="form-control" name="kpa_description[]"></td>
+        <td><input type="text" class="form-control" name="kpa_expected[]"></td>
+        <td><input type="text" class="form-control" name="kpa_actual[]"></td>
+        <td><input type="number" class="form-control" name="kpa_rating[]" min="1" max="10"></td>
+        <td><button type="button" class="btn btn-sm btn-danger" onclick="this.closest('tr').remove();">X</button></td>
+    `;
+    tbody.appendChild(tr);
 }
 </script>

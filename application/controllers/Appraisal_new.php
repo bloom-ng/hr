@@ -90,9 +90,18 @@ class Appraisal_new extends CI_Controller
             'completion_rate' => $this->input->post('completion_rate'),
             'accuracy_rate' => $this->input->post('accuracy_rate'),
             
-            'strengths' => json_encode($this->input->post('strengths')),
-            'weaknesses' => json_encode($this->input->post('weaknesses')),
-            'training_needs' => json_encode($this->input->post('training_needs')),
+            'strengths' => json_encode([
+                'selections' => $this->input->post('strengths') ?: [],
+                'comment' => $this->input->post('strength_comment')
+            ]),
+            'weaknesses' => json_encode([
+                'selections' => $this->input->post('weaknesses') ?: [],
+                'comment' => $this->input->post('weakness_comment')
+            ]),
+            'training_needs' => json_encode([
+                'selections' => $this->input->post('training_needs') ?: [],
+                'comment' => $this->input->post('training_comment')
+            ]),
             'next_month_goals' => json_encode($this->input->post('next_month_goals')),
             
             'hod_remarks' => $this->input->post('hod_remarks'), // Added HOD remarks on creation
@@ -185,9 +194,18 @@ class Appraisal_new extends CI_Controller
             'completion_rate' => $this->input->post('completion_rate'),
             'accuracy_rate' => $this->input->post('accuracy_rate'),
             
-            'strengths' => json_encode($this->input->post('strengths')),
-            'weaknesses' => json_encode($this->input->post('weaknesses')),
-            'training_needs' => json_encode($this->input->post('training_needs')),
+            'strengths' => json_encode([
+                'selections' => $this->input->post('strengths') ?: [],
+                'comment' => $this->input->post('strength_comment')
+            ]),
+            'weaknesses' => json_encode([
+                'selections' => $this->input->post('weaknesses') ?: [],
+                'comment' => $this->input->post('weakness_comment')
+            ]),
+            'training_needs' => json_encode([
+                'selections' => $this->input->post('training_needs') ?: [],
+                'comment' => $this->input->post('training_comment')
+            ]),
             'next_month_goals' => json_encode($this->input->post('next_month_goals')),
             
             'hod_remarks' => $this->input->post('hod_remarks'),
