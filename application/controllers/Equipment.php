@@ -298,7 +298,6 @@ class Equipment extends MY_Controller
                 'staff_id' => $this->session->userdata('staff_id'),
                 'purpose' => $purpose,
                 'requested_date' => date('Y-m-d H:i:s'),
-                'status' => Equipment_log_model::STATUS_IN_USE,
                 'request_status' => Equipment_log_model::REQUEST_PENDING,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')

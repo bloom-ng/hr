@@ -44,6 +44,7 @@ class Equipment_log_model extends CI_Model
         $this->db->join('equipment_tbl', 'equipment_log_tbl.equipment_id = equipment_tbl.id', 'left');
         $this->db->join('staff_tbl', 'equipment_log_tbl.staff_id = staff_tbl.id', 'left');
         $this->db->where('equipment_log_tbl.equipment_id', $equipment_id);
+        $this->db->where('equipment_log_tbl.request_status', self::REQUEST_APPROVED);
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -84,6 +85,7 @@ class Equipment_log_model extends CI_Model
         $this->db->from('equipment_log_tbl');
         $this->db->join('equipment_tbl', 'equipment_log_tbl.equipment_id = equipment_tbl.id', 'left');
         $this->db->join('staff_tbl', 'equipment_log_tbl.staff_id = staff_tbl.id', 'left');
+        $this->db->where('equipment_log_tbl.request_status', self::REQUEST_APPROVED);
         $this->db->order_by('equipment_log_tbl.created_at', 'DESC');
         $query = $this->db->get();
         return $query->result_array();
