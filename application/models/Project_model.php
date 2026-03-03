@@ -80,7 +80,7 @@ class Project_model extends CI_Model
         }
 
         // Only Super Admin can approve projects
-        if ($user_role !== 'super' && isset($data['status']) && $data['status'] === 'approved') {
+        if ($user_role !== 'super' && isset($data['status']) && $data['status'] === 'approved' && $data['status'] !== $project->status) {
             return ['success' => false, 'message' => 'Only Super Admin can approve projects'];
         }
 
