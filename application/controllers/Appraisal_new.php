@@ -307,7 +307,7 @@ class Appraisal_new extends CI_Controller
         }
         
         $data = [
-            'hr_remarks' => $this->input->post('hr_remarks'),
+            // 'hr_remarks' => $this->input->post('hr_remarks'),
             'status' => Appraisal_new_model::APPRAISAL_FINAL
         ];
         $this->Appraisal_new_model->update_appraisal($id, $data);
