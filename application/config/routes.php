@@ -232,3 +232,9 @@ $route['api/auth/remove-push-token'] = 'api/auth/remove_push_token';
 
 $route['notify'] = 'notify/index';
 $route['notify/send_social_notification']['POST'] = 'notify/send_social_notification';
+
+// Performance routes (quarterly + yearly summaries)
+$route['performance'] = 'performance/manage';
+$route['performance/manage'] = 'performance/manage';
+$route['performance/manage/(:num)'] = 'performance/manage/$1';
+$route['performance/manage/(:num)/(:num)'] = 'performance/manage/$1/$2';

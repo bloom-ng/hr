@@ -222,19 +222,20 @@
             </a>
             <ul class="treeview-menu">
               <!-- <li><a href="<?php echo base_url(); ?>manage-appraisal"><i class="fa fa-circle-o"></i>Manage Appraisal</a></li> -->
-              
+
               <!-- 2026 Appraisal System -->
               <li><a href="<?php echo base_url('appraisal_new/manage'); ?>"><i class="fa fa-circle-o"></i>Manage Appraisal (2026)</a></li>
-              
+
               <?php if (in_array($this->session->userdata('role'), (array)"staff")) : ?>
                 <!-- <li><a href="<?php echo base_url(); ?>my-appraisal"><i class="fa fa-circle-o"></i> My Appraisal</a></li> -->
-                 <li><a href="<?php echo base_url('appraisal_new/my_appraisals'); ?>"><i class="fa fa-circle-o"></i> My Appraisal (2026)</a></li>
+                <li><a href="<?php echo base_url('appraisal_new/my_appraisals'); ?>"><i class="fa fa-circle-o"></i> My Appraisal (2026)</a></li>
               <?php endif; ?>
               <?php if (in_array($this->session->userdata('role'), ["hrm", "super"])) : ?>
                 <!-- <li><a href="<?php echo base_url(); ?>approved-appraisal"><i class="fa fa-circle-o"></i> Approved Appraisal</a></li> -->
                 <li><a href="<?php echo base_url('appraisal_new/approved_appraisal'); ?>"><i class="fa fa-circle-o"></i> Approved Appraisal (2026)</a></li>
                 <!-- <li><a href="<?php echo base_url(); ?>unapproved-appraisal"><i class="fa fa-circle-o"></i> Unapproved Appraisal</a></li> -->
                 <li><a href="<?php echo base_url('appraisal_new/unapproved_appraisal'); ?>"><i class="fa fa-circle-o"></i> Unapproved Appraisal (2026)</a></li>
+                <li><a href="<?php echo base_url('performance/manage'); ?>"><i class="fa fa-circle-o"></i> Performance Rating</a></li>
               <?php endif; ?>
             </ul>
           </li>
@@ -361,7 +362,7 @@
                 <li><a href="<?php echo base_url(); ?>budget"><i class="fa fa-circle-o"></i> Manage Budgets</a></li>
               </ul>
             </li>
-            
+
             <!-- <li class="treeview">
               <a href="#">
                 <i class="fa fa-ticket"></i> <span>Voucher</span>
@@ -377,7 +378,7 @@
 
           <?php if (in_array($this->session->userdata('role'), ["hrm", "super"])) : ?>
             <!-- Projects Management -->
-            <?php if($this->session->userdata('role') == "hrm"): ?>
+            <?php if ($this->session->userdata('role') == "hrm"): ?>
               <li class="treeview">
                 <a href="#">
                   <i class="fa fa-tasks"></i> <span>Projects</span>
@@ -385,15 +386,15 @@
                     <i class="fa fa-angle-left pull-right"></i>
                   </span>
                 </a>
-              <ul class="treeview-menu">
-                <li><a href="<?php echo site_url('projects'); ?>"><i class="fa fa-circle-o"></i> All Projects</a></li>
-                <li><a href="<?php echo site_url('projects/create'); ?>"><i class="fa fa-plus-circle"></i> Create Project</a></li>
-              </ul>
-            </li>
+                <ul class="treeview-menu">
+                  <li><a href="<?php echo site_url('projects'); ?>"><i class="fa fa-circle-o"></i> All Projects</a></li>
+                  <li><a href="<?php echo site_url('projects/create'); ?>"><i class="fa fa-plus-circle"></i> Create Project</a></li>
+                </ul>
+              </li>
             <?php endif; ?>
 
             <!-- Fund Requests -->
-            <?php if($this->session->userdata('role') == "hrm"): ?>
+            <?php if ($this->session->userdata('role') == "hrm"): ?>
               <li class="treeview">
                 <a href="#">
                   <i class="fa fa-money"></i> <span>Fund Requests</span>
@@ -651,7 +652,7 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                  <li><a href="<?php echo base_url(); ?>budget"><i class="fa fa-circle-o"></i> View Budget</a></li>
+                <li><a href="<?php echo base_url(); ?>budget"><i class="fa fa-circle-o"></i> View Budget</a></li>
               </ul>
             </li>
 
@@ -696,14 +697,14 @@
                 Profile
               </span></a>
           </li>
-          
+
           <li class=""><a href="<?php echo base_url(); ?>logout"><i class="fa fa-sign-out"></i>
               <span>
                 Sign out
               </span></a>
           </li>
-          
-          
+
+
         </ul>
       </section>
       <!-- /.sidebar -->
@@ -716,42 +717,42 @@
     // }
     ?>
 
-<!-- Chatbot UI -->
-<div id="chatbot-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; font-family: 'Source Sans Pro', sans-serif;">
-    <!-- Chat Button -->
-    <button id="chatbot-toggle" style="background-color: #ffffff; color: white; border: none; border-radius: 50%; width: 60px; height: 60px; cursor: pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center; transition: transform 0.3s;">
+    <!-- Chatbot UI -->
+    <div id="chatbot-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; font-family: 'Source Sans Pro', sans-serif;">
+      <!-- Chat Button -->
+      <button id="chatbot-toggle" style="background-color: #ffffff; color: white; border: none; border-radius: 50%; width: 60px; height: 60px; cursor: pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center; transition: transform 0.3s;">
         <img src="<?php echo base_url('assets/dist/img/bloom.png'); ?>" alt="Bloom Assistant" style="width: 30px; height: 30px;">
-    </button>
+      </button>
 
-    <!-- Chat Window -->
-    <div id="chatbot-window" style="display: none; position: absolute; bottom: 80px; right: 0; width: 350px; height: 500px; background-color: white; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); overflow: hidden; flex-direction: column;">
+      <!-- Chat Window -->
+      <div id="chatbot-window" style="display: none; position: absolute; bottom: 80px; right: 0; width: 350px; height: 500px; background-color: white; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); overflow: hidden; flex-direction: column;">
         <!-- Header -->
         <div style="background-color: #2C2C2C; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center;">
-            <span style="font-weight: bold;">Bloom Assistant</span>
-            <button id="chatbot-close" style="background: none; border: none; color: white; cursor: pointer;">
-                <i class="fa fa-times"></i>
-            </button>
+          <span style="font-weight: bold;">Bloom Assistant</span>
+          <button id="chatbot-close" style="background: none; border: none; color: white; cursor: pointer;">
+            <i class="fa fa-times"></i>
+          </button>
         </div>
 
         <!-- Messages Area -->
         <div id="chatbot-messages" style="flex: 1; padding: 15px; overflow-y: auto; background-color: #f4f4f4; display: flex; flex-direction: column; gap: 10px;">
-            <div style="align-self: flex-start; background-color: #e0e0e0; padding: 10px; border-radius: 10px; max-width: 80%; color: #333;">
-                Hello! How can I help you today?
-            </div>
+          <div style="align-self: flex-start; background-color: #e0e0e0; padding: 10px; border-radius: 10px; max-width: 80%; color: #333;">
+            Hello! How can I help you today?
+          </div>
         </div>
 
         <!-- Input Area -->
         <div style="padding: 15px; background-color: white; border-top: 1px solid #ddd; display: flex; gap: 10px;">
-            <input class="text-black" type="text" id="chatbot-input" placeholder="Type a message..." style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 5px; outline: none;">
-            <button id="chatbot-send" style="background-color: #FF9501; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer;">
-                <i class="fa fa-paper-plane"></i>
-            </button>
+          <input class="text-black" type="text" id="chatbot-input" placeholder="Type a message..." style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 5px; outline: none;">
+          <button id="chatbot-send" style="background-color: #FF9501; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer;">
+            <i class="fa fa-paper-plane"></i>
+          </button>
         </div>
+      </div>
     </div>
-</div>
 
-<script>
-    $(document).ready(function() {
+    <script>
+      $(document).ready(function() {
         const toggleBtn = $('#chatbot-toggle');
         const chatWindow = $('#chatbot-window');
         const closeBtn = $('#chatbot-close');
@@ -761,78 +762,80 @@
 
         // Toggle Chat Window
         toggleBtn.click(function() {
-            if (chatWindow.is(':visible')) {
-                chatWindow.fadeOut(200);
-            } else {
-                chatWindow.css('display', 'flex').hide().fadeIn(200);
-            }
+          if (chatWindow.is(':visible')) {
+            chatWindow.fadeOut(200);
+          } else {
+            chatWindow.css('display', 'flex').hide().fadeIn(200);
+          }
         });
 
         closeBtn.click(function() {
-            chatWindow.fadeOut(200);
+          chatWindow.fadeOut(200);
         });
 
         // Send Message
         function sendMessage() {
-            const message = inputField.val().trim();
-            if (message === '') return;
+          const message = inputField.val().trim();
+          if (message === '') return;
 
-            // Add User Message
-            appendMessage(message, 'user');
-            inputField.val('');
+          // Add User Message
+          appendMessage(message, 'user');
+          inputField.val('');
 
-            // Show Loading
-            const loadingId = 'loading-' + Date.now();
-            appendLoading(loadingId);
+          // Show Loading
+          const loadingId = 'loading-' + Date.now();
+          appendLoading(loadingId);
 
-            // Call API
-            $.ajax({
-                url: '<?php echo base_url("Chatbot/ask"); ?>',
-                type: 'POST',
-                data: { message: message },
-                dataType: 'json',
-                success: function(response) {
-                    removeLoading(loadingId);
-                    if (response.response) {
-                        appendMessage(response.response, 'bot');
-                    } else if (response.error) {
-                        appendMessage('Error: ' + response.error, 'bot');
-                    }
-                },
-                error: function() {
-                    removeLoading(loadingId);
-                    appendMessage('Sorry, something went wrong. Please try again.', 'bot');
-                }
-            });
+          // Call API
+          $.ajax({
+            url: '<?php echo base_url("Chatbot/ask"); ?>',
+            type: 'POST',
+            data: {
+              message: message
+            },
+            dataType: 'json',
+            success: function(response) {
+              removeLoading(loadingId);
+              if (response.response) {
+                appendMessage(response.response, 'bot');
+              } else if (response.error) {
+                appendMessage('Error: ' + response.error, 'bot');
+              }
+            },
+            error: function() {
+              removeLoading(loadingId);
+              appendMessage('Sorry, something went wrong. Please try again.', 'bot');
+            }
+          });
         }
 
         sendBtn.click(sendMessage);
         inputField.keypress(function(e) {
-            if (e.which == 13) sendMessage();
+          if (e.which == 13) sendMessage();
         });
 
         function appendMessage(text, sender) {
-            const style = sender === 'user' 
-                ? 'align-self: flex-end; background-color: #FF9501; color: white;' 
-                : 'align-self: flex-start; background-color: #e0e0e0; color: #333;';
-            
-            const html = `<div style="${style} padding: 10px; border-radius: 10px; max-width: 80%; word-wrap: break-word;">${text}</div>`;
-            messagesContainer.append(html);
-            scrollToBottom();
+          const style = sender === 'user' ?
+            'align-self: flex-end; background-color: #FF9501; color: white;' :
+            'align-self: flex-start; background-color: #e0e0e0; color: #333;';
+
+          const html = `<div style="${style} padding: 10px; border-radius: 10px; max-width: 80%; word-wrap: break-word;">${text}</div>`;
+          messagesContainer.append(html);
+          scrollToBottom();
         }
 
         function appendLoading(id) {
-            const html = `<div id="${id}" style="align-self: flex-start; background-color: #e0e0e0; padding: 10px; border-radius: 10px; color: #333;">Typing...</div>`;
-            messagesContainer.append(html);
-            scrollToBottom();
+          const html = `<div id="${id}" style="align-self: flex-start; background-color: #e0e0e0; padding: 10px; border-radius: 10px; color: #333;">Typing...</div>`;
+          messagesContainer.append(html);
+          scrollToBottom();
         }
 
         function removeLoading(id) {
-            $('#' + id).remove();
+          $('#' + id).remove();
         }
 
         function scrollToBottom() {
-            messagesContainer.scrollTop(messagesContainer[0].scrollHeight);
+          messagesContainer.scrollTop(messagesContainer[0].scrollHeight);
         }
-    });
-</script>
+      });
+    </script>
