@@ -52,7 +52,11 @@
 											<?php foreach ($rows as $row): ?>
 												<?php $dist = $row['rating_distribution'] ?? []; ?>
 												<tr>
-													<td><?php echo $row['department_name']; ?></td>
+													<td>
+														<a href="<?php echo base_url('performance/department/' . (int)$row['department_id'] . '/' . (int)$year . '/' . (int)$q); ?>">
+															<?php echo htmlspecialchars((string)$row['department_name']); ?>
+														</a>
+													</td>
 													<td><?php echo (float)$row['avg_score']; ?></td>
 													<td><?php echo $row['rating_band']; ?></td>
 													<td><?php echo (int)$row['staff_count']; ?></td>
@@ -96,7 +100,11 @@
 										<?php foreach ($year_summaries as $row): ?>
 											<?php $dist = $row['rating_distribution'] ?? []; ?>
 											<tr>
-												<td><?php echo $row['department_name']; ?></td>
+												<td>
+													<a href="<?php echo base_url('performance/department/' . (int)$row['department_id'] . '/' . (int)$year); ?>">
+														<?php echo htmlspecialchars((string)$row['department_name']); ?>
+													</a>
+												</td>
 												<td><?php echo (float)$row['avg_score']; ?></td>
 												<td><?php echo $row['rating_band']; ?></td>
 												<td><?php echo (int)$row['staff_count']; ?></td>

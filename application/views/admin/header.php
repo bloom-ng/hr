@@ -235,7 +235,7 @@
                 <li><a href="<?php echo base_url('appraisal_new/approved_appraisal'); ?>"><i class="fa fa-circle-o"></i> Approved Appraisal (2026)</a></li>
                 <!-- <li><a href="<?php echo base_url(); ?>unapproved-appraisal"><i class="fa fa-circle-o"></i> Unapproved Appraisal</a></li> -->
                 <li><a href="<?php echo base_url('appraisal_new/unapproved_appraisal'); ?>"><i class="fa fa-circle-o"></i> Unapproved Appraisal (2026)</a></li>
-                <li><a href="<?php echo base_url('performance/manage'); ?>"><i class="fa fa-circle-o"></i> Performance Rating</a></li>
+                <li><a href="<?php echo base_url('performance/departments'); ?>"><i class="fa fa-circle-o"></i> Manage Performances</a></li>
               <?php endif; ?>
             </ul>
           </li>

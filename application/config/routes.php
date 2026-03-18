@@ -238,3 +238,14 @@ $route['performance'] = 'performance/manage';
 $route['performance/manage'] = 'performance/manage';
 $route['performance/manage/(:num)'] = 'performance/manage/$1';
 $route['performance/manage/(:num)/(:num)'] = 'performance/manage/$1/$2';
+
+// Drill-down performance routes (department -> staff)
+$route['performance/department/(:num)/(:num)'] = 'performance/department_year/$1/$2';
+$route['performance/department/(:num)/(:num)/(:num)'] = 'performance/department_quarter/$1/$2/$3';
+
+$route['performance/department/(:num)/(:num)/staff/(:num)'] = 'performance/staff_detail_year/$1/$2/$3';
+$route['performance/department/(:num)/(:num)/(:num)/staff/(:num)'] = 'performance/staff_detail_quarter/$1/$2/$3/$4';
+
+// Department index for drill-down
+$route['performance/departments'] = 'performance/departments';
+$route['performance/departments/(:num)'] = 'performance/departments/$1';
