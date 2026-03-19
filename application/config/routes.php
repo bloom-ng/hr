@@ -249,3 +249,12 @@ $route['performance/department/(:num)/(:num)/(:num)/staff/(:num)'] = 'performanc
 // Department index for drill-down
 $route['performance/departments'] = 'performance/departments';
 $route['performance/departments/(:num)'] = 'performance/departments/$1';
+
+// Transaction Journals (Finance)
+$route['transaction-journals'] = 'TransactionJournals/index';
+$route['transaction-journals/registery'] = 'TransactionJournals/registery';
+$route['transaction-journals/add'] = 'TransactionJournals/add';
+$route['transaction-journals/insert'] = 'TransactionJournals/insert';
+$route['transaction-journals/get-balance'] = 'TransactionJournals/get_balance';
+$route['transaction-journals/categories'] = 'TransactionJournals/categories';
+$route['transaction-journals/categories/insert'] = 'TransactionJournals/insert_category';

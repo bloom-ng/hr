@@ -363,6 +363,20 @@
               </ul>
             </li>
 
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-book"></i> <span>Transaction Journals</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?php echo base_url(); ?>transaction-journals/registery"><i class="fa fa-circle-o"></i> Registery</a></li>
+                <li><a href="<?php echo base_url(); ?>transaction-journals/add"><i class="fa fa-circle-o"></i> Add Entry</a></li>
+                <li><a href="<?php echo base_url(); ?>transaction-journals/categories"><i class="fa fa-circle-o"></i> Categories</a></li>
+              </ul>
+            </li>
+
             <!-- <li class="treeview">
               <a href="#">
                 <i class="fa fa-ticket"></i> <span>Voucher</span>
