@@ -52,4 +52,29 @@ class Events_model extends CI_Model
         $query = $this->db->get($this->table);
         return $query->num_rows() > 0;
     }
+
+    /**
+     * Fetch events that start within the next 24 hours and haven't been reminded yet.
+     */
+    public function get_events_due_for_reminder()
+    {
+        $now   = date('Y-m-d H:i:s');
+        $in24h = date('Y-m-d H:i:s', strtotime('+24 hours'));
+
+        $this->db->where('start_date >=', $now);
+        $this->db->where('start_date <=', $in24h);
+        $this->db->where('reminder_sent', 0);
+        $this->db->order_by('start_date', 'ASC');
+
+        return $this->db->get($this->table)->result_array();
+    }
+
+    /**
+     * Mark an event's reminder as sent so it won't be re-sent on the next cron run.
+     */
+    public function mark_reminder_sent($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->update($this->table, ['reminder_sent' => 1]);
+    }
 }
