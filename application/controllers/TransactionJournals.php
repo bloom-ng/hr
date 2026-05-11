@@ -20,7 +20,7 @@ class TransactionJournals extends CI_Controller
         }
 
         $role = $this->session->userdata('role');
-        if (!in_array($role, ['finance', 'super'])) {
+        if (!in_array($role, ['finance', 'hrm', 'super'])) {
             show_error('You do not have permission to access Transaction Journals.', 403);
         }
 
