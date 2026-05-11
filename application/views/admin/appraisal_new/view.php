@@ -46,7 +46,7 @@
                                 $form_action = base_url('appraisal_new/hr_approve/'.$appraisal['id']);
                             }
 
-                            if($appraisal['status'] == 'staff_replied' && $this->session->userdata('role') == 'super') {
+                            if($appraisal['status'] == 'staff_replied' && in_array($this->session->userdata('role'), ['hrm', 'super'])) {
                                 $form_action = base_url('appraisal_new/super_approve/'.$appraisal['id']);
                             }
                         ?>
