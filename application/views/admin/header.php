@@ -14,9 +14,11 @@
   <!-- Ionicons -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/bower_components/Ionicons/css/ionicons.min.css">
   <!-- bootstrap datepicker -->
-  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+  <link rel="stylesheet"
+    href="<?php echo base_url(); ?>assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
   <!-- DataTables -->
-  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet"
+    href="<?php echo base_url(); ?>assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -39,7 +41,8 @@
   <script src="<?php echo base_url(); ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
 
   <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 
 <body class="hold-transition bg-[#2C2C2C] text-white sidebar-mini">
@@ -52,7 +55,8 @@
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>EMS</b></span>
         <!-- logo for regular state and mobile devices -->
-        <span class="uppercase font-black text-[#FF9501]"><b>Bloom</b></span><span class="uppercase font-meduim text-white">&nbsp; EMS</span>
+        <span class="uppercase font-black text-[#FF9501]"><b>Bloom</b></span><span
+          class="uppercase font-meduim text-white">&nbsp; EMS</span>
       </a>
       <!-- Header Navbar: style can be found in header.less -->
       <nav class="navbar navbar-static-top">
@@ -68,19 +72,22 @@
             <!-- User Account: style can be found in dropdown.less -->
             <li class="dropdown user user-menu bg-[#2C2C2C] border-0">
               <a href="#" class="dropdown-toggle bg-[#2C2C2C]" data-toggle="dropdown">
-                <img src="https://ui-avatars.com/api/?name=<?php echo $this->session->userdata('username') ?>" class="user-image" alt="User Image">
+                <img src="https://ui-avatars.com/api/?name=<?php echo $this->session->userdata('username') ?>"
+                  class="user-image" alt="User Image">
                 <span class="hidden-xs"><?php echo $this->session->userdata('username') ?></span>
               </a>
               <ul class="dropdown-menu bg-[#2C2C2C]">
                 <!-- User image -->
                 <li class="user-header bg-[#2C2C2C]">
-                  <img src="https://ui-avatars.com/api/?name=<?php echo $this->session->userdata('username') ?>" class="img-circle" alt="User Image">
+                  <img src="https://ui-avatars.com/api/?name=<?php echo $this->session->userdata('username') ?>"
+                    class="img-circle" alt="User Image">
                   <small class="text-white"><?php echo $this->session->userdata('username') ?></small>
                 </li>
                 <!-- Menu Footer-->
                 <li class="user-footer bg-[#2C2C2C]">
                   <div class="pull-right">
-                    <a href="<?php echo base_url(); ?>logout" class="btn btn-default bg-[#595959] hover:bg-[#595959] border-0 text-white btn-flat">Sign out</a>
+                    <a href="<?php echo base_url(); ?>logout"
+                      class="btn btn-default bg-[#595959] hover:bg-[#595959] border-0 text-white btn-flat">Sign out</a>
                   </div>
                 </li>
               </ul>
@@ -118,7 +125,8 @@
         <ul class="sidebar-menu" data-widget="tree">
           <li class="header">MAIN NAVIGATION</li>
 
-          <li class="active"><a href="<?php echo base_url(); ?>"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+          <li class="active"><a href="<?php echo base_url(); ?>"><i class="fa fa-dashboard"></i>
+              <span>Dashboard</span></a></li>
 
           <li class="treeview">
             <a href="#">
@@ -128,19 +136,26 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a target="_blank" href="https://webmail.bloomdigitmedia.com"><i class="fa fa-circle-o"></i>Webmail</a></li>
-              <li><a target="_blank" href="https://pm.bloomdigitmedia.com"><i class="fa fa-circle-o"></i>Project management</a></li>
-              <li><a target="_blank" href="https://invoice.bloomdigitmedia.com"><i class="fa fa-circle-o"></i>Invoice / Voucher</a></li>
-              <li><a target="_blank" href="https://inventory.bloomdigitmedia.com"><i class="fa fa-circle-o"></i>Asset Management</a></li>
-              <li><a target="_blank" href="https://ticket.bloomdigitmedia.com"><i class="fa fa-circle-o"></i>Support/Ticket</a></li>
+              <li><a target="_blank" href="https://webmail.bloomdigitmedia.com"><i
+                    class="fa fa-circle-o"></i>Webmail</a></li>
+              <li><a target="_blank" href="https://pm.bloomdigitmedia.com"><i class="fa fa-circle-o"></i>Project
+                  management</a></li>
+              <li><a target="_blank" href="https://invoice.bloomdigitmedia.com"><i class="fa fa-circle-o"></i>Invoice /
+                  Voucher</a></li>
+              <li><a target="_blank" href="https://inventory.bloomdigitmedia.com"><i class="fa fa-circle-o"></i>Asset
+                  Management</a></li>
+              <li><a target="_blank" href="https://ticket.bloomdigitmedia.com"><i
+                    class="fa fa-circle-o"></i>Support/Ticket</a></li>
               <li><a href="<?php echo base_url('ai-smm'); ?>"><i class="fa fa-circle-o"></i>AI-SMM</a></li>
               <!-- NEW AI TOOLS -->
-              <li><a href="<?php echo base_url('attendance_ai'); ?>"><i class="fa fa-clock-o"></i> Attendance AI</a></li>
-              <li><a href="<?php echo base_url('proposal_ai'); ?>"><i class="fa fa-file-text-o"></i> Proposal AI</a></li>
+              <li><a href="<?php echo base_url('attendance_ai'); ?>"><i class="fa fa-clock-o"></i> Attendance AI</a>
+              </li>
+              <li><a href="<?php echo base_url('proposal_ai'); ?>"><i class="fa fa-file-text-o"></i> Proposal AI</a>
+              </li>
             </ul>
           </li>
 
-          <?php if ($this->session->userdata('staff_id') == 56) : ?>
+          <?php if ($this->session->userdata('staff_id') == 56): ?>
 
             <li class="treeview">
               <a href="#">
@@ -150,7 +165,8 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="<?php echo base_url(); ?>manage-studio-income"><i class="fa fa-circle-o"></i>Manage Income</a></li>
+                <li><a href="<?php echo base_url(); ?>manage-studio-income"><i class="fa fa-circle-o"></i>Manage
+                    Income</a></li>
               </ul>
             </li>
 
@@ -164,14 +180,15 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="<?php echo base_url(); ?>equipment"><i class="fa fa-circle-o"></i> Equipment List</a></li>
-                <li><a href="<?php echo base_url(); ?>equipment/pendingRequests"><i class="fa fa-circle-o"></i> Pending Requests</a></li>
+                <li><a href="<?php echo base_url(); ?>equipment/pendingRequests"><i class="fa fa-circle-o"></i> Pending
+                    Requests</a></li>
                 <li><a href="<?php echo base_url(); ?>equipment/logs"><i class="fa fa-circle-o"></i> Logs</a></li>
               </ul>
             </li>
 
           <?php endif; ?>
 
-          <?php if ($this->session->userdata('staff_id') == 17) : ?>
+          <?php if ($this->session->userdata('staff_id') == 17): ?>
             <!-- Equipment Management -->
             <li class="treeview">
               <a href="#">
@@ -182,7 +199,8 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="<?php echo base_url(); ?>equipment"><i class="fa fa-circle-o"></i> Equipment List</a></li>
-                <li><a href="<?php echo base_url(); ?>equipment/pendingRequests"><i class="fa fa-circle-o"></i> Pending Requests</a></li>
+                <li><a href="<?php echo base_url(); ?>equipment/pendingRequests"><i class="fa fa-circle-o"></i> Pending
+                    Requests</a></li>
                 <li><a href="<?php echo base_url(); ?>equipment/logs"><i class="fa fa-circle-o"></i> Logs</a></li>
               </ul>
             </li>
@@ -224,24 +242,29 @@
               <!-- <li><a href="<?php echo base_url(); ?>manage-appraisal"><i class="fa fa-circle-o"></i>Manage Appraisal</a></li> -->
 
               <!-- 2026 Appraisal System -->
-              <li><a href="<?php echo base_url('appraisal_new/manage'); ?>"><i class="fa fa-circle-o"></i>Manage Appraisal (2026)</a></li>
+              <li><a href="<?php echo base_url('appraisal_new/manage'); ?>"><i class="fa fa-circle-o"></i>Manage
+                  Appraisal (2026)</a></li>
 
-              <?php if (in_array($this->session->userdata('role'), (array)"staff")) : ?>
+              <?php if (in_array($this->session->userdata('role'), (array) "staff")): ?>
                 <!-- <li><a href="<?php echo base_url(); ?>my-appraisal"><i class="fa fa-circle-o"></i> My Appraisal</a></li> -->
-                <li><a href="<?php echo base_url('appraisal_new/my_appraisals'); ?>"><i class="fa fa-circle-o"></i> My Appraisal (2026)</a></li>
+                <li><a href="<?php echo base_url('appraisal_new/my_appraisals'); ?>"><i class="fa fa-circle-o"></i> My
+                    Appraisal (2026)</a></li>
               <?php endif; ?>
-              <?php if (in_array($this->session->userdata('role'), ["hrm", "super"])) : ?>
+              <?php if (in_array($this->session->userdata('role'), ["hrm", "super"])): ?>
                 <!-- <li><a href="<?php echo base_url(); ?>approved-appraisal"><i class="fa fa-circle-o"></i> Approved Appraisal</a></li> -->
-                <li><a href="<?php echo base_url('appraisal_new/approved_appraisal'); ?>"><i class="fa fa-circle-o"></i> Approved Appraisal (2026)</a></li>
+                <li><a href="<?php echo base_url('appraisal_new/approved_appraisal'); ?>"><i class="fa fa-circle-o"></i>
+                    Approved Appraisal (2026)</a></li>
                 <!-- <li><a href="<?php echo base_url(); ?>unapproved-appraisal"><i class="fa fa-circle-o"></i> Unapproved Appraisal</a></li> -->
-                <li><a href="<?php echo base_url('appraisal_new/unapproved_appraisal'); ?>"><i class="fa fa-circle-o"></i> Unapproved Appraisal (2026)</a></li>
-                <li><a href="<?php echo base_url('performance/departments'); ?>"><i class="fa fa-circle-o"></i> Manage Performances</a></li>
+                <li><a href="<?php echo base_url('appraisal_new/unapproved_appraisal'); ?>"><i class="fa fa-circle-o"></i>
+                    Unapproved Appraisal (2026)</a></li>
+                <li><a href="<?php echo base_url('performance/departments'); ?>"><i class="fa fa-circle-o"></i> Manage
+                    Performances</a></li>
               <?php endif; ?>
             </ul>
           </li>
           <!-- APPRAISAL-->
 
-          <?php if (in_array($this->session->userdata('role'), ["finance"])) : ?>
+          <?php if (in_array($this->session->userdata('role'), ["finance"])): ?>
 
             <li class="treeview">
               <a href="#">
@@ -257,7 +280,7 @@
 
           <?php endif; ?>
 
-          <?php if (in_array($this->session->userdata('role'), ["finance", "super"])) : ?>
+          <?php if (in_array($this->session->userdata('role'), ["finance", "super"])): ?>
             <!-- FINANCE -->
             <li class="treeview">
               <a href="#">
@@ -269,7 +292,8 @@
               <ul class="treeview-menu">
                 <li><a href="<?php echo base_url(); ?>payroll"><i class="fa fa-circle-o"></i>Payroll Management</a></li>
                 <li><a href="<?php echo base_url(); ?>payslip"><i class="fa fa-circle-o"></i>Payslip Management</a></li>
-                <li><a href="<?php echo base_url(); ?>staff/accounts"><i class="fa fa-circle-o"></i>Staff Accounts</a></li>
+                <li><a href="<?php echo base_url(); ?>staff/accounts"><i class="fa fa-circle-o"></i>Staff Accounts</a>
+                </li>
               </ul>
             </li>
 
@@ -281,7 +305,8 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="<?php echo base_url(); ?>commission-staff"><i class="fa fa-circle-o"></i>Manage Commissions</a></li>
+                <li><a href="<?php echo base_url(); ?>commission-staff"><i class="fa fa-circle-o"></i>Manage
+                    Commissions</a></li>
               </ul>
             </li>
 
@@ -320,7 +345,8 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="<?php echo base_url(); ?>manage-studio-income"><i class="fa fa-circle-o"></i>Manage Income</a></li>
+                <li><a href="<?php echo base_url(); ?>manage-studio-income"><i class="fa fa-circle-o"></i>Manage
+                    Income</a></li>
               </ul>
             </li>
 
@@ -334,7 +360,8 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="<?php echo site_url('projects'); ?>"><i class="fa fa-circle-o"></i> All Projects</a></li>
-                <li><a href="<?php echo site_url('projects/create'); ?>"><i class="fa fa-plus-circle"></i> Create Project</a></li>
+                <li><a href="<?php echo site_url('projects/create'); ?>"><i class="fa fa-plus-circle"></i> Create
+                    Project</a></li>
               </ul>
             </li>
 
@@ -347,7 +374,8 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="<?php echo base_url(); ?>fund-requests"><i class="fa fa-circle-o"></i> Manage Fund Requests</a></li>
+                <li><a href="<?php echo base_url(); ?>fund-requests"><i class="fa fa-circle-o"></i> Manage Fund
+                    Requests</a></li>
               </ul>
             </li>
 
@@ -371,9 +399,12 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="<?php echo base_url(); ?>transaction-journals/registery"><i class="fa fa-circle-o"></i> Registery</a></li>
-                <li><a href="<?php echo base_url(); ?>transaction-journals/add"><i class="fa fa-circle-o"></i> Add Entry</a></li>
-                <li><a href="<?php echo base_url(); ?>transaction-journals/categories"><i class="fa fa-circle-o"></i> Categories</a></li>
+                <li><a href="<?php echo base_url(); ?>transaction-journals/registery"><i class="fa fa-circle-o"></i>
+                    Registery</a></li>
+                <li><a href="<?php echo base_url(); ?>transaction-journals/add"><i class="fa fa-circle-o"></i> Add
+                    Entry</a></li>
+                <li><a href="<?php echo base_url(); ?>transaction-journals/categories"><i class="fa fa-circle-o"></i>
+                    Categories</a></li>
               </ul>
             </li>
 
@@ -390,7 +421,7 @@
             </li> -->
           <?php endif; ?>
 
-          <?php if (in_array($this->session->userdata('role'), ["hrm", "super"])) : ?>
+          <?php if (in_array($this->session->userdata('role'), ["hrm", "super"])): ?>
             <!-- Projects Management -->
             <?php if ($this->session->userdata('role') == "hrm"): ?>
               <li class="treeview">
@@ -402,7 +433,8 @@
                 </a>
                 <ul class="treeview-menu">
                   <li><a href="<?php echo site_url('projects'); ?>"><i class="fa fa-circle-o"></i> All Projects</a></li>
-                  <li><a href="<?php echo site_url('projects/create'); ?>"><i class="fa fa-plus-circle"></i> Create Project</a></li>
+                  <li><a href="<?php echo site_url('projects/create'); ?>"><i class="fa fa-plus-circle"></i> Create
+                      Project</a></li>
                 </ul>
               </li>
             <?php endif; ?>
@@ -417,7 +449,25 @@
                   </span>
                 </a>
                 <ul class="treeview-menu">
-                  <li><a href="<?php echo base_url(); ?>fund-requests"><i class="fa fa-circle-o"></i> Manage Fund Requests</a></li>
+                  <li><a href="<?php echo base_url(); ?>fund-requests"><i class="fa fa-circle-o"></i> Manage Fund
+                      Requests</a></li>
+                </ul>
+              </li>
+
+              <li class="treeview">
+                <a href="#">
+                  <i class="fa fa-book"></i> <span>Transaction Journals</span>
+                  <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                  </span>
+                </a>
+                <ul class="treeview-menu">
+                  <li><a href="<?php echo base_url(); ?>transaction-journals/registery"><i class="fa fa-circle-o"></i>
+                      Registery</a></li>
+                  <li><a href="<?php echo base_url(); ?>transaction-journals/add"><i class="fa fa-circle-o"></i> Add
+                      Entry</a></li>
+                  <li><a href="<?php echo base_url(); ?>transaction-journals/categories"><i class="fa fa-circle-o"></i>
+                      Categories</a></li>
                 </ul>
               </li>
             <?php endif; ?>
@@ -432,7 +482,8 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="<?php echo base_url(); ?>equipment"><i class="fa fa-circle-o"></i> Equipment List</a></li>
-                <li><a href="<?php echo base_url(); ?>equipment/pendingRequests"><i class="fa fa-circle-o"></i> Pending Requests</a></li>
+                <li><a href="<?php echo base_url(); ?>equipment/pendingRequests"><i class="fa fa-circle-o"></i> Pending
+                    Requests</a></li>
                 <li><a href="<?php echo base_url(); ?>equipment/logs"><i class="fa fa-circle-o"></i> Logs</a></li>
               </ul>
             </li>
@@ -446,7 +497,8 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="<?php echo base_url(); ?>approve-leave"><i class="fa fa-circle-o"></i> Manage Staff's Leave</a></li>
+                <li><a href="<?php echo base_url(); ?>approve-leave"><i class="fa fa-circle-o"></i> Manage Staff's
+                    Leave</a></li>
                 <li><a href="<?php echo base_url(); ?>leave-history"><i class="fa fa-circle-o"></i> Leave History</a></li>
               </ul>
             </li>
@@ -473,8 +525,10 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="<?php echo base_url(); ?>attendance-manage"><i class="fa fa-circle-o"></i>Manage Attendance</a></li>
-                <li><a href="<?php echo base_url(); ?>attendance-export"><i class="fa fa-circle-o"></i> Show Attendance</a></li>
+                <li><a href="<?php echo base_url(); ?>attendance-manage"><i class="fa fa-circle-o"></i>Manage
+                    Attendance</a></li>
+                <li><a href="<?php echo base_url(); ?>attendance-export"><i class="fa fa-circle-o"></i> Show
+                    Attendance</a></li>
               </ul>
             </li>
 
@@ -486,8 +540,10 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="<?php echo base_url(); ?>add-department"><i class="fa fa-circle-o"></i> Add Department</a></li>
-                <li><a href="<?php echo base_url(); ?>manage-department"><i class="fa fa-circle-o"></i> Manage Department</a></li>
+                <li><a href="<?php echo base_url(); ?>add-department"><i class="fa fa-circle-o"></i> Add Department</a>
+                </li>
+                <li><a href="<?php echo base_url(); ?>manage-department"><i class="fa fa-circle-o"></i> Manage
+                    Department</a></li>
               </ul>
             </li>
 
@@ -499,8 +555,11 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="<?php echo base_url(); ?>manage-report/<?php echo $this->session->userdata('staff_id') ?>"><i class="fa fa-circle-o"></i>Manage Reports</a></li>
-                <li><a href="<?php echo base_url(); ?>manage-hod-report/<?php echo $this->session->userdata('staff_id') ?>"><i class="fa fa-circle-o"></i>Manage Departmental Reports</a></li>
+                <li><a href="<?php echo base_url(); ?>manage-report/<?php echo $this->session->userdata('staff_id') ?>"><i
+                      class="fa fa-circle-o"></i>Manage Reports</a></li>
+                <li><a
+                    href="<?php echo base_url(); ?>manage-hod-report/<?php echo $this->session->userdata('staff_id') ?>"><i
+                      class="fa fa-circle-o"></i>Manage Departmental Reports</a></li>
               </ul>
             </li>
 
@@ -512,7 +571,9 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="<?php echo base_url(); ?>manage-anonymous/<?php echo $this->session->userdata('staff_id') ?>"><i class="fa fa-circle-o"></i>Manage Anonymous</a></li>
+                <li><a
+                    href="<?php echo base_url(); ?>manage-anonymous/<?php echo $this->session->userdata('staff_id') ?>"><i
+                      class="fa fa-circle-o"></i>Manage Anonymous</a></li>
               </ul>
             </li>
 
@@ -530,7 +591,7 @@
             </li>
           <?php endif; ?>
 
-          <?php if ($this->session->userdata('staff_id') == 17) : ?>
+          <?php if ($this->session->userdata('staff_id') == 17): ?>
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-bell"></i>
@@ -546,7 +607,7 @@
           <?php endif; ?>
 
 
-          <?php if (in_array($this->session->userdata('role'), ["super"])) : ?>
+          <?php if (in_array($this->session->userdata('role'), ["super"])): ?>
             <li class="active"><a href="<?php echo base_url(); ?>admins"><i class="fa fa-users"></i>
                 <span>
                   Manage Admins
@@ -555,7 +616,7 @@
           <?php endif; ?>
 
 
-          <?php if (in_array($this->session->userdata('role'), ["staff"])) : ?>
+          <?php if (in_array($this->session->userdata('role'), ["staff"])): ?>
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-money"></i> <span>Salary</span>
@@ -591,7 +652,8 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="<?php echo base_url(); ?>bonus/manage/<?php echo $this->session->userdata('staff_id') ?>"><i class="fa fa-circle-o"></i>My Bonus</a></li>
+                <li><a href="<?php echo base_url(); ?>bonus/manage/<?php echo $this->session->userdata('staff_id') ?>"><i
+                      class="fa fa-circle-o"></i>My Bonus</a></li>
               </ul>
             </li>
 
@@ -603,7 +665,9 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="<?php echo base_url(); ?>commission/manage/<?php echo $this->session->userdata('staff_id') ?>"><i class="fa fa-circle-o"></i>My Commissions</a></li>
+                <li><a
+                    href="<?php echo base_url(); ?>commission/manage/<?php echo $this->session->userdata('staff_id') ?>"><i
+                      class="fa fa-circle-o"></i>My Commissions</a></li>
               </ul>
             </li>
 
@@ -615,7 +679,9 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="<?php echo base_url(); ?>staff/manage-deductions/<?php echo $this->session->userdata('staff_id') ?>"><i class="fa fa-circle-o"></i>My Deductions</a></li>
+                <li><a
+                    href="<?php echo base_url(); ?>staff/manage-deductions/<?php echo $this->session->userdata('staff_id') ?>"><i
+                      class="fa fa-circle-o"></i>My Deductions</a></li>
               </ul>
             </li>
 
@@ -627,8 +693,11 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="<?php echo base_url(); ?>list-report/<?php echo $this->session->userdata('staff_id') ?>"><i class="fa fa-circle-o"></i>My Reports</a></li>
-                <li><a href="<?php echo base_url(); ?>list-hod-report/<?php echo $this->session->userdata('department_id') ?>"><i class="fa fa-circle-o"></i>Departmental Reports</a></li>
+                <li><a href="<?php echo base_url(); ?>list-report/<?php echo $this->session->userdata('staff_id') ?>"><i
+                      class="fa fa-circle-o"></i>My Reports</a></li>
+                <li><a
+                    href="<?php echo base_url(); ?>list-hod-report/<?php echo $this->session->userdata('department_id') ?>"><i
+                      class="fa fa-circle-o"></i>Departmental Reports</a></li>
               </ul>
             </li>
 
@@ -640,8 +709,10 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="<?php echo base_url(); ?>equipment/requestEquipment"><i class="fa fa-circle-o"></i> Request Equipment</a></li>
-                <li><a href="<?php echo base_url(); ?>equipment/myRequests"><i class="fa fa-circle-o"></i> My Requests</a></li>
+                <li><a href="<?php echo base_url(); ?>equipment/requestEquipment"><i class="fa fa-circle-o"></i> Request
+                    Equipment</a></li>
+                <li><a href="<?php echo base_url(); ?>equipment/myRequests"><i class="fa fa-circle-o"></i> My Requests</a>
+                </li>
               </ul>
             </li>
 
@@ -699,8 +770,9 @@
             </a>
             <ul class="treeview-menu">
               <li><a href="<?php echo base_url('events'); ?>"><i class="fa fa-circle-o"></i> Calendar View</a></li>
-              <?php if (in_array($this->session->userdata('role'), ["hrm", "finance", "super"])) : ?>
-                <li><a href="<?php echo base_url('events/manage'); ?>"><i class="fa fa-circle-o"></i> Manage Events</a></li>
+              <?php if (in_array($this->session->userdata('role'), ["hrm", "finance", "super"])): ?>
+                <li><a href="<?php echo base_url('events/manage'); ?>"><i class="fa fa-circle-o"></i> Manage Events</a>
+                </li>
               <?php endif; ?>
             </ul>
           </li>
@@ -732,16 +804,21 @@
     ?>
 
     <!-- Chatbot UI -->
-    <div id="chatbot-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; font-family: 'Source Sans Pro', sans-serif;">
+    <div id="chatbot-container"
+      style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; font-family: 'Source Sans Pro', sans-serif;">
       <!-- Chat Button -->
-      <button id="chatbot-toggle" style="background-color: #ffffff; color: white; border: none; border-radius: 50%; width: 60px; height: 60px; cursor: pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center; transition: transform 0.3s;">
-        <img src="<?php echo base_url('assets/dist/img/bloom.png'); ?>" alt="Bloom Assistant" style="width: 30px; height: 30px;">
+      <button id="chatbot-toggle"
+        style="background-color: #ffffff; color: white; border: none; border-radius: 50%; width: 60px; height: 60px; cursor: pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center; transition: transform 0.3s;">
+        <img src="<?php echo base_url('assets/dist/img/bloom.png'); ?>" alt="Bloom Assistant"
+          style="width: 30px; height: 30px;">
       </button>
 
       <!-- Chat Window -->
-      <div id="chatbot-window" style="display: none; position: absolute; bottom: 80px; right: 0; width: 350px; height: 500px; background-color: white; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); overflow: hidden; flex-direction: column;">
+      <div id="chatbot-window"
+        style="display: none; position: absolute; bottom: 80px; right: 0; width: 350px; height: 500px; background-color: white; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); overflow: hidden; flex-direction: column;">
         <!-- Header -->
-        <div style="background-color: #2C2C2C; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center;">
+        <div
+          style="background-color: #2C2C2C; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center;">
           <span style="font-weight: bold;">Bloom Assistant</span>
           <button id="chatbot-close" style="background: none; border: none; color: white; cursor: pointer;">
             <i class="fa fa-times"></i>
@@ -749,16 +826,20 @@
         </div>
 
         <!-- Messages Area -->
-        <div id="chatbot-messages" style="flex: 1; padding: 15px; overflow-y: auto; background-color: #f4f4f4; display: flex; flex-direction: column; gap: 10px;">
-          <div style="align-self: flex-start; background-color: #e0e0e0; padding: 10px; border-radius: 10px; max-width: 80%; color: #333;">
+        <div id="chatbot-messages"
+          style="flex: 1; padding: 15px; overflow-y: auto; background-color: #f4f4f4; display: flex; flex-direction: column; gap: 10px;">
+          <div
+            style="align-self: flex-start; background-color: #e0e0e0; padding: 10px; border-radius: 10px; max-width: 80%; color: #333;">
             Hello! How can I help you today?
           </div>
         </div>
 
         <!-- Input Area -->
         <div style="padding: 15px; background-color: white; border-top: 1px solid #ddd; display: flex; gap: 10px;">
-          <input class="text-black" type="text" id="chatbot-input" placeholder="Type a message..." style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 5px; outline: none;">
-          <button id="chatbot-send" style="background-color: #FF9501; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer;">
+          <input class="text-black" type="text" id="chatbot-input" placeholder="Type a message..."
+            style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 5px; outline: none;">
+          <button id="chatbot-send"
+            style="background-color: #FF9501; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer;">
             <i class="fa fa-paper-plane"></i>
           </button>
         </div>
@@ -766,7 +847,7 @@
     </div>
 
     <script>
-      $(document).ready(function() {
+      $(document).ready(function () {
         const toggleBtn = $('#chatbot-toggle');
         const chatWindow = $('#chatbot-window');
         const closeBtn = $('#chatbot-close');
@@ -775,7 +856,7 @@
         const messagesContainer = $('#chatbot-messages');
 
         // Toggle Chat Window
-        toggleBtn.click(function() {
+        toggleBtn.click(function () {
           if (chatWindow.is(':visible')) {
             chatWindow.fadeOut(200);
           } else {
@@ -783,7 +864,7 @@
           }
         });
 
-        closeBtn.click(function() {
+        closeBtn.click(function () {
           chatWindow.fadeOut(200);
         });
 
@@ -808,7 +889,7 @@
               message: message
             },
             dataType: 'json',
-            success: function(response) {
+            success: function (response) {
               removeLoading(loadingId);
               if (response.response) {
                 appendMessage(response.response, 'bot');
@@ -816,7 +897,7 @@
                 appendMessage('Error: ' + response.error, 'bot');
               }
             },
-            error: function() {
+            error: function () {
               removeLoading(loadingId);
               appendMessage('Sorry, something went wrong. Please try again.', 'bot');
             }
@@ -824,7 +905,7 @@
         }
 
         sendBtn.click(sendMessage);
-        inputField.keypress(function(e) {
+        inputField.keypress(function (e) {
           if (e.which == 13) sendMessage();
         });
 
