@@ -31,6 +31,14 @@ class Home extends CI_Controller
                 $data['bonus'] = $this->Bonus_model->userBonus($staff);
                 $data['commission'] = $this->Commission_model->userCommission($staff);
                 $data['unpaidFine'] = $this->Deduction_model->userUnpaidFines($staff);
+
+                // Staff's own performance summary (current year, from final appraisals).
+                $this->load->model('Performance_model');
+                $year = (int) date('Y');
+                $departmentId = (int) $this->session->userdata('department_id');
+                $data['performance'] = $this->Performance_model->getStaffPerformanceDetail($year, $departmentId, $staff, NULL);
+                $data['performance_year'] = $year;
+
                 $this->load->view('admin/header');
                 $this->load->view('staff/dashboard', $data);
                 $this->load->view('admin/footer');

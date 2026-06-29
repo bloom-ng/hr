@@ -124,6 +124,83 @@
         <!-- ./col -->
       </div>
       <!-- /.row -->
+
+      <!-- My Performance -->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box border-t-10 border-[#DA7F00] bg-[#2C2C2C]">
+            <div class="box-header with-border">
+              <h3 class="box-title text-white">
+                <i class="fa fa-line-chart"></i> My Performance
+                <small class="text-[#D9D9D9]">&mdash; Year <?php echo isset($performance_year) ? (int) $performance_year : (int) date('Y'); ?></small>
+              </h3>
+            </div>
+
+            <div class="box-body">
+              <?php if (!empty($performance) && !empty($performance['monthly'])): ?>
+                <?php
+                  $overallScore = (float) $performance['overall_score'];
+                  $overallBand = (string) $performance['overall_rating_band'];
+                  // Colour the band so the staff gets quick visual feedback.
+                  $bandClasses = [
+                    'Outstanding' => 'bg-green',
+                    'Excellent'   => 'bg-aqua',
+                    'Good'        => 'bg-primary',
+                    'Fair'        => 'bg-yellow',
+                    'Poor'        => 'bg-red',
+                  ];
+                  $bandClass = $bandClasses[$overallBand] ?? 'bg-primary';
+                ?>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="small-box <?php echo $bandClass; ?>">
+                      <div class="inner">
+                        <h3><?php echo $overallScore; ?>%</h3>
+                        <p>Overall Score &mdash; <?php echo htmlspecialchars($overallBand); ?></p>
+                      </div>
+                      <div class="icon">
+                        <i class="fa fa-star"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-8">
+                    <p class="text-white mb-2">
+                      Based on <?php echo sizeof($performance['monthly']); ?> finalized monthly appraisal(s) this year.
+                    </p>
+                    <div class="table-responsive">
+                      <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th>Month</th>
+                            <th>Job Perf %</th>
+                            <th>Learning %</th>
+                            <th>Score</th>
+                            <th>Rating</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <?php foreach ($performance['monthly'] as $m): ?>
+                            <tr>
+                              <td><?php echo htmlspecialchars((string) $m['month_under_review']); ?></td>
+                              <td><?php echo round((float) $m['computed']['breakdown']['job_performance_percent'], 2); ?></td>
+                              <td><?php echo round((float) $m['computed']['breakdown']['learning_growth_percent'], 2); ?></td>
+                              <td><?php echo (float) $m['computed']['score']; ?></td>
+                              <td><?php echo htmlspecialchars((string) $m['computed']['rating_band']); ?></td>
+                            </tr>
+                          <?php endforeach; ?>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              <?php else: ?>
+                <p class="text-white">No finalized appraisals yet for this year. Your performance will appear here once your appraisals are finalized.</p>
+              <?php endif; ?>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.row -->
     </section>
     <!-- /.content -->
   </div>
