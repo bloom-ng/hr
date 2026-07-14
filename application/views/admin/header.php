@@ -778,6 +778,24 @@
           </li>
           <!-- /.Events Menu -->
 
+          <!-- Vote Menu -->
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-check-square-o"></i> <span>Vote</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="<?php echo base_url('vote'); ?>"><i class="fa fa-circle-o"></i> Polls</a></li>
+              <?php if (in_array($this->session->userdata('role'), ["hrm", "super"])): ?>
+                <li><a href="<?php echo base_url('vote/manage'); ?>"><i class="fa fa-circle-o"></i> Manage Polls</a>
+                </li>
+              <?php endif; ?>
+            </ul>
+          </li>
+          <!-- /.Vote Menu -->
+
           <li class="active"><a href="<?php echo base_url(); ?>profile"><i class="fa fa-user"></i>
               <span>
                 Profile

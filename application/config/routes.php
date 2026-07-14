@@ -258,3 +258,16 @@ $route['transaction-journals/insert'] = 'TransactionJournals/insert';
 $route['transaction-journals/get-balance'] = 'TransactionJournals/get_balance';
 $route['transaction-journals/categories'] = 'TransactionJournals/categories';
 $route['transaction-journals/categories/insert'] = 'TransactionJournals/insert_category';
+
+// Vote routes (staff voting + HRM/super poll management)
+$route['vote'] = 'vote/index';
+$route['vote/manage'] = 'vote/manage';
+$route['vote/create'] = 'vote/create';
+$route['vote/store']['POST'] = 'vote/store';
+$route['vote/edit/(:num)'] = 'vote/edit/$1';
+$route['vote/update/(:num)']['POST'] = 'vote/update/$1';
+$route['vote/close/(:num)'] = 'vote/close/$1';
+$route['vote/delete/(:num)'] = 'vote/delete/$1';
+$route['vote/results/(:num)'] = 'vote/results/$1';
+$route['vote/cast/(:num)'] = 'vote/cast/$1';
+$route['vote/submit/(:num)']['POST'] = 'vote/submit/$1';
