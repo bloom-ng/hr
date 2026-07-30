@@ -224,4 +224,27 @@ class Staff extends CI_Controller
         }
         redirect($_SERVER['HTTP_REFERER']);
     }
+
+    public function toggleStatus($id)
+    {
+        $role = $this->session->userdata('role');
+        if ($role !== 'super' && $role !== 'hrm') {
+            show_error('Unauthorized access', 403);
+        }
+
+        $user = $this->User_model->get($id);
+        if (empty($user)) {
+            show_404();
+        }
+
+        $new_status = $user[0]['status'] == 1 ? 0 : 1;
+        $this->User_model->update(['status' => $new_status], $id);
+
+        if ($new_status == 0) {
+            $this->session->set_flashdata('success', 'Staff account disabled successfully');
+        } else {
+            $this->session->set_flashdata('success', 'Staff account enabled successfully');
+        }
+        redirect(base_url() . 'manage-staff');
+    }
 }

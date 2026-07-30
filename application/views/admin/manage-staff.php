@@ -61,6 +61,9 @@
                     <th>DOB</th>
                     <th>Joined On</th>
                     <th>Address</th>
+                    <?php if (in_array($this->session->userdata('role'), ['super', 'hrm'])) : ?>
+                      <th>Status</th>
+                    <?php endif; ?>
 
                   </tr>
                 </thead>
@@ -87,7 +90,17 @@
                         <td><?php echo date('d-m-Y', strtotime($cnt['dob'])); ?></td>
                         <td><?php echo date('d-m-Y', strtotime($cnt['doj'])); ?></td>
                         <td><?php echo $cnt['address']; ?></td>
-
+                        <?php if (in_array($this->session->userdata('role'), ['super', 'hrm'])) : ?>
+                          <td>
+                            <?php if ($cnt['user_status'] == 1) : ?>
+                              <span class="label label-success">Active</span>
+                              <a href="<?php echo base_url(); ?>toggle-staff-status/<?php echo $cnt['id']; ?>" class="btn btn-xs bg-transparent text-red-500" onclick="return confirm('Disable this staff account? They will not be able to log in.');">Disable</a>
+                            <?php else : ?>
+                              <span class="label label-default">Disabled</span>
+                              <a href="<?php echo base_url(); ?>toggle-staff-status/<?php echo $cnt['id']; ?>" class="btn btn-xs bg-transparent text-green-500" onclick="return confirm('Enable this staff account? They will be able to log in again.');">Enable</a>
+                            <?php endif; ?>
+                          </td>
+                        <?php endif; ?>
 
                       </tr>
                   <?php

@@ -25,9 +25,9 @@
 
             <div class="col-xs-12">
                 <div class="box border-t-10 border-[#DA7F00] bg-[#2C2C2C]">
-                    <div class="box-header">
+                    <div class="box-header d-flex justify-content-between align-items-center flex-wrap">
                         <h3 class="box-title text-white">Manage Equipment</h3>
-                        <div class="mt-3">
+                        <div class="mt-3 d-flex" style="gap: 10px;">
                             <select id="statusFilter" class="form-control">
                                 <option value="">All Status</option>
                                 <option value="available">Available</option>
@@ -35,14 +35,19 @@
                                 <option value="in_repair">In Repair</option>
                                 <option value="missing">Missing</option>
                             </select>
+                            <button id="bulkRequestBtn" onclick="showBulkRequestModal()" class="btn btn-primary bg-[#DA7F00] border-[#DA7F00]" disabled>
+                                Request Selected (<span id="selectedCount">0</span>)
+                            </button>
                         </div>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <table class="table bg-[#2C2C2C]">
+                        <div style="overflow-x: auto;">
+                        <table id="equipmentTable" class="table bg-[#2C2C2C]">
                             <thead>
                                 <tr>
-                                    <th>Equipment</th>
+                                    <th><input type="checkbox" id="selectAll"></th>
+                                    <th class="sticky-col">Equipment</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -51,6 +56,11 @@
                                 <?php foreach ($available_equipment as $item) : ?>
                                     <tr class="equipment-row" data-status="<?php echo $item['status']; ?>">
                                         <td>
+                                            <?php if ($item['status'] === 'available') : ?>
+                                                <input type="checkbox" class="item-checkbox" value="<?php echo $item['id']; ?>" data-name="<?php echo addslashes($item['name']); ?>">
+                                            <?php endif; ?>
+                                        </td>
+                                        <td class="sticky-col">
                                             <div class="flex items-center">
                                                 <?php if ($item['image']) : ?>
                                                     <img class="h-[30px] w-[30px] rounded-full object-cover" src="<?php echo base_url(); ?>uploads/equipment/<?php echo $item['image']; ?>" alt="">
@@ -92,6 +102,7 @@
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
+                        </div>
                     </div>
                     <!-- /.box-body -->
                 </div>
@@ -116,9 +127,9 @@
             </div>
             <div class="modal-body">
                 <p class=" text-gray-400" id="equipment-name"></p>
-                <form id="requestForm" method="POST">
+                <form id="requestForm" method="POST" action="<?php echo base_url('equipment/requestEquipment'); ?>">
                     <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
-                    <input type="hidden" name="equipment_id" id="equipment_id">
+                    <div id="equipment_id_inputs"></div>
                     <div class="form-group">
                         <label for="purpose">Purpose *</label>
                         <textarea id="purpose" name="purpose" rows="3" required class="form-control"></textarea>
@@ -131,6 +142,18 @@
             </div>
         </div>
     </div>
+
+<style>
+    .sticky-col {
+        position: sticky;
+        left: 0;
+        background: #2C2C2C;
+        z-index: 1;
+    }
+    #equipmentTable {
+        min-width: 600px;
+    }
+</style>
 </div>
 
 <script>
@@ -141,15 +164,60 @@
         });
     });
 
+    function getSelectedCheckboxes() {
+        return Array.from(document.querySelectorAll('.item-checkbox:checked'));
+    }
+
+    function updateBulkButton() {
+        const selected = getSelectedCheckboxes();
+        document.getElementById('selectedCount').textContent = selected.length;
+        document.getElementById('bulkRequestBtn').disabled = selected.length === 0;
+    }
+
+    document.getElementById('selectAll').addEventListener('change', function() {
+        document.querySelectorAll('.item-checkbox').forEach(cb => cb.checked = this.checked);
+        updateBulkButton();
+    });
+
+    document.querySelectorAll('.item-checkbox').forEach(cb => {
+        cb.addEventListener('change', updateBulkButton);
+    });
+
+    function fillEquipmentInputs(items) {
+        const container = document.getElementById('equipment_id_inputs');
+        container.innerHTML = '';
+        items.forEach(item => {
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'equipment_id[]';
+            input.value = item.id;
+            container.appendChild(input);
+        });
+    }
+
     function showRequestModal(id, name) {
         document.getElementById('equipment-name').textContent = `Requesting: ${name}`;
-        document.getElementById('equipment_id').value = id;
-        document.getElementById('requestForm').action = `<?php echo base_url('equipment/requestEquipment/'); ?>${id}`;
+        fillEquipmentInputs([{
+            id
+        }]);
+        $('#requestModal').modal('show');
+    }
+
+    function showBulkRequestModal() {
+        const selected = getSelectedCheckboxes();
+        if (selected.length === 0) return;
+
+        const names = selected.map(cb => cb.dataset.name);
+        document.getElementById('equipment-name').textContent = `Requesting ${selected.length} item(s): ${names.join(', ')}`;
+        fillEquipmentInputs(selected.map(cb => ({
+            id: cb.value
+        })));
         $('#requestModal').modal('show');
     }
 
     function hideRequestModal() {
         $('#requestModal').modal('hide');
         document.getElementById('requestForm').reset();
+        document.getElementById('equipment_id_inputs').innerHTML = '';
     }
 </script>

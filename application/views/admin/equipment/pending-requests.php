@@ -33,11 +33,12 @@
 
                     <div class="box-body">
                         <p class="text-gray-400 mb-4">A list of all pending equipment requests requiring your approval or rejection.</p>
-                        <table class="table text-white bg-[#2C2C2C]">
+                        <div style="overflow-x: auto;">
+                        <table id="pendingRequestsTable" class="table text-white bg-[#2C2C2C]">
                             <thead>
                                 <tr>
-                                    <th>Requestor</th>
-                                    <th>Equipment</th>
+                                    <th class="sticky-col sticky-first">Requestor</th>
+                                    <th class="sticky-col sticky-second">Equipment</th>
                                     <th>Request Date</th>
                                     <th>Purpose</th>
                                     <th>Actions</th>
@@ -47,7 +48,7 @@
                                 <?php if (isset($requests) && !empty($requests)) : ?>
                                     <?php foreach ($requests as $request) : ?>
                                         <tr>
-                                            <td>
+                                            <td class="sticky-col sticky-first">
                                                 <div class="flex items-center">
                                                     <?php if ($request['user_image']) : ?>
                                                         <img class="h-[25px] w-[25px] rounded-full" src="<?php echo base_url(); ?>uploads/profile-pic/<?php echo $request['user_image']; ?>" alt="<?php echo $request['staff_name']; ?>">
@@ -58,7 +59,7 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td>
+                                            <td class="sticky-col sticky-second">
                                                 <div class="font-medium text-white"><?php echo $request['equipment_name']; ?></div>
                                                 <div class="text-gray-400 text-xs"><?php echo $request['equipment_serial']; ?></div>
                                             </td>
@@ -77,6 +78,7 @@
                                 <?php endif; ?>
                             </tbody>
                         </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -140,3 +142,23 @@
         $('#actionModal').modal('hide');
     }
 </script>
+
+<style>
+    #pendingRequestsTable {
+        min-width: 700px;
+    }
+    .sticky-col {
+        position: sticky;
+        background: #2C2C2C;
+    }
+    .sticky-first {
+        left: 0;
+        min-width: 180px;
+        z-index: 2;
+    }
+    .sticky-second {
+        left: 180px;
+        min-width: 160px;
+        z-index: 1;
+    }
+</style>
