@@ -13,9 +13,10 @@ class Staff_model extends CI_Model {
     function select_staff()
     {
         $this->db->order_by('staff_tbl.id','DESC');
-        $this->db->select("staff_tbl.*,department_tbl.department_name");
+        $this->db->select("staff_tbl.*,department_tbl.department_name,users.status as user_status");
         $this->db->from("staff_tbl");
         $this->db->join("department_tbl",'department_tbl.id=staff_tbl.department_id');
+        $this->db->join("users",'users.id=staff_tbl.id','left');
         $this->db->where('staff_tbl.status', 1);
         $qry=$this->db->get();
         if($qry->num_rows()>0)

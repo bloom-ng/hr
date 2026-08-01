@@ -284,27 +284,47 @@ class Equipment extends MY_Controller
         $this->verify_staff_access();
 
         if ($this->input->method() === 'post') {
-            $equipment_id = $this->input->post('equipment_id');
+            $equipment_ids = $this->input->post('equipment_id');
+            if (!is_array($equipment_ids)) {
+                $equipment_ids = array($equipment_ids);
+            }
+            $equipment_ids = array_unique(array_filter($equipment_ids));
             $purpose = $this->input->post('purpose');
 
-            $equipment = $this->Equipment_model->get($equipment_id);
-            if (!$equipment || $equipment['status'] !== Equipment_model::STATUS_AVAILABLE) {
-                $this->session->set_flashdata('error', 'Equipment is not available for request');
+            if (empty($equipment_ids)) {
+                $this->session->set_flashdata('error', 'Please select at least one item to request');
                 redirect('equipment/requestEquipment');
             }
 
-            $log_data = array(
-                'equipment_id' => $equipment_id,
-                'staff_id' => $this->session->userdata('staff_id'),
-                'purpose' => $purpose,
-                'requested_date' => date('Y-m-d H:i:s'),
-                'request_status' => Equipment_log_model::REQUEST_PENDING,
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
-            );
+            $requested_names = array();
+            $unavailable_names = array();
 
-            if ($this->Equipment_log_model->insert($log_data)) {
-                $this->session->set_flashdata('success', 'Equipment request submitted successfully');
+            foreach ($equipment_ids as $equipment_id) {
+                $equipment = $this->Equipment_model->get($equipment_id);
+                if (!$equipment || $equipment['status'] !== Equipment_model::STATUS_AVAILABLE) {
+                    if ($equipment) {
+                        $unavailable_names[] = $equipment['name'];
+                    }
+                    continue;
+                }
+
+                $log_data = array(
+                    'equipment_id' => $equipment_id,
+                    'staff_id' => $this->session->userdata('staff_id'),
+                    'purpose' => $purpose,
+                    'requested_date' => date('Y-m-d H:i:s'),
+                    'request_status' => Equipment_log_model::REQUEST_PENDING,
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                );
+
+                if ($this->Equipment_log_model->insert($log_data)) {
+                    $requested_names[] = $equipment['name'];
+                }
+            }
+
+            if (!empty($requested_names)) {
+                $this->session->set_flashdata('success', 'Equipment request submitted successfully for: ' . implode(', ', $requested_names));
 
                 $departments = $this->Department_model->select_departments();
 
@@ -312,14 +332,18 @@ class Equipment extends MY_Controller
                     foreach ($departments as $department) {
                         $staff = $this->Staff_model->select_staff_byID($department['staff_id']);
 
-                        $this->send_email_notification($staff[0]['email'], $equipment['name']);
+                        $this->send_email_notification($staff[0]['email'], $requested_names);
                     }
                 }
 
-                $this->send_email_notification("lizzyinyang@bloomdigitmedia.com", $equipment['name']);
-
-                redirect('equipment/myRequests');
+                $this->send_email_notification("lizzyinyang@bloomdigitmedia.com", $requested_names);
             }
+
+            if (!empty($unavailable_names)) {
+                $this->session->set_flashdata('error', 'These items are no longer available: ' . implode(', ', $unavailable_names));
+            }
+
+            redirect('equipment/myRequests');
         }
 
         $data['available_equipment'] = $this->Equipment_model->get_available_equipment();
@@ -373,7 +397,7 @@ class Equipment extends MY_Controller
         }
     }
 
-    private function send_email_notification($employee_email, $equipment_name)
+    private function send_email_notification($employee_email, $equipment_names)
     {
         // Load the email library
         $this->load->library('email');
@@ -394,8 +418,9 @@ class Equipment extends MY_Controller
         // Email content
         $this->email->from('support@bloomdigitmedia.com', 'Bloom EMS');
         $this->email->to($employee_email);
+        $names = is_array($equipment_names) ? implode(', ', $equipment_names) : $equipment_names;
         $this->email->subject("Equipment Request");
-        $this->email->message("Dear HOD a staff just requested an equipment " . $equipment_name);
+        $this->email->message("Dear HOD a staff just requested equipment: " . $names);
 
         // Send email
         $this->email->send();

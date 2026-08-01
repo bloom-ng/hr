@@ -77,6 +77,7 @@ $route['manage-staff'] = 'staff/manage';
 $route['insert-staff'] = 'staff/insert';
 $route['delete-staff/(:num)'] = 'staff/delete/$1';
 $route['edit-staff/(:num)'] = 'staff/edit/$1';
+$route['toggle-staff-status/(:num)'] = 'staff/toggleStatus/$1';
 $route['update-staff'] = 'staff/update';
 
 //salary routes
