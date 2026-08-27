@@ -1,6 +1,7 @@
+<?php $isAdminViewer = !isset($is_admin_viewer) || $is_admin_viewer; ?>
 <div class="content-wrapper bg-[#3E3E3E]">
 	<div class="content-header">
-		<h1 class="m-0 text-dark">Performance Summary</h1>
+		<h1 class="m-0 text-dark"><?php echo $isAdminViewer ? 'Performance Summary' : 'My Team Performance Summary'; ?></h1>
 		<ol class="breadcrumb float-sm-right">
 			<li class="breadcrumb-item"><a href="<?php echo base_url(); ?>">Home</a></li>
 			<li class="breadcrumb-item active">Performance</li>

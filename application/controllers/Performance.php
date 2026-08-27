@@ -4,6 +4,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 /**
  * Department performance summaries (quarterly + yearly) computed from final-approved appraisals.
  *
+ * HRM/Super see every department. A head of department sees only the department(s)
+ * they head, i.e. their own subordinates.
+ *
  * @property $session
  * @property $Performance_model
  */
@@ -17,6 +20,11 @@ class Performance extends CI_Controller {
 	/** @var Staff_model */
 	public $Staff_model;
 
+	/** @var bool TRUE for hrm/super (unscoped), FALSE for a HOD. */
+	private $is_admin_viewer = FALSE;
+	/** @var array<int,int>|NULL Department ids the viewer may see; NULL means all. */
+	private $allowed_department_ids = NULL;
+
 	public function __construct() {
 		parent::__construct();
 
@@ -24,15 +32,67 @@ class Performance extends CI_Controller {
 			redirect(base_url() . 'login');
 		}
 
-		// MVP is positioned as an admin/HR report.
+		$this->load->model('Performance_model');
+		$this->load->model('Department_model');
+		$this->load->model('Staff_model');
+		$this->load->helper('url');
+
 		$role = $this->session->userdata('role');
-		if (!in_array($role, ['hrm', 'super'])) {
-			$this->session->set_flashdata('error', 'Access denied.');
-			redirect('/');
+
+		if (in_array($role, ['hrm', 'super'])) {
+			$this->is_admin_viewer = TRUE;
+			$this->allowed_department_ids = NULL; // no scoping
+			return;
 		}
 
-		$this->load->model('Performance_model');
-		$this->load->helper('url');
+		// Heads of department get a scoped view of their own department(s).
+		$departments = $this->_headed_departments();
+		if (!empty($departments)) {
+			$this->allowed_department_ids = array_map(function ($d) {
+				return (int) $d['id'];
+			}, $departments);
+			return;
+		}
+
+		$this->session->set_flashdata('error', 'Access denied.');
+		redirect('/');
+	}
+
+	/**
+	 * Staff record of the logged-in user (session only carries staff_id for role=staff).
+	 */
+	private function _current_staff() {
+		$staffId = $this->session->userdata('staff_id');
+		if (!empty($staffId)) {
+			$staff = $this->Staff_model->getWhere(['id' => $staffId]);
+			return empty($staff) ? NULL : $staff[0];
+		}
+
+		$staff = $this->Staff_model->getWhere(['user_id' => $this->session->userdata('userid')]);
+		return empty($staff) ? NULL : $staff[0];
+	}
+
+	/**
+	 * Departments the logged-in user heads (empty when they head none).
+	 *
+	 * @return array<int,array<string,mixed>>
+	 */
+	private function _headed_departments() {
+		$staff = $this->_current_staff();
+		if (empty($staff)) return [];
+
+		return $this->Department_model->select_departments_by_head((int) $staff['id']);
+	}
+
+	/**
+	 * Block a HOD from reading a department they do not head.
+	 */
+	private function _guard_department($departmentId) {
+		if ($this->allowed_department_ids === NULL) return;
+		if (in_array((int) $departmentId, $this->allowed_department_ids, TRUE)) return;
+
+		$this->session->set_flashdata('error', 'You can only view performance for your own department.');
+		redirect('performance/departments');
 	}
 
 	/**
@@ -45,8 +105,8 @@ class Performance extends CI_Controller {
 		if ($year <= 0) $year = (int) date('Y');
 		if ($quarter !== NULL && ($quarter < 1 || $quarter > 4)) $quarter = NULL;
 
-		$quarterSummaries = $this->Performance_model->getDepartmentQuarterlyPerformance($year, $quarter);
-		$yearSummaries = $this->Performance_model->getDepartmentYearlyPerformance($year);
+		$quarterSummaries = $this->Performance_model->getDepartmentQuarterlyPerformance($year, $quarter, $this->allowed_department_ids);
+		$yearSummaries = $this->Performance_model->getDepartmentYearlyPerformance($year, $this->allowed_department_ids);
 
 		$quartersMap = [];
 		foreach ($quarterSummaries as $row) {
@@ -61,6 +121,7 @@ class Performance extends CI_Controller {
 			'quarters_map' => $quartersMap,
 			'quarter_summaries' => $quarterSummaries,
 			'year_summaries' => $yearSummaries,
+			'is_admin_viewer' => $this->is_admin_viewer,
 		];
 
 		$this->load->view('admin/header');
@@ -79,8 +140,7 @@ class Performance extends CI_Controller {
 			redirect('performance');
 		}
 
-		$this->load->model('Department_model');
-		$this->load->model('Staff_model');
+		$this->_guard_department($departmentId);
 
 		$departmentName = $this->Department_model->get_department_name($departmentId);
 		$staffSummaries = $this->Performance_model->getDepartmentStaffYearlyPerformance($year, $departmentId);
@@ -110,8 +170,7 @@ class Performance extends CI_Controller {
 			redirect('performance');
 		}
 
-		$this->load->model('Department_model');
-		$this->load->model('Staff_model');
+		$this->_guard_department($departmentId);
 
 		$departmentName = $this->Department_model->get_department_name($departmentId);
 		$staffSummaries = $this->Performance_model->getDepartmentStaffQuarterlyPerformance($year, $quarter, $departmentId);
@@ -142,8 +201,7 @@ class Performance extends CI_Controller {
 			redirect('performance');
 		}
 
-		$this->load->model('Department_model');
-		$this->load->model('Staff_model');
+		$this->_guard_department($departmentId);
 
 		$detail = $this->Performance_model->getStaffPerformanceDetail($year, $departmentId, $staffId, NULL);
 		if (empty($detail)) {
@@ -170,8 +228,7 @@ class Performance extends CI_Controller {
 			redirect('performance');
 		}
 
-		$this->load->model('Department_model');
-		$this->load->model('Staff_model');
+		$this->_guard_department($departmentId);
 
 		$detail = $this->Performance_model->getStaffPerformanceDetail($year, $departmentId, $staffId, $quarter);
 		if (empty($detail)) {
@@ -188,16 +245,22 @@ class Performance extends CI_Controller {
 	 * /performance/departments/{year?}
 	 *
 	 * Simple department index so HRM/Super can drill down to staff performance.
+	 * A HOD sees only the department(s) they head.
 	 */
 	public function departments($year = NULL) {
 		$year = $year === NULL ? (int) date('Y') : (int) $year;
 		if ($year <= 0) $year = (int) date('Y');
 
-		$this->load->model('Department_model');
+		if ($this->allowed_department_ids === NULL) {
+			$departments = $this->Department_model->select_departments();
+		} else {
+			$departments = $this->_headed_departments();
+		}
 
 		$data = [
 			'year' => $year,
-			'departments' => $this->Department_model->select_departments(),
+			'departments' => empty($departments) ? [] : $departments,
+			'is_admin_viewer' => $this->is_admin_viewer,
 		];
 
 		$this->load->view('admin/header');

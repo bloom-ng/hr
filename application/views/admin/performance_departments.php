@@ -1,6 +1,7 @@
+<?php $isAdminViewer = !isset($is_admin_viewer) || $is_admin_viewer; ?>
 <div class="content-wrapper bg-[#3E3E3E]">
 	<div class="content-header">
-		<h1 class="m-0 text-dark">Departments Performance</h1>
+		<h1 class="m-0 text-dark"><?php echo $isAdminViewer ? 'Departments Performance' : 'My Team Performance'; ?></h1>
 		<ol class="breadcrumb float-sm-right">
 			<li class="breadcrumb-item"><a href="<?php echo base_url('performance'); ?>">Performance</a></li>
 			<li class="breadcrumb-item active">Departments</li>
@@ -13,7 +14,10 @@
 				<div class="col-md-12">
 					<div class="box border-t-10 border-[#DA7F00] bg-[#2C2C2C]">
 						<div class="box-header">
-							<h3 class="box-title text-white">Select a Department (Year <?php echo (int)$year; ?>)</h3>
+							<h3 class="box-title text-white">
+								<?php echo $isAdminViewer ? 'Select a Department' : 'Your Department'; ?>
+								(Year <?php echo (int)$year; ?>)
+							</h3>
 						</div>
 
 						<div class="box-body">
@@ -47,7 +51,9 @@
 									</tbody>
 								</table>
 							<?php else: ?>
-								<p class="text-white mb-3">No departments found.</p>
+								<p class="text-white mb-3">
+									<?php echo $isAdminViewer ? 'No departments found.' : 'You are not currently assigned as head of any department.'; ?>
+								</p>
 							<?php endif; ?>
 						</div>
 					</div>

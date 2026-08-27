@@ -48,6 +48,21 @@ class Department_model extends CI_Model {
         $this->db->affected_rows();
     }
 
+    /**
+     * Departments headed by a given staff member (a staff can head more than one).
+     *
+     * @return array<int,array<string,mixed>>
+     */
+    function select_departments_by_head($staff_id)
+    {
+        $staff_id = (int) $staff_id;
+        if ($staff_id <= 0) return [];
+
+        $this->db->where('staff_id', $staff_id);
+        $qry = $this->db->get('department_tbl');
+        return $qry->num_rows() > 0 ? $qry->result_array() : [];
+    }
+
     function is_head_of_department($staff_id) {
         $this->db->where('staff_id', $staff_id);
         $query = $this->db->get('department_tbl');

@@ -260,6 +260,17 @@
                 <li><a href="<?php echo base_url('performance/departments'); ?>"><i class="fa fa-circle-o"></i> Manage
                     Performances</a></li>
               <?php endif; ?>
+              <?php
+              // Heads of department log in with role=staff, so identify them by department_tbl.staff_id.
+              $sidebar_staff_id = $this->session->userdata('staff_id');
+              $sidebar_is_hod = !empty($sidebar_staff_id)
+                && !in_array($this->session->userdata('role'), ["hrm", "super"])
+                && $this->Department_model->is_head_of_department($sidebar_staff_id);
+              ?>
+              <?php if ($sidebar_is_hod): ?>
+                <li><a href="<?php echo base_url('performance/departments'); ?>"><i class="fa fa-circle-o"></i> Team
+                    Performance</a></li>
+              <?php endif; ?>
             </ul>
           </li>
           <!-- APPRAISAL-->

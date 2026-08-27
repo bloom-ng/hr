@@ -195,13 +195,19 @@ class Performance_model extends CI_Model {
 	 *
 	 * @return array<int,array>
 	 */
-	public function getFinalMonthlyAppraisalsForYear($year) {
-		return $this->getFinalMonthlyAppraisalsForYearFiltered($year, NULL, NULL);
+	public function getFinalMonthlyAppraisalsForYear($year, $departmentIds = NULL) {
+		return $this->getFinalMonthlyAppraisalsForYearFiltered($year, $departmentIds, NULL);
 	}
 
 	private function getFinalMonthlyAppraisalsForYearFiltered($year, $departmentId = NULL, $staffId = NULL) {
 		$year = (int) $year;
 		if ($year <= 0) return [];
+
+		// $departmentId may be a single id or a list of ids (HOD scoping).
+		if (is_array($departmentId)) {
+			$departmentId = array_values(array_unique(array_map('intval', $departmentId)));
+			if (empty($departmentId)) return [];
+		}
 
 		// month_under_review stored as YYYY-MM (VARCHAR).
 		$this->db->select('
@@ -217,7 +223,11 @@ class Performance_model extends CI_Model {
 		$this->db->join('appraisal_kpas k', 'k.appraisal_id = a.id', 'left');
 		$this->db->where('a.status', 'final');
 		$this->db->like('a.month_under_review', (string) $year . '-', 'after');
-		if ($departmentId !== NULL) $this->db->where('a.department_id', (int)$departmentId);
+		if (is_array($departmentId)) {
+			$this->db->where_in('a.department_id', $departmentId);
+		} elseif ($departmentId !== NULL) {
+			$this->db->where('a.department_id', (int)$departmentId);
+		}
 		if ($staffId !== NULL) $this->db->where('a.staff_id', (int)$staffId);
 
 		// Group by a.id to collapse multiple kpa rows.
@@ -237,12 +247,12 @@ class Performance_model extends CI_Model {
 	 *
 	 * @return array<int,array<string,mixed>>
 	 */
-	public function getDepartmentQuarterlyPerformance($year, $quarter = NULL) {
+	public function getDepartmentQuarterlyPerformance($year, $quarter = NULL, $departmentIds = NULL) {
 		$year = (int) $year;
 		$quarter = $quarter === NULL ? NULL : (int) $quarter;
 		if ($year <= 0) return [];
 
-		$rows = $this->getFinalMonthlyAppraisalsForYear($year);
+		$rows = $this->getFinalMonthlyAppraisalsForYear($year, $departmentIds);
 		if (empty($rows)) return [];
 
 		$staffQuarterScores = []; // [deptId][staffId][quarter] => ['scores'=>[], 'department_name'=>string]
@@ -328,11 +338,11 @@ class Performance_model extends CI_Model {
 	 *
 	 * @return array<int,array<string,mixed>>
 	 */
-	public function getDepartmentYearlyPerformance($year) {
+	public function getDepartmentYearlyPerformance($year, $departmentIds = NULL) {
 		$year = (int) $year;
 		if ($year <= 0) return [];
 
-		$rows = $this->getFinalMonthlyAppraisalsForYear($year);
+		$rows = $this->getFinalMonthlyAppraisalsForYear($year, $departmentIds);
 		if (empty($rows)) return [];
 
 		$staffYearScores = []; // [deptId][staffId] => ['scores'=>[], 'department_name'=>string]
