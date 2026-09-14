@@ -79,6 +79,10 @@
 
                                                     <a href="<?php echo base_url(); ?>view-hod-report/<?php echo $report['id']; ?>" class="btn btn-success hover:bg-[#DA7F00] border-0">Preview</a>
                                                 <?php endif; ?>
+
+                                                <?php if ($isHod && !in_array($this->session->userdata('role'), array("hrm", "super"))) : ?>
+                                                    <a href="<?php echo base_url(); ?>clone-hod-report/<?php echo $report['id']; ?>" class="btn btn-default hover:bg-[#595959] bg-[#595959] border-0" onclick="return confirm('Clone this report into a new editable draft?');">Clone</a>
+                                                <?php endif; ?>
                                             </td>
                                         </tr>
                                     <?php $i++;
