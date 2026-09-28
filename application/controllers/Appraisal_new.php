@@ -146,6 +146,80 @@ class Appraisal_new extends CI_Controller
         return $kpas;
     }
 
+    public function clone_appraisal($id)
+    {
+        // Same access rule as create(): HOD of the staff's department, or HR/Super
+        $role = $this->session->userdata('role');
+        if (!in_array($role, ['hrm', 'super']) && !$this->check_is_hod()) {
+            $this->session->set_flashdata('error', 'Only HODs or HR can clone appraisals.');
+            redirect('appraisal_new/manage');
+        }
+
+        $source = $this->Appraisal_new_model->get_appraisal($id);
+        if (!$source) {
+            show_404();
+        }
+
+        $data = [
+            'staff_id' => $source['staff_id'],
+            'department_id' => $source['department_id'],
+            'position' => $source['position'],
+            'month_under_review' => $source['month_under_review'],
+
+            'rating_teamwork' => $source['rating_teamwork'],
+            'comment_teamwork' => $source['comment_teamwork'],
+            'rating_communication' => $source['rating_communication'],
+            'comment_communication' => $source['comment_communication'],
+            'rating_quality' => $source['rating_quality'],
+            'comment_quality' => $source['comment_quality'],
+            'rating_timeliness' => $source['rating_timeliness'],
+            'comment_timeliness' => $source['comment_timeliness'],
+            'rating_innovation' => $source['rating_innovation'],
+            'comment_innovation' => $source['comment_innovation'],
+            'rating_professionalism' => $source['rating_professionalism'],
+            'comment_professionalism' => $source['comment_professionalism'],
+
+            'tasks_assigned' => $source['tasks_assigned'],
+            'tasks_completed' => $source['tasks_completed'],
+            'completion_rate' => $source['completion_rate'],
+            'accuracy_rate' => $source['accuracy_rate'],
+
+            'strengths' => $source['strengths'],
+            'weaknesses' => $source['weaknesses'],
+            'training_needs' => $source['training_needs'],
+            'next_month_goals' => $source['next_month_goals'],
+
+            'hod_remarks' => $source['hod_remarks'],
+
+            // Reset workflow-only fields — this is a fresh draft, not a continuation
+            'employee_remarks' => null,
+            'hr_remarks' => null,
+            'hr_approval_date' => null,
+            'status' => Appraisal_new_model::APPRAISAL_DRAFT,
+        ];
+
+        $kpas = [];
+        foreach ($source['kpas'] as $kpa) {
+            $kpas[] = [
+                'category' => $kpa['category'],
+                'description' => $kpa['description'],
+                'expected_output' => $kpa['expected_output'],
+                'actual_output' => $kpa['actual_output'],
+                'rating' => $kpa['rating'],
+            ];
+        }
+
+        $new_id = $this->Appraisal_new_model->create_appraisal($data, $kpas);
+
+        if ($new_id) {
+            $this->session->set_flashdata('success', 'Appraisal cloned into a new draft. Edit it before sending to HR.');
+            redirect('appraisal_new/edit/' . $new_id);
+        } else {
+            $this->session->set_flashdata('error', 'Failed to clone appraisal.');
+            redirect('appraisal_new/list_staff_appraisals/' . $source['staff_id']);
+        }
+    }
+
     public function edit($id)
     {
         // Edit view for HOD/Admin (only if draft)

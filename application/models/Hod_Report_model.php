@@ -85,4 +85,17 @@ class Hod_Report_model extends CI_Model
         $this->db->delete($this->table);
         $this->db->affected_rows();
     }
+
+    public function clone_report($id)
+    {
+        $source = $this->get($id);
+        if (empty($source)) {
+            return false;
+        }
+        $source = $source[0];
+        unset($source['id']);
+        $source['status'] = self::HOD_REPORT_PENDING;
+
+        return $this->insert($source);
+    }
 }

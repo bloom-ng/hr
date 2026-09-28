@@ -105,6 +105,10 @@
                                                     <?php if($appraisal['status'] == 'staff_replied' && $is_super): ?>
                                                         <a href="<?php echo base_url('appraisal_new/super_approve/'.$appraisal['id']); ?>" class="btn btn-success btn-sm" onclick="return confirm('Finalize this appraisal?');">Final Approve</a>
                                                     <?php endif; ?>
+
+                                                    <?php if($is_hod_admin || $is_hr): ?>
+                                                        <a href="<?php echo base_url('clone-appraisal/'.$appraisal['id']); ?>" class="btn btn-secondary btn-sm" onclick="return confirm('Clone this appraisal into a new editable draft?');">Clone</a>
+                                                    <?php endif; ?>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>

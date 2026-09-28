@@ -59,7 +59,7 @@ class Appraisal_new_model extends CI_Model {
 
         $this->db->trans_complete();
 
-        return $this->db->trans_status();
+        return $this->db->trans_status() ? $appraisal_id : false;
     }
 
     public function get_appraisal($id) {

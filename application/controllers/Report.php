@@ -242,6 +242,44 @@ class Report extends CI_Controller
         }
     }
 
+    public function clone_hod_report($id)
+    {
+        $source = $this->Hod_Report_model->get($id);
+        if (empty($source)) {
+            $this->session->set_flashdata('error', "Sorry, Unable To Find Report To Clone");
+            redirect($_SERVER['HTTP_REFERER']);
+        }
+        $source = $source[0];
+
+        $departments = $this->Department_model->select_departments();
+        $loggedInUserId = $this->session->userdata('userid');
+        $isHod = in_array($this->session->userdata('role'), array("hrm", "super"));
+
+        if (!$isHod && isset($departments)) {
+            foreach ($departments as $department) {
+                if ($loggedInUserId == $department['staff_id'] && $department['id'] == $source['department_id']) {
+                    $isHod = true;
+                    break;
+                }
+            }
+        }
+
+        if (!$isHod) {
+            $this->session->set_flashdata('error', "You are not authorized to clone this report.");
+            redirect(base_url());
+        }
+
+        $newId = $this->Hod_Report_model->clone_report($id);
+
+        if ($newId) {
+            $this->session->set_flashdata('success', "Report Cloned. You can edit it before sending.");
+            redirect(base_url() . "edit-hod-report/" . $newId);
+        } else {
+            $this->session->set_flashdata('error', "Sorry, Unable To Clone Report");
+            redirect($_SERVER['HTTP_REFERER']);
+        }
+    }
+
     public function view($id)
     {
         $data['report'] = $this->Report_model->get($id)[0];
