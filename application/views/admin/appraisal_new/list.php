@@ -93,7 +93,7 @@
                                                     $is_super = ($role == 'super');
                                                     ?>
 
-                                                    <?php if($appraisal['status'] == 'draft' && $is_hod_admin): ?>
+                                                    <?php if($appraisal['status'] == 'draft' && ($is_hod_admin || $is_hr)): ?>
                                                         <a href="<?php echo base_url('appraisal_new/edit/'.$appraisal['id']); ?>" class="btn btn-primary btn-sm">Edit</a>
                                                         <a href="<?php echo base_url('appraisal_new/submit_to_hr/'.$appraisal['id']); ?>" class="btn btn-warning btn-sm" onclick="return confirm('Are you sure you want to submit this to HR?');">Send to HR</a>
                                                     <?php endif; ?>
