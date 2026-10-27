@@ -190,3 +190,14 @@
         document.getElementById('conclusion').value = conclusionQuill.root.innerHTML;
     });
 </script>
+
+<!-- Seed hidden inputs with the existing content so untouched editors aren't submitted empty -->
+<script>
+    document.getElementById('activities').value = activitiesQuill.root.innerHTML;
+    document.getElementById('achievement').value = achievementQuill.root.innerHTML;
+    document.getElementById('growth_analysis').value = growthQuill.root.innerHTML;
+    document.getElementById('challenges').value = challengesQuill.root.innerHTML;
+    document.getElementById('target_for_next_month').value = targetQuill.root.innerHTML;
+    document.getElementById('recommendations').value = recommendationQuill.root.innerHTML;
+    document.getElementById('conclusion').value = conclusionQuill.root.innerHTML;
+</script>

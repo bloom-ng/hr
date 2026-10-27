@@ -94,6 +94,8 @@ class Hod_Report_model extends CI_Model
         }
         $source = $source[0];
         unset($source['id']);
+        // Left blank so the HOD picks the new month on the edit screen (field is required there)
+        $source['date'] = null;
         $source['status'] = self::HOD_REPORT_PENDING;
 
         return $this->insert($source);

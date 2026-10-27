@@ -164,7 +164,8 @@ class Appraisal_new extends CI_Controller
             'staff_id' => $source['staff_id'],
             'department_id' => $source['department_id'],
             'position' => $source['position'],
-            'month_under_review' => $source['month_under_review'],
+            // Left blank so the HOD picks the new period on the edit screen (field is required there)
+            'month_under_review' => '',
 
             'rating_teamwork' => $source['rating_teamwork'],
             'comment_teamwork' => $source['comment_teamwork'],
@@ -250,6 +251,8 @@ class Appraisal_new extends CI_Controller
         }
 
         $data = [
+            'month_under_review' => $this->input->post('month_under_review'),
+
             'rating_teamwork' => $this->input->post('rating_teamwork'),
             'comment_teamwork' => $this->input->post('comment_teamwork'),
             'rating_communication' => $this->input->post('rating_communication'),
