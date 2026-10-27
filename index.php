@@ -58,6 +58,17 @@ define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'developm
 
 /*
  *---------------------------------------------------------------
+ * TIMEZONE
+ *---------------------------------------------------------------
+ *
+ * Times typed into the app (poll windows, events) are Lagos local time, so
+ * PHP must use the same zone. Otherwise they are read as the server's zone
+ * (often UTC) and open/close an hour late.
+ */
+date_default_timezone_set('Africa/Lagos');
+
+/*
+ *---------------------------------------------------------------
  * ERROR REPORTING
  *---------------------------------------------------------------
  *
